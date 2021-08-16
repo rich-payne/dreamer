@@ -16,10 +16,7 @@ knitr::opts_chunk$set(
 ```
 # dreamer <img src='inst/hex-dreamer.png' align="right" height="139"/>
 
-The goal of dreamer is to flexibly model (longitudinal) dose-response
-relationships.  This is
-accomplished using Bayesian model averaging of parametric dose-response
-models.
+The goal of dreamer (Dose REsponse bAyesian Model avERaging) is to flexibly model (longitudinal) dose-response relationships.  This is accomplished using Bayesian model averaging of parametric dose-response models.
 
 # Installation
 
