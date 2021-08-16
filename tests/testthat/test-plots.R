@@ -74,7 +74,7 @@ mcmc_long <- dreamer_mcmc(
 
 gg_save <- function(plot, filename, ...) {
   fs::dir_create("figs")
-  filename <- fs::path("figs/", filename)
+  filename <- fs::path("figs", filename)
   ggplot2::ggsave(filename, plot, width = 7, height = 7, ...)
   filename
 }
