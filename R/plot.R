@@ -265,7 +265,7 @@ plot.dreamer <- function(
 }
 
 #' @title Plot Prior
-#' @description Plot the prior over the dose range.  This is intented to
+#' @description Plot the prior over the dose range.  This is intended to
 #'   help the user choose appropriate priors.
 #' @param doses a vector of doses at which to evaluate and interpolate
 #'   between.
@@ -278,7 +278,7 @@ plot.dreamer <- function(
 #'   examples below.
 #' @param plot_draws if `TRUE`, the individual draws from the prior are plotted.
 #'   If `FALSE`, only the prior mean and quantiles are drawn.
-#' @param alpha the transparancy setting for the prior draws in (0, 1].
+#' @param alpha the transparency setting for the prior draws in (0, 1].
 #'   Only applies if `plot_draws = TRUE`.
 #' @param times a vector of times at which to plot the prior.
 #' @return The ggplot object.

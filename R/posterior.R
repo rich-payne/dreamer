@@ -1,6 +1,6 @@
 #' @title Posterior Quantities from Bayesian Model Averaging
 #' @description Calculate posterior mean (and quantiles for specific
-#'   doses for each MCMC iteraton of the model.
+#'   doses for each MCMC iteration of the model.
 #' @param x output from a call to \code{\link{dreamer_mcmc}}.
 #' @param doses doses at which to estimate posterior quantities.
 #' @param times a vector of times at which to calculate the posterior response
@@ -9,7 +9,7 @@
 #' @param reference_dose the dose at which to adjust the posterior plot.
 #'   Specifying
 #'   a dose returns the plot of pr(trt_dose - trt_{reference_dose} | data).
-#' @param return_samples logicial indicating if the weighted raw
+#' @param return_samples logical indicating if the weighted raw
 #'   MCMC samples from the Bayesian model averaging used to calculate the
 #'   mean and quantiles should be returned.
 #' @param predictive An integer.  If greater than 0, the return values will

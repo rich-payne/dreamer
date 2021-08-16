@@ -35,14 +35,14 @@ examples below.}
 \item{plot_draws}{if `TRUE`, the individual draws from the prior are plotted.
 If `FALSE`, only the prior mean and quantiles are drawn.}
 
-\item{alpha}{the transparancy setting for the prior draws in (0, 1].
+\item{alpha}{the transparency setting for the prior draws in (0, 1].
 Only applies if `plot_draws = TRUE`.}
 }
 \value{
 The ggplot object.
 }
 \description{
-Plot the prior over the dose range.  This is intented to
+Plot the prior over the dose range.  This is intended to
   help the user choose appropriate priors.
 }
 \examples{

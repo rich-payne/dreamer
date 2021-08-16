@@ -74,7 +74,7 @@ be from the predictive distribution of the mean of `predictive`
 observations.
 If 0 (default), the posterior on the dose response mean is returned.}
 
-\item{return_samples}{logicial indicating if the weighted raw
+\item{return_samples}{logical indicating if the weighted raw
 MCMC samples from the Bayesian model averaging used to calculate the
 mean and quantiles should be returned.}
 
@@ -94,7 +94,7 @@ A named list:
 }
 \description{
 Calculate posterior mean (and quantiles for specific
-  doses for each MCMC iteraton of the model.
+  doses for each MCMC iteration of the model.
 }
 \section{Methods (by class)}{
 \itemize{

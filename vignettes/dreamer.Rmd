@@ -106,7 +106,7 @@ names(output)
 ```
 
 Output can be easily summarized.  The `summary()` function provides posterior
-estimates of parameters, gelman diagnostics, and effective sample sizes for 
+estimates of parameters, Gelman diagnostics, and effective sample sizes for 
 each model and parameter.
 
 ```{r}
@@ -224,7 +224,7 @@ pr_eoi(
 
 Calculating the probability each dose is the minimum efficacious dose
 (as defined as the smallest dose which is above a certain clinically significant
-difference (csd)) in the
+difference (CSD)) in the
 set of doses is performed with the `pr_med()` function:
 
 ```{r}
@@ -257,7 +257,7 @@ pr_medx(output, ed = 95)
 
 ### Posterior Probability of MEDX
 
-These functions obtain posterior quantiles of the minumum efficacious dose
+These functions obtain posterior quantiles of the minimum efficacious dose
 which has X% of maximum efficacy.
 
 ```{r}
@@ -366,7 +366,7 @@ dreamer_plot_prior(
 )
 ```
 
-## Indpendent Model
+## Independent Model
 An independent mean model can also be fit to each of the doses.
 In this case, because no parametric assumptions are made on the dose-response
 curve, no Bayesian model averaging is employed and no interpolation is 

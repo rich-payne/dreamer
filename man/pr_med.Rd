@@ -25,7 +25,7 @@ defining the MED relative to a dose (rather than in absolute terms).  When
 `reference_dose` is specified, this function calculates the
 posterior probability
 that each dose is the smallest dose such that
-(effect_dose - effect_reference_dose > csd).}
+(effect_dose - effect_reference_dose > CSD).}
 
 \item{greater}{if `TRUE`, higher responses indicate better efficacy.  If
 `FALSE`, lower responses indicate better efficacy.`}

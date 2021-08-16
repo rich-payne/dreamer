@@ -20,7 +20,7 @@
 #' @param n_iter the number of MCMC samples to collect after tuning and burn-in.
 #' @param n_chains the number of separate, independent, MCMC chains to run.
 #' @param silent logical indicating if MCMC progress bars should be suppressed.
-#' @param convergence_warn logical (default `TRUE``) indicating if the
+#' @param convergence_warn logical (default `TRUE`) indicating if the
 #'   Gelman-Rubin diagnostics should be run to detect convergence issues.
 #'   Warnings are thrown if the upper bound of the Gelman-Rubin statistic
 #'   is greater than 1.1.
@@ -30,19 +30,9 @@
 #'   the models is used to calculate posterior weights for each model.
 #'   See Gould (2018) for details.
 #' @section References:
-#'   Gould, A. L. (2018). BMA‐Mod: A Bayesian model averaging strategy
-#'     for determining dose‐response relationships in the presence of
-#'     model uncertainty. \emph{Biometrical Journal}.
-#' @return A list containing the following elements:
-#'   \itemize{
-#'     \item `doses` a vector of the unique ascending doses
-#'     \item `w_prior`, `w_post` a list of the prior and posterior weights
-#'       for each model.
-#'     \item MCMC samples from each of the individual models
-#'       (in coda format).  If the model arguments are named, the names are
-#'       retained in this list; if not, default names are specified.
-#'    }
-#' @example man/examples/ex-dreamer_mcmc.R
+#'   Gould, A. L. (2019).  BMA-Mod: A Bayesian model averaging strategy for
+#'     determining dose-response relationships in the presence of model
+#'     uncertainty. Biometrical Journal, 61(5), 1141-1159.
 #' @export
 dreamer_mcmc <- function( #nolint
   data,

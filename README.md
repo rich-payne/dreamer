@@ -40,7 +40,7 @@ used by dreamer.
 dreamer supports a number of models including linear, quadratic,
 log-linear, log-quadratic, EMAX, exponential, for use as models that can
 be included in the model averaging approach. In addition, several
-longitudinal models are also suppored (see the vignette). All of the
+longitudinal models are also supported (see the vignette). All of the
 above models are available for both continuous and binary endpoints.
 
 ## Example

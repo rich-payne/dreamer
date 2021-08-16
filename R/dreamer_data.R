@@ -470,7 +470,7 @@ dreamer_data_exp_binary <- function(
 }
 
 #' @describeIn dreamer_data generate data from Beta dose response.
-#' @param scale a scaling paramter (fixed, specified by the user) for the
+#' @param scale a scaling parameter (fixed, specified by the user) for the
 #'   beta models.
 #' @export
 dreamer_data_beta <- function(

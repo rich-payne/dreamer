@@ -10,7 +10,7 @@
 #'   `reference_dose` is specified, this function calculates the
 #'   posterior probability
 #'   that each dose is the smallest dose such that
-#'   (effect_dose - effect_reference_dose > csd).
+#'   (effect_dose - effect_reference_dose > CSD).
 #' @param greater if `TRUE`, higher responses indicate better efficacy.  If
 #'   `FALSE`, lower responses indicate better efficacy.`
 #' @param time the time (scalar) at which the Pr(MED) should be calculated.

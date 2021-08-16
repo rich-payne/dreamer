@@ -248,7 +248,7 @@ Can be "linear", "itp", or "idp".}
 
 \item{link}{character vector indicating the link function for binary models.}
 
-\item{scale}{a scaling paramter (fixed, specified by the user) for the
+\item{scale}{a scaling parameter (fixed, specified by the user) for the
 beta models.}
 }
 \value{

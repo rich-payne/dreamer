@@ -3,7 +3,7 @@
 #'   weight for each model to be used in Bayesian model averaging
 #'   via `dreamer_mcmc()`.
 #'
-#'   See each functions's section below for the model's details.  In the
+#'   See each function's section below for the model's details.  In the
 #'   following, \eqn{y} denotes the response variable and \eqn{d} represents
 #'   the dose.
 #'
