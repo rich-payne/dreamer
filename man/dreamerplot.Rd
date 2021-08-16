@@ -122,6 +122,7 @@ output <- dreamer_mcmc(
 
 plot(output)
 
+\dontrun{
 # with data
 plot(output, data = data)
 
@@ -130,4 +131,5 @@ plot(output, data = data, predictive = 1)
 
 # single model
 plot(output$mod_linear)
+}
 }
