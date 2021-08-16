@@ -48,7 +48,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          install.packages(c("remotes", "covr", "devtools"))
+          install.packages(c("remotes", "covr", "devtools", "stringi"))
           remotes::install_cran(c("rjags", "tibble"))
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
