@@ -80,16 +80,19 @@ gg_save <- function(plot, filename, ...) {
 }
 
 test_that("plot works", {
+  skip_on_cran()
   out <- plot(mcmc, n_smooth = 5)
   expect_snapshot_file(gg_save(out, "plot_works.png"))
 })
 
 test_that("plot.dreamer works", {
+  skip_on_cran()
   out <- plot(mcmc$lin, n_smooth = 5)
   expect_snapshot_file(gg_save(out, "plot_dreamer_works.png"))
 })
 
 test_that("plot with data", {
+  skip_on_cran()
   out <- plot(mcmc, data = data, n_smooth = 5)
   expect_snapshot_file(gg_save(out, "plot_with_data.png"))
   # with aggregated data
@@ -101,11 +104,13 @@ test_that("plot with data", {
 })
 
 test_that("predictive plots", {
+  skip_on_cran()
   out <- plot(mcmc, predictive = 10, n_smooth = 5)
   expect_snapshot_file(gg_save(out, "predictive_plot.png"))
 })
 
 test_that("longitudinal plots", {
+  skip_on_cran()
   out <- plot(mcmc_long$lin, times = c(0, t_max), n_smooth = 5)
   expect_snapshot_file(gg_save(out, "longitudinal.png"))
   out <- plot(
@@ -119,6 +124,7 @@ test_that("longitudinal plots", {
 })
 
 test_that("plots comparison", {
+  skip_on_cran()
   out <- plot_comparison(mcmc, n_smooth = 5)
   expect_snapshot_file(gg_save(out, "compare.png"))
   out <- plot_comparison(mcmc, data = data, n_smooth = 5)
@@ -136,6 +142,7 @@ test_that("plots comparison", {
 })
 
 test_that("traceplots work", {
+  skip_on_cran()
   png("figs/traceplots.png")
     plot_trace(mcmc)
   dev.off()
@@ -147,6 +154,7 @@ test_that("traceplots work", {
 })
 
 test_that("independent predictive plot", {
+  skip_on_cran()
   data <- dreamer_data_linear(n_cohorts = c(10, 20, 30), c(1, 3, 5), 1, 2, 2)
   mcmc <- dreamer_mcmc(
     data,
@@ -161,11 +169,13 @@ test_that("independent predictive plot", {
 })
 
 test_that("dose adjusted plot", {
+  skip_on_cran()
   out <- plot(mcmc, reference_dose = 0, n_smooth = 5)
   expect_snapshot_file(gg_save(out, "reference_dose.png"))
 })
 
 test_that("dreamer_plot_prior", {
+  skip_on_cran()
   out <- dreamer_plot_prior(
     n_samples = 1e2,
     doses = 1:3,
@@ -175,6 +185,7 @@ test_that("dreamer_plot_prior", {
 })
 
 test_that("dreamer_plot_prior longitudinal single timepoint", {
+  skip_on_cran()
   out <- dreamer_plot_prior(
     n_samples = 1e2,
     doses = 1:3,
@@ -193,6 +204,7 @@ test_that("dreamer_plot_prior longitudinal single timepoint", {
 })
 
 test_that("dreamer_plot_prior longitudinal multiple timepoints", {
+  skip_on_cran()
   out <- dreamer_plot_prior(
     n_samples = 1e2,
     doses = 1:3,
@@ -211,6 +223,7 @@ test_that("dreamer_plot_prior longitudinal multiple timepoints", {
 })
 
 test_that("dreamer_plot_prior plot draws", {
+  skip_on_cran()
   out <- dreamer_plot_prior(
     n_samples = 1e2,
     doses = 1:3,
@@ -221,6 +234,7 @@ test_that("dreamer_plot_prior plot draws", {
 })
 
 test_that("dreamer_plot_prior plot draws longitudinal one timepoint", {
+  skip_on_cran()
   out <- dreamer_plot_prior(
     n_samples = 1e2,
     doses = 1:3,
@@ -240,6 +254,7 @@ test_that("dreamer_plot_prior plot draws longitudinal one timepoint", {
 })
 
 test_that("dreamer_plot_prior plot draws longitudinal multiple timepoints", {
+  skip_on_cran()
   out <- dreamer_plot_prior(
     n_samples = 1e2,
     doses = 1:3,
@@ -263,6 +278,7 @@ test_that("bar_width for single dose", {
 })
 
 test_that("binary plot with data", {
+  skip_on_cran()
   data <- dreamer_data_linear_binary(
     n_cohorts = c(10, 20, 30),
     dose = c(1, 3, 5),
