@@ -1,0 +1,49 @@
+Package: dreamer
+Title: Dose Response Models for Bayesian Model Averaging
+Version: 3.0.0
+Authors@R: c(
+    person(given = "Richard",
+           family = "Payne",
+           role = c("aut", "cre"),
+           email = "paynestatistics@gmail.com"),
+    person(given = "William Michael",
+           family = "Landau",
+           role = c("rev"),
+           email = "will.landau@gmail.com"),
+    person("Mitch", "Thomann",
+           role = c("rev"),
+           email = "mitchell.thomann@lilly.com"))
+Description: dreamer (Dose REsponse bAyesian Model avERaging)
+  fits (longitudinal) dose-response models utilizing a Bayesian model
+  averaging approach for both continuous and binary responses.
+  The Bayesian model averaging updates the weights
+  similar to those in Gould 2019 <doi:10.1002/bimj.201700211>.  Functions
+  for plotting and various posterior quantities (e.g. posterior mean,
+  quantiles, probability of minimum efficacious dose, etc.) are also
+  implemented.
+URL: https://github.com/EliLillyCo/dreamer
+BugReports: https://github.com/EliLillyCo/dreamer
+License: MIT + file LICENSE
+Imports:
+  coda,
+  dplyr (>= 1.0.0),
+  ggplot2,
+  graphics,
+  purrr,
+  rootSolve,
+  rjags (>= 4-8),
+  rlang (>= 0.4.5),
+  stats,
+  tidyr (>= 1.0.2),
+  tidyselect (>= 1.1)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Suggests: 
+  testthat (>= 3.0),
+  fs (>= 1.5),
+  knitr,
+  rmarkdown,
+  tibble
+Config/testthat/edition: 3
+VignetteBuilder: knitr

@@ -1,0 +1,1 @@
+((1 - exp(- c1 * time[i]))/(1 - exp(- c1 * t_max)))

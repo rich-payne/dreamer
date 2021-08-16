@@ -1,0 +1,1 @@
+(((1 - exp(- c1 * time[i]))/(1 - exp(- c1 * d1))) * (time[i] < d1) + (1 - gam * ((1 - exp(- c2 * (time[i] - d1)))/(1 - exp(- c2 * (d2 - d1))))) * ((time[i] >= d1) && (time[i] <= d2)) + (1 - gam) * (time[i] > d2))

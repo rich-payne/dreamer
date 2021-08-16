@@ -1,0 +1,502 @@
+---
+title: "Dose REsponse models for bAyesian Model avERaging (dreamer)"
+author: "Richard Payne"
+date: "August 2, 2021"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{dreamer}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+## dreamer
+
+The dreamer R package provides functions to easily perform Bayesian
+model averaging on (longitudinal) dose-response models.  It also provides
+functions to generate data, and some useful post-processing functions
+including posterior means and quantiles, plots, and other metrics
+(e.g. calculating the posterior probability minimum efficacious dose,
+etc.).
+
+## Generate data
+We can easily see the possible models to generate data from by typing
+`?dreamer_data` in the console.  We will start by generating data
+from a quadratic model.
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(fig.width = 6, fig.height = 4)
+```
+
+```{r, message = FALSE}
+library(dreamer)
+library(dplyr)
+library(ggplot2)
+set.seed(888)
+data <- dreamer_data_quad(
+  n_cohorts = c(20, 20, 20, 20, 20), # number of subjects in each cohort
+  doses = c(0, .5, 1, 1.5, 2), # dose administered to each cohort
+  b1 = 5, # intercept
+  b2 = 5,
+  b3 = - 2,
+  sigma = 2 # standard deviation
+)
+head(data)
+ggplot(data, aes(dose, response)) + geom_point()
+```
+
+## Fit Model
+Now we can use a Bayesian model averaging technique to analyze the data.
+We will use a linear and an EMAX model as candidate models, each with prior
+probability 1 / 2.  There are quite a number of candidate models including
+quadratic, 
+
+Hyperparameters for each model are set by using the `model_XXX()` functions.
+Type `?model` for a description of the model constructors and the models
+each of them fit.
+
+```{r}
+# BAYESIAN MODEL AVERAGING
+output <- dreamer_mcmc(
+  data = data,
+  n_adapt = 1e3,
+  n_burn = 1e3,
+  n_iter = 1e4,
+  n_chains = 2,
+  silent = TRUE,
+  # the argument name "mod_quad" is arbitrary and is chosen by the user
+  mod_quad = model_quad(
+    mu_b1 = 0,
+    sigma_b1 = 10,
+    mu_b2 = 0,
+    sigma_b2 = 10,
+    mu_b3 = 0,
+    sigma_b3 = 10,
+    shape = 1,
+    rate = .001,
+    w_prior = 1 / 2
+  ),
+  # the argument name "mod_emax" is arbitrary and is chosen by the user
+  mod_emax = model_emax(
+    mu_b1 = 0,
+    sigma_b1 = 10,
+    mu_b2 = 0,
+    sigma_b2 = 10,
+    mu_b3 = 0,
+    sigma_b3 = 2,
+    mu_b4 = 1,
+    sigma_b4 = 5,
+    shape = 1,
+    rate = .001,
+    w_prior = 1 / 2
+  )
+)
+```
+
+### Model Output
+
+The output is a list of the sorted unique doses, unique times (for longitudinal
+models), the prior and posterior weights
+for each model, and MCMC output from each individual model.
+
+
+```{r}
+names(output)
+```
+
+Output can be easily summarized.  The `summary()` function provides posterior
+estimates of parameters, gelman diagnostics, and effective sample sizes for 
+each model and parameter.
+
+```{r}
+summary(output)
+```
+
+### Posterior Credible Intervals
+
+It is easy to find posterior credible intervals of the mean response
+for doses of interest:
+
+```{r}
+posterior(output)
+
+# posterior Pr(effect of dose - effect of reference dose)
+posterior(x = output, reference_dose = 0) 
+```
+
+## Posterior Plots
+
+Plot the Bayesian model averaging posterior over the dose range:
+
+```{r}
+plot(output)
+```
+
+One can also plot the observed means on top of the plot:
+
+```{r}
+plot(output, data = data)
+```
+
+One can also look the dose response relative to a specific dose:
+
+```{r}
+plot(output, reference_dose = 0) # adjust relative to dose = 0
+```
+
+The predictive credible intervals for the mean with `predictive` number
+of observations can be added easily:
+
+```{r}
+plot(output, data = data, predictive = 10)
+```
+
+One could also look at the predictive distribution of the difference 
+between two sample means from different doses:
+
+```{r}
+plot(output, reference_dose = 0, predictive = 10)
+```
+
+One can also plot individual model fits, if desired.  Here is the EMAX
+model's posterior:
+
+```{r}
+plot(output$mod_emax, data = data)
+```
+
+Comparing all the model fits together is easy:
+
+```{r}
+plot_comparison(output)
+```
+
+If the plot is too crowded, you can select individual fits:
+
+```{r}
+plot_comparison(
+  mod_emax = output$mod_emax,
+  mod_quad = output$mod_quad
+)
+```
+
+## Posterior Quantities
+### Probability of Meeting Effect of Interest (EOI)
+
+The posterior probability of meeting a certain effect of interest can be
+calculated, i.e., Pr(mean response > EOI | data).
+One can specify
+custom doses and EOIs relative to another dose, or in absolute terms.
+
+```{r}
+# absolute: pr(mean at dose 0.50 > 1 | data)
+pr_eoi(output, eoi = 1, dose = 0.50)
+
+# relative: pr( (mean at dose 0.50) - (mean at dose 0.25) > 0.55 | data )
+pr_eoi(output, eoi = 0.55, dose = 0.50, reference_dose = 0.25)
+
+# vectorized
+n_doses <- length(output$doses)
+pr_eoi(
+  output,
+  eoi = rep(.55, n_doses),
+  dose = output$doses,
+  reference_dose = rep(0, n_doses)
+)
+```
+
+Posterior probabilities of meeting the effect of interest can be calculated
+for individual models by applying the `pr_eoi()` function to a specific model's
+output:
+
+```{r}
+# from the quadratic model
+pr_eoi(
+  output$mod_quad,
+  eoi = 1.5,
+  dose = .75,
+  reference_dose = 0
+)
+```
+
+### Probability of Minimum Efficacious Dose (MED)
+
+Calculating the probability each dose is the minimum efficacious dose
+(as defined as the smallest dose which is above a certain clinically significant
+difference (csd)) in the
+set of doses is performed with the `pr_med()` function:
+
+```{r}
+pr_med(output, csd = 8)
+
+# placebo adjusted
+pr_med(
+  output,
+  csd = 3,
+  reference_dose = 0
+)
+
+# relative to placebo grp (dose = 0) for just the EMAX model
+pr_med(
+  output$mod_emax,
+  csd = 3,
+  reference_dose = 0
+)
+```
+
+### Probability of Minimum Dose with at Least X% Efficacy
+
+Calculating the posterior probability each of the specified doses is the
+smallest dose with at least X% efficacy can be done as follows:
+
+```{r}
+# looking for smallest dose with 95% of the maximum efficacy
+pr_medx(output, ed = 95)
+```
+
+### Posterior Probability of MEDX
+
+These functions obtain posterior quantiles of the minumum efficacious dose
+which has X% of maximum efficacy.
+
+```{r}
+post_medx(output, ed = 95)
+```
+
+### Posterior Distribution of Percentage Effect
+
+This function provides the posterior quantiles of a dose's effective dose
+percent.  This
+is calculated by calculating the dose's response divided by the maximum
+response over the range for each iteration of the MCMC.
+
+```{r}
+post_perc_effect(
+  output,
+  dose = c(.05, .5)
+)
+```
+
+## MCMC Diagnostics
+
+Get diagnostics for each parameter:
+
+```{r}
+diagnostics(output)
+# single model
+diagnostics(output$mod_emax)
+```
+
+MCMC traceplots are easy to plot:
+
+```{r, fig.height = 8, fig.width = 6}
+# traceplot for all parameters for each model
+# plot_trace(output)
+
+# single model
+plot_trace(output$mod_quad)
+```
+
+## Visualizing Priors
+
+To help users choose a prior, the `dreamer_plot_prior()` function allows the user
+to see what the prior actually looks like in context of the dose range for 
+a particular model.  This is particularly helpful for complex models, or
+binary models.
+
+```{r}
+dreamer_plot_prior(
+  doses = c(0, 2.5, 5),
+  mod_linear_binary = model_linear_binary(
+    mu_b1 = -1,
+    sigma_b1 = .1,
+    mu_b2 = 1,
+    sigma_b2 = .1,
+    link = "logit",
+    w_prior = 1
+  )
+)
+```
+
+Individual prior draws can also be plotted:
+
+```{r}
+dreamer_plot_prior(
+  doses = seq(from = 0, to = 5, length.out = 50),
+  n_samples = 100,
+  plot_draws = TRUE,
+  mod_quad_binary = model_quad_binary(
+    mu_b1 = -.5,
+    sigma_b1 = .2,
+    mu_b2 = -.5,
+    sigma_b2 = .2,
+    mu_b3 = .5,
+    sigma_b3 = .1,
+    link = "logit",
+    w_prior = 1
+  )
+)
+```
+
+One can also view the prior for all the models combined in a Bayesian model
+averaging prior!
+
+```{r}
+dreamer_plot_prior(
+  doses = c(0, 2.5, 5),
+  mod_linear_binary = model_linear_binary(
+    mu_b1 = -1,
+    sigma_b1 = .1,
+    mu_b2 = 1,
+    sigma_b2 = .1,
+    link = "logit",
+    w_prior = .75
+  ),
+  mod_quad_binary = model_quad_binary(
+    mu_b1 = -.5,
+    sigma_b1 = .2,
+    mu_b2 = -.5,
+    sigma_b2 = .2,
+    mu_b3 = .5,
+    sigma_b3 = .1,
+    link = "logit",
+    w_prior = .25
+  )
+)
+```
+
+## Indpendent Model
+An independent mean model can also be fit to each of the doses.
+In this case, because no parametric assumptions are made on the dose-response
+curve, no Bayesian model averaging is employed and no interpolation is 
+allowed.
+
+```{r}
+output_independent <- dreamer_mcmc(
+  data = data,
+  n_adapt = 1e3,
+  n_burn = 1e3,
+  n_iter = 1e4,
+  n_chains = 2,
+  silent = TRUE, # make rjags be quiet,
+  # this model has the same prior on the mean for each dose
+  mod_indep = model_independent(
+    mu_b1 = 0,
+    sigma_b1 = 1,
+    shape = 1,
+    rate = .001
+  )
+)
+# prior is too strong!
+plot(output_independent, data = data)
+
+output_independent2 <- dreamer_mcmc(
+  data = data,
+  n_adapt = 1e3,
+  n_burn = 1e3,
+  n_iter = 1e4,
+  n_chains = 2,
+  silent = TRUE, # make rjags be quiet,
+  # this model has the different priors on the mean for each dose
+  mod_indep = model_independent(
+    mu_b1 = c(0, 1, 2, 3, 4),
+    sigma_b1 = c(10, 10, 20, 20, 30),
+    shape = 1,
+    rate = .001,
+    doses = c(0, 0.5, 1, 1.5, 2)
+  )
+)
+plot(output_independent2, data = data)
+```
+
+All other functions are also available as above.
+
+## Longitudinal Modeling
+
+Longitudinal modeling is also available in `dreamer`.  Longitudinal data
+can be generated by specifying the `longitudinal` argument, the
+longitudinal parameters, and the times to observe subjects.  See documentation
+for `dreamer::model_longitudinal()` and `dreamer::model` for the
+parameterization of the longitudinal models.
+
+```{r}
+set.seed(889)
+data_long <- dreamer_data_linear(
+  n_cohorts = c(10, 10, 10, 10), # number of subjects in each cohort
+  doses = c(.25, .5, .75, 1.5), # dose administered to each cohort
+  b1 = 0, # intercept
+  b2 = 2, # slope
+  sigma = .5, # standard deviation,
+  longitudinal = "itp",
+  times = c(0, 12, 24, 52),
+  t_max = 52, # maximum time
+  a = .5,
+  c1 = .1
+)
+
+ggplot(data_long, aes(time, response, group = dose, color = factor(dose))) +
+  geom_point()
+```
+
+Fitting the MCMC is the same as before, except priors need to be specified
+for the longitudinal part of the model:
+
+```{r}
+# BAYESIAN MODEL AVERAGING
+output_long <- dreamer_mcmc(
+  data = data_long,
+  n_adapt = 1e3,
+  n_burn = 1e3,
+  n_iter = 1e4,
+  n_chains = 2,
+  silent = TRUE, # make rjags be quiet,
+  mod_linear = model_linear(
+    mu_b1 = 0,
+    sigma_b1 = 1,
+    mu_b2 = 0,
+    sigma_b2 = 1,
+    shape = 1,
+    rate = .001,
+    w_prior = 1 / 2, # prior probability of the model
+    longitudinal = model_longitudinal_itp(
+      mu_a = 0,
+      sigma_a = 1,
+      a_c1 = 0,
+      b_c1 = 1,
+      t_max = 52
+    )
+  ),
+  mod_quad = model_quad(
+    mu_b1 = 0,
+    sigma_b1 = 1,
+    mu_b2 = 0,
+    sigma_b2 = 1,
+    mu_b3 = 0,
+    sigma_b3 = 1,
+    shape = 1,
+    rate = .001,
+    w_prior = 1 / 2,
+    longitudinal = model_longitudinal_linear(
+      mu_a = 0,
+      sigma_a = 1,
+      t_max = 52
+    )
+  )
+)
+```
+
+Plotting longitudinal models is straightforward:
+
+```{r}
+plot(output_long, data = data_long)
+# plot dose response at last time point
+plot(output_long, times = 52, data = data_long)
+```
+
+All the other posterior quantity functions work on longitudinal data.
+For example:
+
+```{r}
+posterior(output_long)
+```

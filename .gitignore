@@ -1,0 +1,8 @@
+*~
+vignettes/dreamer.html
+dreamer.Rproj
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+tests/testthat/figs

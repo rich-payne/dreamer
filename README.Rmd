@@ -1,0 +1,136 @@
+---
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# dreamer <img src='inst/hex-dreamer.png' align="right" height="139"/>
+
+The goal of dreamer is to flexibly model (longitudinal) dose-response
+relationships.  This is
+accomplished using Bayesian model averaging of parametric dose-response
+models.
+
+# Installation
+
+The R package dreamer can be installed directly from github: 
+`devtools::install_github("rich-payne/dreamer")`.
+
+For feature requests and to report bugs, you can visit the [dreamer github](https://github.com/rich-payne/dreamer/issues).
+
+# Bayesian Model Averaging
+
+Bayesian model averaging is a general mixture distribution, where each
+mixture component is a different parametric model. Prior weights are placed
+on each model and the posterior model weights are updated based on how well
+each model fits the data.  Let $\mu(d)$ represent the mean of the dose response
+curve at dose $d$, $y = \{y_1, \ldots, y_n\}$ be the observed data, and 
+$m \in \{1, \ldots, M\}$ be an index on the $M$ parametric models.  Then the
+posterior of the dose response curve, $\mu(d)$, of the Bayesian model
+averaging model is
+
+\begin{eqnarray*}
+p(\mu(d) \mid y) &=& \sum_{m=1}^M p(\mu(d) \mid y, m) p(m \mid y) \\
+p(m \mid y) &=& \frac{p(y \mid m) p(m)}{\sum_{m^* } p(y \mid m^* )p(m^*)}
+\end{eqnarray*}
+
+where $p(\mu(d) \mid y, m)$ is the posterior mean dose response curve from 
+model $m$, $p(m \mid y)$ is the posterior weight of model $m$, $p(y \mid m)$
+is the marginal likelihood of the data under model $m$, and $p(m)$ is the prior
+weight assigned to model $m$. In cases where $p(y \mid m)$ is difficult to
+compute, Gould (2019) proposed using the observed data's fit to the posterior
+predictive distribution as a surrogate in calculating the posterior weights;
+this is the approach used by dreamer.
+
+dreamer supports a number of models including linear, quadratic, 
+log-linear, log-quadratic, EMAX, exponential, for use as models that
+can be included in the model averaging approach.  In addition, several
+longitudinal models are also suppored (see the vignette).  All of the above
+models are available for both continuous and binary endpoints.
+
+## Example
+
+With dreamer, it is easy to generate data, fit models, and visualize model
+fits.  See the vignette for a more comprehensive overview.
+
+```{r example}
+library(dreamer)
+# GENERATE DATA FROM A QUADRATIC DOSE RESPONSE
+set.seed(888)
+data <- dreamer_data_quad(
+  n_cohorts = c(10, 10, 10, 10), # number of subjects in each cohort
+  dose = c(.25, .5, .75, 1.5), # dose administered to each cohort
+  b1 = 0,
+  b2 = 2,
+  b3 = -1,
+  sigma = .5 # standard deviation
+)
+
+# BAYESIAN MODEL AVERAGING
+output <- dreamer_mcmc(
+  data = data,
+  # mcmc information
+  n_adapt = 1e3,
+  n_burn = 1e3,
+  n_iter = 1e4,
+  n_chains = 2,
+  silent = TRUE, # make rjags be quiet
+  # model definitions
+  mod_linear = model_linear(
+    mu_b1 = 0,
+    sigma_b1 = 1,
+    mu_b2 = 0,
+    sigma_b2 = 1,
+    shape = 1,
+    rate = .001,
+    w_prior = 1 / 3 # prior probability of the model
+  ),
+  mod_quad = model_quad(
+    mu_b1 = 0,
+    sigma_b1 = 1,
+    mu_b2 = 0,
+    sigma_b2 = 1,
+    mu_b3 = 0,
+    sigma_b3 = 1,
+    shape = 1,
+    rate = .001,
+    w_prior = 1 / 3
+  ),
+  mod_emax = model_emax(
+    mu_b1 = 0,
+    sigma_b1 = 1,
+    mu_b2 = 0,
+    sigma_b2 = 1,
+    mu_b3 = 0,
+    sigma_b3 = 1,
+    mu_b4 = 0,
+    sigma_b4 = 1,
+    shape = 1,
+    rate = .001,
+    w_prior = 1 / 3
+  )
+)
+
+# plot Bayesian model averaging fit
+plot(output, data = data)
+
+# plot individual fits
+plot_comparison(output)
+
+# posterior summary
+summary(output)
+```
+
+## Reference
+Gould, A. Lawrence. "BMA‐Mod: A Bayesian model averaging strategy for determining dose‐response relationships in the presence of model uncertainty." *Biometrical Journal* 61.5 (2019): 1141-1159.
+

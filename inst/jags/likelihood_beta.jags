@@ -1,0 +1,12 @@
+# likelihood for sufficient means
+for(i in 1:n_sufficient_means) {
+  f_sufficient[i] <- a + (b1 + b2 * ((b3 + b4) ^ (b3 + b4)) /
+      (b3 ^ b3 * b4 ^ b4) * (dose_sufficient[i] / scale) ^ b3 *
+      (1 - dose_sufficient[i] / scale) ^ b4) * (LONGITUDINAL)
+  ybar[i] ~ dnorm(f_sufficient[i], tau2 * n_means[i])
+}
+
+# likelihood for sufficient variance
+for(i in 1:n_sufficient_vars) {
+  sample_var[i] ~ dgamma((n_vars[i] - 1) / 2, .5 * (n_vars[i] - 1) * tau2)
+}

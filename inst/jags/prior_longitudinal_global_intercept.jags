@@ -1,0 +1,2 @@
+tau2_a <- 1 / sigma_a^2
+a ~ dnorm(mu_a, tau2_a)

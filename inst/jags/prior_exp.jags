@@ -1,0 +1,8 @@
+sigma <- 1 / sqrt(tau2)
+tau2 ~ dgamma(shape, rate)
+tau2_b1 <- 1 / sigma_b1^2
+tau2_b2 <- 1 / sigma_b2^2
+tau2_b3 <- 1 / sigma_b3^2
+b1 ~ dnorm(mu_b1, tau2_b1)
+b2 ~ dnorm(mu_b2, tau2_b2)
+b3 ~ dnorm(mu_b3, tau2_b3) T(0, )

@@ -1,0 +1,5 @@
+c1 ~ dunif(a_c1, b_c1)
+c2 ~ dunif(a_c2, b_c2)
+d1 ~ dunif(0, t_max)
+d2 ~ dunif(d1, t_max)
+gam ~ dunif(0, 1)

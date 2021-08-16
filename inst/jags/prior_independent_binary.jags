@@ -1,0 +1,4 @@
+for(i in 1:n_doses) {
+  tau2_b1[i] <- 1 / sigma_b1[i]^2
+  b1[i] ~ dnorm(mu_b1[i], tau2_b1[i])
+}

@@ -1,0 +1,4 @@
+for(i in 1:n_obs) {
+  LINK(f[i]) <- a + (b1[dose_index[i]]) * (LONGITUDINAL)
+  y[i] ~ dbin(f[i], n[i])
+}
