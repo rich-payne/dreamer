@@ -35,8 +35,8 @@ test_that("post_perc_effect.dreamer()", {
     dose,
     pr_perc_exists = mean(!is.na(post_percs_gt)),
     mean = mean(post_percs_gt, na.rm = TRUE),
-    `2.50%` = quantile(post_percs_gt, prob = .025, na.rm = TRUE),
-    `97.50%` = quantile(post_percs_gt, prob = .975, na.rm = TRUE)
+    `2.50%` = quantile(post_percs_gt, prob = .025, na.rm = TRUE, names = FALSE),
+    `97.50%` = quantile(post_percs_gt, prob = .975, na.rm = TRUE, names = FALSE)
   )
   obs <- post_perc_effect(
     mcmc,
@@ -56,8 +56,8 @@ test_that("post_perc_effect.dreamer()", {
     dose,
     pr_perc_exists = mean(!is.na(post_percs_lt)),
     mean = mean(post_percs_lt, na.rm = TRUE),
-    `2.50%` = quantile(post_percs_lt, prob = .025, na.rm = TRUE),
-    `97.50%` = quantile(post_percs_lt, prob = .975, na.rm = TRUE)
+    `2.50%` = quantile(post_percs_lt, prob = .025, na.rm = TRUE, names = FALSE),
+    `97.50%` = quantile(post_percs_lt, prob = .975, na.rm = TRUE, names = FALSE)
   )
   obs <- post_perc_effect(
     mcmc,
@@ -124,8 +124,8 @@ test_that("post_perc_effect.dreamer() longitudinal", {
     dose,
     pr_perc_exists = mean(!is.na(post_percs_gt)),
     mean = mean(post_percs_gt, na.rm = TRUE),
-    `2.50%` = quantile(post_percs_gt, prob = .025, na.rm = TRUE),
-    `97.50%` = quantile(post_percs_gt, prob = .975, na.rm = TRUE)
+    `2.50%` = quantile(post_percs_gt, prob = .025, na.rm = TRUE, names = FALSE),
+    `97.50%` = quantile(post_percs_gt, prob = .975, na.rm = TRUE, names = FALSE)
   )
   obs <- post_perc_effect(
     mcmc,
@@ -147,8 +147,8 @@ test_that("post_perc_effect.dreamer() longitudinal", {
     dose,
     pr_perc_exists = mean(!is.na(post_percs_lt)),
     mean = mean(post_percs_lt, na.rm = TRUE),
-    `2.50%` = quantile(post_percs_lt, prob = .025, na.rm = TRUE),
-    `97.50%` = quantile(post_percs_lt, prob = .975, na.rm = TRUE)
+    `2.50%` = quantile(post_percs_lt, prob = .025, na.rm = TRUE, names = FALSE),
+    `97.50%` = quantile(post_percs_lt, prob = .975, na.rm = TRUE, names = FALSE)
   )
   obs <- post_perc_effect(
     mcmc,
@@ -205,8 +205,8 @@ test_that("post_perc_effect.dreamer_bma()", {
     dplyr::summarize(
       pr_perc_exists = mean(!is.na(post_eds)),
       mean = mean(post_eds),
-      `2.50%` = quantile(post_eds, prob = .025),
-      `97.50%` = quantile(post_eds, prob = .975),
+      `2.50%` = quantile(post_eds, prob = .025, names = FALSE),
+      `97.50%` = quantile(post_eds, prob = .975, names = FALSE),
       .groups = "drop"
     )
   expect_equal(post_perc_effect(mcmc, dose = dose)$stats, exp)

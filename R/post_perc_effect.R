@@ -149,7 +149,7 @@ summarize_post_perc <- function(samps, probs) {
       dplyr::group_by(samps, .data$dose) %>%
         dplyr::summarize(
           !!nme :=
-            quantile(.data$post_eds, probs = xx, na.rm = TRUE)
+            quantile(.data$post_eds, probs = xx, na.rm = TRUE, names = FALSE)
         )
     },
     samps = samps
