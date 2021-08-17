@@ -365,14 +365,14 @@ test_that("binary plot with data", {
   )
   out <- plot(mcmc, data = data, n_smooth = 5)
   expect_s3_class(out, "ggplot")
-  
+
   # with aggregated data
   data_sum <- data %>%
     dplyr::group_by(dose) %>%
     dplyr::summarize(response = sum(response), n = n(), .groups = "drop")
   out <- plot(mcmc, data = data_sum, n_smooth = 5)
   expect_s3_class(out, "ggplot")
-  
+
   skip_on_cran()
   skip_on_ci()
   expect_snapshot_file(gg_save(out, "binary_data.png"))

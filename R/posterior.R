@@ -72,7 +72,12 @@ get_post_mean_samps <- function(x, doses, times, iter = NULL) {
     out$time <- list(NULL)
   } else {
     the_grid <- expand.grid(dose = doses, time = times, KEEP.OUT.ATTRS = FALSE)
-    out <- expand.grid(iter = iter, dose = doses, time = times, KEEP.OUT.ATTRS = FALSE)
+    out <- expand.grid(
+      iter = iter,
+      dose = doses,
+      time = times,
+      KEEP.OUT.ATTRS = FALSE
+    )
   }
   y <- subset_mcmc(x, iter)
   vals <- apply(
