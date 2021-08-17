@@ -47,11 +47,9 @@ test_that("posterior.dreamer_bma() model_index and model names", {
     samps_quad[model_index == 2, ]
   ) %>%
     dplyr::arrange(iter, dose)
-  expect_equal(
-    posterior(out, return_samples = TRUE)$samps %>%
-      dplyr::arrange(iter, dose),
-    samps
-  )
+  obs <- posterior(out, return_samples = TRUE)$samps %>%
+    dplyr::arrange(iter, dose)
+  expect_equal(obs, samps)
 })
 
 test_that("posterior.dreamer_bma uses model_index and iter correctly", {
@@ -105,11 +103,9 @@ test_that("posterior.dreamer_bma uses model_index and iter correctly", {
   ) %>%
     dplyr::arrange(iter, dose) %>%
     dplyr::filter(iter %in% !!iter)
-  expect_equal(
-    posterior(out, return_samples = TRUE, iter = iter)$samps %>%
-      dplyr::arrange(iter, dose),
-    samps
-  )
+  obs <- posterior(out, return_samples = TRUE, iter = iter)$samps %>%
+    dplyr::arrange(iter, dose)
+  expect_equal(obs, samps)
 })
 
 test_that("continuous predictive runs", {

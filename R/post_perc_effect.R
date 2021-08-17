@@ -145,9 +145,10 @@ summarize_post_perc <- function(samps, probs) {
   output2 <- purrr::map(
     probs,
     function(xx, samps) {
+      nme <- sprintf("%.2f%%", 100 * xx)
       dplyr::group_by(samps, .data$dose) %>%
         dplyr::summarize(
-          !!(paste0(100 * xx, "%")) :=
+          !!nme :=
             quantile(.data$post_eds, probs = xx, na.rm = TRUE)
         )
     },
