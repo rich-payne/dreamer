@@ -185,7 +185,9 @@ test_that("plots comparison compare longitudinal single time", {
   )
 })
 
+
 test_that("traceplots work", {
+  fs::dir_create("figs")
   png(fs::path("figs", "traceplots.png"))
     expect_null(plot_trace(mcmc))
   dev.off()
@@ -195,6 +197,7 @@ test_that("traceplots work", {
 })
 
 test_that("traceplots work single model", {
+  fs::dir_create("figs")
   png(fs::path("figs", "traceplots_single.png"))
     expect_null(plot_trace(mcmc$lin))
   dev.off()
