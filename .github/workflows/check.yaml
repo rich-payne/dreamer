@@ -63,9 +63,7 @@ jobs:
             eval sudo $cmd
           done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
           Rscript -e "remotes::install_github('r-hub/sysreqs')"
-          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
-          sudo -s eval "$sysreqs"
-          sudo -s apt-get install jags
+          sudo -s apt-get install -y jags
       - name: Install Mac system dependencies
         if: runner.os == 'macOS'
         run: |
