@@ -1,10 +1,15 @@
 # dreamer (NEW CRAN SUBMISSION)
 
 ## Test environments
-* Red Hat Enterprise Linux 7.9, R 4.0.3
+* macOS-latest github continuous integration (devel and release)
+* ubuntu-20.04 github continuous integration (devel and release)
 * win-builder (devel and release)
 
 ## R CMD check results
+
+There were no ERRORs or WARNINGs.
+
+There was 1 NOTE from win-builder:
 
 * checking CRAN incoming feasibility ... NOTE
   Maintainer: 'Richard Payne <paynestatistics@gmail.com>'
