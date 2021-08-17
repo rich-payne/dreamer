@@ -121,18 +121,18 @@ test_that("predictive plots", {
 test_that("longitudinal plots", {
   out <- plot(mcmc_long$lin, times = c(0, t_max), n_smooth = 5)
   expect_s3_class(out, "ggplot")
-  out <- plot(
+  out_pred <- plot(
     mcmc_long,
     times = c(0, t_max),
     predictive = 10,
     data = data_long,
     n_smooth = 5
   )
-  expect_s3_class(out, "ggplot")
+  expect_s3_class(out_pred, "ggplot")
   skip_on_cran()
   skip_on_ci()
   expect_snapshot_file(gg_save(out, "longitudinal.png"))
-  expect_snapshot_file(gg_save(out, "longitudinal_data_predictive.png"))
+  expect_snapshot_file(gg_save(out_pred, "longitudinal_data_predictive.png"))
 })
 
 test_that("plots comparison", {
@@ -375,11 +375,11 @@ test_that("binary plot with data", {
   data_sum <- data %>%
     dplyr::group_by(dose) %>%
     dplyr::summarize(response = sum(response), n = n(), .groups = "drop")
-  out <- plot(mcmc, data = data_sum, n_smooth = 5)
-  expect_s3_class(out, "ggplot")
+  out_sum <- plot(mcmc, data = data_sum, n_smooth = 5)
+  expect_s3_class(out_sum, "ggplot")
 
   skip_on_cran()
   skip_on_ci()
   expect_snapshot_file(gg_save(out, "binary_data.png"))
-  expect_snapshot_file(gg_save(out, "binary_data_sum.png"))
+  expect_snapshot_file(gg_save(out_sum, "binary_data_sum.png"))
 })
