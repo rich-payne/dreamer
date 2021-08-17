@@ -97,7 +97,7 @@ test_that("plot.dreamer works", {
 
 test_that("plot with data", {
   out <- plot(mcmc, data = data, n_smooth = 5)
-  expect_snapshot_file(gg_save(out, "plot_with_data.png"))
+  expect_s3_class(out, "ggplot")
   # with aggregated data
   data_sum <- data %>%
     dplyr::group_by(dose) %>%
@@ -107,6 +107,7 @@ test_that("plot with data", {
   skip_on_cran()
   skip_on_ci()
   expect_snapshot_file(gg_save(out, "plot_with_data_sum.png"))
+  expect_snapshot_file(gg_save(out, "plot_with_data.png"))
 })
 
 test_that("predictive plots", {
@@ -119,7 +120,7 @@ test_that("predictive plots", {
 
 test_that("longitudinal plots", {
   out <- plot(mcmc_long$lin, times = c(0, t_max), n_smooth = 5)
-  expect_snapshot_file(gg_save(out, "longitudinal.png"))
+  expect_s3_class(out, "ggplot")
   out <- plot(
     mcmc_long,
     times = c(0, t_max),
@@ -130,6 +131,7 @@ test_that("longitudinal plots", {
   expect_s3_class(out, "ggplot")
   skip_on_cran()
   skip_on_ci()
+  expect_snapshot_file(gg_save(out, "longitudinal.png"))
   expect_snapshot_file(gg_save(out, "longitudinal_data_predictive.png"))
 })
 
