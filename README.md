@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+[![R-CMD-check](https://github.com/rich-payne/dreamer/actions/workflows/check.yaml/badge.svg)](https://github.com/rich-payne/dreamer/actions/workflows/check.yaml)
+
 # dreamer <img src='inst/hex-dreamer.png' align="right" height="139"/>
 
 The goal of dreamer (Dose REsponse bAyesian Model avERaging) is to

@@ -5,6 +5,8 @@ editor_options:
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+[![R-CMD-check](https://github.com/rich-payne/dreamer/actions/workflows/check.yaml/badge.svg)](https://github.com/rich-payne/dreamer/actions/workflows/check.yaml)
+
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
