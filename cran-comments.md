@@ -1,4 +1,10 @@
-# dreamer (NEW CRAN SUBMISSION)
+# Resubmission dreamer (NEW CRAN SUBMISSION)
+
+This is a resubmission.  In this version, I have:
+
+* Reduced the size of the tarball to less than 5 MB.
+* Added a reference for the method early in the Description field.
+* Added a copyright holder in the Authors@R field.
 
 ## Test environments
 * macOS-latest github continuous integration (devel and release)
