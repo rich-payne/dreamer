@@ -5,3 +5,6 @@
 ^README\.md$
 ^cran-comments\.md$
 ^\.lintr$
+^CRAN-RELEASE$
+^tests/testthat/figs$
+^tests/testthat/_snaps$

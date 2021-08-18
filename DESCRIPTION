@@ -12,14 +12,17 @@ Authors@R: c(
            email = "will.landau@gmail.com"),
     person("Mitch", "Thomann",
            role = c("rev"),
-           email = "mitchell.thomann@lilly.com"))
+           email = "mitchell.thomann@lilly.com"),
+    person(
+      family = "Eli Lilly and Company",
+      role = "cph"))
 Description: Fits (longitudinal) dose-response models utilizing a Bayesian model
   averaging approach for both continuous and binary responses.
   The Bayesian model averaging updates the weights
-  similar to those in Gould 2019 <doi:10.1002/bimj.201700211>.  Functions
+  similar to those in Gould (2019, <doi:10.1002/bimj.201700211>).  Functions
   for plotting and various posterior quantities (e.g. posterior mean,
   quantiles, probability of minimum efficacious dose, etc.) are also
-  implemented.  Copyright Eli Lilly (2019).
+  implemented.  Copyright Eli Lilly and Company (2019).
 URL: https://github.com/rich-payne/dreamer
 BugReports: https://github.com/rich-payne/dreamer
 License: MIT + file LICENSE
