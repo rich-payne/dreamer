@@ -2,9 +2,18 @@
 
 This is a resubmission.  In this version, I have:
 
-* Reduced the size of the tarball to less than 5 MB.
-* Added a reference for the method early in the Description field.
-* Added a copyright holder in the Authors@R field.
+* Added \value to the .Rd files for the following functions:
+** diagnostics.Rd
+** dreamer_mcmc.Rd
+** model_longitudinal.Rd
+** model.Rd
+** plot_trace.Rd
+** post_perc_effect.Rd
+** pr_med.Rd
+
+* Resets par() values using on.exit() in
+** plot_trace.dreamer
+** plot_trace.dreamer_bma
 
 ## Test environments
 * macOS-latest github continuous integration (devel and release)

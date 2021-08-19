@@ -14,7 +14,7 @@ pr_med(
 )
 }
 \arguments{
-\item{x}{output from a call to `dreamer_mcmc()`.}
+\item{x}{output from a call to \code{dreamer_mcmc()}.}
 
 \item{doses}{the doses for which pr(MED) is to be calculated.}
 
@@ -22,21 +22,25 @@ pr_med(
 
 \item{reference_dose}{a single dose that is used as the reference when
 defining the MED relative to a dose (rather than in absolute terms).  When
-`reference_dose` is specified, this function calculates the
+\code{reference_dose} is specified, this function calculates the
 posterior probability
 that each dose is the smallest dose such that
 (effect_dose - effect_reference_dose > CSD).}
 
-\item{greater}{if `TRUE`, higher responses indicate better efficacy.  If
-`FALSE`, lower responses indicate better efficacy.`}
+\item{greater}{if \code{TRUE}, higher responses indicate better efficacy.  If
+\code{FALSE}, lower responses indicate better efficacy.`}
 
 \item{time}{the time (scalar) at which the Pr(MED) should be calculated.
 Applies only to longitudinal models.}
 }
+\value{
+A tibble listing each dose and the posterior probability that
+each dose is the minimum efficacious dose.
+}
 \description{
 Calculates the posterior probability that each specified doses
-  are the minimum effective dose in the set; i.e. the smallest
-  dose that has a clinically significant difference (CSD).
+are the minimum effective dose in the set; i.e. the smallest
+dose that has a clinically significant difference (CSD).
 }
 \examples{
 set.seed(888)

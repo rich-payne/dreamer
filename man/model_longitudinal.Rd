@@ -29,44 +29,51 @@ longitudinal model.  See below for parameterization.}
 for subjects.  This will influence the interpretation of the
 parameters of each model.}
 }
+\value{
+A named list of the arguments in the function call.  The list has
+S3 classes assigned which are used internally within \code{dreamer_mcmc()}.
+}
 \description{
-Model Creation: Longitudinal Models
+Assign hyperparameters and other values for longitudinal
+modeling.  The output of this function is intended to be used as
+the input to the \code{longitudinal} argument of the dose response model
+functions, e.g., \code{model_linear}.
 }
 \section{Longitudinal Linear}{
 
-  Let \eqn{f(d)} be a dose response model.  The expected value of the
-  response, y, is:
-  \deqn{E(y) = g(d, t)}
-  \deqn{g(d, t) = a + (t / t_max) * f(d)}
-  \deqn{a \sim N(mu_a, sigma_a)}
+Let \eqn{f(d)} be a dose response model.  The expected value of the
+response, y, is:
+\deqn{E(y) = g(d, t)}
+\deqn{g(d, t) = a + (t / t_max) * f(d)}
+\deqn{a \sim N(mu_a, sigma_a)}
 }
 
 \section{Longitudinal ITP}{
 
-  Let \eqn{f(d)} be a dose response model.  The expected value of the
-  response, y, is:
-  \deqn{E(y) = g(d, t)}
-  \deqn{g(d, t) = a + f(d) * ((1 - exp(- c1 * t))/(1 - exp(- c1 * t_max)))}
-  \deqn{a \sim N(mu_a, sigma_a)}
-  \deqn{c1 \sim Uniform(a_c1, b_c1)}
+Let \eqn{f(d)} be a dose response model.  The expected value of the
+response, y, is:
+\deqn{E(y) = g(d, t)}
+\deqn{g(d, t) = a + f(d) * ((1 - exp(- c1 * t))/(1 - exp(- c1 * t_max)))}
+\deqn{a \sim N(mu_a, sigma_a)}
+\deqn{c1 \sim Uniform(a_c1, b_c1)}
 }
 
 \section{Longitudinal IDP}{
 
-  Increasing-Decreasing-Plateau (IDP).
+Increasing-Decreasing-Plateau (IDP).
 
-  Let \eqn{f(d)} be a dose response model.  The expected value of the
-  response, y, is:
-  \deqn{E(y) = g(d, t)}
-  \deqn{g(d, t) = a + f(d) * (((1 - exp(- c1 * t))/(1 - exp(- c1 * d1))) *
+Let \eqn{f(d)} be a dose response model.  The expected value of the
+response, y, is:
+\deqn{E(y) = g(d, t)}
+\deqn{g(d, t) = a + f(d) * (((1 - exp(- c1 * t))/(1 - exp(- c1 * d1))) *
     I(t < d1) + (1 - gam * ((1 - exp(- c2 * (t - d1))) /
     (1 - exp(- c2 * (d2 - d1))))) *
     I(d1 <= t <= d2) + (1 - gam) * I(t > d2))}
-  \deqn{a \sim N(mu_a, sigma_a)}
-  \deqn{c1 \sim Uniform(a_c1, b_c1)}
-  \deqn{c2 \sim Uniform(a_c2, b_c2)}
-  \deqn{d1 \sim Uniform(0, t_max)}
-  \deqn{d2 \sim Uniform(d1, t_max)}
-  \deqn{gam \sim Uniform(0, 1)}
+\deqn{a \sim N(mu_a, sigma_a)}
+\deqn{c1 \sim Uniform(a_c1, b_c1)}
+\deqn{c2 \sim Uniform(a_c2, b_c2)}
+\deqn{d1 \sim Uniform(0, t_max)}
+\deqn{d2 \sim Uniform(d1, t_max)}
+\deqn{gam \sim Uniform(0, 1)}
 }
 

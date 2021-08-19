@@ -46,9 +46,9 @@ post_perc_effect(
 )
 }
 \arguments{
-\item{x}{output from a call to `dreamer_mcmc()`, or
+\item{x}{output from a call to \code{dreamer_mcmc()}, or
 the MCMC samples from a single model of output from
-a `dreamer_mcmc()` call.}
+a \code{dreamer_mcmc()} call.}
 
 \item{dose}{the dose at which to calculate the posterior percentage
 effect.}
@@ -63,21 +63,34 @@ percentage effect.  Applies to longitudinal models only.}
 \item{upper}{the upper bound of the dose range under consideration.}
 
 \item{greater}{logical indicating if the response is desired to
-be increasing (`TRUE`) or decreasing (`FALSE`).}
+be increasing (\code{TRUE}) or decreasing (\code{FALSE}).}
 
-\item{small_bound}{the lower (if `greater = TRUE`) or upper
-(if `greater = FALSE`) bound that the effect is expected to
+\item{small_bound}{the lower (if \code{greater = TRUE}) or upper
+(if \code{greater = FALSE}) bound that the effect is expected to
 take.}
 
 \item{index}{an index on which MCMC samples should be used.  Generally
-the user should not specify anything for this argument as `dreamer`
+the user should not specify anything for this argument as \code{dreamer}
 will handle this automatically.}
 
 \item{return_samples}{logical indicating if the posterior samples should
 be returned.}
 }
+\value{
+A named list with the following components:
+\itemize{
+\item stats: a tibble listing the dose, time (where relevant),
+probability a percentage effect exists, the average percentage effect,
+and the specified quantiles of the percentage effect.
+\item samps: a tibble with the posterior samples for each dose/time
+combination.
+}
+}
 \description{
-Calculate Posterior of a Dose's Percentage Effect
+Given a dose, the "percentage effect" is defined as
+(effect of the given dose - small_bound) / (maximum effect in dose range -
+small_bound).  This function returns the posterior statistics and/or
+samples of this effect.
 }
 \examples{
 set.seed(888)

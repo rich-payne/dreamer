@@ -41,27 +41,38 @@ retained in the return values.}
 
 \item{silent}{logical indicating if MCMC progress bars should be suppressed.}
 
-\item{convergence_warn}{logical (default `TRUE`) indicating if the
+\item{convergence_warn}{logical (default \code{TRUE}) indicating if the
 Gelman-Rubin diagnostics should be run to detect convergence issues.
 Warnings are thrown if the upper bound of the Gelman-Rubin statistic
 is greater than 1.1.}
 }
+\value{
+A named list with S3 class "dreamer_bma" and "dreamer".  The list
+contains the following fields:
+\itemize{
+\item doses: a vector of the unique ordered doses in the data.
+\item times: a vector of the unique ordered times in the data.
+\item w_prior: a named vector with the prior probabilities of each model.
+\item w_post: a named vector with the posterior probabilities of each model.
+\item The individual MCMC fits for each model.
+}
+}
 \description{
 This function performs Bayesian model averaging with a selection
-  of dose response models.  See \link[dreamer]{model} for all possible
-  models.
+of dose response models.  See \link[dreamer]{model} for all possible
+models.
 }
 \details{
 The Bayesian model averaging approach uses data, multiple models,
-  priors on each model's parameters, and a prior weight for each model.
-  Using these inputs, each model is fit independently, and the output from
-  the models is used to calculate posterior weights for each model.
-  See Gould (2018) for details.
+priors on each model's parameters, and a prior weight for each model.
+Using these inputs, each model is fit independently, and the output from
+the models is used to calculate posterior weights for each model.
+See Gould (2018) for details.
 }
 \section{References}{
 
-  Gould, A. L. (2019).  BMA-Mod: A Bayesian model averaging strategy for
-    determining dose-response relationships in the presence of model
-    uncertainty. Biometrical Journal, 61(5), 1141-1159.
+Gould, A. L. (2019).  BMA-Mod: A Bayesian model averaging strategy for
+determining dose-response relationships in the presence of model
+uncertainty. Biometrical Journal, 61(5), 1141-1159.
 }
 

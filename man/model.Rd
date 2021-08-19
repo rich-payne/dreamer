@@ -230,241 +230,245 @@ functions.  This is used to specify a longitudinal dose-response model.}
 
 \item{doses}{the doses in the dataset to be modeled.  The order of the
 doses corresponds to the order in which the priors are specified in
-`mu_b1` and `sigma_b1`.}
+\code{mu_b1} and \code{sigma_b1}.}
 
 \item{link}{a character string of either "logit" or "probit" indicating
 the link function for binary model.}
 }
+\value{
+A named list of the arguments in the function call.  The list has
+S3 classes assigned which are used internally within \code{dreamer_mcmc()}.
+}
 \description{
 Functions which set the hyperparameters, seeds, and prior
-  weight for each model to be used in Bayesian model averaging
-  via `dreamer_mcmc()`.
+weight for each model to be used in Bayesian model averaging
+via \code{dreamer_mcmc()}.
 
-  See each function's section below for the model's details.  In the
-  following, \eqn{y} denotes the response variable and \eqn{d} represents
-  the dose.
+See each function's section below for the model's details.  In the
+following, \eqn{y} denotes the response variable and \eqn{d} represents
+the dose.
 
-  For the longitudinal specifications, see documentation on
-  \code{\link{model_longitudinal}}.
+For the longitudinal specifications, see documentation on
+\code{\link{model_longitudinal}}.
 }
 \section{Linear}{
 
-  \deqn{y \sim N(f(d), \sigma^2)}
-  \deqn{f(d) = b_1 + b_2 * d}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
+\deqn{y \sim N(f(d), \sigma^2)}
+\deqn{f(d) = b_1 + b_2 * d}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
 \section{Quadratic}{
 
-  \deqn{y \sim N(f(d), \sigma^2)}
-  \deqn{f(d) = b_1 + b_2 * d + b_3 * d^2}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{b_3 \sim N(mu_b3, sigma_b3)}
-  \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
+\deqn{y \sim N(f(d), \sigma^2)}
+\deqn{f(d) = b_1 + b_2 * d + b_3 * d^2}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
 \section{Log-linear}{
 
-  \deqn{y \sim N(f(d), \sigma^2)}
-  \deqn{f(d) = b_1 + b_2 * log(d + 1)}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
+\deqn{y \sim N(f(d), \sigma^2)}
+\deqn{f(d) = b_1 + b_2 * log(d + 1)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
 \section{Log-quadratic}{
 
-  \deqn{y \sim N(f(d), \sigma^2)}
-  \deqn{f(d) = b_1 + b_2 * log(d + 1) + b_3 * log(d + 1)^2}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{b_3 \sim N(mu_b3, sigma_b3)}
-  \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
+\deqn{y \sim N(f(d), \sigma^2)}
+\deqn{f(d) = b_1 + b_2 * log(d + 1) + b_3 * log(d + 1)^2}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
 \section{EMAX}{
 
-  \deqn{y \sim N(f(d), \sigma^2)}
-  \deqn{f(d) = b_1 + (b_2 - b_1) * d ^ b_4 / (exp(b_3 * b_4) + d ^ b_4)}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{b_3 \sim N(mu_b3, sigma_b3)}
-  \deqn{b_4 \sim N(mu_b4, sigma_b4), (Truncated above 0)}
-  \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
-  Here, \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
-  maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
-  \eqn{b_4} is the hill or rate parameter.
+\deqn{y \sim N(f(d), \sigma^2)}
+\deqn{f(d) = b_1 + (b_2 - b_1) * d ^ b_4 / (exp(b_3 * b_4) + d ^ b_4)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{b_4 \sim N(mu_b4, sigma_b4), (Truncated above 0)}
+\deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
+Here, \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
+maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
+\eqn{b_4} is the hill or rate parameter.
 }
 
 \section{Exponential}{
 
-  \deqn{y \sim N(f(d), \sigma^2)}
-  \deqn{f(d) = b_1 + b_2 * (1 - exp(- b_3 * d))}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{b_3 \sim N(mu_b3, sigma_b3), (truncated to be positive)}
-  \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
+\deqn{y \sim N(f(d), \sigma^2)}
+\deqn{f(d) = b_1 + b_2 * (1 - exp(- b_3 * d))}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3), (truncated to be positive)}
+\deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
 \section{Beta}{
 
-  \deqn{y \sim N(f(d), \sigma^2)}
-  \deqn{f(d) = b_1 + b_2 * ((b3 + b4) ^ (b3 + b4)) /
+\deqn{y \sim N(f(d), \sigma^2)}
+\deqn{f(d) = b_1 + b_2 * ((b3 + b4) ^ (b3 + b4)) /
     (b3 ^ b3 * b4 ^ b4) * (d / scale) ^ b3 *
     (1 - d / scale) ^ b4}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{b_3 \sim N(mu_b3, sigma_b3), Truncated above 0}
-  \deqn{b_4 \sim N(mu_b4, sigma_b4), Truncated above 0}
-  \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
-  Note that \eqn{scale} is a hyperparameter specified by the
-  user.
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3), Truncated above 0}
+\deqn{b_4 \sim N(mu_b4, sigma_b4), Truncated above 0}
+\deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
+Note that \eqn{scale} is a hyperparameter specified by the
+user.
 }
 
 \section{Independent}{
 
-  \deqn{y \sim N(f(d), \sigma^2)}
-  \deqn{f(d) = b_{1d}}
-  \deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d])}
-  \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
+\deqn{y \sim N(f(d), \sigma^2)}
+\deqn{f(d) = b_{1d}}
+\deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d])}
+\deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
 \section{Independent Details}{
 
-  The independent model models the effect of each dose independently.
-  Vectors can be supplied to `mu_b1` and `sigma_b1` to set a different
-  prior for each dose in the order the doses are supplied to `doses`.
-  If scalars are supplied to `mu_b1` and `sigma_b1`, then the same prior
-  is used for each dose, and the `doses` argument is not needed.
+The independent model models the effect of each dose independently.
+Vectors can be supplied to \code{mu_b1} and \code{sigma_b1} to set a different
+prior for each dose in the order the doses are supplied to \code{doses}.
+If scalars are supplied to \code{mu_b1} and \code{sigma_b1}, then the same prior
+is used for each dose, and the \code{doses} argument is not needed.
 }
 
 \section{Linear Binary}{
 
-  \deqn{y \sim Binomial(n, f(d))}
-  \deqn{link(f(d)) = b_1 + b_2 * d}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{y \sim Binomial(n, f(d))}
+\deqn{link(f(d)) = b_1 + b_2 * d}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
 }
 
 \section{Quadratic Binary}{
 
-  \deqn{y \sim Binomial(n, f(d))}
-  \deqn{link(f(d)) = b_1 + b_2 * d + b_3 * d^2}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{y \sim Binomial(n, f(d))}
+\deqn{link(f(d)) = b_1 + b_2 * d + b_3 * d^2}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3)}
 }
 
 \section{Log-linear Binary}{
 
-  \deqn{y \sim Binomial(n, f(d))}
-  \deqn{link(f(d)) = b_1 + b_2 * log(d + 1)}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{y \sim Binomial(n, f(d))}
+\deqn{link(f(d)) = b_1 + b_2 * log(d + 1)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
 }
 
 \section{Log-quadratic Binary}{
 
-  \deqn{y \sim Binomial(n, f(d))}
-  \deqn{link(f(d)) = b_1 + b_2 * log(d + 1) + b_3 * log(d + 1)^2}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{y \sim Binomial(n, f(d))}
+\deqn{link(f(d)) = b_1 + b_2 * log(d + 1) + b_3 * log(d + 1)^2}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3)}
 }
 
 \section{EMAX Binary}{
 
-  \deqn{y \sim Binomial(n, f(d))}
-  \deqn{link(f(d)) = b_1 + (b_2 - b_1) * d ^ b_4 /
+\deqn{y \sim Binomial(n, f(d))}
+\deqn{link(f(d)) = b_1 + (b_2 - b_1) * d ^ b_4 /
     (exp(b_3 * b_4) + d ^ b_4)}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{b_3 \sim N(mu_b3, sigma_b3)}
-  \deqn{b_4 \sim N(mu_b4, sigma_b4), (Truncated above 0)}
-  Here, on the \eqn{link(f(d))} scale,
-  \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
-  maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
-  \eqn{b_4} is the hill or rate parameter.
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{b_4 \sim N(mu_b4, sigma_b4), (Truncated above 0)}
+Here, on the \eqn{link(f(d))} scale,
+\eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
+maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
+\eqn{b_4} is the hill or rate parameter.
 }
 
 \section{Exponential Binary}{
 
-  \deqn{y \sim Binomial(n, f(d))}
-  \deqn{link(f(d)) = b_1 + b_2 * (exp(b_3 * d) - 1)}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{b_3 \sim N(mu_b3, sigma_b3), (Truncated below 0)}
+\deqn{y \sim Binomial(n, f(d))}
+\deqn{link(f(d)) = b_1 + b_2 * (exp(b_3 * d) - 1)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3), (Truncated below 0)}
 }
 
 \section{Beta Binary}{
 
-  \deqn{y \sim Binomial(n, f(d)}
-  \deqn{link(f(d)) = b_1 + b_2 * ((b3 + b4) ^ (b3 + b4)) /
+\deqn{y \sim Binomial(n, f(d)}
+\deqn{link(f(d)) = b_1 + b_2 * ((b3 + b4) ^ (b3 + b4)) /
     (b3 ^ b3 * b4 ^ b4) * (d / scale) ^ b3 *
     (1 - d / scale) ^ b4}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{b_3 \sim N(mu_b3, sigma_b3), Truncated above 0}
-  \deqn{b_4 \sim N(mu_b4, sigma_b4), Truncated above 0}
-  Note that \eqn{scale} is a hyperparameter specified by the
-  user.
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3), Truncated above 0}
+\deqn{b_4 \sim N(mu_b4, sigma_b4), Truncated above 0}
+Note that \eqn{scale} is a hyperparameter specified by the
+user.
 }
 
 \section{Independent Binary}{
 
-  \deqn{y \sim Binomial(n, f(d))}
-  \deqn{link(f(d)) = b_{1d}}
-  \deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d])}
+\deqn{y \sim Binomial(n, f(d))}
+\deqn{link(f(d)) = b_{1d}}
+\deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d])}
 }
 
 \section{Independent Binary Details}{
 
-  The independent model models the effect of each dose independently.
-  Vectors can be supplied to `mu_b1` and `sigma_b1` to set a different
-  prior for each dose in the order the doses are supplied to `doses`.
-  If scalars are supplied to `mu_b1` and `sigma_b1`, then the same prior
-  is used for each dose, and the `doses` argument is not needed.
+The independent model models the effect of each dose independently.
+Vectors can be supplied to \code{mu_b1} and \code{sigma_b1} to set a different
+prior for each dose in the order the doses are supplied to \code{doses}.
+If scalars are supplied to \code{mu_b1} and \code{sigma_b1}, then the same prior
+is used for each dose, and the \code{doses} argument is not needed.
 }
 
 \section{Longitudinal Linear}{
 
-  Let \eqn{f(d)} be a dose response model.  The expected value of the
-  response, y, is:
-  \deqn{E(y) = g(d, t)}
-  \deqn{g(d, t) = a + (t / t_max) * f(d)}
-  \deqn{a \sim N(mu_a, sigma_a)}
+Let \eqn{f(d)} be a dose response model.  The expected value of the
+response, y, is:
+\deqn{E(y) = g(d, t)}
+\deqn{g(d, t) = a + (t / t_max) * f(d)}
+\deqn{a \sim N(mu_a, sigma_a)}
 }
 
 \section{Longitudinal ITP}{
 
-  Let \eqn{f(d)} be a dose response model.  The expected value of the
-  response, y, is:
-  \deqn{E(y) = g(d, t)}
-  \deqn{g(d, t) = a + f(d) * ((1 - exp(- c1 * t))/(1 - exp(- c1 * t_max)))}
-  \deqn{a \sim N(mu_a, sigma_a)}
-  \deqn{c1 \sim Uniform(a_c1, b_c1)}
+Let \eqn{f(d)} be a dose response model.  The expected value of the
+response, y, is:
+\deqn{E(y) = g(d, t)}
+\deqn{g(d, t) = a + f(d) * ((1 - exp(- c1 * t))/(1 - exp(- c1 * t_max)))}
+\deqn{a \sim N(mu_a, sigma_a)}
+\deqn{c1 \sim Uniform(a_c1, b_c1)}
 }
 
 \section{Longitudinal IDP}{
 
-  Increasing-Decreasing-Plateau (IDP).
+Increasing-Decreasing-Plateau (IDP).
 
-  Let \eqn{f(d)} be a dose response model.  The expected value of the
-  response, y, is:
-  \deqn{E(y) = g(d, t)}
-  \deqn{g(d, t) = a + f(d) * (((1 - exp(- c1 * t))/(1 - exp(- c1 * d1))) *
+Let \eqn{f(d)} be a dose response model.  The expected value of the
+response, y, is:
+\deqn{E(y) = g(d, t)}
+\deqn{g(d, t) = a + f(d) * (((1 - exp(- c1 * t))/(1 - exp(- c1 * d1))) *
     I(t < d1) + (1 - gam * ((1 - exp(- c2 * (t - d1))) /
     (1 - exp(- c2 * (d2 - d1))))) *
     I(d1 <= t <= d2) + (1 - gam) * I(t > d2))}
-  \deqn{a \sim N(mu_a, sigma_a)}
-  \deqn{c1 \sim Uniform(a_c1, b_c1)}
-  \deqn{c2 \sim Uniform(a_c2, b_c2)}
-  \deqn{d1 \sim Uniform(0, t_max)}
-  \deqn{d2 \sim Uniform(d1, t_max)}
-  \deqn{gam \sim Uniform(0, 1)}
+\deqn{a \sim N(mu_a, sigma_a)}
+\deqn{c1 \sim Uniform(a_c1, b_c1)}
+\deqn{c2 \sim Uniform(a_c2, b_c2)}
+\deqn{d1 \sim Uniform(0, t_max)}
+\deqn{d2 \sim Uniform(d1, t_max)}
+\deqn{gam \sim Uniform(0, 1)}
 }
 
 \examples{

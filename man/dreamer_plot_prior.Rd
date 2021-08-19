@@ -20,7 +20,7 @@ dreamer_plot_prior(
 the plot.}
 
 \item{probs}{A vector of length 2 indicating the lower and upper percentiles
-to plot.  Not applicable when `plot_draws = TRUE`.}
+to plot.  Not applicable when \code{plot_draws = TRUE}.}
 
 \item{doses}{a vector of doses at which to evaluate and interpolate
 between.}
@@ -32,18 +32,18 @@ examples below.}
 
 \item{times}{a vector of times at which to plot the prior.}
 
-\item{plot_draws}{if `TRUE`, the individual draws from the prior are plotted.
-If `FALSE`, only the prior mean and quantiles are drawn.}
+\item{plot_draws}{if \code{TRUE}, the individual draws from the prior are plotted.
+If \code{FALSE}, only the prior mean and quantiles are drawn.}
 
 \item{alpha}{the transparency setting for the prior draws in (0, 1].
-Only applies if `plot_draws = TRUE`.}
+Only applies if \code{plot_draws = TRUE}.}
 }
 \value{
 The ggplot object.
 }
 \description{
 Plot the prior over the dose range.  This is intended to
-  help the user choose appropriate priors.
+help the user choose appropriate priors.
 }
 \examples{
 # Plot prior for one model

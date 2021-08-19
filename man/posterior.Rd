@@ -70,7 +70,7 @@ Specifying
 a dose returns the plot of pr(trt_dose - trt_{reference_dose} | data).}
 
 \item{predictive}{An integer.  If greater than 0, the return values will
-be from the predictive distribution of the mean of `predictive`
+be from the predictive distribution of the mean of \code{predictive}
 observations.
 If 0 (default), the posterior on the dose response mean is returned.}
 
@@ -85,16 +85,16 @@ in the calculations.  By default, all MCMC iterations are used.}
 statistics should be calculated.}
 }
 \value{
-A named list:
-  \itemize{
-    \item `stats` a tibble the dose, posterior mean, and posterior quantiles.
-    \item `samps` the weighted posterior samples.  Only returned if
-      `return_samples = TRUE`.
-  }
+A named list with the following elements:
+\itemize{
+\item stats: a tibble the dose, posterior mean, and posterior quantiles.
+\item samps: the weighted posterior samples.  Only returned if
+\code{return_samples = TRUE}.
+}
 }
 \description{
 Calculate posterior mean (and quantiles for specific
-  doses for each MCMC iteration of the model.
+doses for each MCMC iteration of the model.
 }
 \section{Methods (by class)}{
 \itemize{

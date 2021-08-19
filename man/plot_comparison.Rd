@@ -29,7 +29,7 @@ plot_comparison(..., doses, times, probs, data, n_smooth, width)
 )
 }
 \arguments{
-\item{...}{`dreamer_mcmc` objects to be used for plotting.}
+\item{...}{\code{dreamer_mcmc} objects to be used for plotting.}
 
 \item{doses}{a vector of doses at which to plot the dose response curve.}
 
@@ -62,11 +62,11 @@ Compare Posterior Fits
 }
 \details{
 If a Bayesian model averaging object is supplied first, all
-  individual fits and the Bayesian model averaging fit will be plotted, with
-  the model averaging fit in black (other model colors specified in the
-  legend).  Otherwise,
-  named arguments must be supplied for each model, and only the models
-  provided will be plotted.
+individual fits and the Bayesian model averaging fit will be plotted, with
+the model averaging fit in black (other model colors specified in the
+legend).  Otherwise,
+named arguments must be supplied for each model, and only the models
+provided will be plotted.
 }
 \examples{
 set.seed(888)

@@ -253,7 +253,7 @@ beta models.}
 }
 \value{
 A dataframe of random subjects from the specified model and
-  parameters.
+parameters.
 }
 \description{
 See the model definitions below for specifics for each model.
@@ -296,175 +296,175 @@ response.
 
 \section{Linear}{
 
-  \deqn{y \sim N(f(d), \sigma^2)}
-  \deqn{f(d) = b_1 + b_2 * d}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
+\deqn{y \sim N(f(d), \sigma^2)}
+\deqn{f(d) = b_1 + b_2 * d}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
 \section{Quadratic}{
 
-  \deqn{y \sim N(f(d), \sigma^2)}
-  \deqn{f(d) = b_1 + b_2 * d + b_3 * d^2}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{b_3 \sim N(mu_b3, sigma_b3)}
-  \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
+\deqn{y \sim N(f(d), \sigma^2)}
+\deqn{f(d) = b_1 + b_2 * d + b_3 * d^2}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
 \section{Log-linear}{
 
-  \deqn{y \sim N(f(d), \sigma^2)}
-  \deqn{f(d) = b_1 + b_2 * log(d + 1)}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
+\deqn{y \sim N(f(d), \sigma^2)}
+\deqn{f(d) = b_1 + b_2 * log(d + 1)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
 \section{Log-quadratic}{
 
-  \deqn{y \sim N(f(d), \sigma^2)}
-  \deqn{f(d) = b_1 + b_2 * log(d + 1) + b_3 * log(d + 1)^2}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{b_3 \sim N(mu_b3, sigma_b3)}
-  \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
+\deqn{y \sim N(f(d), \sigma^2)}
+\deqn{f(d) = b_1 + b_2 * log(d + 1) + b_3 * log(d + 1)^2}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
 \section{EMAX}{
 
-  \deqn{y \sim N(f(d), \sigma^2)}
-  \deqn{f(d) = b_1 + (b_2 - b_1) * d ^ b_4 / (exp(b_3 * b_4) + d ^ b_4)}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{b_3 \sim N(mu_b3, sigma_b3)}
-  \deqn{b_4 \sim N(mu_b4, sigma_b4), (Truncated above 0)}
-  \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
-  Here, \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
-  maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
-  \eqn{b_4} is the hill or rate parameter.
+\deqn{y \sim N(f(d), \sigma^2)}
+\deqn{f(d) = b_1 + (b_2 - b_1) * d ^ b_4 / (exp(b_3 * b_4) + d ^ b_4)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{b_4 \sim N(mu_b4, sigma_b4), (Truncated above 0)}
+\deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
+Here, \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
+maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
+\eqn{b_4} is the hill or rate parameter.
 }
 
 \section{Exponential}{
 
-  \deqn{y \sim N(f(d), \sigma^2)}
-  \deqn{f(d) = b_1 + b_2 * (1 - exp(- b_3 * d))}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{b_3 \sim N(mu_b3, sigma_b3), (truncated to be positive)}
-  \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
+\deqn{y \sim N(f(d), \sigma^2)}
+\deqn{f(d) = b_1 + b_2 * (1 - exp(- b_3 * d))}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3), (truncated to be positive)}
+\deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
 \section{Linear Binary}{
 
-  \deqn{y \sim Binomial(n, f(d))}
-  \deqn{link(f(d)) = b_1 + b_2 * d}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{y \sim Binomial(n, f(d))}
+\deqn{link(f(d)) = b_1 + b_2 * d}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
 }
 
 \section{Quadratic Binary}{
 
-  \deqn{y \sim Binomial(n, f(d))}
-  \deqn{link(f(d)) = b_1 + b_2 * d + b_3 * d^2}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{y \sim Binomial(n, f(d))}
+\deqn{link(f(d)) = b_1 + b_2 * d + b_3 * d^2}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3)}
 }
 
 \section{Log-linear Binary}{
 
-  \deqn{y \sim Binomial(n, f(d))}
-  \deqn{link(f(d)) = b_1 + b_2 * log(d + 1)}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{y \sim Binomial(n, f(d))}
+\deqn{link(f(d)) = b_1 + b_2 * log(d + 1)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
 }
 
 \section{Log-quadratic Binary}{
 
-  \deqn{y \sim Binomial(n, f(d))}
-  \deqn{link(f(d)) = b_1 + b_2 * log(d + 1) + b_3 * log(d + 1)^2}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{y \sim Binomial(n, f(d))}
+\deqn{link(f(d)) = b_1 + b_2 * log(d + 1) + b_3 * log(d + 1)^2}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3)}
 }
 
 \section{EMAX Binary}{
 
-  \deqn{y \sim Binomial(n, f(d))}
-  \deqn{link(f(d)) = b_1 + (b_2 - b_1) * d ^ b_4 /
+\deqn{y \sim Binomial(n, f(d))}
+\deqn{link(f(d)) = b_1 + (b_2 - b_1) * d ^ b_4 /
     (exp(b_3 * b_4) + d ^ b_4)}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{b_3 \sim N(mu_b3, sigma_b3)}
-  \deqn{b_4 \sim N(mu_b4, sigma_b4), (Truncated above 0)}
-  Here, on the \eqn{link(f(d))} scale,
-  \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
-  maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
-  \eqn{b_4} is the hill or rate parameter.
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{b_4 \sim N(mu_b4, sigma_b4), (Truncated above 0)}
+Here, on the \eqn{link(f(d))} scale,
+\eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
+maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
+\eqn{b_4} is the hill or rate parameter.
 }
 
 \section{Exponential Binary}{
 
-  \deqn{y \sim Binomial(n, f(d))}
-  \deqn{link(f(d)) = b_1 + b_2 * (exp(b_3 * d) - 1)}
-  \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-  \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-  \deqn{b_3 \sim N(mu_b3, sigma_b3), (Truncated below 0)}
+\deqn{y \sim Binomial(n, f(d))}
+\deqn{link(f(d)) = b_1 + b_2 * (exp(b_3 * d) - 1)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3), (Truncated below 0)}
 }
 
 \section{Independent}{
 
-  \deqn{y \sim N(f(d), \sigma^2)}
-  \deqn{f(d) = b_{1d}}
-  \deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d])}
-  \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
+\deqn{y \sim N(f(d), \sigma^2)}
+\deqn{f(d) = b_{1d}}
+\deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d])}
+\deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
 \section{Independent Binary}{
 
-  \deqn{y \sim Binomial(n, f(d))}
-  \deqn{link(f(d)) = b_{1d}}
-  \deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d])}
+\deqn{y \sim Binomial(n, f(d))}
+\deqn{link(f(d)) = b_{1d}}
+\deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d])}
 }
 
 \section{Longitudinal Linear}{
 
-  Let \eqn{f(d)} be a dose response model.  The expected value of the
-  response, y, is:
-  \deqn{E(y) = g(d, t)}
-  \deqn{g(d, t) = a + (t / t_max) * f(d)}
-  \deqn{a \sim N(mu_a, sigma_a)}
+Let \eqn{f(d)} be a dose response model.  The expected value of the
+response, y, is:
+\deqn{E(y) = g(d, t)}
+\deqn{g(d, t) = a + (t / t_max) * f(d)}
+\deqn{a \sim N(mu_a, sigma_a)}
 }
 
 \section{Longitudinal ITP}{
 
-  Let \eqn{f(d)} be a dose response model.  The expected value of the
-  response, y, is:
-  \deqn{E(y) = g(d, t)}
-  \deqn{g(d, t) = a + f(d) * ((1 - exp(- c1 * t))/(1 - exp(- c1 * t_max)))}
-  \deqn{a \sim N(mu_a, sigma_a)}
-  \deqn{c1 \sim Uniform(a_c1, b_c1)}
+Let \eqn{f(d)} be a dose response model.  The expected value of the
+response, y, is:
+\deqn{E(y) = g(d, t)}
+\deqn{g(d, t) = a + f(d) * ((1 - exp(- c1 * t))/(1 - exp(- c1 * t_max)))}
+\deqn{a \sim N(mu_a, sigma_a)}
+\deqn{c1 \sim Uniform(a_c1, b_c1)}
 }
 
 \section{Longitudinal IDP}{
 
-  Increasing-Decreasing-Plateau (IDP).
+Increasing-Decreasing-Plateau (IDP).
 
-  Let \eqn{f(d)} be a dose response model.  The expected value of the
-  response, y, is:
-  \deqn{E(y) = g(d, t)}
-  \deqn{g(d, t) = a + f(d) * (((1 - exp(- c1 * t))/(1 - exp(- c1 * d1))) *
+Let \eqn{f(d)} be a dose response model.  The expected value of the
+response, y, is:
+\deqn{E(y) = g(d, t)}
+\deqn{g(d, t) = a + f(d) * (((1 - exp(- c1 * t))/(1 - exp(- c1 * d1))) *
     I(t < d1) + (1 - gam * ((1 - exp(- c2 * (t - d1))) /
     (1 - exp(- c2 * (d2 - d1))))) *
     I(d1 <= t <= d2) + (1 - gam) * I(t > d2))}
-  \deqn{a \sim N(mu_a, sigma_a)}
-  \deqn{c1 \sim Uniform(a_c1, b_c1)}
-  \deqn{c2 \sim Uniform(a_c2, b_c2)}
-  \deqn{d1 \sim Uniform(0, t_max)}
-  \deqn{d2 \sim Uniform(d1, t_max)}
-  \deqn{gam \sim Uniform(0, 1)}
+\deqn{a \sim N(mu_a, sigma_a)}
+\deqn{c1 \sim Uniform(a_c1, b_c1)}
+\deqn{c2 \sim Uniform(a_c2, b_c2)}
+\deqn{d1 \sim Uniform(0, t_max)}
+\deqn{d2 \sim Uniform(d1, t_max)}
+\deqn{gam \sim Uniform(0, 1)}
 }
 
 \examples{

@@ -75,8 +75,8 @@ Returns the ggplot object.
 }
 \description{
 Plots the posterior mean and quantiles over the dose range and
-  plots error bars at the observed doses. If the `data` argument is
-  specified, the observed means at each dose are also plotted.
+plots error bars at the observed doses. If the \code{data} argument is
+specified, the observed means at each dose are also plotted.
 
 plot posterior from Bayesian model averaging.
 }

@@ -1,28 +1,28 @@
-#' @title Probability of minimum X\% effective dose
+#' @title Probability of minimum X% effective dose
 #' @description Calculate the probability a dose being the smallest dose
-#'   that has at least X\% of the maximum efficacy.
+#'   that has at least X% of the maximum efficacy.
 #' @param x output from a call to `dreamer_mcmc()`.
-#' @param doses the doses for which pr(minimum effective X\% dose) is to be
+#' @param doses the doses for which pr(minimum effective X% dose) is to be
 #'   calculated.
-#' @param ed a number between 0 and 100 indicating the ed\% dose that is
+#' @param ed a number between 0 and 100 indicating the ed% dose that is
 #'   being sought.
 #' @param greater if `TRUE`, higher responses indicate better efficacy.  If
 #'   `FALSE`, lower responses indicate better efficacy.`
 #' @param small_bound the lower (upper) bound of the response variable
 #'   when `greater = TRUE` (`FALSE`).  This is used to calculate the
-#'   `ed`\% effect as `ed / 100 * (effect_100 - small_bound) + small_bound`.
+#'   `ed`% effect as `ed / 100 * (effect_100 - small_bound) + small_bound`.
 #' @param time the time (scalar) at which the Pr(MEDX) should be calculated.
 #' @details Obtaining the probability of a particular does being the
-#'   minimum efficacious dose achieving `ed`\% efficacy is dependent on
+#'   minimum efficacious dose achieving `ed`% efficacy is dependent on
 #'   the doses specified.
 #'
-#'   For a given MCMC sample of parameters, the 100\% efficacy value is defined
+#'   For a given MCMC sample of parameters, the 100% efficacy value is defined
 #'   as the highest efficacy of the doses specified.  For each posterior draw
-#'   of MCMC parameters, the minimum `ed`\% efficacious dose is defined as the
-#'   lowest dose what has at least `ed`\% efficacy relative to the 100\%
+#'   of MCMC parameters, the minimum `ed`% efficacious dose is defined as the
+#'   lowest dose what has at least `ed`% efficacy relative to the 100%
 #'   efficacy value.
 #'
-#'   The `ed`\% effect is calculated as
+#'   The `ed`% effect is calculated as
 #'   `ed / 100 * (effect_100 - small_bound) + small_bound` where `effect_100`
 #'   is the largest mean response among `doses` for a given MCMC iteration.
 #' @return A data frame with the following columns:

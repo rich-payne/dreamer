@@ -7,7 +7,10 @@
 plot_trace(x)
 }
 \arguments{
-\item{x}{output from a call to `dreamer_mcmc()`.}
+\item{x}{output from a call to \code{dreamer_mcmc()}.}
+}
+\value{
+No return value, called to create plots.
 }
 \description{
 Produces traceplots for each parameter for each model.

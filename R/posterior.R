@@ -20,12 +20,10 @@
 #'   in the calculations.  By default, all MCMC iterations are used.
 #' @param return_stats logical indicating whether or not the posterior
 #'   statistics should be calculated.
-#' @return A named list:
-#'   \itemize{
-#'     \item `stats` a tibble the dose, posterior mean, and posterior quantiles.
-#'     \item `samps` the weighted posterior samples.  Only returned if
-#'       `return_samples = TRUE`.
-#'   }
+#' @return A named list with the following elements:
+#'   * stats: a tibble the dose, posterior mean, and posterior quantiles.
+#'   * samps: the weighted posterior samples.  Only returned if
+#'     `return_samples = TRUE`.
 #' @example man/examples/ex-posterior.R
 #' @export
 posterior <- function(

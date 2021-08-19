@@ -18,6 +18,8 @@
 #' @param mu_b1,sigma_b1,mu_b2,sigma_b2,mu_b3,sigma_b3,mu_b4,sigma_b4,shape,rate
 #'   models parameters.  See sections below for interpretation in
 #'   specific models.
+#' @return A named list of the arguments in the function call.  The list has
+#'   S3 classes assigned which are used internally within `dreamer_mcmc()`.
 #' @name model
 #' @inheritSection model_longitudinal Longitudinal Linear
 #' @inheritSection model_longitudinal Longitudinal ITP

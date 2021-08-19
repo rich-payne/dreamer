@@ -12,9 +12,9 @@
 \item{...}{additional arguments (which are ignored).}
 }
 \value{
-Returns a named list with elements `model_weights` and `summary`
-  containing the prior and posterior weights for each model and inference
-  on parameters for each model as well as MCMC diagnostics.
+Returns a named list with elements \code{model_weights} and \code{summary}
+containing the prior and posterior weights for each model and inference
+on parameters for each model as well as MCMC diagnostics.
 }
 \description{
 Summarize parameter inference and convergence diagnostics.

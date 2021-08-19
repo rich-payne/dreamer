@@ -1,6 +1,10 @@
 #' @title Calculate MCMC Diagnostics for Parameters
 #' @description Calculate MCMC diagnostics for individual parameters.
 #' @param x MCMC output from a dreamer model.
+#' @return A tibble listing the Gelman point estimates and upper bounds
+#'   (obtained from coda::gelman.diag) and effective sample size
+#'   (obtained from coda::effectiveSize) for each parameter within each
+#'   model.
 #' @example man/examples/ex-diagnostics.R
 #' @export
 diagnostics <- function(x) {

@@ -7,7 +7,7 @@
 pr_eoi(x, eoi, dose, reference_dose = NULL, time = NULL)
 }
 \arguments{
-\item{x}{output from a call to `dreamer_mcmc()`.}
+\item{x}{output from a call to \code{dreamer_mcmc()}.}
 
 \item{eoi}{a vector of the effects of interest (EOI) in the probability
 function.}
@@ -22,12 +22,12 @@ to the latest timepoint.  Applies to longitudinal models only.}
 }
 \value{
 A tibble listing the doses, times, and
-  Pr(effect_dose - effect_reference_dose > eoi) if `reference_dose`
-  is specified; otherwise, Pr(effect_dose > eoi).
+Pr(effect_dose - effect_reference_dose > eoi) if \code{reference_dose}
+is specified; otherwise, Pr(effect_dose > eoi).
 }
 \description{
 Calculate Pr(effect_dose - effect_reference_dose > EOI | data)
- or Pr(effect_dose > EOI | data).
+or Pr(effect_dose > EOI | data).
 }
 \examples{
 set.seed(888)

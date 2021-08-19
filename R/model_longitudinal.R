@@ -1,10 +1,16 @@
 #' @title Model Creation: Longitudinal Models
 #' @name model_longitudinal
+#' @description Assign hyperparameters and other values for longitudinal
+#'   modeling.  The output of this function is intended to be used as
+#'   the input to the `longitudinal` argument of the dose response model
+#'   functions, e.g., `model_linear`.
 #' @param t_max a scalar, typically indicating the latest observed time
 #'   for subjects.  This will influence the interpretation of the
 #'   parameters of each model.
 #' @param mu_a,sigma_a,a_c1,b_c1,a_c2,b_c2 hyperparameters of the specified
 #'   longitudinal model.  See below for parameterization.
+#' @return A named list of the arguments in the function call.  The list has
+#'   S3 classes assigned which are used internally within `dreamer_mcmc()`.
 NULL
 
 #' @rdname model_longitudinal

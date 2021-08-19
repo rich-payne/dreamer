@@ -203,10 +203,10 @@ test_that("post_perc_effect.dreamer_bma()", {
   ) %>%
     dplyr::group_by(dose) %>%
     dplyr::summarize(
-      pr_perc_exists = mean(!is.na(post_eds)),
-      mean = mean(post_eds),
-      `2.50%` = quantile(post_eds, prob = .025, names = FALSE),
-      `97.50%` = quantile(post_eds, prob = .975, names = FALSE),
+      pr_perc_exists = mean(!is.na(perc_effect)),
+      mean = mean(perc_effect),
+      `2.50%` = quantile(perc_effect, prob = .025, names = FALSE),
+      `97.50%` = quantile(perc_effect, prob = .975, names = FALSE),
       .groups = "drop"
     )
   expect_equal(post_perc_effect(mcmc, dose = dose)$stats, exp)

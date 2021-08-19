@@ -1,4 +1,8 @@
 #' @title Calculate Posterior of a Dose's Percentage Effect
+#' @description Given a dose, the "percentage effect" is defined as
+#'   (effect of the given dose - small_bound) / (maximum effect in dose range - 
+#'   small_bound).  This function returns the posterior statistics and/or
+#'   samples of this effect.
 #' @param x output from a call to `dreamer_mcmc()`, or
 #'   the MCMC samples from a single model of output from
 #'   a `dreamer_mcmc()` call.
@@ -19,6 +23,12 @@
 #'   percentage effect.  Applies to longitudinal models only.
 #' @param return_samples logical indicating if the posterior samples should
 #'   be returned.
+#' @return A named list with the following components:
+#'   * stats: a tibble listing the dose, time (where relevant),
+#'     probability a percentage effect exists, the average percentage effect,
+#'     and the specified quantiles of the percentage effect.
+#'   * samps: a tibble with the posterior samples for each dose/time
+#'     combination.
 #' @example man/examples/ex-post_perc_effect.R
 #' @export
 post_perc_effect <- function(
@@ -121,9 +131,10 @@ post_perc_effect.dreamer <- function(
         time = time,
         index = index
       )
-      eds <- ((dose_response - small_bound) / (extreme_responses - small_bound))
-      eds[eds < 0 | eds > 1] <- NA
-      return(dplyr::tibble(dose = dose, post_eds = eds))
+      post_perc <- (dose_response - small_bound) /
+        (extreme_responses - small_bound)
+      post_perc[post_perc < 0 | post_perc > 1] <- NA
+      return(dplyr::tibble(dose = dose, perc_effect = post_perc))
     },
     x = x,
     index = index,
@@ -139,8 +150,8 @@ post_perc_effect.dreamer <- function(
 summarize_post_perc <- function(samps, probs) {
   output <- dplyr::group_by(samps, .data$dose) %>%
     dplyr::summarize(
-      pr_perc_exists = mean(!is.na(.data$post_eds)),
-      mean = mean(.data$post_eds, na.rm = TRUE)
+      pr_perc_exists = mean(!is.na(.data$perc_effect)),
+      mean = mean(.data$perc_effect, na.rm = TRUE)
     )
   output2 <- purrr::map(
     probs,
@@ -148,8 +159,12 @@ summarize_post_perc <- function(samps, probs) {
       nme <- sprintf("%.2f%%", 100 * xx)
       dplyr::group_by(samps, .data$dose) %>%
         dplyr::summarize(
-          !!nme :=
-            quantile(.data$post_eds, probs = xx, na.rm = TRUE, names = FALSE)
+          !!nme := quantile(
+            .data$perc_effect,
+            probs = xx,
+            na.rm = TRUE,
+            names = FALSE
+          )
         )
     },
     samps = samps

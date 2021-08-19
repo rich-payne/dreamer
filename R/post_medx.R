@@ -1,6 +1,6 @@
-#' @title Posterior Distribution of Minimum X\% Effective Dose
+#' @title Posterior Distribution of Minimum X% Effective Dose
 #' @param x output from `dreamer_mcmc()`.
-#' @param ed a number between 0 and 100 indicating the ed\% dose that is
+#' @param ed a number between 0 and 100 indicating the ed% dose that is
 #'   being sought.
 #' @param probs a vector of quantiles to calculate on the posterior.
 #' @param time the slice of time for which to calculate the posterior EDX dose.
@@ -16,18 +16,18 @@
 #' @param return_samples logical indicating if the posterior samples should be
 #'   returned.
 #' @param ... additional arguments for specific methods.
-#' @details The minimum X\% effective dose is the dose that has X\% of the
+#' @details The minimum X% effective dose is the dose that has X% of the
 #'   largest effect for doses between `lower` and `upper`.  When `greater`
 #'   is `TRUE`, larger positive responses are considered more effective and
-#'   vice versa.  The X\% response is calculated as `small_bound` +
+#'   vice versa.  The X% response is calculated as `small_bound` +
 #'   `ed` / 100 * (max_effect - `small_bound`) where "max_effect" is the
-#'   maximum response for doses between `lower` and `upper`.  The X\% effective
-#'   dose is the smallest dose which has X\% response within the dose range.
-#'   It is possible that for some MCMC samples, an X\% effective dose may
+#'   maximum response for doses between `lower` and `upper`.  The X% effective
+#'   dose is the smallest dose which has X% response within the dose range.
+#'   It is possible that for some MCMC samples, an X% effective dose may
 #'   not exist, so probabilities are not guaranteed to sum to one.
 #' @return Posterior quantities and samples (if applicable),
 #'   generally in the form of a list.  The `pr_edx_exists` column gives the
-#'   posterior probability that an EDX\% effect exists.
+#'   posterior probability that an EDX% effect exists.
 #' @example man/examples/ex-post_medx.R
 #' @export
 post_medx <- function(
@@ -156,7 +156,7 @@ calc_post_medx_samps <- function(
   return(
     dplyr::tibble(
       ed = ed,
-      post_doses = post_doses
+      dose = post_doses
     )
   )
 }
@@ -178,8 +178,8 @@ post_medx.dreamer_mcmc_independent_binary <- function(...) { #nolint
 summarize_medx <- function(samps, probs) {
   output <- dplyr::group_by(samps, .data$ed) %>%
     dplyr::summarize(
-      pr_edx_exists = mean(!is.na(.data$post_doses)),
-      mean = mean(.data$post_doses, na.rm = TRUE)
+      pr_edx_exists = mean(!is.na(.data$dose)),
+      mean = mean(.data$dose, na.rm = TRUE)
     )
   output2 <- purrr::map(
     probs,
@@ -187,7 +187,7 @@ summarize_medx <- function(samps, probs) {
       dplyr::group_by(samps, .data$ed) %>%
         dplyr::summarize(
           !!(paste0(100 * xx, "%")) :=
-            quantile(.data$post_doses, probs = xx, na.rm = TRUE)
+            quantile(.data$dose, probs = xx, na.rm = TRUE)
         )
     },
     samps = samps

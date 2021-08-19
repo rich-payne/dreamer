@@ -15,6 +15,8 @@
 #'   `FALSE`, lower responses indicate better efficacy.`
 #' @param time the time (scalar) at which the Pr(MED) should be calculated.
 #'   Applies only to longitudinal models.
+#' @return A tibble listing each dose and the posterior probability that 
+#'   each dose is the minimum efficacious dose.
 #' @example man/examples/ex-pr_med.R
 #' @export
 pr_med <- function( #nolint

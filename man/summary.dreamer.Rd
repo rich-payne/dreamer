@@ -13,7 +13,7 @@
 }
 \value{
 A tibble with inference and diagnostics information for each
-  parameter.
+parameter.
 }
 \description{
 Produces summaries for inference and diagnosing MCMC chains.

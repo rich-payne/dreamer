@@ -14,7 +14,7 @@ pr_medx(
 )
 }
 \arguments{
-\item{x}{output from a call to `dreamer_mcmc()`.}
+\item{x}{output from a call to \code{dreamer_mcmc()}.}
 
 \item{doses}{the doses for which pr(minimum effective X\% dose) is to be
 calculated.}
@@ -22,40 +22,42 @@ calculated.}
 \item{ed}{a number between 0 and 100 indicating the ed\% dose that is
 being sought.}
 
-\item{greater}{if `TRUE`, higher responses indicate better efficacy.  If
-`FALSE`, lower responses indicate better efficacy.`}
+\item{greater}{if \code{TRUE}, higher responses indicate better efficacy.  If
+\code{FALSE}, lower responses indicate better efficacy.`}
 
 \item{small_bound}{the lower (upper) bound of the response variable
-when `greater = TRUE` (`FALSE`).  This is used to calculate the
-`ed`\% effect as `ed / 100 * (effect_100 - small_bound) + small_bound`.}
+when \code{greater = TRUE} (\code{FALSE}).  This is used to calculate the
+\code{ed}\% effect as \code{ed / 100 * (effect_100 - small_bound) + small_bound}.}
 
 \item{time}{the time (scalar) at which the Pr(MEDX) should be calculated.}
 }
 \value{
 A data frame with the following columns:
-  - `dose`: numeric dose levels.
-  - `prob`: Prob(EDX | data) for each dose. Note: these probabilities do
-    not necessarily sum to 1 because the EDX may not exist. In fact,
-    Pr(EDX does not exist | data) = `1 - sum(prob)`.
+\itemize{
+\item \code{dose}: numeric dose levels.
+\item \code{prob}: Prob(EDX | data) for each dose. Note: these probabilities do
+not necessarily sum to 1 because the EDX may not exist. In fact,
+Pr(EDX does not exist | data) = \code{1 - sum(prob)}.
+}
 }
 \description{
 Calculate the probability a dose being the smallest dose
-  that has at least X\% of the maximum efficacy.
+that has at least X\% of the maximum efficacy.
 }
 \details{
 Obtaining the probability of a particular does being the
-  minimum efficacious dose achieving `ed`\% efficacy is dependent on
-  the doses specified.
+minimum efficacious dose achieving \code{ed}\% efficacy is dependent on
+the doses specified.
 
-  For a given MCMC sample of parameters, the 100\% efficacy value is defined
-  as the highest efficacy of the doses specified.  For each posterior draw
-  of MCMC parameters, the minimum `ed`\% efficacious dose is defined as the
-  lowest dose what has at least `ed`\% efficacy relative to the 100\%
-  efficacy value.
+For a given MCMC sample of parameters, the 100\% efficacy value is defined
+as the highest efficacy of the doses specified.  For each posterior draw
+of MCMC parameters, the minimum \code{ed}\% efficacious dose is defined as the
+lowest dose what has at least \code{ed}\% efficacy relative to the 100\%
+efficacy value.
 
-  The `ed`\% effect is calculated as
-  `ed / 100 * (effect_100 - small_bound) + small_bound` where `effect_100`
-  is the largest mean response among `doses` for a given MCMC iteration.
+The \code{ed}\% effect is calculated as
+\code{ed / 100 * (effect_100 - small_bound) + small_bound} where \code{effect_100}
+is the largest mean response among \code{doses} for a given MCMC iteration.
 }
 \examples{
 set.seed(888)

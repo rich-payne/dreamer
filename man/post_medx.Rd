@@ -47,7 +47,7 @@ post_medx(
 )
 }
 \arguments{
-\item{x}{output from `dreamer_mcmc()`.}
+\item{x}{output from \code{dreamer_mcmc()}.}
 
 \item{ed}{a number between 0 and 100 indicating the ed\% dose that is
 being sought.}
@@ -61,11 +61,11 @@ Applies to longitudinal models only.}
 
 \item{upper}{the upper bound of the doses for calculating EDX.}
 
-\item{greater}{if `TRUE`, higher values indicate better efficacy.  If
-`FALSE`, lower responses indicate better efficacy.}
+\item{greater}{if \code{TRUE}, higher values indicate better efficacy.  If
+\code{FALSE}, lower responses indicate better efficacy.}
 
-\item{small_bound}{the minimum (`greater = TRUE`) or maximum
-(`greater = FALSE`) bound of the response.}
+\item{small_bound}{the minimum (\code{greater = TRUE}) or maximum
+(\code{greater = FALSE}) bound of the response.}
 
 \item{return_samples}{logical indicating if the posterior samples should be
 returned.}
@@ -73,26 +73,26 @@ returned.}
 \item{...}{additional arguments for specific methods.}
 
 \item{index}{a vector indicating which MCMC samples to use in the
-calculation.  If `NULL` (default), all MCMC samples are used.}
+calculation.  If \code{NULL} (default), all MCMC samples are used.}
 }
 \value{
 Posterior quantities and samples (if applicable),
-  generally in the form of a list.  The `pr_edx_exists` column gives the
-  posterior probability that an EDX\% effect exists.
+generally in the form of a list.  The \code{pr_edx_exists} column gives the
+posterior probability that an EDX\% effect exists.
 }
 \description{
 Posterior Distribution of Minimum X\% Effective Dose
 }
 \details{
 The minimum X\% effective dose is the dose that has X\% of the
-  largest effect for doses between `lower` and `upper`.  When `greater`
-  is `TRUE`, larger positive responses are considered more effective and
-  vice versa.  The X\% response is calculated as `small_bound` +
-  `ed` / 100 * (max_effect - `small_bound`) where "max_effect" is the
-  maximum response for doses between `lower` and `upper`.  The X\% effective
-  dose is the smallest dose which has X\% response within the dose range.
-  It is possible that for some MCMC samples, an X\% effective dose may
-  not exist, so probabilities are not guaranteed to sum to one.
+largest effect for doses between \code{lower} and \code{upper}.  When \code{greater}
+is \code{TRUE}, larger positive responses are considered more effective and
+vice versa.  The X\% response is calculated as \code{small_bound} +
+\code{ed} / 100 * (max_effect - \code{small_bound}) where "max_effect" is the
+maximum response for doses between \code{lower} and \code{upper}.  The X\% effective
+dose is the smallest dose which has X\% response within the dose range.
+It is possible that for some MCMC samples, an X\% effective dose may
+not exist, so probabilities are not guaranteed to sum to one.
 }
 \examples{
 set.seed(888)

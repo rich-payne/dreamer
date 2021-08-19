@@ -243,10 +243,10 @@ test_that("post_medx.dreamer_bma()", {
   ) %>%
     dplyr::group_by(ed) %>%
     dplyr::summarize(
-      pr_edx_exists = mean(!is.na(post_doses)),
-      mean = mean(post_doses),
-      `2.5%` = quantile(post_doses, prob = .025),
-      `97.5%` = quantile(post_doses, prob = .975),
+      pr_edx_exists = mean(!is.na(dose)),
+      mean = mean(dose),
+      `2.5%` = quantile(dose, prob = .025),
+      `97.5%` = quantile(dose, prob = .975),
       .groups = "drop"
     ) %>%
     as.data.frame()
