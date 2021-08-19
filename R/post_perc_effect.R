@@ -1,6 +1,6 @@
 #' @title Calculate Posterior of a Dose's Percentage Effect
 #' @description Given a dose, the "percentage effect" is defined as
-#'   (effect of the given dose - small_bound) / (maximum effect in dose range - 
+#'   (effect of the given dose - small_bound) / (maximum effect in dose range -
 #'   small_bound).  This function returns the posterior statistics and/or
 #'   samples of this effect.
 #' @param x output from a call to `dreamer_mcmc()`, or
