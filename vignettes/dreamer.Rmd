@@ -1,7 +1,6 @@
 ---
 title: "Dose REsponse models for bAyesian Model avERaging (dreamer)"
 author: "Richard Payne"
-date: "August 2, 2021"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{dreamer}
@@ -19,6 +18,8 @@ functions to generate data, and some useful post-processing functions
 including posterior means and quantiles, plots, and other metrics
 (e.g. calculating the posterior probability minimum efficacious dose,
 etc.).
+
+See the "dreamer_method" vignette for a high-level overview of Bayesian model averaging and/or read Gould (2019) for the approach used by dreamer.
 
 ## Generate data
 We can easily see the possible models to generate data from by typing
@@ -500,3 +501,6 @@ For example:
 ```{r}
 posterior(output_long)
 ```
+
+## Reference
+Gould, A. Lawrence. "BMA‐Mod: A Bayesian model averaging strategy for determining dose‐response relationships in the presence of model uncertainty." *Biometrical Journal* 61.5 (2019): 1141-1159.

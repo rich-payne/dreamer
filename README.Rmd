@@ -24,10 +24,13 @@ The goal of dreamer (Dose REsponse bAyesian Model avERaging) is to flexibly mode
 
 # Installation
 
-The R package dreamer can be installed directly from github: 
+dreamer is available on CRAN and can be installed with `install.packages("dreamer")`.  Note that dreamer depends on [rjags](https://cran.r-project.org/package=rjags) which
+itself depends on an installation of JAGS.
+
+The development version of dreamer can be installed directly from github: 
 `devtools::install_github("rich-payne/dreamer")`.
 
-For feature requests and to report bugs, you can visit the [dreamer github](https://github.com/rich-payne/dreamer/issues).
+For feature requests and to report bugs, please submit an issue to the [dreamer github](https://github.com/rich-payne/dreamer/issues).
 
 # Bayesian Model Averaging
 
