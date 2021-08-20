@@ -10,51 +10,44 @@
 The goal of dreamer (Dose REsponse bAyesian Model avERaging) is to
 flexibly model (longitudinal) dose-response relationships. This is
 accomplished using Bayesian model averaging of parametric dose-response
-models.
+models (Gould, 2019).
+
+dreamer supports a number of dose-response models including linear,
+quadratic, log-linear, log-quadratic, EMAX, exponential, for use as
+models that can be included in the model averaging approach. In
+addition, several longitudinal models are also supported (see the
+vignette). All of the above models are available for both continuous and
+binary endpoints.
 
 # Installation
 
-The R package dreamer can be installed directly from github:
-`devtools::install_github("rich-payne/dreamer")`.
+dreamer is available on CRAN and can be installed with
+`install.packages("dreamer")`. Note that dreamer depends on
+[rjags](https://cran.r-project.org/package=rjags) which itself depends
+on an installation of JAGS.
 
-For feature requests and to report bugs, you can visit the [dreamer
-github](https://github.com/rich-payne/dreamer/issues).
+The development version of dreamer can be installed directly from
+github: `devtools::install_github("rich-payne/dreamer")`.
 
-# Bayesian Model Averaging
+For feature requests and to report bugs, please submit an issue to the
+[dreamer github](https://github.com/rich-payne/dreamer/issues).
 
-Bayesian model averaging is a general mixture distribution, where each
-mixture component is a different parametric model. Prior weights are
-placed on each model and the posterior model weights are updated based
-on how well each model fits the data. Let *μ*(*d*) represent the mean of
-the dose response curve at dose *d*,
-*y* = {*y*<sub>1</sub>, …, *y*<sub>*n*</sub>} be the observed data, and
-*m* ∈ {1, …, *M*} be an index on the *M* parametric models. Then the
-posterior of the dose response curve, *μ*(*d*), of the Bayesian model
-averaging model is
+# Vignettes
 
-where *p*(*μ*(*d*) ∣ *y*, *m*) is the posterior mean dose response curve
-from model *m*, *p*(*m* ∣ *y*) is the posterior weight of model *m*,
-*p*(*y* ∣ *m*) is the marginal likelihood of the data under model *m*,
-and *p*(*m*) is the prior weight assigned to model *m*. In cases where
-*p*(*y* ∣ *m*) is difficult to compute, Gould (2019) proposed using the
-observed data’s fit to the posterior predictive distribution as a
-surrogate in calculating the posterior weights; this is the approach
-used by dreamer.
+See the “dreamer\_method” vignette for a high-level overview of Bayesian
+model averaging and/or read Gould (2019) for the approach used by
+dreamer.
 
-dreamer supports a number of models including linear, quadratic,
-log-linear, log-quadratic, EMAX, exponential, for use as models that can
-be included in the model averaging approach. In addition, several
-longitudinal models are also supported (see the vignette). All of the
-above models are available for both continuous and binary endpoints.
+For a larger set of examples, see the “dreamer” vignette.
 
-## Example
+# Example
 
 With dreamer, it is easy to generate data, fit models, and visualize
-model fits. See the vignette for a more comprehensive overview.
+model fits.
 
 ``` r
 library(dreamer)
-# GENERATE DATA FROM A QUADRATIC DOSE RESPONSE
+# generate data from a quadratic dose response
 set.seed(888)
 data <- dreamer_data_quad(
   n_cohorts = c(10, 10, 10, 10), # number of subjects in each cohort
@@ -65,7 +58,7 @@ data <- dreamer_data_quad(
   sigma = .5 # standard deviation
 )
 
-# BAYESIAN MODEL AVERAGING
+# Bayesian model averaging
 output <- dreamer_mcmc(
   data = data,
   # mcmc information
@@ -117,14 +110,14 @@ plot(output, data = data)
 <img src="man/figures/README-example-1.png" width="100%" />
 
 ``` r
-# plot individual fits
-plot_comparison(output)
+# plot individual model fit
+plot(output$mod_emax, data = data)
 ```
 
 <img src="man/figures/README-example-2.png" width="100%" />
 
 ``` r
-# posterior summary
+# posterior summary for model parameters
 summary(output)
 #> $model_weights
 #> # A tibble: 3 x 3
@@ -152,6 +145,17 @@ summary(output)
 #> 12 mod_… sigma  0.575  0.0678 4.79e-4 6.65e-4  0.460   0.527   0.569   0.615
 #> # … with 4 more variables: `97.5%` <dbl>, gelman_point <dbl>,
 #> #   gelman_upper <dbl>, effective_size <dbl>
+
+# posterior summary on dose-response curve
+posterior(output)
+#> $stats
+#> # A tibble: 4 x 4
+#>    dose  mean `2.50%` `97.50%`
+#>   <dbl> <dbl>   <dbl>    <dbl>
+#> 1  0.25 0.430   0.131    0.734
+#> 2  0.5  0.665   0.451    0.875
+#> 3  0.75 0.823   0.584    1.07 
+#> 4  1.5  0.951   0.610    1.30
 ```
 
 ## Reference
