@@ -48,17 +48,14 @@ ggplot(data, aes(dose, response)) + geom_point()
 ```
 
 ## Fit Model
-Now we can use a Bayesian model averaging technique to analyze the data.
-We will use a linear and an EMAX model as candidate models, each with prior
-probability 1 / 2.  There are quite a number of candidate models including
-quadratic, 
+Now we can use a Bayesian model averaging technique to analyze the data. We will use a linear and an EMAX model as candidate models, each with prior probability 1 / 2.  There are quite a number of candidate dose-response models in dreamer, including linear, quadratic, log-linear, log-quadratic, EMAX, and exponential.
 
 Hyperparameters for each model are set by using the `model_XXX()` functions.
 Type `?model` for a description of the model constructors and the models
 each of them fit.
 
 ```{r}
-# BAYESIAN MODEL AVERAGING
+# Bayesian model averaging
 output <- dreamer_mcmc(
   data = data,
   n_adapt = 1e3,
@@ -97,10 +94,7 @@ output <- dreamer_mcmc(
 
 ### Model Output
 
-The output is a list of the sorted unique doses, unique times (for longitudinal
-models), the prior and posterior weights
-for each model, and MCMC output from each individual model.
-
+The output is a list of the sorted unique doses, unique times (for longitudinal models), the prior and posterior weights for each model, and MCMC output from each individual model.
 
 ```{r}
 names(output)
@@ -411,7 +405,7 @@ output_independent2 <- dreamer_mcmc(
 plot(output_independent2, data = data)
 ```
 
-All other functions are also available as above.
+All other functions are also available on independent models as above.
 
 ## Longitudinal Modeling
 
@@ -444,7 +438,7 @@ Fitting the MCMC is the same as before, except priors need to be specified
 for the longitudinal part of the model:
 
 ```{r}
-# BAYESIAN MODEL AVERAGING
+# Bayesian model averaging
 output_long <- dreamer_mcmc(
   data = data_long,
   n_adapt = 1e3,
