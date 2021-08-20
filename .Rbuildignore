@@ -8,3 +8,5 @@
 ^CRAN-RELEASE$
 ^tests/testthat/figs$
 ^tests/testthat/_snaps$
+^doc$
+^Meta$

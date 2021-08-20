@@ -7,3 +7,6 @@ dreamer.Rproj
 .Ruserdata
 tests/testthat/figs
 cran-comments.md
+inst/doc
+doc
+Meta

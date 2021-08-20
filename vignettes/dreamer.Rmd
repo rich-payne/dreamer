@@ -1,7 +1,6 @@
 ---
 title: "Dose REsponse models for bAyesian Model avERaging (dreamer)"
 author: "Richard Payne"
-date: "August 2, 2021"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{dreamer}
@@ -19,6 +18,8 @@ functions to generate data, and some useful post-processing functions
 including posterior means and quantiles, plots, and other metrics
 (e.g. calculating the posterior probability minimum efficacious dose,
 etc.).
+
+See the "dreamer_method" vignette for a high-level overview of Bayesian model averaging and/or read Gould (2019) for the approach used by dreamer.
 
 ## Generate data
 We can easily see the possible models to generate data from by typing
@@ -47,17 +48,14 @@ ggplot(data, aes(dose, response)) + geom_point()
 ```
 
 ## Fit Model
-Now we can use a Bayesian model averaging technique to analyze the data.
-We will use a linear and an EMAX model as candidate models, each with prior
-probability 1 / 2.  There are quite a number of candidate models including
-quadratic, 
+Now we can use a Bayesian model averaging technique to analyze the data. We will use a linear and an EMAX model as candidate models, each with prior probability 1 / 2.  There are quite a number of candidate dose-response models in dreamer, including linear, quadratic, log-linear, log-quadratic, EMAX, and exponential.
 
 Hyperparameters for each model are set by using the `model_XXX()` functions.
 Type `?model` for a description of the model constructors and the models
 each of them fit.
 
 ```{r}
-# BAYESIAN MODEL AVERAGING
+# Bayesian model averaging
 output <- dreamer_mcmc(
   data = data,
   n_adapt = 1e3,
@@ -96,10 +94,7 @@ output <- dreamer_mcmc(
 
 ### Model Output
 
-The output is a list of the sorted unique doses, unique times (for longitudinal
-models), the prior and posterior weights
-for each model, and MCMC output from each individual model.
-
+The output is a list of the sorted unique doses, unique times (for longitudinal models), the prior and posterior weights for each model, and MCMC output from each individual model.
 
 ```{r}
 names(output)
@@ -410,7 +405,7 @@ output_independent2 <- dreamer_mcmc(
 plot(output_independent2, data = data)
 ```
 
-All other functions are also available as above.
+All other functions are also available on independent models as above.
 
 ## Longitudinal Modeling
 
@@ -443,7 +438,7 @@ Fitting the MCMC is the same as before, except priors need to be specified
 for the longitudinal part of the model:
 
 ```{r}
-# BAYESIAN MODEL AVERAGING
+# Bayesian model averaging
 output_long <- dreamer_mcmc(
   data = data_long,
   n_adapt = 1e3,
@@ -500,3 +495,6 @@ For example:
 ```{r}
 posterior(output_long)
 ```
+
+## Reference
+Gould, A. Lawrence. "BMA‐Mod: A Bayesian model averaging strategy for determining dose‐response relationships in the presence of model uncertainty." *Biometrical Journal* 61.5 (2019): 1141-1159.

@@ -20,53 +20,38 @@ knitr::opts_chunk$set(
 ```
 # dreamer <img src='inst/hex-dreamer.png' align="right" height="139"/>
 
-The goal of dreamer (Dose REsponse bAyesian Model avERaging) is to flexibly model (longitudinal) dose-response relationships.  This is accomplished using Bayesian model averaging of parametric dose-response models.
+The goal of dreamer (Dose REsponse bAyesian Model avERaging) is to flexibly model (longitudinal) dose-response relationships.  This is accomplished using Bayesian model averaging of parametric dose-response models (Gould, 2019).
 
-# Installation
-
-The R package dreamer can be installed directly from github: 
-`devtools::install_github("rich-payne/dreamer")`.
-
-For feature requests and to report bugs, you can visit the [dreamer github](https://github.com/rich-payne/dreamer/issues).
-
-# Bayesian Model Averaging
-
-Bayesian model averaging is a general mixture distribution, where each
-mixture component is a different parametric model. Prior weights are placed
-on each model and the posterior model weights are updated based on how well
-each model fits the data.  Let $\mu(d)$ represent the mean of the dose response
-curve at dose $d$, $y = \{y_1, \ldots, y_n\}$ be the observed data, and 
-$m \in \{1, \ldots, M\}$ be an index on the $M$ parametric models.  Then the
-posterior of the dose response curve, $\mu(d)$, of the Bayesian model
-averaging model is
-
-\begin{eqnarray*}
-p(\mu(d) \mid y) &=& \sum_{m=1}^M p(\mu(d) \mid y, m) p(m \mid y) \\
-p(m \mid y) &=& \frac{p(y \mid m) p(m)}{\sum_{m^* } p(y \mid m^* )p(m^*)}
-\end{eqnarray*}
-
-where $p(\mu(d) \mid y, m)$ is the posterior mean dose response curve from 
-model $m$, $p(m \mid y)$ is the posterior weight of model $m$, $p(y \mid m)$
-is the marginal likelihood of the data under model $m$, and $p(m)$ is the prior
-weight assigned to model $m$. In cases where $p(y \mid m)$ is difficult to
-compute, Gould (2019) proposed using the observed data's fit to the posterior
-predictive distribution as a surrogate in calculating the posterior weights;
-this is the approach used by dreamer.
-
-dreamer supports a number of models including linear, quadratic, 
+dreamer supports a number of dose-response models including linear, quadratic, 
 log-linear, log-quadratic, EMAX, exponential, for use as models that
 can be included in the model averaging approach.  In addition, several
 longitudinal models are also supported (see the vignette).  All of the above
 models are available for both continuous and binary endpoints.
 
-## Example
+# Installation
+
+dreamer is available on CRAN and can be installed with `install.packages("dreamer")`.  Note that dreamer depends on [rjags](https://cran.r-project.org/package=rjags) which
+itself depends on an installation of JAGS.
+
+The development version of dreamer can be installed directly from github: 
+`devtools::install_github("rich-payne/dreamer")`.
+
+For feature requests and to report bugs, please submit an issue to the [dreamer github](https://github.com/rich-payne/dreamer/issues).
+
+# Vignettes
+
+See the "dreamer_method" vignette for a high-level overview of Bayesian model averaging and/or read Gould (2019) for the approach used by dreamer.
+
+For a larger set of examples, see the "dreamer" vignette.
+
+# Example
 
 With dreamer, it is easy to generate data, fit models, and visualize model
-fits.  See the vignette for a more comprehensive overview.
+fits.
 
 ```{r example}
 library(dreamer)
-# GENERATE DATA FROM A QUADRATIC DOSE RESPONSE
+# generate data from a quadratic dose response
 set.seed(888)
 data <- dreamer_data_quad(
   n_cohorts = c(10, 10, 10, 10), # number of subjects in each cohort
@@ -77,7 +62,7 @@ data <- dreamer_data_quad(
   sigma = .5 # standard deviation
 )
 
-# BAYESIAN MODEL AVERAGING
+# Bayesian model averaging
 output <- dreamer_mcmc(
   data = data,
   # mcmc information
@@ -125,11 +110,14 @@ output <- dreamer_mcmc(
 # plot Bayesian model averaging fit
 plot(output, data = data)
 
-# plot individual fits
-plot_comparison(output)
+# plot individual model fit
+plot(output$mod_emax, data = data)
 
-# posterior summary
+# posterior summary for model parameters
 summary(output)
+
+# posterior summary on dose-response curve
+posterior(output)
 ```
 
 ## Reference
