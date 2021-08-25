@@ -2,7 +2,7 @@ Package: dreamer
 Title: Dose Response Models for Bayesian Model Averaging
 Version: 3.0.0.9000
 Authors@R: c(
-    person(given = "Richard",
+    person(given = c("Richard", "Daniel"),
            family = "Payne",
            role = c("aut", "cre"),
            email = "paynestatistics@gmail.com"),
