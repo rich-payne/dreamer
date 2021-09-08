@@ -96,8 +96,6 @@ rjags_setup <- function(silent, jags_rng, jags_seed, n_chains) {
   jags_rng <- get_default_jags_rng(jags_rng) %>%
     expand_jags_rng(n_chains)
   jags_inits <- get_jags_seed(jags_seed, jags_rng, n_chains)
-  if (!("glm" %in% rjags::list.modules()))
-    suppressMessages(rjags::load.module("glm"))
   return(list(
     progress_bar = progress_bar,
     jags_inits = jags_inits
