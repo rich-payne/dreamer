@@ -51,6 +51,9 @@ dreamer_mcmc <- function( #nolint
   silent = FALSE,
   convergence_warn = TRUE
 ) {
+  jags_modules <- rjags::list.modules()
+  on.exit(restore_jags_modules(jags_modules))
+  load_jags_modules()
   check_data(data)
   mods <- list(...)
   assert_dreamer_dots(mods)
@@ -112,6 +115,17 @@ dreamer_mcmc <- function( #nolint
   class(final_output) <- c("dreamer_bma", "dreamer")
   if (convergence_warn) convergence_warnings(x = final_output)
   return(final_output)
+}
+
+load_jags_modules <- function() {
+  rjags::load.module("glm", quiet = TRUE)
+}
+
+restore_jags_modules <- function(original_modules) {
+  current_modules <- rjags::list.modules()
+  ind <- which(!(current_modules %in% original_modules))
+  if (length(ind) > 0)
+    purrr::walk(current_modules[ind], ~rjags::unload.module(.x, quiet = TRUE))
 }
 
 get_doses <- function(data) {
