@@ -4,13 +4,15 @@
 [![R-CMD-check](https://github.com/rich-payne/dreamer/actions/workflows/check.yaml/badge.svg)](https://github.com/rich-payne/dreamer/actions/workflows/check.yaml)
 [![cover](https://github.com/rich-payne/dreamer/actions/workflows/cover.yaml/badge.svg)](https://github.com/rich-payne/dreamer/actions/workflows/cover.yaml)
 [![lint](https://github.com/rich-payne/dreamer/actions/workflows/lint.yaml/badge.svg)](https://github.com/rich-payne/dreamer/actions/workflows/lint.yaml)
+[![CRAN RStudio mirror
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/dreamer?color=brightgreen)](https://r-pkg.org/pkg/dreamer)
 
 # dreamer <img src='inst/hex-dreamer.png' align="right" height="139"/>
 
 The goal of dreamer (Dose REsponse bAyesian Model avERaging) is to
 flexibly model (longitudinal) dose-response relationships. This is
 accomplished using Bayesian model averaging of parametric dose-response
-models (Gould, 2019).
+models (see Gould (2019), Ando & Tsay (2010)).
 
 dreamer supports a number of dose-response models including linear,
 quadratic, log-linear, log-quadratic, EMAX, exponential, for use as
@@ -159,6 +161,10 @@ posterior(output)
 ```
 
 ## Reference
+
+Ando, T., & Tsay, R. (2010). Predictive likelihood for Bayesian model
+selection and averaging. International Journal of Forecasting, 26(4),
+744-763.
 
 Gould, A. Lawrence. “BMA‐Mod: A Bayesian model averaging strategy for
 determining dose‐response relationships in the presence of model
