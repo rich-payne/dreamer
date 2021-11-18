@@ -193,18 +193,19 @@ test_that("predictive works correctly (binary)", {
     return_samples = TRUE,
     return_stats = FALSE
   )$samps %>%
-    summarize(
-      true_var = sum((mean_response * (1 - mean_response) / !!predictive)) / n() ^ 2
+    dplyr::summarize(
+      true_var = sum((mean_response * (1 - mean_response) / !!predictive)) /
+        n() ^ 2
     ) %>%
-    pull(true_var)
-  
+    dplyr::pull(true_var)
+
   # bootstrap to get range
   bstrap_qtiles <- quantile(
     replicate(1e3, var(sample(reps, length(reps), replace = TRUE))),
     c(.025, .975)
   )
   expect_true(bstrap_qtiles[1] < exp_var && exp_var < bstrap_qtiles[2])
-    
+
   n_reps <- 1e3
   reps_xbar <- replicate(n_reps, posterior(mcmc, predictive = 5)$stats$mean)
   avg_reps_xbar <- apply(reps_xbar, 1, mean)
@@ -253,26 +254,27 @@ test_that("predictive works correctly (binary) with dose adjustment", {
     mcmc,
     return_samples = TRUE,
     return_stats = FALSE
-  )$samps 
+  )$samps
   exp_var_ref <- posterior(
     mcmc,
     doses = reference_dose,
     return_samples = TRUE,
     return_stats = FALSE
   )$samps
-  exp_var <- left_join(
+  exp_var <- dplyr::left_join(
     exp_var,
     exp_var_ref,
     by = c("iter", "model"),
     suffix = c("", "_ref")
   )
   exp_var <- exp_var %>%
-    mutate(
+    dplyr::mutate(
       var1 = mean_response * (1 - mean_response) / (!!predictive * n() ^ 2),
-      var2 = mean_response_ref * (1 - mean_response_ref) / (!!predictive * n() ^ 2),
+      var2 = mean_response_ref * (1 - mean_response_ref) /
+        (!!predictive * n() ^ 2),
       true_var = var1 + var2
     ) %>%
-    pull(true_var) %>%
+    dplyr::pull(true_var) %>%
     sum()
   # bootstrap to get range
   bstrap_qtiles <- quantile(
@@ -280,7 +282,7 @@ test_that("predictive works correctly (binary) with dose adjustment", {
     c(.025, .975)
   )
   expect_true(bstrap_qtiles[1] < exp_var && exp_var < bstrap_qtiles[2])
-  
+
   n_reps <- 1e3
   reps_xbar <- replicate(
     n_reps,
@@ -296,21 +298,6 @@ test_that("predictive works correctly (binary) with dose adjustment", {
     avg_reps_xbar
   expect_true(all(abs(xbar_diff) < 1.96 * se_reps_xbar))
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 test_that("predictive works correctly (continuous)", {
   set.seed(10)
@@ -330,12 +317,6 @@ test_that("predictive works correctly (continuous)", {
     n_chains = 1
   )
   draw_pred_samps <- function(mcmc, predictive, rep) {
-    # means <- posterior(
-    #   mcmc,
-    #   dose = 1,
-    #   return_samples = TRUE,
-    #   return_stats = FALSE
-    # )$samps$mean_response
     samps <- posterior(
       mcmc,
       dose = 1,
@@ -343,7 +324,6 @@ test_that("predictive works correctly (continuous)", {
       return_samples = TRUE,
       return_stats = FALSE
     )$samps$mean_response %>% mean()
-    # mean(samps - means)
   }
   predictive <- 5
   reps <- purrr::map_dbl(
@@ -353,19 +333,19 @@ test_that("predictive works correctly (continuous)", {
     predictive = predictive
   )
   obs_var <- var(reps)
-  exp_var <- as_tibble(as.matrix(mcmc$mod)) %>%
-    summarize(
+  exp_var <- tibble::as_tibble(as.matrix(mcmc$mod)) %>%
+    dplyr::summarize(
       true_var = (sum(sigma ^ 2) / !!predictive) / n() ^ 2
     ) %>%
-    pull(true_var)
-  
+    dplyr::pull(true_var)
+
   # bootstrap to get range
   bstrap_qtiles <- quantile(
     replicate(1e3, var(sample(reps, length(reps), replace = TRUE))),
     c(.025, .975)
   )
   expect_true(bstrap_qtiles[1] < exp_var && exp_var < bstrap_qtiles[2])
-  
+
   # ensure mean is the same
   n_reps <- 1e3
   reps_xbar <- replicate(
@@ -396,13 +376,6 @@ test_that("predictive works correctly (continuous) adjusted", {
     n_chains = 1
   )
   draw_pred_samps <- function(mcmc, predictive, rep, reference_dose = .5) {
-    # means <- posterior(
-    #   mcmc,
-    #   dose = 1,
-    #   reference_dose = reference_dose,
-    #   return_samples = TRUE,
-    #   return_stats = FALSE
-    # )$samps$mean_response
     samps <- posterior(
       mcmc,
       dose = 1,
@@ -411,7 +384,6 @@ test_that("predictive works correctly (continuous) adjusted", {
       return_samples = TRUE,
       return_stats = FALSE
     )$samps$mean_response %>% mean()
-    # mean(samps - means)
   }
   predictive <- 5
   reps <- purrr::map_dbl(
@@ -421,19 +393,19 @@ test_that("predictive works correctly (continuous) adjusted", {
     predictive = predictive
   )
   obs_var <- var(reps)
-  exp_var <- as_tibble(as.matrix(mcmc$mod)) %>%
-    summarize(
+  exp_var <- tibble::as_tibble(as.matrix(mcmc$mod)) %>%
+    dplyr::summarize(
       true_var = (sum(sigma ^ 2) / (!!predictive / 2)) / n() ^ 2
     ) %>%
-    pull(true_var)
-  
+    dplyr::pull(true_var)
+
   # bootstrap to get range
   bstrap_qtiles <- quantile(
     replicate(1e3, var(sample(reps, length(reps), replace = TRUE))),
     c(.025, .975)
   )
   expect_true(bstrap_qtiles[1] < exp_var && exp_var < bstrap_qtiles[2])
-  
+
   # ensure mean is the same
   n_reps <- 1e3
   reps_xbar <- replicate(
