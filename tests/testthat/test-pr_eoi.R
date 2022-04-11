@@ -139,6 +139,8 @@ test_that("pr_eoi.dreamer() longitudinal", {
     )
   )
   check_pr_eoi_long(out, times = c(0, 5, 10), reference_dose = 1.5)
+  exp <- pr_eoi(out, dose = 1, eoi = 2)
+  expect_equal(colnames(exp), c("eoi", "time", "dose", "prob"))
 })
 
 test_that("pr_eoi() with grid", {
