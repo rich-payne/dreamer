@@ -41,7 +41,7 @@ pr_eoi_impl <- function(x, eoi, dose, reference_dose = NULL, time) {
   tibble::tibble(
     eoi = eoi,
     dose = dose,
-    time = time,
+    time = !!time,
     reference_dose = !!reference_dose,
     prob = mean(samps$mean_response > eoi)
   )
