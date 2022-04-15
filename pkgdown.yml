@@ -1,0 +1,8 @@
+pandoc: 2.7.3
+pkgdown: 2.0.2
+pkgdown_sha: ~
+articles:
+  dreamer: dreamer.html
+  dreamer_method: dreamer_method.html
+last_built: 2022-04-15T17:25Z
+
