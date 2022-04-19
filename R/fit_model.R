@@ -6,16 +6,9 @@ fit_model <- function(
   n_burn,
   n_iter,
   n_chains,
-  jags_rng,
-  jags_seed,
   silent
 ) {
-  jset <- rjags_setup(
-    silent = silent,
-    jags_rng = model$jags_rng,
-    jags_seed = model$jags_seed,
-    n_chains = n_chains
-  )
+  jset <- rjags_setup(silent, n_chains)
   jags_data <- get_jags_data(model, data, doses)
   jags_model <- get_jags_model(model, data)
   variable_names <- get_vnames(model)
@@ -44,22 +37,6 @@ get_progress_bar <- function(silent) {
   return(progress_bar)
 }
 
-get_default_jags_rng <- function(jags_rng) {
-  if (is.null(jags_rng)) {
-    jags_rng <- "base::Mersenne-Twister"
-  }
-  return(jags_rng)
-}
-
-expand_jags_rng <- function(jags_rng, n_chains) {
-  if (length(jags_rng) == 1) {
-    jags_rng <- rep(jags_rng, n_chains)
-  } else if (length(jags_rng) != n_chains) {
-    stop("jags_rng must have length 1 or n_chains.", call. = FALSE)
-  }
-  return(jags_rng)
-}
-
 check_seed_len <- function(jags_seed, n_chains) {
   if (!is.null(jags_seed)) {
     if (length(jags_seed) != n_chains) {
@@ -72,29 +49,20 @@ check_seed_len <- function(jags_seed, n_chains) {
 }
 
 get_jags_seed <- function(jags_seed, jags_rng, n_chains) {
-  jags_inits <- NULL
   jags_inits <- list()
-  check_seed_len(jags_seed, n_chains)
   for (i in 1:n_chains) {
-    jags_inits[[i]] <- set_jags_seed(jags_seed[i], jags_rng[i])
+    jags_inits[[i]] <- list(
+      ".RNG.name" = jags_rng[i],
+      ".RNG.seed" = jags_seed[i]
+    )
   }
   return(jags_inits)
 }
 
-set_jags_seed <- function(jags_seed, jags_rng) {
-  if (is.null(jags_seed)) {
-    jags_seed <- sample(.Machine$integer.max, 1)
-  }
-  list(
-    ".RNG.name" = jags_rng,
-    ".RNG.seed" = jags_seed
-  )
-}
-
-rjags_setup <- function(silent, jags_rng, jags_seed, n_chains) {
+rjags_setup <- function(silent, n_chains) {
   progress_bar <- get_progress_bar(silent)
-  jags_rng <- get_default_jags_rng(jags_rng) %>%
-    expand_jags_rng(n_chains)
+  jags_rng <- rep("base::Mersenne-Twister", n_chains)
+  jags_seed <- sample(.Machine$integer.max, n_chains)
   jags_inits <- get_jags_seed(jags_seed, jags_rng, n_chains)
   return(list(
     progress_bar = progress_bar,
