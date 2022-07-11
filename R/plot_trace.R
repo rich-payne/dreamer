@@ -9,7 +9,7 @@ plot_trace <- function(x) {
 }
 
 #' @export
-plot_trace.dreamer <- function(x) { #nolint
+plot_trace.dreamer_mcmc <- function(x) { #nolint
   old_par <- graphics::par(no.readonly = TRUE)
   on.exit(graphics::par(old_par))
   graphics::par(mfrow = c(3, 2))

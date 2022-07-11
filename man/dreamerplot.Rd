@@ -2,30 +2,16 @@
 % Please edit documentation in R/plot.R
 \name{dreamerplot}
 \alias{dreamerplot}
-\alias{plot.dreamer}
-\alias{plot.dreamer_bma}
+\alias{plot.dreamer_mcmc}
 \title{Posterior Plot of Bayesian Model Averaging}
 \usage{
-\method{plot}{dreamer}(
+\method{plot}{dreamer_mcmc}(
   x,
   doses = attr(x, "doses"),
-  times = NULL,
+  times = attr(x, "times"),
   probs = c(0.025, 0.975),
   data = NULL,
   n_smooth = 50,
-  predictive = 0,
-  width = bar_width(doses),
-  reference_dose = NULL,
-  ...
-)
-
-\method{plot}{dreamer_bma}(
-  x,
-  doses = x$doses,
-  times = x$times,
-  probs = c(0.025, 0.975),
-  data = NULL,
-  n_smooth = 200,
   predictive = 0,
   width = bar_width(doses),
   reference_dose = NULL,
@@ -77,8 +63,6 @@ Returns the ggplot object.
 Plots the posterior mean and quantiles over the dose range and
 plots error bars at the observed doses. If the \code{data} argument is
 specified, the observed means at each dose are also plotted.
-
-plot posterior from Bayesian model averaging.
 }
 \examples{
 set.seed(888)

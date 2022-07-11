@@ -46,8 +46,8 @@ summary.dreamer_bma <- function(object, ...) {
 #'   parameter.
 #' @example man/examples/ex-summary.R
 #' @export
-summary.dreamer <- function(object, ...) {
-  assert_no_dots("summary.dreamer", ...)
+summary.dreamer_mcmc <- function(object, ...) {
+  assert_no_dots("summary.dreamer_mcmc", ...)
   diags <- diagnostics(object)
   out <- NextMethod("summary", object) # use coda summary
   param <- rownames(out$statistics)

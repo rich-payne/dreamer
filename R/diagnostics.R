@@ -32,7 +32,7 @@ diagnostics.dreamer_bma <- function(x) { #nolint
 }
 
 #' @export
-diagnostics.dreamer <- function(x) {
+diagnostics.dreamer_mcmc <- function(x) {
   diags <- coda::gelman.diag(x, multivariate = FALSE)$psrf %>%
     dplyr::as_tibble(rownames = "param") %>%
     dplyr::select(

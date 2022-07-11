@@ -167,7 +167,6 @@ add_mcmc_class.dreamer_linear <- function(post_samples, model) {
     "dreamer_mcmc_linear",
     "dreamer_mcmc_continuous",
     "dreamer_mcmc",
-    "dreamer",
     class(post_samples)
   )
   return(post_samples)
@@ -178,7 +177,6 @@ add_mcmc_class.dreamer_quad <- function(post_samples, model) {
     "dreamer_mcmc_quad",
     "dreamer_mcmc_continuous",
     "dreamer_mcmc",
-    "dreamer",
     class(post_samples)
   )
   return(post_samples)
@@ -189,7 +187,6 @@ add_mcmc_class.dreamer_loglinear <- function(post_samples, model) { #nolint
     "dreamer_mcmc_loglinear",
     "dreamer_mcmc_continuous",
     "dreamer_mcmc",
-    "dreamer",
     class(post_samples)
   )
   return(post_samples)
@@ -200,7 +197,6 @@ add_mcmc_class.dreamer_logquad <- function(post_samples, model) {
     "dreamer_mcmc_logquad",
     "dreamer_mcmc_continuous",
     "dreamer_mcmc",
-    "dreamer",
     class(post_samples)
   )
   return(post_samples)
@@ -211,7 +207,6 @@ add_mcmc_class.dreamer_emax <- function(post_samples, model) {
     "dreamer_mcmc_emax",
     "dreamer_mcmc_continuous",
     "dreamer_mcmc",
-    "dreamer",
     class(post_samples)
   )
   return(post_samples)
@@ -222,7 +217,6 @@ add_mcmc_class.dreamer_exp <- function(post_samples, model) {
     "dreamer_mcmc_exp",
     "dreamer_mcmc_continuous",
     "dreamer_mcmc",
-    "dreamer",
     class(post_samples)
   )
   return(post_samples)
@@ -233,7 +227,6 @@ add_mcmc_class.dreamer_beta <- function(post_samples, model) {
     "dreamer_mcmc_beta",
     "dreamer_mcmc_continuous",
     "dreamer_mcmc",
-    "dreamer",
     class(post_samples)
   )
   return(post_samples)
@@ -244,7 +237,6 @@ add_mcmc_class.dreamer_independent_continuous <- function(post_samples, model) {
     "dreamer_mcmc_independent",
     "dreamer_mcmc_continuous",
     "dreamer_mcmc",
-    "dreamer",
     class(post_samples)
   )
   return(post_samples)
@@ -255,7 +247,6 @@ add_mcmc_class.dreamer_linear_binary <- function(post_samples, model) { #nolint
     "dreamer_mcmc_linear_binary",
     "dreamer_mcmc_binary",
     "dreamer_mcmc",
-    "dreamer",
     class(post_samples)
   )
   return(post_samples)
@@ -266,7 +257,6 @@ add_mcmc_class.dreamer_quad_binary <- function(post_samples, model) { #nolint
     "dreamer_mcmc_quad_binary",
     "dreamer_mcmc_binary",
     "dreamer_mcmc",
-    "dreamer",
     class(post_samples)
   )
   return(post_samples)
@@ -277,7 +267,6 @@ add_mcmc_class.dreamer_loglinear_binary <- function(post_samples, model) { #noli
     "dreamer_mcmc_loglinear_binary",
     "dreamer_mcmc_binary",
     "dreamer_mcmc",
-    "dreamer",
     class(post_samples)
   )
   return(post_samples)
@@ -288,7 +277,6 @@ add_mcmc_class.dreamer_logquad_binary <- function(post_samples, model) { #nolint
     "dreamer_mcmc_logquad_binary",
     "dreamer_mcmc_binary",
     "dreamer_mcmc",
-    "dreamer",
     class(post_samples)
   )
   return(post_samples)
@@ -299,7 +287,6 @@ add_mcmc_class.dreamer_emax_binary <- function(post_samples, model) { #nolint
     "dreamer_mcmc_emax_binary",
     "dreamer_mcmc_binary",
     "dreamer_mcmc",
-    "dreamer",
     class(post_samples)
   )
   return(post_samples)

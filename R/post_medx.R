@@ -91,7 +91,7 @@ post_medx.dreamer_bma <- function(
 
 #' @rdname post_medx
 #' @export
-post_medx.dreamer <- function(
+post_medx.dreamer_mcmc <- function(
   x,
   ed,
   probs = c(.025, .975),
@@ -104,7 +104,7 @@ post_medx.dreamer <- function(
   index = 1:(nrow(x[[1]]) * length(x)),
   ...
 ) {
-  assert_no_dots("post_medx.dreamer", ...)
+  assert_no_dots("post_medx.dreamer_mcmc", ...)
   time <- get_time(x, time)
   extremes <- get_extreme(
     x = x,

@@ -91,7 +91,7 @@ post_perc_effect.dreamer_bma <- function(
 
 #' @rdname post_perc_effect
 #' @export
-post_perc_effect.dreamer <- function(
+post_perc_effect.dreamer_mcmc <- function(
   x,
   dose,
   probs = c(.025, .975),
