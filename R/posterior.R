@@ -90,7 +90,7 @@ get_post_mean_samps <- function(x, doses, times, iter = NULL) {
 
 #' @describeIn posterior posterior summary for linear model.
 #' @export
-posterior.dreamer <- function(
+posterior.dreamer_mcmc <- function(
   x,
   doses = attr(x, "doses"),
   times = attr(x, "times"),
@@ -225,7 +225,9 @@ posterior.dreamer_bma <- function(
 get_mcmc_index <- function(x) {
   vapply(
     x,
-    function(y) any(grepl("mcmc_", class(y))),
+    function(y) {
+      any(inherits(y, c("dreamer_mcmc_continuous", "dreamer_mcmc_binary")))
+    },
     logical(1)
   ) %>%
     which()

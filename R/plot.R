@@ -161,10 +161,10 @@ base_dreamer_predictive_plot <- function(
 #' @return Returns the ggplot object.
 #' @example man/examples/ex-plot.R
 #' @export
-plot.dreamer <- function(
+plot.dreamer_mcmc <- function(
   x,
   doses = attr(x, "doses"),
-  times = NULL,
+  times = attr(x, "times"),
   probs = c(.025, .975),
   data = NULL,
   n_smooth = 50,
@@ -313,7 +313,9 @@ dreamer_plot_prior <- function(
   check_times(times, any_longitudinal)
   mods <- vapply(
     x,
-    function(y) any(grepl("dreamer_mcmc", class(y))),
+    function(y) {
+      any(inherits(y, c("dreamer_mcmc_continuous", "dreamer_mcmc_binary")))
+    },
     logical(1)
   ) %>%
     which()
@@ -322,7 +324,7 @@ dreamer_plot_prior <- function(
   }
   any_independent <- vapply(
     x,
-    function(y) any(grepl("independent", class(y))),
+    function(y) inherits(y, "dreamer_mcmc_independent"),
     logical(1)
   ) %>%
     any()
@@ -377,39 +379,6 @@ dreamer_plot_prior <- function(
   ) +
     theme(plot.title = element_text(hjust = 0.5))
   return(p)
-}
-
-#' @name plot.dreamer_bma
-#' @description plot posterior from Bayesian model averaging.
-#' @rdname dreamerplot
-#' @export
-plot.dreamer_bma <- function(
-  x,
-  doses = x$doses,
-  times = x$times,
-  probs = c(.025, .975),
-  data = NULL,
-  n_smooth = 200,
-  predictive = 0,
-  width = bar_width(doses),
-  reference_dose = NULL,
-  ...
-) {
-  check_no_dots("plot.dreamer_bma()", ...)
-  force(doses)
-  force(width)
-  NextMethod(
-    "plot",
-    x,
-    doses = doses,
-    times = times,
-    probs = probs,
-    data = data,
-    n_smooth = n_smooth,
-    predictive = predictive,
-    width = width,
-    reference_dose = reference_dose
-  )
 }
 
 #' @title Compare Posterior Fits
@@ -470,7 +439,9 @@ plot_comparison.dreamer_bma <- function(
   times <- get_time(x, times, max_length = Inf)
   model_index <- vapply(
     x,
-    function(model) any(grepl("dreamer_mcmc", class(model))),
+    function(model) {
+      any(inherits(model, c("dreamer_mcmc_continuous", "dreamer_mcmc_binary")))
+    },
     logical(1)
   ) %>%
     which()
@@ -767,14 +738,14 @@ any_independent <- function(x) {
 any_independent.dreamer_bma <- function(x) {
   vapply(
     x,
-    function(y) any(grepl("dreamer_mcmc_independent", class(y))),
+    function(y) inherits(y, "dreamer_mcmc_independent"),
     logical(1)
   ) %>%
     any()
 }
 
 any_independent.default <- function(x) {
-  any(grepl("dreamer_mcmc_independent", class(x)))
+  inherits(x, "dreamer_mcmc_independent")
 }
 
 aggregate_data <- function(data, type) {

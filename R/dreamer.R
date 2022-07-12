@@ -108,11 +108,12 @@ dreamer_mcmc <- function( #nolint
       all_dots_binary,
       is_long,
       doses,
+      times,
       model_index,
       model_names
     )
 
-  class(final_output) <- c("dreamer_bma", "dreamer")
+  class(final_output) <- c("dreamer_bma", "dreamer_mcmc")
   if (convergence_warn) convergence_warnings(x = final_output)
   return(final_output)
 }
@@ -137,6 +138,7 @@ add_attributes <- function(
   all_dots_binary,
   is_long,
   doses,
+  times,
   model_index,
   model_names
 ) {
@@ -151,6 +153,7 @@ add_attributes <- function(
     attr(final_output, "longitudinal_model") <- NULL
   }
   attr(final_output, "doses") <- doses
+  attr(final_output, "times") <- times
   attr(final_output, "model_index") <- model_index
   attr(final_output, "model_names") <- model_names
   mcmc_index <- get_mcmc_index(final_output)
@@ -237,7 +240,9 @@ get_w_prior <- function(all_models) {
 assert_dreamer_dots <- function(mods) {
   all_dots_dreamer <- vapply(
     mods,
-    function(model) any(grepl("dreamer_", class(model))),
+    function(model) {
+      any(inherits(model, c("dreamer_continuous", "dreamer_binary")))
+    },
     logical(1)
   ) %>%
     all()
@@ -262,13 +267,13 @@ assert_independent_dots <- function(mods) {
 assert_binary_dots <- function(mods) {
   all_dots_binary <- vapply(
     mods,
-    function(model) any(grepl("binary", class(model))),
+    function(model) inherits(model, "dreamer_binary"),
     logical(1)
   ) %>%
     all()
   any_dots_binary <- vapply(
     mods,
-    function(model) any(grepl("binary", class(model))),
+    function(model) inherits(model, "dreamer_binary"),
     logical(1)
   ) %>%
     any()

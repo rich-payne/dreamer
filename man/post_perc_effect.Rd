@@ -3,7 +3,7 @@
 \name{post_perc_effect}
 \alias{post_perc_effect}
 \alias{post_perc_effect.dreamer_bma}
-\alias{post_perc_effect.dreamer}
+\alias{post_perc_effect.dreamer_mcmc}
 \title{Calculate Posterior of a Dose's Percentage Effect}
 \usage{
 post_perc_effect(
@@ -32,7 +32,7 @@ post_perc_effect(
   return_samples = FALSE
 )
 
-\method{post_perc_effect}{dreamer}(
+\method{post_perc_effect}{dreamer_mcmc}(
   x,
   dose,
   probs = c(0.025, 0.975),

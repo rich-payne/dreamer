@@ -63,7 +63,9 @@ post_medx.dreamer_bma <- function(
   time <- get_time(x, time)
   mcmc_index <- vapply(
     x,
-    function(y) any(grepl("mcmc_", class(y))),
+    function(y) {
+      any(inherits(y, c("dreamer_mcmc_continuous", "dreamer_mcmc_binary")))
+    },
     logical(1)
   ) %>% which()
   model_index <- attr(x, "model_index")
@@ -91,7 +93,7 @@ post_medx.dreamer_bma <- function(
 
 #' @rdname post_medx
 #' @export
-post_medx.dreamer <- function(
+post_medx.dreamer_mcmc <- function(
   x,
   ed,
   probs = c(.025, .975),
@@ -104,7 +106,7 @@ post_medx.dreamer <- function(
   index = 1:(nrow(x[[1]]) * length(x)),
   ...
 ) {
-  assert_no_dots("post_medx.dreamer", ...)
+  assert_no_dots("post_medx.dreamer_mcmc", ...)
   time <- get_time(x, time)
   extremes <- get_extreme(
     x = x,
