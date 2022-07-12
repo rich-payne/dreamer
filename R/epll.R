@@ -1,6 +1,6 @@
 # expected predicted log-likelihodd (epll)
 epll <- function(x, data) {
-  binary <- any(grepl("binary", class(x)))
+  binary <- inherits(x, "dreamer_mcmc_binary")
   sum_log_probs <- get_sum_log_probs(x = x, data = data, binary = binary)
   q <- get_n_params(x)
   return(get_epll(sum_log_probs, q, n = nrow(data)))

@@ -313,7 +313,9 @@ dreamer_plot_prior <- function(
   check_times(times, any_longitudinal)
   mods <- vapply(
     x,
-    function(y) any(grepl("dreamer_mcmc", class(y))),
+    function(y) {
+      any(inherits(y, c("dreamer_mcmc_continuous", "dreamer_mcmc_binary")))
+    },
     logical(1)
   ) %>%
     which()
@@ -322,7 +324,7 @@ dreamer_plot_prior <- function(
   }
   any_independent <- vapply(
     x,
-    function(y) any(grepl("independent", class(y))),
+    function(y) inherits(y, "dreamer_mcmc_independent"),
     logical(1)
   ) %>%
     any()
@@ -437,7 +439,9 @@ plot_comparison.dreamer_bma <- function(
   times <- get_time(x, times, max_length = Inf)
   model_index <- vapply(
     x,
-    function(model) any(grepl("dreamer_mcmc", class(model))),
+    function(model) {
+      any(inherits(model, c("dreamer_mcmc_continuous", "dreamer_mcmc_binary")))
+    },
     logical(1)
   ) %>%
     which()
@@ -734,14 +738,14 @@ any_independent <- function(x) {
 any_independent.dreamer_bma <- function(x) {
   vapply(
     x,
-    function(y) any(grepl("dreamer_mcmc_independent", class(y))),
+    function(y) inherits(y, "dreamer_mcmc_independent"),
     logical(1)
   ) %>%
     any()
 }
 
 any_independent.default <- function(x) {
-  any(grepl("dreamer_mcmc_independent", class(x)))
+  inherits(x, "dreamer_mcmc_independent")
 }
 
 aggregate_data <- function(data, type) {

@@ -240,7 +240,9 @@ get_w_prior <- function(all_models) {
 assert_dreamer_dots <- function(mods) {
   all_dots_dreamer <- vapply(
     mods,
-    function(model) any(grepl("dreamer_", class(model))),
+    function(model) {
+      any(inherits(model, c("dreamer_continuous", "dreamer_binary")))
+    },
     logical(1)
   ) %>%
     all()
@@ -265,13 +267,13 @@ assert_independent_dots <- function(mods) {
 assert_binary_dots <- function(mods) {
   all_dots_binary <- vapply(
     mods,
-    function(model) any(grepl("binary", class(model))),
+    function(model) inherits(model, "dreamer_binary"),
     logical(1)
   ) %>%
     all()
   any_dots_binary <- vapply(
     mods,
-    function(model) any(grepl("binary", class(model))),
+    function(model) inherits(model, "dreamer_binary"),
     logical(1)
   ) %>%
     any()

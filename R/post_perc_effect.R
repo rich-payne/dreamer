@@ -63,7 +63,9 @@ post_perc_effect.dreamer_bma <- function(
   time <- get_time(x, time)
   mcmc_index <- vapply(
     x,
-    function(y) any(grepl("mcmc_", class(y))),
+    function(y) {
+      any(inherits(y, c("dreamer_mcmc_continuous", "dreamer_mcmc_binary")))
+    },
     logical(1)
   ) %>% which()
   model_index <- attr(x, "model_index")

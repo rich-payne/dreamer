@@ -20,7 +20,7 @@ plot_trace.dreamer_mcmc <- function(x) { #nolint
 plot_trace.dreamer_bma <- function(x) { #nolint
   ind <- vapply(
     x,
-    function(model) any(grepl("mcmc.list", class(model))),
+    function(model) inherits(model, "mcmc.list"),
     logical(1)
   ) %>%
     which()
