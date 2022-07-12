@@ -297,7 +297,6 @@ add_mcmc_class.dreamer_exp_binary <- function(post_samples, model) { #nolint
     "dreamer_mcmc_exp_binary",
     "dreamer_mcmc_binary",
     "dreamer_mcmc",
-    "dreamer",
     class(post_samples)
   )
   return(post_samples)
@@ -308,7 +307,6 @@ add_mcmc_class.dreamer_beta_binary <- function(post_samples, model) { #nolint
     "dreamer_mcmc_beta_binary",
     "dreamer_mcmc_binary",
     "dreamer_mcmc",
-    "dreamer",
     class(post_samples)
   )
   return(post_samples)
@@ -319,7 +317,6 @@ add_mcmc_class.dreamer_independent_binary <- function(post_samples, model) { #no
     "dreamer_mcmc_independent_binary",
     "dreamer_mcmc_binary",
     "dreamer_mcmc",
-    "dreamer",
     class(post_samples)
   )
   return(post_samples)

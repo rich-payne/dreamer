@@ -379,39 +379,6 @@ dreamer_plot_prior <- function(
   return(p)
 }
 
-# #' @name plot.dreamer_bma
-# #' @description plot posterior from Bayesian model averaging.
-# #' @rdname dreamerplot
-# #' @export
-# plot.dreamer_bma <- function(
-#   x,
-#   doses = x$doses,
-#   times = x$times,
-#   probs = c(.025, .975),
-#   data = NULL,
-#   n_smooth = 200,
-#   predictive = 0,
-#   width = bar_width(doses),
-#   reference_dose = NULL,
-#   ...
-# ) {
-#   check_no_dots("plot.dreamer_bma()", ...)
-#   force(doses)
-#   force(width)
-#   NextMethod(
-#     "plot",
-#     x,
-#     doses = doses,
-#     times = times,
-#     probs = probs,
-#     data = data,
-#     n_smooth = n_smooth,
-#     predictive = predictive,
-#     width = width,
-#     reference_dose = reference_dose
-#   )
-# }
-
 #' @title Compare Posterior Fits
 #' @param ... `dreamer_mcmc` objects to be used for plotting.
 #' @inheritParams dreamerplot

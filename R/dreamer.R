@@ -407,4 +407,3 @@ check_longitudinal <- function(mods, data) {
   }
   return(all(is_long))
 }
-
