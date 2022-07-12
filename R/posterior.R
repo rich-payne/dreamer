@@ -90,7 +90,7 @@ get_post_mean_samps <- function(x, doses, times, iter = NULL) {
 
 #' @describeIn posterior posterior summary for linear model.
 #' @export
-posterior.dreamer <- function(
+posterior.dreamer_mcmc <- function(
   x,
   doses = attr(x, "doses"),
   times = attr(x, "times"),
