@@ -150,7 +150,7 @@ get_dose.dreamer_mcmc_emax <- function(
   b3 <- y[, "b3"]
   b4 <- y[, "b4"]
   doses <- (mean_time * (b2 - b1) /
-              (response - b1 * mean_time - a) - 1) ^ (-1 / b4) * exp(b3)
+              (response - b1 * mean_time - a) - 1) ^ (- 1 / b4) * exp(b3)
   doses[doses < lower | doses > upper] <- NA
   return(doses)
 }
@@ -412,7 +412,7 @@ get_data <- function(x, index) {
 solve_quad <- function(a, b, c) {
   z <- b ^ 2 - 4 * a * c
   if (z >= 0) {
-    out <- (-b + c(-1, 1) * sqrt(z)) / (2 * a)
+    out <- (- b + c(- 1, 1) * sqrt(z)) / (2 * a)
   } else {
     out <- rep(NA_real_, 2)
   }
@@ -444,9 +444,9 @@ get_min_na <- function(x) {
 }
 
 expand_mean_time <- function(mean_time, mcmc) {
-  if ((length(mean_time) == 1) & (nrow(mcmc) > 1)) {
+  if ((length(mean_time) == 1) && (nrow(mcmc) > 1)) {
     return(rep(mean_time, nrow(mcmc)))
-  } else{
+  } else {
     return(mean_time)
   }
 }

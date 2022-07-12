@@ -174,7 +174,7 @@ test_that("plots comparison compare longitudinal multiple times", {
   skip_on_ci()
   expect_snapshot_file(gg_save(out, "compare_longitudinal_mulitiple_times.png"))
 })
-  
+
 test_that("plots comparison compare longitudinal single time", {
   out <- plot_comparison(mod1 = mcmc_long$lin, doses = 2, n_smooth = 5)
   expect_s3_class(out, "ggplot")
@@ -350,7 +350,7 @@ test_that("binary plot with data", {
   data <- dreamer_data_linear_binary(
     n_cohorts = c(10, 20, 30),
     dose = c(1, 3, 5),
-    b1 = -1,
+    b1 = - 1,
     b2 = .5,
     link = "logit"
   )

@@ -178,7 +178,7 @@ plot.dreamer <- function(
   times <- get_time(x, times, max_length = Inf)
   force(width)
   force(doses)
-  if (!is.null(attr(x, "longitudinal_model")) & length(times) > 1) {
+  if (!is.null(attr(x, "longitudinal_model")) && length(times) > 1) {
     p <- plot_longitudinal(
       x = x,
       doses = doses,
@@ -221,7 +221,7 @@ plot.dreamer <- function(
     to = max(doses),
     length.out = n_smooth
   )
-  if (n_smooth > 0 & !any_indep) {
+  if (n_smooth > 0 && !any_indep) {
     p <- base_dreamer_plot(
       x = x,
       doses = range_of_doses,
@@ -231,7 +231,7 @@ plot.dreamer <- function(
       p = p
     )
   }
-  if (predictive > 0 & !any_indep) {
+  if (predictive > 0 && !any_indep) {
     p <- base_dreamer_predictive_plot(
       x = x,
       doses = range_of_doses,
@@ -241,7 +241,7 @@ plot.dreamer <- function(
       predictive = predictive,
       p = p
     )
-  } else if (predictive > 0 & any_indep) {
+  } else if (predictive > 0 && any_indep) {
     p <- suppressMessages(
       base_dreamer_plot_error_bar(
         x = x,
@@ -440,7 +440,7 @@ plot_comparison.default <- function(
   n_smooth = 50,
   width = bar_width(doses)
 ) {
-  if (is.null(times) & !is.null(attr(list(...)[[1]], "times"))) {
+  if (is.null(times) && !is.null(attr(list(...)[[1]], "times"))) {
     times <- max(attr(list(...)[[1]], "times"))
   }
   p <- plot_comparison_worker(
@@ -851,13 +851,13 @@ check_no_dots <- function(function_name, ...) {
 }
 
 check_times <- function(times, any_longitudinal) {
-  if (any_longitudinal & is.null(times)) {
+  if (any_longitudinal && is.null(times)) {
     stop(
       "Must specify 'times' argument with longitudinal models.",
       call. = FALSE
     )
   }
-  if (!any_longitudinal & !is.null(times)) {
+  if (!any_longitudinal && !is.null(times)) {
     stop(
       "Can only specify 'times' argument with longitudinal models.",
       call. = FALSE
@@ -866,7 +866,7 @@ check_times <- function(times, any_longitudinal) {
 }
 
 check_names <- function(x) {
-  if (is.null(names(x)) | any(names(x) == "")) {
+  if (is.null(names(x)) || any(names(x) == "")) {
     stop("All models must be named", call. = FALSE)
   }
 }

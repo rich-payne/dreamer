@@ -6,7 +6,8 @@ test_that("assertions", {
   expect_error(check_ind_model_parms(doses = 1, mu_b1 = 1:2, sigma_b1 = 1:2))
   expect_error(check_ind_model_parms(doses = 1:2, mu_b1 = 1, sigma_b1 = 1))
   expect_error(check_dose_length(1:2))
-  x <- 3; attr(x, "doses") <- 1:3
+  x <- 3
+  attr(x, "doses") <- 1:3
   expect_error(check_dose_index(dose_index = numeric(0), dose = 3, x))
   expect_error(
     dreamer_mean_longitudinal_mcmc(longitudinal_model = "dummy_model")
@@ -34,11 +35,13 @@ test_that("assertions", {
   )
   expect_error(check_colnames(data.frame(n = 1)))
   expect_error(check_independent_model(NULL, NULL))
-  x2 <- 3; attr(x2, "longitudinal_model") <- "dummy_longitudinal"
+  x2 <- 3
+  attr(x2, "longitudinal_model") <- "dummy_longitudinal"
   expect_error(get_n_params_longitudinal(x2))
   expect_error(check_eoi_lengths(1, 1:2))
   expect_error(check_eoi_lengths(1:2, 1:2, 1))
-  x3 <- list(times = 1:3); attr(x3, "times") <- 1:5
+  x3 <- list(times = 1:3)
+  attr(x3, "times") <- 1:5
   expect_equal(get_time(x3, time = NULL), 5)
   attr(x3, "times") <- NULL
   expect_equal(get_time(x3, time = NULL), 3)
@@ -74,7 +77,7 @@ test_that("assertions", {
   expect_error(name_models(list(3, model_1_numeric = 2)))
   expect_error(assert_names(list(a = 1), list(b = 1), "names mistmatch"))
   expect_error(check_binary(data.frame(response = 3)))
-  expect_error(check_binary(data.frame(response = -1)))
+  expect_error(check_binary(data.frame(response = - 1)))
   expect_error(
     check_longitudinal(list(list(longitudinal = "a"), list(b = NULL)))
   )

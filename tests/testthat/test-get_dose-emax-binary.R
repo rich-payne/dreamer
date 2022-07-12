@@ -29,8 +29,8 @@ test_that("get_dose() emax binary logit", {
   upper <- max(attr(mcmc, "doses"))
 
   b1 <- 1:2
-  b2 <- c(-1, 1)
-  b3 <- c(-2, 2)
+  b2 <- c(- 1, 1)
+  b3 <- c(- 2, 2)
   b4 <- c(.99, 1.01)
 
   mcmc <- mcmc %>%
@@ -83,8 +83,8 @@ test_that("get_dose() emax binary probit", {
   upper <- max(attr(mcmc, "doses"))
 
   b1 <- 1:2
-  b2 <- c(-1, 1)
-  b3 <- c(-2, 2)
+  b2 <- c(- 1, 1)
+  b3 <- c(- 2, 2)
   b4 <- c(.99, 1.01)
 
   mcmc <- mcmc %>%
@@ -145,8 +145,8 @@ test_that("get_dose() emax binary logit longitudinal", {
 
   a <- c(.1, .2)
   b1 <- 1:2
-  b2 <- c(-1, 1)
-  b3 <- c(-2, 2)
+  b2 <- c(- 1, 1)
+  b3 <- c(- 2, 2)
   b4 <- c(.99, 1.01)
 
   mcmc <- mcmc %>%
@@ -211,8 +211,8 @@ test_that("get_dose() emax binary probit longitudinal", {
 
   a <- c(.1, .2)
   b1 <- 1:2
-  b2 <- c(-1, 1)
-  b3 <- c(-2, 2)
+  b2 <- c(- 1, 1)
+  b3 <- c(- 2, 2)
   b4 <- c(.99, 1.01)
 
   mcmc <- mcmc %>%

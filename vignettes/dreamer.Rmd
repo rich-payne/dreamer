@@ -117,7 +117,7 @@ for doses of interest:
 posterior(output)
 
 # posterior Pr(effect of dose - effect of reference dose)
-posterior(x = output, reference_dose = 0) 
+posterior(x = output, reference_dose = 0)
 ```
 
 ## Posterior Plots
@@ -286,11 +286,10 @@ diagnostics(output$mod_emax)
 MCMC traceplots are easy to plot:
 
 ```{r, fig.height = 8, fig.width = 6}
-# traceplot for all parameters for each model
-# plot_trace(output)
-
 # single model
 plot_trace(output$mod_quad)
+
+# traceplot for all parameters for each model using: plot_trace(output)
 ```
 
 ## Visualizing Priors
@@ -304,7 +303,7 @@ binary models.
 dreamer_plot_prior(
   doses = c(0, 2.5, 5),
   mod_linear_binary = model_linear_binary(
-    mu_b1 = -1,
+    mu_b1 = - 1,
     sigma_b1 = .1,
     mu_b2 = 1,
     sigma_b2 = .1,
@@ -322,9 +321,9 @@ dreamer_plot_prior(
   n_samples = 100,
   plot_draws = TRUE,
   mod_quad_binary = model_quad_binary(
-    mu_b1 = -.5,
+    mu_b1 = - .5,
     sigma_b1 = .2,
-    mu_b2 = -.5,
+    mu_b2 = - .5,
     sigma_b2 = .2,
     mu_b3 = .5,
     sigma_b3 = .1,
@@ -341,7 +340,7 @@ averaging prior!
 dreamer_plot_prior(
   doses = c(0, 2.5, 5),
   mod_linear_binary = model_linear_binary(
-    mu_b1 = -1,
+    mu_b1 = - 1,
     sigma_b1 = .1,
     mu_b2 = 1,
     sigma_b2 = .1,
@@ -349,9 +348,9 @@ dreamer_plot_prior(
     w_prior = .75
   ),
   mod_quad_binary = model_quad_binary(
-    mu_b1 = -.5,
+    mu_b1 = - .5,
     sigma_b1 = .2,
-    mu_b2 = -.5,
+    mu_b2 = - .5,
     sigma_b2 = .2,
     mu_b3 = .5,
     sigma_b3 = .1,

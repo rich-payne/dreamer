@@ -93,7 +93,11 @@ pr_medx <- function(
     })
     ) %>%
     tidyr::unnest_wider(col = .data$data) %>%
-    tidyr::pivot_longer(cols = -.data$ed, names_to = "dose", values_to = "prob")
+    tidyr::pivot_longer(
+      cols = - .data$ed,
+      names_to = "dose",
+      values_to = "prob"
+    )
   if (!is.null(time)) {
     out <- out %>%
       dplyr::mutate(time = !!time)
@@ -102,7 +106,7 @@ pr_medx <- function(
 }
 
 check_small_bound <- function(small_bound, n_mcmc) {
-  if ((length(small_bound) != 1) & (length(small_bound) != n_mcmc)) {
+  if ((length(small_bound) != 1) && (length(small_bound) != n_mcmc)) {
     stop("small_bound must have length 1 or ", n_mcmc, ".", call. = FALSE)
   }
 }

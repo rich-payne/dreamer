@@ -21,7 +21,7 @@ test_that("post_medx", {
   lower <- 0
   upper <- 5
   b1 <- 1:10
-  b2 <- c(-c(5:1), 1:5)
+  b2 <- c(- c(5:1), 1:5)
   mcmc <- mcmc %>%
     replace_mcmc("mod", "b1", b1) %>%
     replace_mcmc("mod", "b2", b2)
@@ -128,7 +128,7 @@ test_that("post_medx longitudinal", {
   upper <- 5
   a <- c(0:9) / 10
   b1 <- 1:10
-  b2 <- c(-c(5:1), 1:5)
+  b2 <- c(- c(5:1), 1:5)
   mcmc <- mcmc %>%
     replace_mcmc("mod", "a", a) %>%
     replace_mcmc("mod", "b1", b1) %>%

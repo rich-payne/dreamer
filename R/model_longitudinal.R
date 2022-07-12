@@ -85,7 +85,7 @@ model_longitudinal_idp <- function(
   sigma_a,
   a_c1 = 0,
   b_c1 = 1,
-  a_c2 = -1,
+  a_c2 = - 1,
   b_c2 = 0,
   t_max
 ) {

@@ -252,7 +252,7 @@ aggregate_binary <- function(data, is_longitudinal) {
 }
 
 check_independent_model <- function(data, doses) {
-  if (is.null(data) & is.null(doses)) {
+  if (is.null(data) && is.null(doses)) {
     stop("specify data, or supply doses to independent model", call. = FALSE)
   }
 }

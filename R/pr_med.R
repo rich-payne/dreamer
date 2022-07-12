@@ -49,7 +49,7 @@ pr_med <- function( #nolint
     tidyr::complete(dose = !!doses, fill = list(prob = 0)) %>%
     dplyr::select(.data$dose, .data$prob) %>%
     add_cols(reference_dose, time) %>%
-    dplyr::select(.data$dose, everything(), -.data$prob, .data$prob)
+    dplyr::select(.data$dose, everything(), - .data$prob, .data$prob)
 }
 
 add_cols <- function(x, reference_dose, time) {
@@ -91,9 +91,9 @@ get_inequality_func <- function(greater) {
 }
 
 get_time <- function(x, time, max_length = 1) {
-  if (is.null(time) & !is.null(attr(x, "times"))) {
+  if (is.null(time) && !is.null(attr(x, "times"))) {
     time <- max(attr(x, "times"))
-  } else if (is.null(time) & !is.null(x$times)) {
+  } else if (is.null(time) && !is.null(x$times)) {
     time <- max(x$times)
   } else if (!is.null(time)) {
     if (length(time) > max_length) {
@@ -109,7 +109,7 @@ get_time <- function(x, time, max_length = 1) {
 new_min <- function(x) {
   if (length(x) > 0) {
     return(min(x))
-  } else{
+  } else {
     return(NA_real_)
   }
 }
