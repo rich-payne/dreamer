@@ -24,7 +24,7 @@ test_that("get_extreme.beta()", {
   upper <- max(attr(mcmc, "doses"))
   scale <- attr(mcmc$mod, "scale")
   b1 <- 1:4
-  b2 <- c(-1.25, -1.5, 2, 2.5)
+  b2 <- c(- 1.25, - 1.5, 2, 2.5)
   b3 <- c(1, 1.1, 1.2, 1.3)
   b4 <- c(.5, .25, .3, .4)
   max_doses <- scale * b3 / (b3 + b4)
@@ -126,7 +126,7 @@ test_that("get_extreme.beta() longitudinal", {
   scale <- attr(mcmc$mod, "scale")
   a <- c(.1, .2, .3, .4)
   b1 <- 1:4
-  b2 <- c(-1.25, -1.5, 2, 2.5)
+  b2 <- c(- 1.25, - 1.5, 2, 2.5)
   b3 <- c(1, 1.1, 1.2, 1.3)
   b4 <- c(.5, .25, .3, .4)
   max_doses <- scale * b3 / (b3 + b4)

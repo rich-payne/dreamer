@@ -3,7 +3,7 @@ test_that("get_dose() quad binary logit", {
   data <- dreamer_data_linear_binary(
     n_cohorts = c(10, 20, 30),
     dose = c(1, 3, 5),
-    b1 = -1,
+    b1 = - 1,
     b2 = .05,
     link = link
   )
@@ -27,8 +27,8 @@ test_that("get_dose() quad binary logit", {
   upper <- max(attr(mcmc, "doses"))
 
   b1 <- 1:2
-  b2 <- c(-1, 1)
-  b3 <- c(-2, 2)
+  b2 <- c(- 1, 1)
+  b3 <- c(- 2, 2)
 
   mcmc <- mcmc %>%
     replace_mcmc("mod", "b1", b1) %>%
@@ -51,7 +51,7 @@ test_that("get_dose() quad binary probit", {
   data <- dreamer_data_linear_binary(
     n_cohorts = c(10, 20, 30),
     dose = c(1, 3, 5),
-    b1 = -1,
+    b1 = - 1,
     b2 = .05,
     link = link
   )
@@ -75,8 +75,8 @@ test_that("get_dose() quad binary probit", {
   upper <- max(attr(mcmc, "doses"))
 
   b1 <- 1:2
-  b2 <- c(-1, 1)
-  b3 <- c(-.02, .02)
+  b2 <- c(- 1, 1)
+  b3 <- c(- .02, .02)
 
   mcmc <- mcmc %>%
     replace_mcmc("mod", "b1", b1) %>%
@@ -131,8 +131,8 @@ test_that("get_dose() quad binary logit longitudinal", {
 
   a <- c(.1, .2)
   b1 <- 1:2
-  b2 <- c(-1, 1)
-  b3 <- c(-2, 2)
+  b2 <- c(- 1, 1)
+  b3 <- c(- 2, 2)
 
   mcmc <- mcmc %>%
     replace_mcmc("mod", "a", a) %>%
@@ -189,8 +189,8 @@ test_that("get_dose() quad binary probit longitudinal", {
 
   a <- c(.1, .2)
   b1 <- 1:2
-  b2 <- c(-1, 1)
-  b3 <- c(-2, 2)
+  b2 <- c(- 1, 1)
+  b3 <- c(- 2, 2)
 
   mcmc <- mcmc %>%
     replace_mcmc("mod", "a", a) %>%

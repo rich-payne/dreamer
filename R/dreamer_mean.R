@@ -329,14 +329,15 @@ dreamer_mean_longitudinal_mcmc <- function(
   if ("dreamer_longitudinal_linear" %in% longitudinal_model) {
     out <- time / t_max
   } else if ("dreamer_longitudinal_itp" %in% longitudinal_model) {
-    out <- (1 - exp(-mcmc[, "c1"] * time)) / (1 - exp(- mcmc[, "c1"] * t_max))
+    out <- (1 - exp(- mcmc[, "c1"] * time)) / (1 - exp(- mcmc[, "c1"] * t_max))
   } else if ("dreamer_longitudinal_idp" %in% longitudinal_model) {
-    out <- ((1 - exp(-mcmc[, "c1"] * time)) /
-              (1 - exp(-mcmc[, "c1"] * mcmc[, "d1"]))) * (time < mcmc[, "d1"]) +
-        (1 - mcmc[, "gam"] * ((1 - exp(-mcmc[, "c2"] * (time - mcmc[, "d1"]))) /
-          (1 - exp(-mcmc[, "c2"] * (mcmc[, "d2"] - mcmc[, "d1"]))))) *
+    out <-
+      ((1 - exp(- mcmc[, "c1"] * time)) /
+        (1 - exp(- mcmc[, "c1"] * mcmc[, "d1"]))) * (time < mcmc[, "d1"]) +
+      (1 - mcmc[, "gam"] * ((1 - exp(- mcmc[, "c2"] * (time - mcmc[, "d1"]))) /
+        (1 - exp(- mcmc[, "c2"] * (mcmc[, "d2"] - mcmc[, "d1"]))))) *
         ((time >= mcmc[, "d1"]) & (time <= mcmc[, "d2"])) +
-        (1 - mcmc[, "gam"]) * (time > mcmc[, "d2"])
+      (1 - mcmc[, "gam"]) * (time > mcmc[, "d2"])
   } else if (is.null(longitudinal_model)) {
     out <- 1
   } else {

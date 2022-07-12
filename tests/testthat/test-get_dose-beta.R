@@ -23,7 +23,7 @@ test_that("get_dose() beta", {
   upper <- max(attr(mcmc, "doses"))
 
   b1 <- 1:2
-  b2 <- c(-1, 1)
+  b2 <- c(- 1, 1)
   b3 <- c(2.2, 2)
   b4 <- c(.99, 1.01)
 
@@ -85,7 +85,7 @@ test_that("get_dose() beta longitudinal", {
 
   a <- c(.1, .2)
   b1 <- 1:2
-  b2 <- c(-1, 1)
+  b2 <- c(- 1, 1)
   b3 <- c(1.98, 2)
   b4 <- c(.99, 1.01)
 

@@ -5,7 +5,7 @@ test_that("global seed implies same MCMC", {
     dose = c(.25, .5, .75, 1.5),
     b1 = 0,
     b2 = 2,
-    b3 = -1,
+    b3 = - 1,
     sigma = .5
   )
 
@@ -57,7 +57,7 @@ test_that("different seeds imply different MCMC", {
     dose = c(.25, .5, .75, 1.5),
     b1 = 0,
     b2 = 2,
-    b3 = -1,
+    b3 = - 1,
     sigma = .5
   )
 

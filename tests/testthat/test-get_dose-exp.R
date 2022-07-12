@@ -21,7 +21,7 @@ test_that("get_dose() exp", {
   upper <- max(attr(mcmc, "doses"))
 
   b1 <- 1:2
-  b2 <- c(-1, 1)
+  b2 <- c(- 1, 1)
   b3 <- c(2, 2.1)
 
   mcmc <- mcmc %>%
@@ -77,7 +77,7 @@ test_that("get_dose() quad longitudinal", {
 
   a <- c(.1, .2)
   b1 <- 1:2
-  b2 <- c(-1, 1)
+  b2 <- c(- 1, 1)
   b3 <- c(2, 2)
 
   mcmc <- mcmc %>%

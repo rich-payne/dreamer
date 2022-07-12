@@ -629,15 +629,15 @@ check_ind_model_parms <- function(doses, mu_b1, sigma_b1) {
   if (length(mu_b1) != length(sigma_b1)) {
     stop("length(mu_b1) must equal length(sigma_b1)")
   }
-  if (length(mu_b1) > 1 & is.null(doses)) {
+  if (length(mu_b1) > 1 && is.null(doses)) {
     stop("doses must be specified if mu_b1 and sigma_b1 have length > 1")
   }
-  if (length(mu_b1) > 1 & (length(mu_b1) != length(doses))) {
+  if (length(mu_b1) > 1 && (length(mu_b1) != length(doses))) {
     stop(
       "lengths of mu_b1, sigma_b1, and doses must be equal if length(mu_b1) > 1"
     )
   }
-  if (!is.null(doses) & (length(mu_b1) != length(doses))) {
+  if (!is.null(doses) && (length(mu_b1) != length(doses))) {
     stop("length(doses) must match length(mu_b1) and length(sigma_b1)")
   }
 }

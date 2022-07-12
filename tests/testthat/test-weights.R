@@ -24,7 +24,7 @@ long_mods <- tibble::tibble(
         sigma_a = 1,
         a_c1 = 0,
         b_c1 = 1,
-        a_c2 = -1,
+        a_c2 = - 1,
         b_c2 = 0,
         t_max = !!t_max
       )
@@ -40,7 +40,7 @@ parms <- list(
   b4 = .6,
   sigma = 4,
   c1 = .25,
-  c2 = -.5,
+  c2 = - .5,
   d1 = 1.1,
   d2 = 3.5,
   gam = .75
@@ -176,7 +176,7 @@ test_that("model weights", {
       value = purrr::map2(
         value,
         longitudinal,
-        ~eval(rlang::call_modify(.x, longitudinal = .y))
+        ~ eval(rlang::call_modify(.x, longitudinal = .y))
       )
     ) %>%
     tidyr::pivot_wider(names_from = "model", values_from = "value")
@@ -332,7 +332,7 @@ test_that("model weights", {
   )
 
   out <- purrr::pmap(
-    dplyr::select(scens, -longitudinal),
+    dplyr::select(scens, - longitudinal),
     check_weights,
     parms = parms,
     data = data
@@ -441,11 +441,11 @@ test_that("model weights (binary)", {
   data_bin <- dreamer_data_linear_binary(
     n_cohorts = c(10, 15, 20, 25, 30),
     dose = c(1:5),
-    b1 = -3,
+    b1 = - 3,
     b2 = .25,
     times = 1:5,
     longitudinal = "linear",
-    a = -.1,
+    a = - .1,
     t_max = t_max,
     link = "logit"
   ) %>%
@@ -595,7 +595,7 @@ test_that("model weights (binary)", {
   }
 
   out_bin <- purrr::pmap(
-    dplyr::select(scens_bin, -longitudinal, -link),
+    dplyr::select(scens_bin, - longitudinal, - link),
     check_weights_binary,
     parms = parms,
     data = data_bin

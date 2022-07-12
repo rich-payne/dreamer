@@ -657,10 +657,10 @@ get_base_data <- function(n_cohorts, doses) {
     cohort = purrr::map2(
       n_cohorts,
       seq_len(length(n_cohorts)),
-      ~rep(.y, .x)
+      ~ rep(.y, .x)
     ) %>%
       do_call("c"),
-    dose = purrr::map2(n_cohorts, doses, ~rep(.y, .x)) %>%
+    dose = purrr::map2(n_cohorts, doses, ~ rep(.y, .x)) %>%
       do_call("c")
   ) %>%
     dplyr::mutate(subject = 1:n())

@@ -240,7 +240,7 @@ probit <- function(x) {
 }
 
 ilogit <- function(x) {
-  1 / (1 + exp(-x))
+  1 / (1 + exp(- x))
 }
 
 iprobit <- function(x) {
@@ -369,7 +369,7 @@ make_reference_dose <- function(samps, reference_dose, original_doses) {
     dplyr::mutate(
       mean_response = .data$mean_response - .data$mean_response_adj
     ) %>%
-    dplyr::select(-.data$reference_dose, -.data$mean_response_adj) %>%
+    dplyr::select(- .data$reference_dose, - .data$mean_response_adj) %>%
     dplyr::filter(.data$dose %in% !!original_doses)
 }
 
@@ -417,9 +417,9 @@ summarize_samples_binary <- function(
   original_doses,
   predictive
 ) {
-  if (!is.null(reference_dose) & predictive == 0) {
+  if (!is.null(reference_dose) && predictive == 0) {
     samps <- make_reference_dose(samps, reference_dose, original_doses)
-  } else if (!is.null(reference_dose) & predictive > 0) {
+  } else if (!is.null(reference_dose) && predictive > 0) {
     samps <- add_adjustment(samps, reference_dose) %>%
       dplyr::mutate(
         mean_response = (
@@ -428,7 +428,7 @@ summarize_samples_binary <- function(
           ) / !!predictive
       ) %>%
       dplyr::filter(.data$dose %in% !!original_doses) %>%
-      dplyr::select(-.data$reference_dose, -.data$mean_response_adj)
+      dplyr::select(- .data$reference_dose, - .data$mean_response_adj)
   } else if (is.null(reference_dose)) {
     samps <- make_predictive_binary(samps, predictive)
   }

@@ -160,7 +160,7 @@ test_that("predictive works correctly (binary)", {
   data <- dreamer_data_linear_binary(
     n_cohorts = c(10, 20, 30),
     dose = c(1, 3, 5),
-    b1 = -1,
+    b1 = - 1,
     b2 = .2,
     link = "logit"
   )
@@ -219,7 +219,7 @@ test_that("predictive works correctly (binary) with dose adjustment", {
   data <- dreamer_data_linear_binary(
     n_cohorts = c(10, 20, 30),
     dose = c(1, 3, 5),
-    b1 = -1,
+    b1 = - 1,
     b2 = .2,
     link = "logit"
   )
@@ -304,7 +304,7 @@ test_that("predictive works correctly (continuous)", {
   data <- dreamer_data_linear(
     n_cohorts = c(10, 20, 30),
     dose = c(1, 3, 5),
-    b1 = -1,
+    b1 = - 1,
     b2 = .2,
     sigma = .25
   )
@@ -363,7 +363,7 @@ test_that("predictive works correctly (continuous) adjusted", {
   data <- dreamer_data_linear(
     n_cohorts = c(10, 20, 30),
     dose = c(1, 3, 5),
-    b1 = -1,
+    b1 = - 1,
     b2 = .2,
     sigma = .25
   )
