@@ -19,7 +19,7 @@ test_that("get_dose() linear", {
   upper <- max(attr(mcmc, "doses"))
 
   b1 <- 1:2
-  b2 <- c(-1, 1)
+  b2 <- c(- 1, 1)
 
   mcmc <- mcmc %>%
     replace_mcmc("mod", "b1", b1) %>%
@@ -70,7 +70,7 @@ test_that("get_dose() linear longitudinal", {
 
   a <- c(.1, .2)
   b1 <- 1:2
-  b2 <- c(-1, 1)
+  b2 <- c(- 1, 1)
 
   mcmc <- mcmc %>%
     replace_mcmc("mod", "a", a) %>%

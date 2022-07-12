@@ -125,7 +125,7 @@ restore_jags_modules <- function(original_modules) {
   current_modules <- rjags::list.modules()
   ind <- which(!(current_modules %in% original_modules))
   if (length(ind) > 0)
-    purrr::walk(current_modules[ind], ~rjags::unload.module(.x, quiet = TRUE))
+    purrr::walk(current_modules[ind], ~ rjags::unload.module(.x, quiet = TRUE))
 }
 
 get_doses <- function(data) {
@@ -272,7 +272,7 @@ assert_binary_dots <- function(mods) {
     logical(1)
   ) %>%
     any()
-  if (any_dots_binary & !all_dots_binary) {
+  if (any_dots_binary && !all_dots_binary) {
     stop("All models must be the same type: continuous/binary.", call. = FALSE)
   }
   return(all_dots_binary)
@@ -381,7 +381,7 @@ check_binary <- function(data) {
   if (!all_non_neg) {
     stop("All values of data$response must be non-negative.", call. = FALSE)
   }
-  if (!all_0_or_1 & n_null) {
+  if (!all_0_or_1 && n_null) {
     stop(
       "All values of data$response must be 0 or 1",
       " unless n is specified in data.",
@@ -396,10 +396,10 @@ check_longitudinal <- function(mods, data) {
     function(x) !is.null(x$longitudinal),
     logical(1)
   )
-  if (any(is_long) & !all(is_long)) {
+  if (any(is_long) && !all(is_long)) {
     stop("All models must be longitudinal or non-longitudinal", call. = FALSE)
   }
-  if (all(is_long) & (!rlang::has_name(data, "time") & !is.null(data))) {
+  if (all(is_long) && (!rlang::has_name(data, "time") && !is.null(data))) {
     stop("data must have column 'time' if longitudinal models are specified.")
   }
   return(all(is_long))

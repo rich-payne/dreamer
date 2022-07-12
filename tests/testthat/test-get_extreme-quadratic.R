@@ -21,7 +21,7 @@ test_that("get_extreme.quad()", {
   lower <- min(attr(mcmc, "doses"))
   upper <- max(attr(mcmc, "doses"))
   b1 <- 1:4
-  b2 <- c(-1.25, -1.5, 2, 2.5)
+  b2 <- c(- 1.25, - 1.5, 2, 2.5)
   b3 <- c(.5, .5, - .5, - .5)
   mcmc <- mcmc %>%
     replace_mcmc("mod", "b1", b1) %>%
@@ -112,7 +112,7 @@ test_that("get_extreme.quad() longitudinal", {
 
   a <- c(.1, .2, .3, .4)
   b1 <- 1:4
-  b2 <- c(-1.25, -1.5, 2, 2.5)
+  b2 <- c(- 1.25, - 1.5, 2, 2.5)
   b3 <- c(.5, .5, - .5, - .5)
 
   mcmc <- mcmc %>%

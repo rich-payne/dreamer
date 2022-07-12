@@ -27,8 +27,8 @@ test_that("get_dose() log-quad binary logit", {
   upper <- max(attr(mcmc, "doses"))
 
   b1 <- 1:2
-  b2 <- c(-1, 1)
-  b3 <- c(-2, 2)
+  b2 <- c(- 1, 1)
+  b3 <- c(- 2, 2)
 
   mcmc <- mcmc %>%
     replace_mcmc("mod", "b1", b1) %>%
@@ -75,8 +75,8 @@ test_that("get_dose() log-quad binary probit", {
   upper <- max(attr(mcmc, "doses"))
 
   b1 <- 1:2
-  b2 <- c(-1, 1)
-  b3 <- c(-2, 2)
+  b2 <- c(- 1, 1)
+  b3 <- c(- 2, 2)
 
   mcmc <- mcmc %>%
     replace_mcmc("mod", "b1", b1) %>%
@@ -131,8 +131,8 @@ test_that("get_dose() log-quad binary logit longitudinal", {
 
   a <- c(.1, .2)
   b1 <- 1:2
-  b2 <- c(-1, 1)
-  b3 <- c(-2, 2)
+  b2 <- c(- 1, 1)
+  b3 <- c(- 2, 2)
 
   mcmc <- mcmc %>%
     replace_mcmc("mod", "a", a) %>%
@@ -192,8 +192,8 @@ test_that("get_dose() log-quad binary probit longitudinal", {
 
   a <- c(.1, .2)
   b1 <- 1:2
-  b2 <- c(-1, 1)
-  b3 <- c(-2, 2)
+  b2 <- c(- 1, 1)
+  b3 <- c(- 2, 2)
 
   mcmc <- mcmc %>%
     replace_mcmc("mod", "a", a) %>%

@@ -19,7 +19,7 @@ test_that("get_extreme.independent()", {
   upper <- max(attr(mcmc, "doses"))
   b1 <- c(1, 2)
   b2 <- c(2, 3)
-  b3 <- c(-1, 4)
+  b3 <- c(- 1, 4)
 
   mcmc <- mcmc %>%
     replace_mcmc("mod", "b1[1]", b1) %>%
@@ -140,7 +140,7 @@ test_that("get_extreme.independent() longitudinal", {
   a <- c(.1, .2)
   b1 <- c(1, 2)
   b2 <- c(2, 3)
-  b3 <- c(-1, 4)
+  b3 <- c(- 1, 4)
 
   mcmc <- mcmc %>%
     replace_mcmc("mod", "a", a) %>%

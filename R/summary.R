@@ -22,7 +22,7 @@ summary.dreamer_bma <- function(object, ...) {
     prior_weight = sprintf("%.1f%%", object$w_prior * 100)
   ) %>%
     dplyr::arrange(desc(.data$w_post)) %>%
-    dplyr::select(-.data$w_post)
+    dplyr::select(- .data$w_post)
   sumry <- lapply(model_list, summary)
   sumry <- purrr::map2(
     sumry,

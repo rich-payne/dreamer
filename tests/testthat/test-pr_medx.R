@@ -47,7 +47,7 @@ test_that("pr_medx.dreamer()", {
     )
   )
   b1 <- c(1, 5,  1,  5)
-  b2 <- c(1, 1, -1, -1)
+  b2 <- c(1, 1, - 1, - 1)
 
   out_new <- out %>%
     replace_mcmc("mod", "b1", b1) %>%
@@ -97,7 +97,7 @@ test_that("pr_medx.dreamer() longitudinal", {
   )
   a <- c(.1, .2, .1, .2)
   b1 <- c(1, 5,  1,  5)
-  b2 <- c(1, 1, -1, -1)
+  b2 <- c(1, 1, - 1, - 1)
 
   out_new <- out %>%
     replace_mcmc("mod", "a", a) %>%

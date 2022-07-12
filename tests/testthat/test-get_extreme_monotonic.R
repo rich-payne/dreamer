@@ -19,7 +19,7 @@ test_that("get_extreme_monotonic()", {
   lower <- min(attr(mcmc, "doses"))
   upper <- max(attr(mcmc, "doses"))
   b1 <- 1:2
-  b2 <- c(-1, 1)
+  b2 <- c(- 1, 1)
   mcmc <- mcmc %>%
     replace_mcmc("mod", "b1", b1) %>%
     replace_mcmc("mod", "b2", b2)
@@ -104,7 +104,7 @@ test_that("get_extreme_monotonic() longitudinal", {
   upper <- max(attr(mcmc, "doses"))
   a <- c(.1, .2)
   b1 <- c(1, 5)
-  b2 <- c(-1, 1)
+  b2 <- c(- 1, 1)
 
   mcmc <- mcmc %>%
     replace_mcmc("mod", "a", a) %>%

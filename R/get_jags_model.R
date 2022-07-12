@@ -31,7 +31,7 @@ get_long_prior <- function(longitudinal) {
   long_prior <- paste0(long_prior, long_prior_intercept, collapse = "\n")
   return(long_prior)
 }
-  
+
 get_long_model <- function(longitudinal) {
   long_mod <- get_longitudinal_likelihood_file(longitudinal) %>%
     get_jags_code()

@@ -3,7 +3,7 @@ assert_doses <- function(doses) {
 }
 
 assert_data_reference_dose <- function(data, reference_dose) {
-  if (!is.null(data) & !is.null(reference_dose)) {
+  if (!is.null(data) && !is.null(reference_dose)) {
     rlang::abort(
       "Plotting of placebo adjusted data not supported; omit 'data' argument.",
       class = "dreamer"

@@ -30,7 +30,7 @@ long_params <- tibble::tibble(
   sigma = 1.2,
   a = 2,
   c1 = .1,
-  c2 = -1,
+  c2 = - 1,
   gam = .75,
   d1 = 1,
   d2 = 4,
@@ -57,7 +57,7 @@ test_that("data generation: continuous", {
       )
     )
   purrr::pmap(
-    dplyr::select(dat, -dose_model),
+    dplyr::select(dat, - dose_model),
     test_data
   )
 })
@@ -77,7 +77,7 @@ test_that("data generation: continuous independent", {
       )
     )
   purrr::pmap(
-    dplyr::select(dat_ind, -dose_model),
+    dplyr::select(dat_ind, - dose_model),
     test_data
   )
 })
@@ -99,7 +99,7 @@ test_that("data generation: binary", {
       )
     )
   purrr::pmap(
-    dplyr::select(dat_bin, -dose_model, -sigma),
+    dplyr::select(dat_bin, - dose_model, - sigma),
     test_data
   )
 })
@@ -120,7 +120,7 @@ test_that("data generation: binary independent", {
       )
     )
   purrr::pmap(
-    dplyr::select(dat_bin_ind, -dose_model, -sigma),
+    dplyr::select(dat_bin_ind, - dose_model, - sigma),
     test_data
   )
 })
