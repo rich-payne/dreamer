@@ -73,9 +73,9 @@
     <loc>/reference/pr_medx.html</loc>
   </url>
   <url>
-    <loc>/reference/summary.dreamer.html</loc>
+    <loc>/reference/summary.dreamer_bma.html</loc>
   </url>
   <url>
-    <loc>/reference/summary.dreamer_bma.html</loc>
+    <loc>/reference/summary.dreamer_mcmc.html</loc>
   </url>
 </urlset>

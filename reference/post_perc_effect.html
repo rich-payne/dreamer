@@ -72,46 +72,46 @@ samples of this effect.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">post_perc_effect</span><span class="op">(</span>
-  <span class="va">x</span>,
-  <span class="va">dose</span>,
-  <span class="va">probs</span>,
-  <span class="va">time</span>,
-  <span class="va">lower</span>,
-  <span class="va">upper</span>,
-  <span class="va">greater</span>,
-  <span class="va">small_bound</span>,
-  <span class="va">index</span>,
-  <span class="va">return_samples</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for dreamer_bma</span>
-<span class="fu">post_perc_effect</span><span class="op">(</span>
-  <span class="va">x</span>,
-  <span class="va">dose</span>,
-  probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>,
-  time <span class="op">=</span> <span class="cn">NULL</span>,
-  lower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">doses</span><span class="op">)</span>,
-  upper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">doses</span><span class="op">)</span>,
-  greater <span class="op">=</span> <span class="cn">TRUE</span>,
-  small_bound <span class="op">=</span> <span class="fl">0</span>,
-  index <span class="op">=</span> <span class="cn">NA</span>,
-  return_samples <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for dreamer</span>
-<span class="fu">post_perc_effect</span><span class="op">(</span>
-  <span class="va">x</span>,
-  <span class="va">dose</span>,
-  probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>,
-  time <span class="op">=</span> <span class="cn">NULL</span>,
-  lower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"doses"</span><span class="op">)</span><span class="op">)</span>,
-  upper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"doses"</span><span class="op">)</span><span class="op">)</span>,
-  greater <span class="op">=</span> <span class="cn">TRUE</span>,
-  small_bound <span class="op">=</span> <span class="fl">0</span>,
-  index <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">x</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>,
-  return_samples <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">post_perc_effect</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  <span class="va">dose</span>,</span>
+<span>  <span class="va">probs</span>,</span>
+<span>  <span class="va">time</span>,</span>
+<span>  <span class="va">lower</span>,</span>
+<span>  <span class="va">upper</span>,</span>
+<span>  <span class="va">greater</span>,</span>
+<span>  <span class="va">small_bound</span>,</span>
+<span>  <span class="va">index</span>,</span>
+<span>  <span class="va">return_samples</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for dreamer_bma</span></span>
+<span><span class="fu">post_perc_effect</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  <span class="va">dose</span>,</span>
+<span>  probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>,</span>
+<span>  time <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  lower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">doses</span><span class="op">)</span>,</span>
+<span>  upper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">doses</span><span class="op">)</span>,</span>
+<span>  greater <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  small_bound <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  index <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  return_samples <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for dreamer_mcmc</span></span>
+<span><span class="fu">post_perc_effect</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  <span class="va">dose</span>,</span>
+<span>  probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>,</span>
+<span>  time <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  lower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"doses"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  upper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"doses"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  greater <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  small_bound <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  index <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">x</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  return_samples <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -120,36 +120,57 @@ samples of this effect.</p>
 <dd><p>output from a call to <code><a href="dreamer_mcmc.html">dreamer_mcmc()</a></code>, or
 the MCMC samples from a single model of output from
 a <code><a href="dreamer_mcmc.html">dreamer_mcmc()</a></code> call.</p></dd>
+
+
 <dt>dose</dt>
 <dd><p>the dose at which to calculate the posterior percentage
 effect.</p></dd>
+
+
 <dt>probs</dt>
 <dd><p>a vector of quantiles to calculate on the posterior.</p></dd>
+
+
 <dt>time</dt>
 <dd><p>the slice of time for which to calculate the posterior
 percentage effect.  Applies to longitudinal models only.</p></dd>
+
+
 <dt>lower</dt>
 <dd><p>the lower bound of the dose range under consideration.</p></dd>
+
+
 <dt>upper</dt>
 <dd><p>the upper bound of the dose range under consideration.</p></dd>
+
+
 <dt>greater</dt>
 <dd><p>logical indicating if the response is desired to
 be increasing (<code>TRUE</code>) or decreasing (<code>FALSE</code>).</p></dd>
+
+
 <dt>small_bound</dt>
 <dd><p>the lower (if <code>greater = TRUE</code>) or upper
 (if <code>greater = FALSE</code>) bound that the effect is expected to
 take.</p></dd>
+
+
 <dt>index</dt>
 <dd><p>an index on which MCMC samples should be used.  Generally
 the user should not specify anything for this argument as <code>dreamer</code>
 will handle this automatically.</p></dd>
+
+
 <dt>return_samples</dt>
 <dd><p>logical indicating if the posterior samples should
 be returned.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A named list with the following components:</p><ul><li><p>stats: a tibble listing the dose, time (where relevant),
+    
+
+<p>A named list with the following components:</p><ul><li><p>stats: a tibble listing the dose, time (where relevant),
 probability a percentage effect exists, the average percentage effect,
 and the specified quantiles of the percentage effect.</p></li>
 <li><p>samps: a tibble with the posterior samples for each dose/time
@@ -158,46 +179,46 @@ combination.</p></li>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">888</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="dreamer_data.html">dreamer_data_linear</a></span><span class="op">(</span></span>
-<span class="r-in">  n_cohorts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span>,</span>
-<span class="r-in">  dose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">10</span><span class="op">)</span>,</span>
-<span class="r-in">  b1 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">  b2 <span class="op">=</span> <span class="fl">3</span>,</span>
-<span class="r-in">  sigma <span class="op">=</span> <span class="fl">5</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Bayesian model averaging</span></span>
-<span class="r-in"><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="dreamer_mcmc.html">dreamer_mcmc</a></span><span class="op">(</span></span>
-<span class="r-in"> data <span class="op">=</span> <span class="va">data</span>,</span>
-<span class="r-in"> n_adapt <span class="op">=</span> <span class="fl">1e3</span>,</span>
-<span class="r-in"> n_burn <span class="op">=</span> <span class="fl">1e3</span>,</span>
-<span class="r-in"> n_iter <span class="op">=</span> <span class="fl">1e4</span>,</span>
-<span class="r-in"> n_chains <span class="op">=</span> <span class="fl">2</span>,</span>
-<span class="r-in"> silent <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in"> mod_linear <span class="op">=</span> <span class="fu"><a href="model.html">model_linear</a></span><span class="op">(</span></span>
-<span class="r-in">   mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b1 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b2 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   shape <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   rate <span class="op">=</span> <span class="fl">.001</span>,</span>
-<span class="r-in">   w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span></span>
-<span class="r-in"> <span class="op">)</span>,</span>
-<span class="r-in"> mod_quad <span class="op">=</span> <span class="fu"><a href="model.html">model_quad</a></span><span class="op">(</span></span>
-<span class="r-in">   mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b1 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b2 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   mu_b3 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b3 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   shape <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   rate <span class="op">=</span> <span class="fl">.001</span>,</span>
-<span class="r-in">   w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span></span>
-<span class="r-in"> <span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">888</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="dreamer_data.html">dreamer_data_linear</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  n_cohorts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  dose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">10</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  b1 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>  b2 <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>  sigma <span class="op">=</span> <span class="fl">5</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Bayesian model averaging</span></span></span>
+<span class="r-in"><span><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="dreamer_mcmc.html">dreamer_mcmc</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span> data <span class="op">=</span> <span class="va">data</span>,</span></span>
+<span class="r-in"><span> n_adapt <span class="op">=</span> <span class="fl">1e3</span>,</span></span>
+<span class="r-in"><span> n_burn <span class="op">=</span> <span class="fl">1e3</span>,</span></span>
+<span class="r-in"><span> n_iter <span class="op">=</span> <span class="fl">1e4</span>,</span></span>
+<span class="r-in"><span> n_chains <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span> silent <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span> mod_linear <span class="op">=</span> <span class="fu"><a href="model.html">model_linear</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>   mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b1 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b2 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   shape <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   rate <span class="op">=</span> <span class="fl">.001</span>,</span></span>
+<span class="r-in"><span>   w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span></span></span>
+<span class="r-in"><span> <span class="op">)</span>,</span></span>
+<span class="r-in"><span> mod_quad <span class="op">=</span> <span class="fu"><a href="model.html">model_quad</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>   mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b1 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b2 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   mu_b3 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b3 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   shape <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   rate <span class="op">=</span> <span class="fl">.001</span>,</span></span>
+<span class="r-in"><span>   w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span></span></span>
+<span class="r-in"><span> <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> mod_linear</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-04-19 19:49:06.906</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-07-12 15:51:33.367</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Compiling model graph</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Resolving undeclared variables</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Allocating nodes</span>
@@ -208,10 +229,10 @@ combination.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Initializing model</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-04-19 19:49:07.001</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.10 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-07-12 15:51:33.452</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.08 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> mod_quad</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-04-19 19:49:07.002</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-07-12 15:51:33.453</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Compiling model graph</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Resolving undeclared variables</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Allocating nodes</span>
@@ -222,10 +243,10 @@ combination.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Initializing model</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-04-19 19:49:07.106</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-07-12 15:51:33.556</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.10 secs</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">post_perc_effect</span><span class="op">(</span><span class="va">output</span>, dose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">post_perc_effect</span><span class="op">(</span><span class="va">output</span>, dose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $stats</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    dose pr_perc_exists  mean `2.50%` `97.50%`</span>
@@ -233,9 +254,9 @@ combination.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     3              1 0.310   0.254    0.354</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     5              1 0.506   0.440    0.555</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># from a single model</span></span>
-<span class="r-in"><span class="fu">post_perc_effect</span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">mod_linear</span>, dose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># from a single model</span></span></span>
+<span class="r-in"><span><span class="fu">post_perc_effect</span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">mod_linear</span>, dose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $stats</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    dose pr_perc_exists  mean `2.50%` `97.50%`</span>
@@ -257,7 +278,7 @@ combination.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

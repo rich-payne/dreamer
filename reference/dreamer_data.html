@@ -66,243 +66,264 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">dreamer_data_linear</span><span class="op">(</span>
-  <span class="va">n_cohorts</span>,
-  <span class="va">doses</span>,
-  <span class="va">b1</span>,
-  <span class="va">b2</span>,
-  <span class="va">sigma</span>,
-  <span class="va">times</span>,
-  <span class="va">t_max</span>,
-  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">dreamer_data_linear_binary</span><span class="op">(</span>
-  <span class="va">n_cohorts</span>,
-  <span class="va">doses</span>,
-  <span class="va">b1</span>,
-  <span class="va">b2</span>,
-  <span class="va">link</span>,
-  <span class="va">times</span>,
-  <span class="va">t_max</span>,
-  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">dreamer_data_quad</span><span class="op">(</span>
-  <span class="va">n_cohorts</span>,
-  <span class="va">doses</span>,
-  <span class="va">b1</span>,
-  <span class="va">b2</span>,
-  <span class="va">b3</span>,
-  <span class="va">sigma</span>,
-  <span class="va">times</span>,
-  <span class="va">t_max</span>,
-  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">dreamer_data_quad_binary</span><span class="op">(</span>
-  <span class="va">n_cohorts</span>,
-  <span class="va">doses</span>,
-  <span class="va">b1</span>,
-  <span class="va">b2</span>,
-  <span class="va">b3</span>,
-  <span class="va">link</span>,
-  <span class="va">times</span>,
-  <span class="va">t_max</span>,
-  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">dreamer_data_loglinear</span><span class="op">(</span>
-  <span class="va">n_cohorts</span>,
-  <span class="va">doses</span>,
-  <span class="va">b1</span>,
-  <span class="va">b2</span>,
-  <span class="va">sigma</span>,
-  <span class="va">times</span>,
-  <span class="va">t_max</span>,
-  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">dreamer_data_loglinear_binary</span><span class="op">(</span>
-  <span class="va">n_cohorts</span>,
-  <span class="va">doses</span>,
-  <span class="va">b1</span>,
-  <span class="va">b2</span>,
-  <span class="va">link</span>,
-  <span class="va">times</span>,
-  <span class="va">t_max</span>,
-  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">dreamer_data_logquad</span><span class="op">(</span>
-  <span class="va">n_cohorts</span>,
-  <span class="va">doses</span>,
-  <span class="va">b1</span>,
-  <span class="va">b2</span>,
-  <span class="va">b3</span>,
-  <span class="va">sigma</span>,
-  <span class="va">times</span>,
-  <span class="va">t_max</span>,
-  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">dreamer_data_logquad_binary</span><span class="op">(</span>
-  <span class="va">n_cohorts</span>,
-  <span class="va">doses</span>,
-  <span class="va">b1</span>,
-  <span class="va">b2</span>,
-  <span class="va">b3</span>,
-  <span class="va">link</span>,
-  <span class="va">times</span>,
-  <span class="va">t_max</span>,
-  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">dreamer_data_emax</span><span class="op">(</span>
-  <span class="va">n_cohorts</span>,
-  <span class="va">doses</span>,
-  <span class="va">b1</span>,
-  <span class="va">b2</span>,
-  <span class="va">b3</span>,
-  <span class="va">b4</span>,
-  <span class="va">sigma</span>,
-  <span class="va">times</span>,
-  <span class="va">t_max</span>,
-  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">dreamer_data_emax_binary</span><span class="op">(</span>
-  <span class="va">n_cohorts</span>,
-  <span class="va">doses</span>,
-  <span class="va">b1</span>,
-  <span class="va">b2</span>,
-  <span class="va">b3</span>,
-  <span class="va">b4</span>,
-  <span class="va">link</span>,
-  <span class="va">times</span>,
-  <span class="va">t_max</span>,
-  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">dreamer_data_exp</span><span class="op">(</span>
-  <span class="va">n_cohorts</span>,
-  <span class="va">doses</span>,
-  <span class="va">b1</span>,
-  <span class="va">b2</span>,
-  <span class="va">b3</span>,
-  <span class="va">sigma</span>,
-  <span class="va">times</span>,
-  <span class="va">t_max</span>,
-  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">dreamer_data_exp_binary</span><span class="op">(</span>
-  <span class="va">n_cohorts</span>,
-  <span class="va">doses</span>,
-  <span class="va">b1</span>,
-  <span class="va">b2</span>,
-  <span class="va">b3</span>,
-  <span class="va">link</span>,
-  <span class="va">times</span>,
-  <span class="va">t_max</span>,
-  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">dreamer_data_beta</span><span class="op">(</span>
-  <span class="va">n_cohorts</span>,
-  <span class="va">doses</span>,
-  <span class="va">b1</span>,
-  <span class="va">b2</span>,
-  <span class="va">b3</span>,
-  <span class="va">b4</span>,
-  <span class="va">scale</span>,
-  <span class="va">sigma</span>,
-  <span class="va">times</span>,
-  <span class="va">t_max</span>,
-  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">dreamer_data_beta_binary</span><span class="op">(</span>
-  <span class="va">n_cohorts</span>,
-  <span class="va">doses</span>,
-  <span class="va">b1</span>,
-  <span class="va">b2</span>,
-  <span class="va">b3</span>,
-  <span class="va">b4</span>,
-  <span class="va">scale</span>,
-  <span class="va">link</span>,
-  <span class="va">times</span>,
-  <span class="va">t_max</span>,
-  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">dreamer_data_independent</span><span class="op">(</span>
-  <span class="va">n_cohorts</span>,
-  <span class="va">doses</span>,
-  <span class="va">b1</span>,
-  <span class="va">sigma</span>,
-  <span class="va">times</span>,
-  <span class="va">t_max</span>,
-  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">dreamer_data_independent_binary</span><span class="op">(</span>
-  <span class="va">n_cohorts</span>,
-  <span class="va">doses</span>,
-  <span class="va">b1</span>,
-  <span class="va">link</span>,
-  <span class="va">times</span>,
-  <span class="va">t_max</span>,
-  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dreamer_data_linear</span><span class="op">(</span></span>
+<span>  <span class="va">n_cohorts</span>,</span>
+<span>  <span class="va">doses</span>,</span>
+<span>  <span class="va">b1</span>,</span>
+<span>  <span class="va">b2</span>,</span>
+<span>  <span class="va">sigma</span>,</span>
+<span>  <span class="va">times</span>,</span>
+<span>  <span class="va">t_max</span>,</span>
+<span>  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dreamer_data_linear_binary</span><span class="op">(</span></span>
+<span>  <span class="va">n_cohorts</span>,</span>
+<span>  <span class="va">doses</span>,</span>
+<span>  <span class="va">b1</span>,</span>
+<span>  <span class="va">b2</span>,</span>
+<span>  <span class="va">link</span>,</span>
+<span>  <span class="va">times</span>,</span>
+<span>  <span class="va">t_max</span>,</span>
+<span>  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dreamer_data_quad</span><span class="op">(</span></span>
+<span>  <span class="va">n_cohorts</span>,</span>
+<span>  <span class="va">doses</span>,</span>
+<span>  <span class="va">b1</span>,</span>
+<span>  <span class="va">b2</span>,</span>
+<span>  <span class="va">b3</span>,</span>
+<span>  <span class="va">sigma</span>,</span>
+<span>  <span class="va">times</span>,</span>
+<span>  <span class="va">t_max</span>,</span>
+<span>  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dreamer_data_quad_binary</span><span class="op">(</span></span>
+<span>  <span class="va">n_cohorts</span>,</span>
+<span>  <span class="va">doses</span>,</span>
+<span>  <span class="va">b1</span>,</span>
+<span>  <span class="va">b2</span>,</span>
+<span>  <span class="va">b3</span>,</span>
+<span>  <span class="va">link</span>,</span>
+<span>  <span class="va">times</span>,</span>
+<span>  <span class="va">t_max</span>,</span>
+<span>  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dreamer_data_loglinear</span><span class="op">(</span></span>
+<span>  <span class="va">n_cohorts</span>,</span>
+<span>  <span class="va">doses</span>,</span>
+<span>  <span class="va">b1</span>,</span>
+<span>  <span class="va">b2</span>,</span>
+<span>  <span class="va">sigma</span>,</span>
+<span>  <span class="va">times</span>,</span>
+<span>  <span class="va">t_max</span>,</span>
+<span>  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dreamer_data_loglinear_binary</span><span class="op">(</span></span>
+<span>  <span class="va">n_cohorts</span>,</span>
+<span>  <span class="va">doses</span>,</span>
+<span>  <span class="va">b1</span>,</span>
+<span>  <span class="va">b2</span>,</span>
+<span>  <span class="va">link</span>,</span>
+<span>  <span class="va">times</span>,</span>
+<span>  <span class="va">t_max</span>,</span>
+<span>  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dreamer_data_logquad</span><span class="op">(</span></span>
+<span>  <span class="va">n_cohorts</span>,</span>
+<span>  <span class="va">doses</span>,</span>
+<span>  <span class="va">b1</span>,</span>
+<span>  <span class="va">b2</span>,</span>
+<span>  <span class="va">b3</span>,</span>
+<span>  <span class="va">sigma</span>,</span>
+<span>  <span class="va">times</span>,</span>
+<span>  <span class="va">t_max</span>,</span>
+<span>  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dreamer_data_logquad_binary</span><span class="op">(</span></span>
+<span>  <span class="va">n_cohorts</span>,</span>
+<span>  <span class="va">doses</span>,</span>
+<span>  <span class="va">b1</span>,</span>
+<span>  <span class="va">b2</span>,</span>
+<span>  <span class="va">b3</span>,</span>
+<span>  <span class="va">link</span>,</span>
+<span>  <span class="va">times</span>,</span>
+<span>  <span class="va">t_max</span>,</span>
+<span>  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dreamer_data_emax</span><span class="op">(</span></span>
+<span>  <span class="va">n_cohorts</span>,</span>
+<span>  <span class="va">doses</span>,</span>
+<span>  <span class="va">b1</span>,</span>
+<span>  <span class="va">b2</span>,</span>
+<span>  <span class="va">b3</span>,</span>
+<span>  <span class="va">b4</span>,</span>
+<span>  <span class="va">sigma</span>,</span>
+<span>  <span class="va">times</span>,</span>
+<span>  <span class="va">t_max</span>,</span>
+<span>  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dreamer_data_emax_binary</span><span class="op">(</span></span>
+<span>  <span class="va">n_cohorts</span>,</span>
+<span>  <span class="va">doses</span>,</span>
+<span>  <span class="va">b1</span>,</span>
+<span>  <span class="va">b2</span>,</span>
+<span>  <span class="va">b3</span>,</span>
+<span>  <span class="va">b4</span>,</span>
+<span>  <span class="va">link</span>,</span>
+<span>  <span class="va">times</span>,</span>
+<span>  <span class="va">t_max</span>,</span>
+<span>  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dreamer_data_exp</span><span class="op">(</span></span>
+<span>  <span class="va">n_cohorts</span>,</span>
+<span>  <span class="va">doses</span>,</span>
+<span>  <span class="va">b1</span>,</span>
+<span>  <span class="va">b2</span>,</span>
+<span>  <span class="va">b3</span>,</span>
+<span>  <span class="va">sigma</span>,</span>
+<span>  <span class="va">times</span>,</span>
+<span>  <span class="va">t_max</span>,</span>
+<span>  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dreamer_data_exp_binary</span><span class="op">(</span></span>
+<span>  <span class="va">n_cohorts</span>,</span>
+<span>  <span class="va">doses</span>,</span>
+<span>  <span class="va">b1</span>,</span>
+<span>  <span class="va">b2</span>,</span>
+<span>  <span class="va">b3</span>,</span>
+<span>  <span class="va">link</span>,</span>
+<span>  <span class="va">times</span>,</span>
+<span>  <span class="va">t_max</span>,</span>
+<span>  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dreamer_data_beta</span><span class="op">(</span></span>
+<span>  <span class="va">n_cohorts</span>,</span>
+<span>  <span class="va">doses</span>,</span>
+<span>  <span class="va">b1</span>,</span>
+<span>  <span class="va">b2</span>,</span>
+<span>  <span class="va">b3</span>,</span>
+<span>  <span class="va">b4</span>,</span>
+<span>  <span class="va">scale</span>,</span>
+<span>  <span class="va">sigma</span>,</span>
+<span>  <span class="va">times</span>,</span>
+<span>  <span class="va">t_max</span>,</span>
+<span>  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dreamer_data_beta_binary</span><span class="op">(</span></span>
+<span>  <span class="va">n_cohorts</span>,</span>
+<span>  <span class="va">doses</span>,</span>
+<span>  <span class="va">b1</span>,</span>
+<span>  <span class="va">b2</span>,</span>
+<span>  <span class="va">b3</span>,</span>
+<span>  <span class="va">b4</span>,</span>
+<span>  <span class="va">scale</span>,</span>
+<span>  <span class="va">link</span>,</span>
+<span>  <span class="va">times</span>,</span>
+<span>  <span class="va">t_max</span>,</span>
+<span>  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dreamer_data_independent</span><span class="op">(</span></span>
+<span>  <span class="va">n_cohorts</span>,</span>
+<span>  <span class="va">doses</span>,</span>
+<span>  <span class="va">b1</span>,</span>
+<span>  <span class="va">sigma</span>,</span>
+<span>  <span class="va">times</span>,</span>
+<span>  <span class="va">t_max</span>,</span>
+<span>  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dreamer_data_independent_binary</span><span class="op">(</span></span>
+<span>  <span class="va">n_cohorts</span>,</span>
+<span>  <span class="va">doses</span>,</span>
+<span>  <span class="va">b1</span>,</span>
+<span>  <span class="va">link</span>,</span>
+<span>  <span class="va">times</span>,</span>
+<span>  <span class="va">t_max</span>,</span>
+<span>  longitudinal <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>n_cohorts</dt>
 <dd><p>a vector listing the size of each cohort.</p></dd>
+
+
 <dt>doses</dt>
 <dd><p>a vector listing the dose for each cohort.</p></dd>
+
+
 <dt>b1, b2, b3, b4</dt>
 <dd><p>parameters in the models.  See sections below for
 each parameter's interpretation in a given model.</p></dd>
+
+
 <dt>sigma</dt>
 <dd><p>standard deviation.</p></dd>
+
+
 <dt>times</dt>
 <dd><p>the times at which data should be simulated if a longitudinal
 model is specified.</p></dd>
+
+
 <dt>t_max</dt>
 <dd><p>the t_max parameter used in the longitudinal model.</p></dd>
+
+
 <dt>longitudinal</dt>
 <dd><p>a string indicating the longitudinal model to be used.
 Can be "linear", "itp", or "idp".</p></dd>
+
+
 <dt>...</dt>
 <dd><p>additional longitudinal parameters.</p></dd>
+
+
 <dt>link</dt>
 <dd><p>character vector indicating the link function for binary models.</p></dd>
+
+
 <dt>scale</dt>
 <dd><p>a scaling parameter (fixed, specified by the user) for the
 beta models.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A dataframe of random subjects from the specified model and
+    
+
+<p>A dataframe of random subjects from the specified model and
 parameters.</p>
     </div>
     <div id="functions">
@@ -518,16 +539,16 @@ $$gam \sim Uniform(0, 1)$$</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">888</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">dreamer_data_linear</span><span class="op">(</span></span>
-<span class="r-in">  n_cohorts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span>,</span>
-<span class="r-in">  dose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">10</span><span class="op">)</span>,</span>
-<span class="r-in">  b1 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">  b2 <span class="op">=</span> <span class="fl">3</span>,</span>
-<span class="r-in">  sigma <span class="op">=</span> <span class="fl">5</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">888</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">dreamer_data_linear</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  n_cohorts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  dose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">10</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  b1 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>  b2 <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>  sigma <span class="op">=</span> <span class="fl">5</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   cohort dose subject   response</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      1    0       1 -8.7567167</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      1    0       2 -6.7218308</span>
@@ -535,9 +556,9 @@ $$gam \sim Uniform(0, 1)$$</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4      1    0       4 -0.3879090</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5      1    0       5 -7.2814217</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6      1    0       6 -0.2551169</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">dose</span>, <span class="va">data</span><span class="op">$</span><span class="va">response</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">dose</span>, <span class="va">data</span><span class="op">$</span><span class="va">response</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="dreamer_data-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -553,7 +574,7 @@ $$gam \sim Uniform(0, 1)$$</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

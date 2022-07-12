@@ -66,17 +66,20 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">diagnostics</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">diagnostics</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>MCMC output from a dreamer model.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A tibble listing the Gelman point estimates and upper bounds
+    
+
+<p>A tibble listing the Gelman point estimates and upper bounds
 (obtained from coda::gelman.diag) and effective sample size
 (obtained from coda::effectiveSize) for each parameter within each
 model.</p>
@@ -84,46 +87,46 @@ model.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">888</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="dreamer_data.html">dreamer_data_linear</a></span><span class="op">(</span></span>
-<span class="r-in">  n_cohorts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span>,</span>
-<span class="r-in">  dose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">10</span><span class="op">)</span>,</span>
-<span class="r-in">  b1 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">  b2 <span class="op">=</span> <span class="fl">3</span>,</span>
-<span class="r-in">  sigma <span class="op">=</span> <span class="fl">5</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Bayesian model averaging</span></span>
-<span class="r-in"><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="dreamer_mcmc.html">dreamer_mcmc</a></span><span class="op">(</span></span>
-<span class="r-in"> data <span class="op">=</span> <span class="va">data</span>,</span>
-<span class="r-in"> n_adapt <span class="op">=</span> <span class="fl">1e3</span>,</span>
-<span class="r-in"> n_burn <span class="op">=</span> <span class="fl">1e3</span>,</span>
-<span class="r-in"> n_iter <span class="op">=</span> <span class="fl">1e4</span>,</span>
-<span class="r-in"> n_chains <span class="op">=</span> <span class="fl">2</span>,</span>
-<span class="r-in"> silent <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in"> mod_linear <span class="op">=</span> <span class="fu"><a href="model.html">model_linear</a></span><span class="op">(</span></span>
-<span class="r-in">   mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b1 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b2 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   shape <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   rate <span class="op">=</span> <span class="fl">.001</span>,</span>
-<span class="r-in">   w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span></span>
-<span class="r-in"> <span class="op">)</span>,</span>
-<span class="r-in"> mod_quad <span class="op">=</span> <span class="fu"><a href="model.html">model_quad</a></span><span class="op">(</span></span>
-<span class="r-in">   mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b1 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b2 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   mu_b3 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b3 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   shape <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   rate <span class="op">=</span> <span class="fl">.001</span>,</span>
-<span class="r-in">   w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span></span>
-<span class="r-in"> <span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">888</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="dreamer_data.html">dreamer_data_linear</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  n_cohorts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  dose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">10</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  b1 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>  b2 <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>  sigma <span class="op">=</span> <span class="fl">5</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Bayesian model averaging</span></span></span>
+<span class="r-in"><span><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="dreamer_mcmc.html">dreamer_mcmc</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span> data <span class="op">=</span> <span class="va">data</span>,</span></span>
+<span class="r-in"><span> n_adapt <span class="op">=</span> <span class="fl">1e3</span>,</span></span>
+<span class="r-in"><span> n_burn <span class="op">=</span> <span class="fl">1e3</span>,</span></span>
+<span class="r-in"><span> n_iter <span class="op">=</span> <span class="fl">1e4</span>,</span></span>
+<span class="r-in"><span> n_chains <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span> silent <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span> mod_linear <span class="op">=</span> <span class="fu"><a href="model.html">model_linear</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>   mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b1 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b2 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   shape <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   rate <span class="op">=</span> <span class="fl">.001</span>,</span></span>
+<span class="r-in"><span>   w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span></span></span>
+<span class="r-in"><span> <span class="op">)</span>,</span></span>
+<span class="r-in"><span> mod_quad <span class="op">=</span> <span class="fu"><a href="model.html">model_quad</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>   mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b1 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b2 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   mu_b3 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b3 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   shape <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   rate <span class="op">=</span> <span class="fl">.001</span>,</span></span>
+<span class="r-in"><span>   w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span></span></span>
+<span class="r-in"><span> <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> mod_linear</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-04-19 19:48:49.750</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-07-12 15:51:16.939</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Compiling model graph</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Resolving undeclared variables</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Allocating nodes</span>
@@ -134,10 +137,10 @@ model.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Initializing model</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-04-19 19:48:49.883</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.13 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-07-12 15:51:17.060</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.12 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> mod_quad</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-04-19 19:48:49.884</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-07-12 15:51:17.062</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Compiling model graph</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Resolving undeclared variables</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Allocating nodes</span>
@@ -148,11 +151,11 @@ model.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Initializing model</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-04-19 19:48:49.996</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-07-12 15:51:17.172</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.11 secs</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># for all models</span></span>
-<span class="r-in"><span class="fu">diagnostics</span><span class="op">(</span><span class="va">output</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># for all models</span></span></span>
+<span class="r-in"><span><span class="fu">diagnostics</span><span class="op">(</span><span class="va">output</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   model      param gelman_point gelman_upper effective_size</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -163,9 +166,9 @@ model.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> mod_quad   b2            1.00         1.00         <span style="text-decoration: underline;">17</span>217.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> mod_quad   b3            1.00         1.00         <span style="text-decoration: underline;">17</span>119.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> mod_quad   sigma         1.00         1.00         <span style="text-decoration: underline;">16</span>379.</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># for a single model</span></span>
-<span class="r-in"><span class="fu">diagnostics</span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">mod_quad</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># for a single model</span></span></span>
+<span class="r-in"><span><span class="fu">diagnostics</span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">mod_quad</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   param gelman_point gelman_upper effective_size</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -187,7 +190,7 @@ model.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

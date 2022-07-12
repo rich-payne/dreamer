@@ -68,16 +68,16 @@ help the user choose appropriate priors.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">dreamer_plot_prior</span><span class="op">(</span>
-  n_samples <span class="op">=</span> <span class="fl">10000</span>,
-  probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>,
-  <span class="va">doses</span>,
-  n_chains <span class="op">=</span> <span class="fl">1</span>,
-  <span class="va">...</span>,
-  times <span class="op">=</span> <span class="cn">NULL</span>,
-  plot_draws <span class="op">=</span> <span class="cn">FALSE</span>,
-  alpha <span class="op">=</span> <span class="fl">0.2</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dreamer_plot_prior</span><span class="op">(</span></span>
+<span>  n_samples <span class="op">=</span> <span class="fl">10000</span>,</span>
+<span>  probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>,</span>
+<span>  <span class="va">doses</span>,</span>
+<span>  n_chains <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  times <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  plot_draws <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  alpha <span class="op">=</span> <span class="fl">0.2</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -85,90 +85,107 @@ help the user choose appropriate priors.</p>
     <dl><dt>n_samples</dt>
 <dd><p>the number of MCMC samples per MCMC chain used to generate
 the plot.</p></dd>
+
+
 <dt>probs</dt>
 <dd><p>A vector of length 2 indicating the lower and upper percentiles
 to plot.  Not applicable when <code>plot_draws = TRUE</code>.</p></dd>
+
+
 <dt>doses</dt>
 <dd><p>a vector of doses at which to evaluate and interpolate
 between.</p></dd>
+
+
 <dt>n_chains</dt>
 <dd><p>the number of MCMC chains.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>model objects.  See <code><a href="model.html">model</a></code> and
 examples below.</p></dd>
+
+
 <dt>times</dt>
 <dd><p>a vector of times at which to plot the prior.</p></dd>
+
+
 <dt>plot_draws</dt>
 <dd><p>if <code>TRUE</code>, the individual draws from the prior are plotted.
 If <code>FALSE</code>, only the prior mean and quantiles are drawn.</p></dd>
+
+
 <dt>alpha</dt>
 <dd><p>the transparency setting for the prior draws in (0, 1].
 Only applies if <code>plot_draws = TRUE</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>The ggplot object.</p>
+    
+
+<p>The ggplot object.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Plot prior for one model</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">8111</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">dreamer_plot_prior</span><span class="op">(</span></span>
-<span class="r-in"> doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2.5</span>, <span class="fl">5</span><span class="op">)</span>,</span>
-<span class="r-in"> mod_quad_binary <span class="op">=</span> <span class="fu"><a href="model.html">model_quad_binary</a></span><span class="op">(</span></span>
-<span class="r-in">   mu_b1 <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span>,</span>
-<span class="r-in">   sigma_b1 <span class="op">=</span> <span class="fl">.2</span>,</span>
-<span class="r-in">   mu_b2 <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span>,</span>
-<span class="r-in">   sigma_b2 <span class="op">=</span> <span class="fl">.2</span>,</span>
-<span class="r-in">   mu_b3 <span class="op">=</span> <span class="fl">.5</span>,</span>
-<span class="r-in">   sigma_b3 <span class="op">=</span> <span class="fl">.1</span>,</span>
-<span class="r-in">   link <span class="op">=</span> <span class="st">"logit"</span>,</span>
-<span class="r-in">   w_prior <span class="op">=</span> <span class="fl">1</span></span>
-<span class="r-in"> <span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Plot prior for one model</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">8111</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">dreamer_plot_prior</span><span class="op">(</span></span></span>
+<span class="r-in"><span> doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2.5</span>, <span class="fl">5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> mod_quad_binary <span class="op">=</span> <span class="fu"><a href="model.html">model_quad_binary</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>   mu_b1 <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span>,</span></span>
+<span class="r-in"><span>   sigma_b1 <span class="op">=</span> <span class="fl">.2</span>,</span></span>
+<span class="r-in"><span>   mu_b2 <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span>,</span></span>
+<span class="r-in"><span>   sigma_b2 <span class="op">=</span> <span class="fl">.2</span>,</span></span>
+<span class="r-in"><span>   mu_b3 <span class="op">=</span> <span class="fl">.5</span>,</span></span>
+<span class="r-in"><span>   sigma_b3 <span class="op">=</span> <span class="fl">.1</span>,</span></span>
+<span class="r-in"><span>   link <span class="op">=</span> <span class="st">"logit"</span>,</span></span>
+<span class="r-in"><span>   w_prior <span class="op">=</span> <span class="fl">1</span></span></span>
+<span class="r-in"><span> <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="dreamer_plot_prior-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># plot individual draws</span></span>
-<span class="r-in"><span class="fu">dreamer_plot_prior</span><span class="op">(</span></span>
-<span class="r-in"> doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">5</span>, length.out <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>,</span>
-<span class="r-in"> n_samples <span class="op">=</span> <span class="fl">100</span>,</span>
-<span class="r-in"> plot_draws <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in"> mod_quad_binary <span class="op">=</span> <span class="fu"><a href="model.html">model_quad_binary</a></span><span class="op">(</span></span>
-<span class="r-in">   mu_b1 <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span>,</span>
-<span class="r-in">   sigma_b1 <span class="op">=</span> <span class="fl">.2</span>,</span>
-<span class="r-in">   mu_b2 <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span>,</span>
-<span class="r-in">   sigma_b2 <span class="op">=</span> <span class="fl">.2</span>,</span>
-<span class="r-in">   mu_b3 <span class="op">=</span> <span class="fl">.5</span>,</span>
-<span class="r-in">   sigma_b3 <span class="op">=</span> <span class="fl">.1</span>,</span>
-<span class="r-in">   link <span class="op">=</span> <span class="st">"logit"</span>,</span>
-<span class="r-in">   w_prior <span class="op">=</span> <span class="fl">1</span></span>
-<span class="r-in"> <span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># plot individual draws</span></span></span>
+<span class="r-in"><span><span class="fu">dreamer_plot_prior</span><span class="op">(</span></span></span>
+<span class="r-in"><span> doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">5</span>, length.out <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> n_samples <span class="op">=</span> <span class="fl">100</span>,</span></span>
+<span class="r-in"><span> plot_draws <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span> mod_quad_binary <span class="op">=</span> <span class="fu"><a href="model.html">model_quad_binary</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>   mu_b1 <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span>,</span></span>
+<span class="r-in"><span>   sigma_b1 <span class="op">=</span> <span class="fl">.2</span>,</span></span>
+<span class="r-in"><span>   mu_b2 <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span>,</span></span>
+<span class="r-in"><span>   sigma_b2 <span class="op">=</span> <span class="fl">.2</span>,</span></span>
+<span class="r-in"><span>   mu_b3 <span class="op">=</span> <span class="fl">.5</span>,</span></span>
+<span class="r-in"><span>   sigma_b3 <span class="op">=</span> <span class="fl">.1</span>,</span></span>
+<span class="r-in"><span>   link <span class="op">=</span> <span class="st">"logit"</span>,</span></span>
+<span class="r-in"><span>   w_prior <span class="op">=</span> <span class="fl">1</span></span></span>
+<span class="r-in"><span> <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="dreamer_plot_prior-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># plot prior from mixture of models</span></span>
-<span class="r-in"><span class="fu">dreamer_plot_prior</span><span class="op">(</span></span>
-<span class="r-in"> doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2.5</span>, <span class="fl">5</span><span class="op">)</span>,</span>
-<span class="r-in"> mod_linear_binary <span class="op">=</span> <span class="fu"><a href="model.html">model_linear_binary</a></span><span class="op">(</span></span>
-<span class="r-in">   mu_b1 <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,</span>
-<span class="r-in">   sigma_b1 <span class="op">=</span> <span class="fl">.1</span>,</span>
-<span class="r-in">   mu_b2 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   sigma_b2 <span class="op">=</span> <span class="fl">.1</span>,</span>
-<span class="r-in">   link <span class="op">=</span> <span class="st">"logit"</span>,</span>
-<span class="r-in">   w_prior <span class="op">=</span> <span class="fl">.75</span></span>
-<span class="r-in"> <span class="op">)</span>,</span>
-<span class="r-in"> mod_quad_binary <span class="op">=</span> <span class="fu"><a href="model.html">model_quad_binary</a></span><span class="op">(</span></span>
-<span class="r-in">   mu_b1 <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span>,</span>
-<span class="r-in">   sigma_b1 <span class="op">=</span> <span class="fl">.2</span>,</span>
-<span class="r-in">   mu_b2 <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span>,</span>
-<span class="r-in">   sigma_b2 <span class="op">=</span> <span class="fl">.2</span>,</span>
-<span class="r-in">   mu_b3 <span class="op">=</span> <span class="fl">.5</span>,</span>
-<span class="r-in">   sigma_b3 <span class="op">=</span> <span class="fl">.1</span>,</span>
-<span class="r-in">   link <span class="op">=</span> <span class="st">"logit"</span>,</span>
-<span class="r-in">   w_prior <span class="op">=</span> <span class="fl">.25</span></span>
-<span class="r-in"> <span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># plot prior from mixture of models</span></span></span>
+<span class="r-in"><span><span class="fu">dreamer_plot_prior</span><span class="op">(</span></span></span>
+<span class="r-in"><span> doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2.5</span>, <span class="fl">5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> mod_linear_binary <span class="op">=</span> <span class="fu"><a href="model.html">model_linear_binary</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>   mu_b1 <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   sigma_b1 <span class="op">=</span> <span class="fl">.1</span>,</span></span>
+<span class="r-in"><span>   mu_b2 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   sigma_b2 <span class="op">=</span> <span class="fl">.1</span>,</span></span>
+<span class="r-in"><span>   link <span class="op">=</span> <span class="st">"logit"</span>,</span></span>
+<span class="r-in"><span>   w_prior <span class="op">=</span> <span class="fl">.75</span></span></span>
+<span class="r-in"><span> <span class="op">)</span>,</span></span>
+<span class="r-in"><span> mod_quad_binary <span class="op">=</span> <span class="fu"><a href="model.html">model_quad_binary</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>   mu_b1 <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span>,</span></span>
+<span class="r-in"><span>   sigma_b1 <span class="op">=</span> <span class="fl">.2</span>,</span></span>
+<span class="r-in"><span>   mu_b2 <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span>,</span></span>
+<span class="r-in"><span>   sigma_b2 <span class="op">=</span> <span class="fl">.2</span>,</span></span>
+<span class="r-in"><span>   mu_b3 <span class="op">=</span> <span class="fl">.5</span>,</span></span>
+<span class="r-in"><span>   sigma_b3 <span class="op">=</span> <span class="fl">.1</span>,</span></span>
+<span class="r-in"><span>   link <span class="op">=</span> <span class="st">"logit"</span>,</span></span>
+<span class="r-in"><span>   w_prior <span class="op">=</span> <span class="fl">.25</span></span></span>
+<span class="r-in"><span> <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="dreamer_plot_prior-3.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -184,7 +201,7 @@ Only applies if <code>plot_draws = TRUE</code>.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

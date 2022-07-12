@@ -103,28 +103,28 @@
 </h2>
 <p>We can easily see the possible models to generate data from by typing <code><a href="../reference/dreamer_data.html">?dreamer_data</a></code> in the console. We will start by generating data from a quadratic model.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rich-payne/dreamer" class="external-link">dreamer</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">888</span><span class="op">)</span>
-<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dreamer_data.html">dreamer_data_quad</a></span><span class="op">(</span>
-  n_cohorts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span>, <span class="co"># number of subjects in each cohort</span>
-  doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">.5</span>, <span class="fl">1</span>, <span class="fl">1.5</span>, <span class="fl">2</span><span class="op">)</span>, <span class="co"># dose administered to each cohort</span>
-  b1 <span class="op">=</span> <span class="fl">5</span>, <span class="co"># intercept</span>
-  b2 <span class="op">=</span> <span class="fl">5</span>,
-  b3 <span class="op">=</span> <span class="op">-</span> <span class="fl">2</span>,
-  sigma <span class="op">=</span> <span class="fl">2</span> <span class="co"># standard deviation</span>
-<span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##   cohort dose subject response</span>
-<span class="co">## 1      1    0       1 1.097313</span>
-<span class="co">## 2      1    0       2 1.911268</span>
-<span class="co">## 3      1    0       3 6.459665</span>
-<span class="co">## 4      1    0       4 4.444836</span>
-<span class="co">## 5      1    0       5 1.687431</span>
-<span class="co">## 6      1    0       6 4.497953</span></code></pre>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rich-payne/dreamer" class="external-link">dreamer</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">888</span><span class="op">)</span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dreamer_data.html">dreamer_data_quad</a></span><span class="op">(</span></span>
+<span>  n_cohorts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span>, <span class="co"># number of subjects in each cohort</span></span>
+<span>  doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">.5</span>, <span class="fl">1</span>, <span class="fl">1.5</span>, <span class="fl">2</span><span class="op">)</span>, <span class="co"># dose administered to each cohort</span></span>
+<span>  b1 <span class="op">=</span> <span class="fl">5</span>, <span class="co"># intercept</span></span>
+<span>  b2 <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  b3 <span class="op">=</span> <span class="op">-</span> <span class="fl">2</span>,</span>
+<span>  sigma <span class="op">=</span> <span class="fl">2</span> <span class="co"># standard deviation</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   cohort dose subject response</span></span>
+<span><span class="co">## 1      1    0       1 1.097313</span></span>
+<span><span class="co">## 2      1    0       2 1.911268</span></span>
+<span><span class="co">## 3      1    0       3 6.459665</span></span>
+<span><span class="co">## 4      1    0       4 4.444836</span></span>
+<span><span class="co">## 5      1    0       5 1.687431</span></span>
+<span><span class="co">## 6      1    0       6 4.497953</span></span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">dose</span>, <span class="va">response</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">dose</span>, <span class="va">response</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dreamer_files/figure-html/unnamed-chunk-2-1.png" width="576"></p>
 </div>
 <div class="section level2">
@@ -133,101 +133,101 @@
 <p>Now we can use a Bayesian model averaging technique to analyze the data. We will use a linear and an EMAX model as candidate models, each with prior probability 1 / 2. There are quite a number of candidate dose-response models in dreamer, including linear, quadratic, log-linear, log-quadratic, EMAX, and exponential.</p>
 <p>Hyperparameters for each model are set by using the <code>model_XXX()</code> functions. Type <code><a href="../reference/model.html">?model</a></code> for a description of the model constructors and the models each of them fit.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Bayesian model averaging</span>
-<span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dreamer_mcmc.html">dreamer_mcmc</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="va">data</span>,
-  n_adapt <span class="op">=</span> <span class="fl">1e3</span>,
-  n_burn <span class="op">=</span> <span class="fl">1e3</span>,
-  n_iter <span class="op">=</span> <span class="fl">1e4</span>,
-  n_chains <span class="op">=</span> <span class="fl">2</span>,
-  silent <span class="op">=</span> <span class="cn">TRUE</span>,
-  <span class="co"># the argument name "mod_quad" is arbitrary and is chosen by the user</span>
-  mod_quad <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_quad</a></span><span class="op">(</span>
-    mu_b1 <span class="op">=</span> <span class="fl">0</span>,
-    sigma_b1 <span class="op">=</span> <span class="fl">10</span>,
-    mu_b2 <span class="op">=</span> <span class="fl">0</span>,
-    sigma_b2 <span class="op">=</span> <span class="fl">10</span>,
-    mu_b3 <span class="op">=</span> <span class="fl">0</span>,
-    sigma_b3 <span class="op">=</span> <span class="fl">10</span>,
-    shape <span class="op">=</span> <span class="fl">1</span>,
-    rate <span class="op">=</span> <span class="fl">.001</span>,
-    w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span>
-  <span class="op">)</span>,
-  <span class="co"># the argument name "mod_emax" is arbitrary and is chosen by the user</span>
-  mod_emax <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_emax</a></span><span class="op">(</span>
-    mu_b1 <span class="op">=</span> <span class="fl">0</span>,
-    sigma_b1 <span class="op">=</span> <span class="fl">10</span>,
-    mu_b2 <span class="op">=</span> <span class="fl">0</span>,
-    sigma_b2 <span class="op">=</span> <span class="fl">10</span>,
-    mu_b3 <span class="op">=</span> <span class="fl">0</span>,
-    sigma_b3 <span class="op">=</span> <span class="fl">2</span>,
-    mu_b4 <span class="op">=</span> <span class="fl">1</span>,
-    sigma_b4 <span class="op">=</span> <span class="fl">5</span>,
-    shape <span class="op">=</span> <span class="fl">1</span>,
-    rate <span class="op">=</span> <span class="fl">.001</span>,
-    w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span>
-  <span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Bayesian model averaging</span></span>
+<span><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dreamer_mcmc.html">dreamer_mcmc</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">data</span>,</span>
+<span>  n_adapt <span class="op">=</span> <span class="fl">1e3</span>,</span>
+<span>  n_burn <span class="op">=</span> <span class="fl">1e3</span>,</span>
+<span>  n_iter <span class="op">=</span> <span class="fl">1e4</span>,</span>
+<span>  n_chains <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  silent <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="co"># the argument name "mod_quad" is arbitrary and is chosen by the user</span></span>
+<span>  mod_quad <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_quad</a></span><span class="op">(</span></span>
+<span>    mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>    sigma_b1 <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>    mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>    sigma_b2 <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>    mu_b3 <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>    sigma_b3 <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    rate <span class="op">=</span> <span class="fl">.001</span>,</span>
+<span>    w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  <span class="co"># the argument name "mod_emax" is arbitrary and is chosen by the user</span></span>
+<span>  mod_emax <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_emax</a></span><span class="op">(</span></span>
+<span>    mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>    sigma_b1 <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>    mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>    sigma_b2 <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>    mu_b3 <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>    sigma_b3 <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>    mu_b4 <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    sigma_b4 <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    rate <span class="op">=</span> <span class="fl">.001</span>,</span>
+<span>    w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="model-output">Model Output<a class="anchor" aria-label="anchor" href="#model-output"></a>
 </h3>
 <p>The output is a list of the sorted unique doses, unique times (for longitudinal models), the prior and posterior weights for each model, and MCMC output from each individual model.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">output</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] "doses"    "times"    "w_prior"  "w_post"   "mod_quad" "mod_emax"</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">output</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "doses"    "times"    "w_prior"  "w_post"   "mod_quad" "mod_emax"</span></span></code></pre>
 <p>Output can be easily summarized. The <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> function provides posterior estimates of parameters, Gelman diagnostics, and effective sample sizes for each model and parameter.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">output</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## $model_weights</span>
-<span class="co">## <span style="color: #949494;"># A tibble: 2 × 3</span></span>
-<span class="co">##   model    posterior_weight prior_weight</span>
-<span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
-<span class="co">## <span style="color: #BCBCBC;">1</span> mod_quad 61.6%            50.0%       </span>
-<span class="co">## <span style="color: #BCBCBC;">2</span> mod_emax 38.4%            50.0%       </span>
-<span class="co">## </span>
-<span class="co">## $summary</span>
-<span class="co">## <span style="color: #949494;"># A tibble: 9 × 14</span></span>
-<span class="co">##   model    param  mean    sd      se   se_ts  `2.5%` `25%` `50%` `75%` `97.5%`</span>
-<span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">## <span style="color: #BCBCBC;">1</span> mod_quad b1     4.76 0.441 0.003<span style="text-decoration: underline;">12</span> 0.003<span style="text-decoration: underline;">12</span>  3.89    4.47  4.76  5.06    5.62</span>
-<span class="co">## <span style="color: #BCBCBC;">2</span> mod_quad b2     5.53 1.05  0.007<span style="text-decoration: underline;">39</span> 0.007<span style="text-decoration: underline;">45</span>  3.47    4.83  5.54  6.24    7.55</span>
-<span class="co">## <span style="color: #BCBCBC;">3</span> mod_quad b3    -<span style="color: #BB0000;">2.25</span> 0.503 0.003<span style="text-decoration: underline;">56</span> 0.003<span style="text-decoration: underline;">58</span> -<span style="color: #BB0000;">3.23</span>   -<span style="color: #BB0000;">2.59</span> -<span style="color: #BB0000;">2.25</span> -<span style="color: #BB0000;">1.91</span>   -<span style="color: #BB0000;">1.26</span></span>
-<span class="co">## <span style="color: #BCBCBC;">4</span> mod_quad sigma  2.11 0.152 0.001<span style="text-decoration: underline;">07</span> 0.001<span style="text-decoration: underline;">09</span>  1.84    2.00  2.10  2.20    2.43</span>
-<span class="co">## <span style="color: #BCBCBC;">5</span> mod_emax b1     4.52 0.475 0.003<span style="text-decoration: underline;">36</span> 0.003<span style="text-decoration: underline;">47</span>  3.60    4.20  4.51  4.84    5.46</span>
-<span class="co">## <span style="color: #BCBCBC;">6</span> mod_emax b2     8.02 1.13  0.007<span style="text-decoration: underline;">99</span> 0.068<span style="text-decoration: underline;">8</span>   7.10    7.43  7.63  7.90   11.4 </span>
-<span class="co">## <span style="color: #BCBCBC;">7</span> mod_emax b3    -<span style="color: #BB0000;">1.98</span> 1.46  0.010<span style="text-decoration: underline;">3</span>  0.055<span style="text-decoration: underline;">6</span>  -<span style="color: #BB0000;">4.79</span>   -<span style="color: #BB0000;">2.79</span> -<span style="color: #BB0000;">1.94</span> -<span style="color: #BB0000;">1.29</span>    1.77</span>
-<span class="co">## <span style="color: #BCBCBC;">8</span> mod_emax b4     4.39 3.43  0.024<span style="text-decoration: underline;">3</span>  0.110    0.037<span style="text-decoration: underline;">0</span>  1.60  3.90  6.52   12.3 </span>
-<span class="co">## <span style="color: #BCBCBC;">9</span> mod_emax sigma  2.10 0.150 0.001<span style="text-decoration: underline;">06</span> 0.001<span style="text-decoration: underline;">07</span>  1.83    1.99  2.09  2.19    2.41</span>
-<span class="co">## <span style="color: #949494;"># … with 3 more variables: gelman_point &lt;dbl&gt;, gelman_upper &lt;dbl&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   effective_size &lt;dbl&gt;</span></span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">output</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## $model_weights</span></span>
+<span><span class="co">## <span style="color: #949494;"># A tibble: 2 × 3</span></span></span>
+<span><span class="co">##   model    posterior_weight prior_weight</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span> mod_quad 61.6%            50.0%       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2</span> mod_emax 38.4%            50.0%       </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $summary</span></span>
+<span><span class="co">## <span style="color: #949494;"># A tibble: 9 × 14</span></span></span>
+<span><span class="co">##   model    param  mean    sd      se   se_ts  `2.5%` `25%` `50%` `75%` `97.5%`</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span> mod_quad b1     4.76 0.441 0.003<span style="text-decoration: underline;">12</span> 0.003<span style="text-decoration: underline;">12</span>  3.89    4.47  4.76  5.06    5.62</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2</span> mod_quad b2     5.53 1.05  0.007<span style="text-decoration: underline;">39</span> 0.007<span style="text-decoration: underline;">45</span>  3.47    4.83  5.54  6.24    7.55</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">3</span> mod_quad b3    -<span style="color: #BB0000;">2.25</span> 0.503 0.003<span style="text-decoration: underline;">56</span> 0.003<span style="text-decoration: underline;">58</span> -<span style="color: #BB0000;">3.23</span>   -<span style="color: #BB0000;">2.59</span> -<span style="color: #BB0000;">2.25</span> -<span style="color: #BB0000;">1.91</span>   -<span style="color: #BB0000;">1.26</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">4</span> mod_quad sigma  2.11 0.152 0.001<span style="text-decoration: underline;">07</span> 0.001<span style="text-decoration: underline;">09</span>  1.84    2.00  2.10  2.20    2.43</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">5</span> mod_emax b1     4.52 0.475 0.003<span style="text-decoration: underline;">36</span> 0.003<span style="text-decoration: underline;">47</span>  3.60    4.20  4.51  4.84    5.46</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">6</span> mod_emax b2     8.02 1.13  0.007<span style="text-decoration: underline;">99</span> 0.068<span style="text-decoration: underline;">8</span>   7.10    7.43  7.63  7.90   11.4 </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">7</span> mod_emax b3    -<span style="color: #BB0000;">1.98</span> 1.46  0.010<span style="text-decoration: underline;">3</span>  0.055<span style="text-decoration: underline;">6</span>  -<span style="color: #BB0000;">4.79</span>   -<span style="color: #BB0000;">2.79</span> -<span style="color: #BB0000;">1.94</span> -<span style="color: #BB0000;">1.29</span>    1.77</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">8</span> mod_emax b4     4.39 3.43  0.024<span style="text-decoration: underline;">3</span>  0.110    0.037<span style="text-decoration: underline;">0</span>  1.60  3.90  6.52   12.3 </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">9</span> mod_emax sigma  2.10 0.150 0.001<span style="text-decoration: underline;">06</span> 0.001<span style="text-decoration: underline;">07</span>  1.83    1.99  2.09  2.19    2.41</span></span>
+<span><span class="co">## <span style="color: #949494;"># … with 3 more variables: gelman_point &lt;dbl&gt;, gelman_upper &lt;dbl&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   effective_size &lt;dbl&gt;</span></span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="posterior-credible-intervals">Posterior Credible Intervals<a class="anchor" aria-label="anchor" href="#posterior-credible-intervals"></a>
 </h3>
 <p>It is easy to find posterior credible intervals of the mean response for doses of interest:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/posterior.html">posterior</a></span><span class="op">(</span><span class="va">output</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## $stats</span>
-<span class="co">## <span style="color: #949494;"># A tibble: 5 × 4</span></span>
-<span class="co">##    dose  mean `2.50%` `97.50%`</span>
-<span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">## <span style="color: #BCBCBC;">1</span>   0    4.67    3.74     5.57</span>
-<span class="co">## <span style="color: #BCBCBC;">2</span>   0.5  7.13    6.45     7.82</span>
-<span class="co">## <span style="color: #BCBCBC;">3</span>   1    7.84    7.15     8.61</span>
-<span class="co">## <span style="color: #BCBCBC;">4</span>   1.5  7.83    7.18     8.49</span>
-<span class="co">## <span style="color: #BCBCBC;">5</span>   2    7.11    6.05     7.97</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/posterior.html">posterior</a></span><span class="op">(</span><span class="va">output</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## $stats</span></span>
+<span><span class="co">## <span style="color: #949494;"># A tibble: 5 × 4</span></span></span>
+<span><span class="co">##    dose  mean `2.50%` `97.50%`</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span>   0    4.67    3.74     5.57</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2</span>   0.5  7.13    6.45     7.82</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">3</span>   1    7.84    7.15     8.61</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">4</span>   1.5  7.83    7.18     8.49</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">5</span>   2    7.11    6.05     7.97</span></span></code></pre>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># posterior Pr(effect of dose - effect of reference dose)</span>
-<span class="fu"><a href="../reference/posterior.html">posterior</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">output</span>, reference_dose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> </code></pre></div>
-<pre><code><span class="co">## $stats</span>
-<span class="co">## <span style="color: #949494;"># A tibble: 5 × 5</span></span>
-<span class="co">##    dose reference_dose  mean `2.50%` `97.50%`</span>
-<span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">## <span style="color: #BCBCBC;">1</span>   0                0  0       0        0   </span>
-<span class="co">## <span style="color: #BCBCBC;">2</span>   0.5              0  2.47    1.47     3.72</span>
-<span class="co">## <span style="color: #BCBCBC;">3</span>   1                0  3.18    2.06     4.32</span>
-<span class="co">## <span style="color: #BCBCBC;">4</span>   1.5              0  3.16    2.05     4.29</span>
-<span class="co">## <span style="color: #BCBCBC;">5</span>   2                0  2.44    1.06     3.87</span></code></pre>
+<code class="sourceCode R"><span><span class="co"># posterior Pr(effect of dose - effect of reference dose)</span></span>
+<span><span class="fu"><a href="../reference/posterior.html">posterior</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">output</span>, reference_dose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## $stats</span></span>
+<span><span class="co">## <span style="color: #949494;"># A tibble: 5 × 5</span></span></span>
+<span><span class="co">##    dose reference_dose  mean `2.50%` `97.50%`</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span>   0                0  0       0        0   </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2</span>   0.5              0  2.47    1.47     3.72</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">3</span>   1                0  3.18    2.06     4.32</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">4</span>   1.5              0  3.16    2.05     4.29</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">5</span>   2                0  2.44    1.06     3.87</span></span></code></pre>
 </div>
 </div>
 <div class="section level2">
@@ -235,38 +235,38 @@
 </h2>
 <p>Plot the Bayesian model averaging posterior over the dose range:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dreamer_files/figure-html/unnamed-chunk-7-1.png" width="576"></p>
 <p>One can also plot the observed means on top of the plot:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output</span>, data <span class="op">=</span> <span class="va">data</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output</span>, data <span class="op">=</span> <span class="va">data</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dreamer_files/figure-html/unnamed-chunk-8-1.png" width="576"></p>
 <p>One can also look the dose response relative to a specific dose:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output</span>, reference_dose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="co"># adjust relative to dose = 0</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output</span>, reference_dose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="co"># adjust relative to dose = 0</span></span></code></pre></div>
 <p><img src="dreamer_files/figure-html/unnamed-chunk-9-1.png" width="576"></p>
 <p>The predictive credible intervals for the mean with <code>predictive</code> number of observations can be added easily:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output</span>, data <span class="op">=</span> <span class="va">data</span>, predictive <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output</span>, data <span class="op">=</span> <span class="va">data</span>, predictive <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dreamer_files/figure-html/unnamed-chunk-10-1.png" width="576"></p>
 <p>One could also look at the predictive distribution of the difference between two sample means from different doses:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output</span>, reference_dose <span class="op">=</span> <span class="fl">0</span>, predictive <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output</span>, reference_dose <span class="op">=</span> <span class="fl">0</span>, predictive <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dreamer_files/figure-html/unnamed-chunk-11-1.png" width="576"></p>
 <p>One can also plot individual model fits, if desired. Here is the EMAX model’s posterior:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">mod_emax</span>, data <span class="op">=</span> <span class="va">data</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">mod_emax</span>, data <span class="op">=</span> <span class="va">data</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dreamer_files/figure-html/unnamed-chunk-12-1.png" width="576"></p>
 <p>Comparing all the model fits together is easy:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_comparison.html">plot_comparison</a></span><span class="op">(</span><span class="va">output</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_comparison.html">plot_comparison</a></span><span class="op">(</span><span class="va">output</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dreamer_files/figure-html/unnamed-chunk-13-1.png" width="576"></p>
 <p>If the plot is too crowded, you can select individual fits:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_comparison.html">plot_comparison</a></span><span class="op">(</span>
-  mod_emax <span class="op">=</span> <span class="va">output</span><span class="op">$</span><span class="va">mod_emax</span>,
-  mod_quad <span class="op">=</span> <span class="va">output</span><span class="op">$</span><span class="va">mod_quad</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_comparison.html">plot_comparison</a></span><span class="op">(</span></span>
+<span>  mod_emax <span class="op">=</span> <span class="va">output</span><span class="op">$</span><span class="va">mod_emax</span>,</span>
+<span>  mod_quad <span class="op">=</span> <span class="va">output</span><span class="op">$</span><span class="va">mod_quad</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="dreamer_files/figure-html/unnamed-chunk-14-1.png" width="576"></p>
 </div>
 <div class="section level2">
@@ -277,136 +277,136 @@
 </h3>
 <p>The posterior probability of meeting a certain effect of interest can be calculated, i.e., Pr(mean response &gt; EOI | data). One can specify custom doses and EOIs relative to another dose, or in absolute terms.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># absolute: pr(mean at dose 0.50 &gt; 1 | data)</span>
-<span class="fu"><a href="../reference/pr_eoi.html">pr_eoi</a></span><span class="op">(</span><span class="va">output</span>, eoi <span class="op">=</span> <span class="fl">1</span>, dose <span class="op">=</span> <span class="fl">0.50</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 1 × 3</span></span>
-<span class="co">##     eoi  dose  prob</span>
-<span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">## <span style="color: #BCBCBC;">1</span>     1   0.5     1</span></code></pre>
+<code class="sourceCode R"><span><span class="co"># absolute: pr(mean at dose 0.50 &gt; 1 | data)</span></span>
+<span><span class="fu"><a href="../reference/pr_eoi.html">pr_eoi</a></span><span class="op">(</span><span class="va">output</span>, eoi <span class="op">=</span> <span class="fl">1</span>, dose <span class="op">=</span> <span class="fl">0.50</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 3</span></span></span>
+<span><span class="co">##     eoi  dose  prob</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span>     1   0.5     1</span></span></code></pre>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># relative: pr( (mean at dose 0.50) - (mean at dose 0.25) &gt; 0.55 | data )</span>
-<span class="fu"><a href="../reference/pr_eoi.html">pr_eoi</a></span><span class="op">(</span><span class="va">output</span>, eoi <span class="op">=</span> <span class="fl">0.55</span>, dose <span class="op">=</span> <span class="fl">0.50</span>, reference_dose <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 1 × 4</span></span>
-<span class="co">##     eoi  dose reference_dose  prob</span>
-<span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">## <span style="color: #BCBCBC;">1</span>  0.55   0.5           0.25 0.720</span></code></pre>
+<code class="sourceCode R"><span><span class="co"># relative: pr( (mean at dose 0.50) - (mean at dose 0.25) &gt; 0.55 | data )</span></span>
+<span><span class="fu"><a href="../reference/pr_eoi.html">pr_eoi</a></span><span class="op">(</span><span class="va">output</span>, eoi <span class="op">=</span> <span class="fl">0.55</span>, dose <span class="op">=</span> <span class="fl">0.50</span>, reference_dose <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 4</span></span></span>
+<span><span class="co">##     eoi  dose reference_dose  prob</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span>  0.55   0.5           0.25 0.720</span></span></code></pre>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># vectorized</span>
-<span class="va">n_doses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">doses</span><span class="op">)</span>
-<span class="fu"><a href="../reference/pr_eoi.html">pr_eoi</a></span><span class="op">(</span>
-  <span class="va">output</span>,
-  eoi <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">.55</span>, <span class="va">n_doses</span><span class="op">)</span>,
-  dose <span class="op">=</span> <span class="va">output</span><span class="op">$</span><span class="va">doses</span>,
-  reference_dose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">n_doses</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 5 × 4</span></span>
-<span class="co">##     eoi  dose reference_dose  prob</span>
-<span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">## <span style="color: #BCBCBC;">1</span>  0.55   0                0 0    </span>
-<span class="co">## <span style="color: #BCBCBC;">2</span>  0.55   0.5              0 1.00 </span>
-<span class="co">## <span style="color: #BCBCBC;">3</span>  0.55   1                0 1    </span>
-<span class="co">## <span style="color: #BCBCBC;">4</span>  0.55   1.5              0 1    </span>
-<span class="co">## <span style="color: #BCBCBC;">5</span>  0.55   2                0 0.997</span></code></pre>
+<code class="sourceCode R"><span><span class="co"># vectorized</span></span>
+<span><span class="va">n_doses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">doses</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/pr_eoi.html">pr_eoi</a></span><span class="op">(</span></span>
+<span>  <span class="va">output</span>,</span>
+<span>  eoi <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">.55</span>, <span class="va">n_doses</span><span class="op">)</span>,</span>
+<span>  dose <span class="op">=</span> <span class="va">output</span><span class="op">$</span><span class="va">doses</span>,</span>
+<span>  reference_dose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">n_doses</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 5 × 4</span></span></span>
+<span><span class="co">##     eoi  dose reference_dose  prob</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span>  0.55   0                0 0    </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2</span>  0.55   0.5              0 1.00 </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">3</span>  0.55   1                0 1    </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">4</span>  0.55   1.5              0 1    </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">5</span>  0.55   2                0 0.997</span></span></code></pre>
 <p>Posterior probabilities of meeting the effect of interest can be calculated for individual models by applying the <code><a href="../reference/pr_eoi.html">pr_eoi()</a></code> function to a specific model’s output:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># from the quadratic model</span>
-<span class="fu"><a href="../reference/pr_eoi.html">pr_eoi</a></span><span class="op">(</span>
-  <span class="va">output</span><span class="op">$</span><span class="va">mod_quad</span>,
-  eoi <span class="op">=</span> <span class="fl">1.5</span>,
-  dose <span class="op">=</span> <span class="fl">.75</span>,
-  reference_dose <span class="op">=</span> <span class="fl">0</span>
-<span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 1 × 4</span></span>
-<span class="co">##     eoi  dose reference_dose  prob</span>
-<span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">## <span style="color: #BCBCBC;">1</span>   1.5  0.75              0 0.995</span></code></pre>
+<code class="sourceCode R"><span><span class="co"># from the quadratic model</span></span>
+<span><span class="fu"><a href="../reference/pr_eoi.html">pr_eoi</a></span><span class="op">(</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">mod_quad</span>,</span>
+<span>  eoi <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>  dose <span class="op">=</span> <span class="fl">.75</span>,</span>
+<span>  reference_dose <span class="op">=</span> <span class="fl">0</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 4</span></span></span>
+<span><span class="co">##     eoi  dose reference_dose  prob</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span>   1.5  0.75              0 0.995</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="probability-of-minimum-efficacious-dose-med">Probability of Minimum Efficacious Dose (MED)<a class="anchor" aria-label="anchor" href="#probability-of-minimum-efficacious-dose-med"></a>
 </h3>
 <p>Calculating the probability each dose is the minimum efficacious dose (as defined as the smallest dose which is above a certain clinically significant difference (CSD)) in the set of doses is performed with the <code><a href="../reference/pr_med.html">pr_med()</a></code> function:</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/pr_med.html">pr_med</a></span><span class="op">(</span><span class="va">output</span>, csd <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 5 × 2</span></span>
-<span class="co">##    dose    prob</span>
-<span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">## <span style="color: #BCBCBC;">1</span>   0   0      </span>
-<span class="co">## <span style="color: #BCBCBC;">2</span>   0.5 0.005<span style="text-decoration: underline;">1</span> </span>
-<span class="co">## <span style="color: #BCBCBC;">3</span>   1   0.347  </span>
-<span class="co">## <span style="color: #BCBCBC;">4</span>   1.5 0.050<span style="text-decoration: underline;">6</span> </span>
-<span class="co">## <span style="color: #BCBCBC;">5</span>   2   0.005<span style="text-decoration: underline;">25</span></span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/pr_med.html">pr_med</a></span><span class="op">(</span><span class="va">output</span>, csd <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 5 × 2</span></span></span>
+<span><span class="co">##    dose    prob</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span>   0   0      </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2</span>   0.5 0.005<span style="text-decoration: underline;">1</span> </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">3</span>   1   0.347  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">4</span>   1.5 0.050<span style="text-decoration: underline;">6</span> </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">5</span>   2   0.005<span style="text-decoration: underline;">25</span></span></span></code></pre>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># placebo adjusted</span>
-<span class="fu"><a href="../reference/pr_med.html">pr_med</a></span><span class="op">(</span>
-  <span class="va">output</span>,
-  csd <span class="op">=</span> <span class="fl">3</span>,
-  reference_dose <span class="op">=</span> <span class="fl">0</span>
-<span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 5 × 3</span></span>
-<span class="co">##    dose reference_dose    prob</span>
-<span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">## <span style="color: #BCBCBC;">1</span>   0                0 0      </span>
-<span class="co">## <span style="color: #BCBCBC;">2</span>   0.5              0 0.175  </span>
-<span class="co">## <span style="color: #BCBCBC;">3</span>   1                0 0.445  </span>
-<span class="co">## <span style="color: #BCBCBC;">4</span>   1.5              0 0.029<span style="text-decoration: underline;">6</span> </span>
-<span class="co">## <span style="color: #BCBCBC;">5</span>   2                0 0.004<span style="text-decoration: underline;">35</span></span></code></pre>
+<code class="sourceCode R"><span><span class="co"># placebo adjusted</span></span>
+<span><span class="fu"><a href="../reference/pr_med.html">pr_med</a></span><span class="op">(</span></span>
+<span>  <span class="va">output</span>,</span>
+<span>  csd <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  reference_dose <span class="op">=</span> <span class="fl">0</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 5 × 3</span></span></span>
+<span><span class="co">##    dose reference_dose    prob</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span>   0                0 0      </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2</span>   0.5              0 0.175  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">3</span>   1                0 0.445  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">4</span>   1.5              0 0.029<span style="text-decoration: underline;">6</span> </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">5</span>   2                0 0.004<span style="text-decoration: underline;">35</span></span></span></code></pre>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># relative to placebo grp (dose = 0) for just the EMAX model</span>
-<span class="fu"><a href="../reference/pr_med.html">pr_med</a></span><span class="op">(</span>
-  <span class="va">output</span><span class="op">$</span><span class="va">mod_emax</span>,
-  csd <span class="op">=</span> <span class="fl">3</span>,
-  reference_dose <span class="op">=</span> <span class="fl">0</span>
-<span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 5 × 3</span></span>
-<span class="co">##    dose reference_dose   prob</span>
-<span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">## <span style="color: #BCBCBC;">1</span>   0                0 0     </span>
-<span class="co">## <span style="color: #BCBCBC;">2</span>   0.5              0 0.423 </span>
-<span class="co">## <span style="color: #BCBCBC;">3</span>   1                0 0.084<span style="text-decoration: underline;">9</span></span>
-<span class="co">## <span style="color: #BCBCBC;">4</span>   1.5              0 0.021<span style="text-decoration: underline;">7</span></span>
-<span class="co">## <span style="color: #BCBCBC;">5</span>   2                0 0.012<span style="text-decoration: underline;">2</span></span></code></pre>
+<code class="sourceCode R"><span><span class="co"># relative to placebo grp (dose = 0) for just the EMAX model</span></span>
+<span><span class="fu"><a href="../reference/pr_med.html">pr_med</a></span><span class="op">(</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">mod_emax</span>,</span>
+<span>  csd <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  reference_dose <span class="op">=</span> <span class="fl">0</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 5 × 3</span></span></span>
+<span><span class="co">##    dose reference_dose   prob</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span>   0                0 0     </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2</span>   0.5              0 0.423 </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">3</span>   1                0 0.084<span style="text-decoration: underline;">9</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">4</span>   1.5              0 0.021<span style="text-decoration: underline;">7</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">5</span>   2                0 0.012<span style="text-decoration: underline;">2</span></span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="probability-of-minimum-dose-with-at-least-x-efficacy">Probability of Minimum Dose with at Least X% Efficacy<a class="anchor" aria-label="anchor" href="#probability-of-minimum-dose-with-at-least-x-efficacy"></a>
 </h3>
 <p>Calculating the posterior probability each of the specified doses is the smallest dose with at least X% efficacy can be done as follows:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># looking for smallest dose with 95% of the maximum efficacy</span>
-<span class="fu"><a href="../reference/pr_medx.html">pr_medx</a></span><span class="op">(</span><span class="va">output</span>, ed <span class="op">=</span> <span class="fl">95</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 5 × 3</span></span>
-<span class="co">##      ed dose     prob</span>
-<span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">## <span style="color: #BCBCBC;">1</span>    95 0     0      </span>
-<span class="co">## <span style="color: #BCBCBC;">2</span>    95 0.5   0.322  </span>
-<span class="co">## <span style="color: #BCBCBC;">3</span>    95 1     0.665  </span>
-<span class="co">## <span style="color: #BCBCBC;">4</span>    95 1.5   0.013<span style="text-decoration: underline;">8</span> </span>
-<span class="co">## <span style="color: #BCBCBC;">5</span>    95 2     0.000<span style="text-decoration: underline;">15</span></span></code></pre>
+<code class="sourceCode R"><span><span class="co"># looking for smallest dose with 95% of the maximum efficacy</span></span>
+<span><span class="fu"><a href="../reference/pr_medx.html">pr_medx</a></span><span class="op">(</span><span class="va">output</span>, ed <span class="op">=</span> <span class="fl">95</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 5 × 3</span></span></span>
+<span><span class="co">##      ed dose     prob</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span>    95 0     0      </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2</span>    95 0.5   0.322  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">3</span>    95 1     0.665  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">4</span>    95 1.5   0.013<span style="text-decoration: underline;">8</span> </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">5</span>    95 2     0.000<span style="text-decoration: underline;">15</span></span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="posterior-probability-of-medx">Posterior Probability of MEDX<a class="anchor" aria-label="anchor" href="#posterior-probability-of-medx"></a>
 </h3>
 <p>These functions obtain posterior quantiles of the minimum efficacious dose which has X% of maximum efficacy.</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/post_medx.html">post_medx</a></span><span class="op">(</span><span class="va">output</span>, ed <span class="op">=</span> <span class="fl">95</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## $stats</span>
-<span class="co">##   ed pr_edx_exists      mean       2.5%     97.5%</span>
-<span class="co">## 1 95             1 0.6075771 0.01855687 0.9584038</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/post_medx.html">post_medx</a></span><span class="op">(</span><span class="va">output</span>, ed <span class="op">=</span> <span class="fl">95</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## $stats</span></span>
+<span><span class="co">##   ed pr_edx_exists      mean       2.5%     97.5%</span></span>
+<span><span class="co">## 1 95             1 0.6075771 0.01855687 0.9584038</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="posterior-distribution-of-percentage-effect">Posterior Distribution of Percentage Effect<a class="anchor" aria-label="anchor" href="#posterior-distribution-of-percentage-effect"></a>
 </h3>
 <p>This function provides the posterior quantiles of a dose’s effective dose percent. This is calculated by calculating the dose’s response divided by the maximum response over the range for each iteration of the MCMC.</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/post_perc_effect.html">post_perc_effect</a></span><span class="op">(</span>
-  <span class="va">output</span>,
-  dose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.05</span>, <span class="fl">.5</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## $stats</span>
-<span class="co">## <span style="color: #949494;"># A tibble: 2 × 5</span></span>
-<span class="co">##    dose pr_perc_exists  mean `2.50%` `97.50%`</span>
-<span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">## <span style="color: #BCBCBC;">1</span>  0.05              1 0.660   0.505    0.995</span>
-<span class="co">## <span style="color: #BCBCBC;">2</span>  0.5               1 0.900   0.803    1.00</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/post_perc_effect.html">post_perc_effect</a></span><span class="op">(</span></span>
+<span>  <span class="va">output</span>,</span>
+<span>  dose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.05</span>, <span class="fl">.5</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## $stats</span></span>
+<span><span class="co">## <span style="color: #949494;"># A tibble: 2 × 5</span></span></span>
+<span><span class="co">##    dose pr_perc_exists  mean `2.50%` `97.50%`</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span>  0.05              1 0.660   0.505    0.995</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2</span>  0.5               1 0.900   0.803    1.00</span></span></code></pre>
 </div>
 </div>
 <div class="section level2">
@@ -414,140 +414,139 @@
 </h2>
 <p>Get diagnostics for each parameter:</p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/diagnostics.html">diagnostics</a></span><span class="op">(</span><span class="va">output</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 9 × 5</span></span>
-<span class="co">##   model    param gelman_point gelman_upper effective_size</span>
-<span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">## <span style="color: #BCBCBC;">1</span> mod_quad b1            1.00         1.00         <span style="text-decoration: underline;">20</span>000.</span>
-<span class="co">## <span style="color: #BCBCBC;">2</span> mod_quad b2            1.00         1.00         <span style="text-decoration: underline;">19</span>706.</span>
-<span class="co">## <span style="color: #BCBCBC;">3</span> mod_quad b3            1.00         1.00         <span style="text-decoration: underline;">19</span>685.</span>
-<span class="co">## <span style="color: #BCBCBC;">4</span> mod_quad sigma         1.00         1.00         <span style="text-decoration: underline;">19</span>343.</span>
-<span class="co">## <span style="color: #BCBCBC;">5</span> mod_emax b1            1.00         1.00         <span style="text-decoration: underline;">18</span>816.</span>
-<span class="co">## <span style="color: #BCBCBC;">6</span> mod_emax b2            1.02         1.05           267.</span>
-<span class="co">## <span style="color: #BCBCBC;">7</span> mod_emax b3            1.01         1.02           710.</span>
-<span class="co">## <span style="color: #BCBCBC;">8</span> mod_emax b4            1.00         1.01          <span style="text-decoration: underline;">1</span>010.</span>
-<span class="co">## <span style="color: #BCBCBC;">9</span> mod_emax sigma         1.00         1.00         <span style="text-decoration: underline;">19</span>754.</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/diagnostics.html">diagnostics</a></span><span class="op">(</span><span class="va">output</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 9 × 5</span></span></span>
+<span><span class="co">##   model    param gelman_point gelman_upper effective_size</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span> mod_quad b1            1.00         1.00         <span style="text-decoration: underline;">20</span>000.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2</span> mod_quad b2            1.00         1.00         <span style="text-decoration: underline;">19</span>706.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">3</span> mod_quad b3            1.00         1.00         <span style="text-decoration: underline;">19</span>685.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">4</span> mod_quad sigma         1.00         1.00         <span style="text-decoration: underline;">19</span>343.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">5</span> mod_emax b1            1.00         1.00         <span style="text-decoration: underline;">18</span>816.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">6</span> mod_emax b2            1.02         1.05           267.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">7</span> mod_emax b3            1.01         1.02           710.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">8</span> mod_emax b4            1.00         1.01          <span style="text-decoration: underline;">1</span>010.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">9</span> mod_emax sigma         1.00         1.00         <span style="text-decoration: underline;">19</span>754.</span></span></code></pre>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># single model</span>
-<span class="fu"><a href="../reference/diagnostics.html">diagnostics</a></span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">mod_emax</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 5 × 4</span></span>
-<span class="co">##   param gelman_point gelman_upper effective_size</span>
-<span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">## <span style="color: #BCBCBC;">1</span> b1            1.00         1.00         <span style="text-decoration: underline;">18</span>816.</span>
-<span class="co">## <span style="color: #BCBCBC;">2</span> b2            1.02         1.05           267.</span>
-<span class="co">## <span style="color: #BCBCBC;">3</span> b3            1.01         1.02           710.</span>
-<span class="co">## <span style="color: #BCBCBC;">4</span> b4            1.00         1.01          <span style="text-decoration: underline;">1</span>010.</span>
-<span class="co">## <span style="color: #BCBCBC;">5</span> sigma         1.00         1.00         <span style="text-decoration: underline;">19</span>754.</span></code></pre>
+<code class="sourceCode R"><span><span class="co"># single model</span></span>
+<span><span class="fu"><a href="../reference/diagnostics.html">diagnostics</a></span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">mod_emax</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 5 × 4</span></span></span>
+<span><span class="co">##   param gelman_point gelman_upper effective_size</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span> b1            1.00         1.00         <span style="text-decoration: underline;">18</span>816.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2</span> b2            1.02         1.05           267.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">3</span> b3            1.01         1.02           710.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">4</span> b4            1.00         1.01          <span style="text-decoration: underline;">1</span>010.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">5</span> sigma         1.00         1.00         <span style="text-decoration: underline;">19</span>754.</span></span></code></pre>
 <p>MCMC traceplots are easy to plot:</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># traceplot for all parameters for each model</span>
-<span class="co"># plot_trace(output)</span>
-
-<span class="co"># single model</span>
-<span class="fu"><a href="../reference/plot_trace.html">plot_trace</a></span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">mod_quad</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># single model</span></span>
+<span><span class="fu"><a href="../reference/plot_trace.html">plot_trace</a></span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">mod_quad</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dreamer_files/figure-html/unnamed-chunk-22-1.png" width="576"></p>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># traceplot for all parameters for each model using: plot_trace(output)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="visualizing-priors">Visualizing Priors<a class="anchor" aria-label="anchor" href="#visualizing-priors"></a>
 </h2>
 <p>To help users choose a prior, the <code><a href="../reference/dreamer_plot_prior.html">dreamer_plot_prior()</a></code> function allows the user to see what the prior actually looks like in context of the dose range for a particular model. This is particularly helpful for complex models, or binary models.</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/dreamer_plot_prior.html">dreamer_plot_prior</a></span><span class="op">(</span>
-  doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2.5</span>, <span class="fl">5</span><span class="op">)</span>,
-  mod_linear_binary <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_linear_binary</a></span><span class="op">(</span>
-    mu_b1 <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,
-    sigma_b1 <span class="op">=</span> <span class="fl">.1</span>,
-    mu_b2 <span class="op">=</span> <span class="fl">1</span>,
-    sigma_b2 <span class="op">=</span> <span class="fl">.1</span>,
-    link <span class="op">=</span> <span class="st">"logit"</span>,
-    w_prior <span class="op">=</span> <span class="fl">1</span>
-  <span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/dreamer_plot_prior.html">dreamer_plot_prior</a></span><span class="op">(</span></span>
+<span>  doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2.5</span>, <span class="fl">5</span><span class="op">)</span>,</span>
+<span>  mod_linear_binary <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_linear_binary</a></span><span class="op">(</span></span>
+<span>    mu_b1 <span class="op">=</span> <span class="op">-</span> <span class="fl">1</span>,</span>
+<span>    sigma_b1 <span class="op">=</span> <span class="fl">.1</span>,</span>
+<span>    mu_b2 <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    sigma_b2 <span class="op">=</span> <span class="fl">.1</span>,</span>
+<span>    link <span class="op">=</span> <span class="st">"logit"</span>,</span>
+<span>    w_prior <span class="op">=</span> <span class="fl">1</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="dreamer_files/figure-html/unnamed-chunk-23-1.png" width="576"></p>
 <p>Individual prior draws can also be plotted:</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/dreamer_plot_prior.html">dreamer_plot_prior</a></span><span class="op">(</span>
-  doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">5</span>, length.out <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>,
-  n_samples <span class="op">=</span> <span class="fl">100</span>,
-  plot_draws <span class="op">=</span> <span class="cn">TRUE</span>,
-  mod_quad_binary <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_quad_binary</a></span><span class="op">(</span>
-    mu_b1 <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span>,
-    sigma_b1 <span class="op">=</span> <span class="fl">.2</span>,
-    mu_b2 <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span>,
-    sigma_b2 <span class="op">=</span> <span class="fl">.2</span>,
-    mu_b3 <span class="op">=</span> <span class="fl">.5</span>,
-    sigma_b3 <span class="op">=</span> <span class="fl">.1</span>,
-    link <span class="op">=</span> <span class="st">"logit"</span>,
-    w_prior <span class="op">=</span> <span class="fl">1</span>
-  <span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/dreamer_plot_prior.html">dreamer_plot_prior</a></span><span class="op">(</span></span>
+<span>  doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">5</span>, length.out <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>,</span>
+<span>  n_samples <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>  plot_draws <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  mod_quad_binary <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_quad_binary</a></span><span class="op">(</span></span>
+<span>    mu_b1 <span class="op">=</span> <span class="op">-</span> <span class="fl">.5</span>,</span>
+<span>    sigma_b1 <span class="op">=</span> <span class="fl">.2</span>,</span>
+<span>    mu_b2 <span class="op">=</span> <span class="op">-</span> <span class="fl">.5</span>,</span>
+<span>    sigma_b2 <span class="op">=</span> <span class="fl">.2</span>,</span>
+<span>    mu_b3 <span class="op">=</span> <span class="fl">.5</span>,</span>
+<span>    sigma_b3 <span class="op">=</span> <span class="fl">.1</span>,</span>
+<span>    link <span class="op">=</span> <span class="st">"logit"</span>,</span>
+<span>    w_prior <span class="op">=</span> <span class="fl">1</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="dreamer_files/figure-html/unnamed-chunk-24-1.png" width="576"></p>
 <p>One can also view the prior for all the models combined in a Bayesian model averaging prior!</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/dreamer_plot_prior.html">dreamer_plot_prior</a></span><span class="op">(</span>
-  doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2.5</span>, <span class="fl">5</span><span class="op">)</span>,
-  mod_linear_binary <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_linear_binary</a></span><span class="op">(</span>
-    mu_b1 <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,
-    sigma_b1 <span class="op">=</span> <span class="fl">.1</span>,
-    mu_b2 <span class="op">=</span> <span class="fl">1</span>,
-    sigma_b2 <span class="op">=</span> <span class="fl">.1</span>,
-    link <span class="op">=</span> <span class="st">"logit"</span>,
-    w_prior <span class="op">=</span> <span class="fl">.75</span>
-  <span class="op">)</span>,
-  mod_quad_binary <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_quad_binary</a></span><span class="op">(</span>
-    mu_b1 <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span>,
-    sigma_b1 <span class="op">=</span> <span class="fl">.2</span>,
-    mu_b2 <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span>,
-    sigma_b2 <span class="op">=</span> <span class="fl">.2</span>,
-    mu_b3 <span class="op">=</span> <span class="fl">.5</span>,
-    sigma_b3 <span class="op">=</span> <span class="fl">.1</span>,
-    link <span class="op">=</span> <span class="st">"logit"</span>,
-    w_prior <span class="op">=</span> <span class="fl">.25</span>
-  <span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/dreamer_plot_prior.html">dreamer_plot_prior</a></span><span class="op">(</span></span>
+<span>  doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2.5</span>, <span class="fl">5</span><span class="op">)</span>,</span>
+<span>  mod_linear_binary <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_linear_binary</a></span><span class="op">(</span></span>
+<span>    mu_b1 <span class="op">=</span> <span class="op">-</span> <span class="fl">1</span>,</span>
+<span>    sigma_b1 <span class="op">=</span> <span class="fl">.1</span>,</span>
+<span>    mu_b2 <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    sigma_b2 <span class="op">=</span> <span class="fl">.1</span>,</span>
+<span>    link <span class="op">=</span> <span class="st">"logit"</span>,</span>
+<span>    w_prior <span class="op">=</span> <span class="fl">.75</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  mod_quad_binary <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_quad_binary</a></span><span class="op">(</span></span>
+<span>    mu_b1 <span class="op">=</span> <span class="op">-</span> <span class="fl">.5</span>,</span>
+<span>    sigma_b1 <span class="op">=</span> <span class="fl">.2</span>,</span>
+<span>    mu_b2 <span class="op">=</span> <span class="op">-</span> <span class="fl">.5</span>,</span>
+<span>    sigma_b2 <span class="op">=</span> <span class="fl">.2</span>,</span>
+<span>    mu_b3 <span class="op">=</span> <span class="fl">.5</span>,</span>
+<span>    sigma_b3 <span class="op">=</span> <span class="fl">.1</span>,</span>
+<span>    link <span class="op">=</span> <span class="st">"logit"</span>,</span>
+<span>    w_prior <span class="op">=</span> <span class="fl">.25</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="dreamer_files/figure-html/unnamed-chunk-25-1.png" width="576"></p>
 </div>
 <div class="section level2">
 <h2 id="independent-model">Independent Model<a class="anchor" aria-label="anchor" href="#independent-model"></a>
 </h2>
 <p>An independent mean model can also be fit to each of the doses. In this case, because no parametric assumptions are made on the dose-response curve, no Bayesian model averaging is employed and no interpolation is allowed.</p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">output_independent</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dreamer_mcmc.html">dreamer_mcmc</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="va">data</span>,
-  n_adapt <span class="op">=</span> <span class="fl">1e3</span>,
-  n_burn <span class="op">=</span> <span class="fl">1e3</span>,
-  n_iter <span class="op">=</span> <span class="fl">1e4</span>,
-  n_chains <span class="op">=</span> <span class="fl">2</span>,
-  silent <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># make rjags be quiet,</span>
-  <span class="co"># this model has the same prior on the mean for each dose</span>
-  mod_indep <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_independent</a></span><span class="op">(</span>
-    mu_b1 <span class="op">=</span> <span class="fl">0</span>,
-    sigma_b1 <span class="op">=</span> <span class="fl">1</span>,
-    shape <span class="op">=</span> <span class="fl">1</span>,
-    rate <span class="op">=</span> <span class="fl">.001</span>
-  <span class="op">)</span>
-<span class="op">)</span>
-<span class="co"># prior is too strong!</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output_independent</span>, data <span class="op">=</span> <span class="va">data</span><span class="op">)</span></code></pre></div>
-<p><img src="dreamer_files/figure-html/unnamed-chunk-26-1.png" width="576"></p>
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">output_independent2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dreamer_mcmc.html">dreamer_mcmc</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="va">data</span>,
-  n_adapt <span class="op">=</span> <span class="fl">1e3</span>,
-  n_burn <span class="op">=</span> <span class="fl">1e3</span>,
-  n_iter <span class="op">=</span> <span class="fl">1e4</span>,
-  n_chains <span class="op">=</span> <span class="fl">2</span>,
-  silent <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># make rjags be quiet,</span>
-  <span class="co"># this model has the different priors on the mean for each dose</span>
-  mod_indep <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_independent</a></span><span class="op">(</span>
-    mu_b1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>,
-    sigma_b1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">30</span><span class="op">)</span>,
-    shape <span class="op">=</span> <span class="fl">1</span>,
-    rate <span class="op">=</span> <span class="fl">.001</span>,
-    doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">1.5</span>, <span class="fl">2</span><span class="op">)</span>
-  <span class="op">)</span>
-<span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output_independent2</span>, data <span class="op">=</span> <span class="va">data</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">output_independent</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dreamer_mcmc.html">dreamer_mcmc</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">data</span>,</span>
+<span>  n_adapt <span class="op">=</span> <span class="fl">1e3</span>,</span>
+<span>  n_burn <span class="op">=</span> <span class="fl">1e3</span>,</span>
+<span>  n_iter <span class="op">=</span> <span class="fl">1e4</span>,</span>
+<span>  n_chains <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  silent <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># make rjags be quiet,</span></span>
+<span>  <span class="co"># this model has the same prior on the mean for each dose</span></span>
+<span>  mod_indep <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_independent</a></span><span class="op">(</span></span>
+<span>    mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>    sigma_b1 <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    rate <span class="op">=</span> <span class="fl">.001</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># prior is too strong!</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output_independent</span>, data <span class="op">=</span> <span class="va">data</span><span class="op">)</span></span></code></pre></div>
+<p><img src="dreamer_files/figure-html/unnamed-chunk-26-1.png" width="576"></p>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">output_independent2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dreamer_mcmc.html">dreamer_mcmc</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">data</span>,</span>
+<span>  n_adapt <span class="op">=</span> <span class="fl">1e3</span>,</span>
+<span>  n_burn <span class="op">=</span> <span class="fl">1e3</span>,</span>
+<span>  n_iter <span class="op">=</span> <span class="fl">1e4</span>,</span>
+<span>  n_chains <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  silent <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># make rjags be quiet,</span></span>
+<span>  <span class="co"># this model has the different priors on the mean for each dose</span></span>
+<span>  mod_indep <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_independent</a></span><span class="op">(</span></span>
+<span>    mu_b1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>,</span>
+<span>    sigma_b1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">30</span><span class="op">)</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    rate <span class="op">=</span> <span class="fl">.001</span>,</span>
+<span>    doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">1.5</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output_independent2</span>, data <span class="op">=</span> <span class="va">data</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dreamer_files/figure-html/unnamed-chunk-26-2.png" width="576"></p>
 <p>All other functions are also available on independent models as above.</p>
 </div>
@@ -555,98 +554,98 @@
 <h2 id="longitudinal-modeling">Longitudinal Modeling<a class="anchor" aria-label="anchor" href="#longitudinal-modeling"></a>
 </h2>
 <p>Longitudinal modeling is also available in <code>dreamer</code>. Longitudinal data can be generated by specifying the <code>longitudinal</code> argument, the longitudinal parameters, and the times to observe subjects. See documentation for <code><a href="../reference/model_longitudinal.html">dreamer::model_longitudinal()</a></code> and <code><a href="../reference/model.html">dreamer::model</a></code> for the parameterization of the longitudinal models.</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">889</span><span class="op">)</span>
-<span class="va">data_long</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dreamer_data.html">dreamer_data_linear</a></span><span class="op">(</span>
-  n_cohorts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span>, <span class="co"># number of subjects in each cohort</span>
-  doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.25</span>, <span class="fl">.5</span>, <span class="fl">.75</span>, <span class="fl">1.5</span><span class="op">)</span>, <span class="co"># dose administered to each cohort</span>
-  b1 <span class="op">=</span> <span class="fl">0</span>, <span class="co"># intercept</span>
-  b2 <span class="op">=</span> <span class="fl">2</span>, <span class="co"># slope</span>
-  sigma <span class="op">=</span> <span class="fl">.5</span>, <span class="co"># standard deviation,</span>
-  longitudinal <span class="op">=</span> <span class="st">"itp"</span>,
-  times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">12</span>, <span class="fl">24</span>, <span class="fl">52</span><span class="op">)</span>,
-  t_max <span class="op">=</span> <span class="fl">52</span>, <span class="co"># maximum time</span>
-  a <span class="op">=</span> <span class="fl">.5</span>,
-  c1 <span class="op">=</span> <span class="fl">.1</span>
-<span class="op">)</span>
-
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">response</span>, group <span class="op">=</span> <span class="va">dose</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">dose</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">889</span><span class="op">)</span></span>
+<span><span class="va">data_long</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dreamer_data.html">dreamer_data_linear</a></span><span class="op">(</span></span>
+<span>  n_cohorts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span>, <span class="co"># number of subjects in each cohort</span></span>
+<span>  doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.25</span>, <span class="fl">.5</span>, <span class="fl">.75</span>, <span class="fl">1.5</span><span class="op">)</span>, <span class="co"># dose administered to each cohort</span></span>
+<span>  b1 <span class="op">=</span> <span class="fl">0</span>, <span class="co"># intercept</span></span>
+<span>  b2 <span class="op">=</span> <span class="fl">2</span>, <span class="co"># slope</span></span>
+<span>  sigma <span class="op">=</span> <span class="fl">.5</span>, <span class="co"># standard deviation,</span></span>
+<span>  longitudinal <span class="op">=</span> <span class="st">"itp"</span>,</span>
+<span>  times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">12</span>, <span class="fl">24</span>, <span class="fl">52</span><span class="op">)</span>,</span>
+<span>  t_max <span class="op">=</span> <span class="fl">52</span>, <span class="co"># maximum time</span></span>
+<span>  a <span class="op">=</span> <span class="fl">.5</span>,</span>
+<span>  c1 <span class="op">=</span> <span class="fl">.1</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">response</span>, group <span class="op">=</span> <span class="va">dose</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">dose</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dreamer_files/figure-html/unnamed-chunk-27-1.png" width="576"></p>
 <p>Fitting the MCMC is the same as before, except priors need to be specified for the longitudinal part of the model:</p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Bayesian model averaging</span>
-<span class="va">output_long</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dreamer_mcmc.html">dreamer_mcmc</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="va">data_long</span>,
-  n_adapt <span class="op">=</span> <span class="fl">1e3</span>,
-  n_burn <span class="op">=</span> <span class="fl">1e3</span>,
-  n_iter <span class="op">=</span> <span class="fl">1e4</span>,
-  n_chains <span class="op">=</span> <span class="fl">2</span>,
-  silent <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># make rjags be quiet,</span>
-  mod_linear <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_linear</a></span><span class="op">(</span>
-    mu_b1 <span class="op">=</span> <span class="fl">0</span>,
-    sigma_b1 <span class="op">=</span> <span class="fl">1</span>,
-    mu_b2 <span class="op">=</span> <span class="fl">0</span>,
-    sigma_b2 <span class="op">=</span> <span class="fl">1</span>,
-    shape <span class="op">=</span> <span class="fl">1</span>,
-    rate <span class="op">=</span> <span class="fl">.001</span>,
-    w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span>, <span class="co"># prior probability of the model</span>
-    longitudinal <span class="op">=</span> <span class="fu"><a href="../reference/model_longitudinal.html">model_longitudinal_itp</a></span><span class="op">(</span>
-      mu_a <span class="op">=</span> <span class="fl">0</span>,
-      sigma_a <span class="op">=</span> <span class="fl">1</span>,
-      a_c1 <span class="op">=</span> <span class="fl">0</span>,
-      b_c1 <span class="op">=</span> <span class="fl">1</span>,
-      t_max <span class="op">=</span> <span class="fl">52</span>
-    <span class="op">)</span>
-  <span class="op">)</span>,
-  mod_quad <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_quad</a></span><span class="op">(</span>
-    mu_b1 <span class="op">=</span> <span class="fl">0</span>,
-    sigma_b1 <span class="op">=</span> <span class="fl">1</span>,
-    mu_b2 <span class="op">=</span> <span class="fl">0</span>,
-    sigma_b2 <span class="op">=</span> <span class="fl">1</span>,
-    mu_b3 <span class="op">=</span> <span class="fl">0</span>,
-    sigma_b3 <span class="op">=</span> <span class="fl">1</span>,
-    shape <span class="op">=</span> <span class="fl">1</span>,
-    rate <span class="op">=</span> <span class="fl">.001</span>,
-    w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span>,
-    longitudinal <span class="op">=</span> <span class="fu"><a href="../reference/model_longitudinal.html">model_longitudinal_linear</a></span><span class="op">(</span>
-      mu_a <span class="op">=</span> <span class="fl">0</span>,
-      sigma_a <span class="op">=</span> <span class="fl">1</span>,
-      t_max <span class="op">=</span> <span class="fl">52</span>
-    <span class="op">)</span>
-  <span class="op">)</span>
-<span class="op">)</span></code></pre></div>
-<p>Plotting longitudinal models is straightforward:</p>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output_long</span>, data <span class="op">=</span> <span class="va">data_long</span><span class="op">)</span></code></pre></div>
-<p><img src="dreamer_files/figure-html/unnamed-chunk-29-1.png" width="576"></p>
+<code class="sourceCode R"><span><span class="co"># Bayesian model averaging</span></span>
+<span><span class="va">output_long</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dreamer_mcmc.html">dreamer_mcmc</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">data_long</span>,</span>
+<span>  n_adapt <span class="op">=</span> <span class="fl">1e3</span>,</span>
+<span>  n_burn <span class="op">=</span> <span class="fl">1e3</span>,</span>
+<span>  n_iter <span class="op">=</span> <span class="fl">1e4</span>,</span>
+<span>  n_chains <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  silent <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># make rjags be quiet,</span></span>
+<span>  mod_linear <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_linear</a></span><span class="op">(</span></span>
+<span>    mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>    sigma_b1 <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>    sigma_b2 <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    rate <span class="op">=</span> <span class="fl">.001</span>,</span>
+<span>    w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span>, <span class="co"># prior probability of the model</span></span>
+<span>    longitudinal <span class="op">=</span> <span class="fu"><a href="../reference/model_longitudinal.html">model_longitudinal_itp</a></span><span class="op">(</span></span>
+<span>      mu_a <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>      sigma_a <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>      a_c1 <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>      b_c1 <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>      t_max <span class="op">=</span> <span class="fl">52</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  mod_quad <span class="op">=</span> <span class="fu"><a href="../reference/model.html">model_quad</a></span><span class="op">(</span></span>
+<span>    mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>    sigma_b1 <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>    sigma_b2 <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    mu_b3 <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>    sigma_b3 <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    rate <span class="op">=</span> <span class="fl">.001</span>,</span>
+<span>    w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span>,</span>
+<span>    longitudinal <span class="op">=</span> <span class="fu"><a href="../reference/model_longitudinal.html">model_longitudinal_linear</a></span><span class="op">(</span></span>
+<span>      mu_a <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>      sigma_a <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>      t_max <span class="op">=</span> <span class="fl">52</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>Plotting longitudinal models is straightforward:</p>
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># plot dose response at last time point</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output_long</span>, times <span class="op">=</span> <span class="fl">52</span>, data <span class="op">=</span> <span class="va">data_long</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output_long</span>, data <span class="op">=</span> <span class="va">data_long</span><span class="op">)</span></span></code></pre></div>
+<p><img src="dreamer_files/figure-html/unnamed-chunk-29-1.png" width="576"></p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># plot dose response at last time point</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">output_long</span>, times <span class="op">=</span> <span class="fl">52</span>, data <span class="op">=</span> <span class="va">data_long</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dreamer_files/figure-html/unnamed-chunk-29-2.png" width="576"></p>
 <p>All the other posterior quantity functions work on longitudinal data. For example:</p>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/posterior.html">posterior</a></span><span class="op">(</span><span class="va">output_long</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## $stats</span>
-<span class="co">## <span style="color: #949494;"># A tibble: 16 × 5</span></span>
-<span class="co">##     dose  time  mean `2.50%` `97.50%`</span>
-<span class="co">##    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">## <span style="color: #BCBCBC;"> 1</span>  0.25     0 0.516   0.352    0.678</span>
-<span class="co">## <span style="color: #BCBCBC;"> 2</span>  0.25    12 0.941   0.824    1.06 </span>
-<span class="co">## <span style="color: #BCBCBC;"> 3</span>  0.25    24 1.10    0.951    1.24 </span>
-<span class="co">## <span style="color: #BCBCBC;"> 4</span>  0.25    52 1.18    1.01     1.35 </span>
-<span class="co">## <span style="color: #BCBCBC;"> 5</span>  0.5      0 0.516   0.352    0.678</span>
-<span class="co">## <span style="color: #BCBCBC;"> 6</span>  0.5     12 1.24    1.13     1.36 </span>
-<span class="co">## <span style="color: #BCBCBC;"> 7</span>  0.5     24 1.51    1.39     1.62 </span>
-<span class="co">## <span style="color: #BCBCBC;"> 8</span>  0.5     52 1.65    1.51     1.80 </span>
-<span class="co">## <span style="color: #BCBCBC;"> 9</span>  0.75     0 0.516   0.352    0.678</span>
-<span class="co">## <span style="color: #BCBCBC;">10</span>  0.75    12 1.54    1.41     1.68 </span>
-<span class="co">## <span style="color: #BCBCBC;">11</span>  0.75    24 1.92    1.82     2.02 </span>
-<span class="co">## <span style="color: #BCBCBC;">12</span>  0.75    52 2.13    1.98     2.27 </span>
-<span class="co">## <span style="color: #BCBCBC;">13</span>  1.5      0 0.516   0.352    0.678</span>
-<span class="co">## <span style="color: #BCBCBC;">14</span>  1.5     12 2.45    2.21     2.70 </span>
-<span class="co">## <span style="color: #BCBCBC;">15</span>  1.5     24 3.16    2.96     3.35 </span>
-<span class="co">## <span style="color: #BCBCBC;">16</span>  1.5     52 3.54    3.27     3.82</span></code></pre>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/posterior.html">posterior</a></span><span class="op">(</span><span class="va">output_long</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## $stats</span></span>
+<span><span class="co">## <span style="color: #949494;"># A tibble: 16 × 5</span></span></span>
+<span><span class="co">##     dose  time  mean `2.50%` `97.50%`</span></span>
+<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span>  0.25     0 0.516   0.352    0.678</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span>  0.25    12 0.941   0.824    1.06 </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span>  0.25    24 1.10    0.951    1.24 </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span>  0.25    52 1.18    1.01     1.35 </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span>  0.5      0 0.516   0.352    0.678</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span>  0.5     12 1.24    1.13     1.36 </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span>  0.5     24 1.51    1.39     1.62 </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span>  0.5     52 1.65    1.51     1.80 </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span>  0.75     0 0.516   0.352    0.678</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span>  0.75    12 1.54    1.41     1.68 </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">11</span>  0.75    24 1.92    1.82     2.02 </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">12</span>  0.75    52 2.13    1.98     2.27 </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">13</span>  1.5      0 0.516   0.352    0.678</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">14</span>  1.5     12 2.45    2.21     2.70 </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">15</span>  1.5     24 3.16    2.96     3.35 </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">16</span>  1.5     52 3.54    3.27     3.82</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="reference">Reference<a class="anchor" aria-label="anchor" href="#reference"></a>
@@ -672,7 +671,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>

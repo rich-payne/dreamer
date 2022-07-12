@@ -70,16 +70,16 @@ models.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">dreamer_mcmc</span><span class="op">(</span>
-  <span class="va">data</span>,
-  <span class="va">...</span>,
-  n_adapt <span class="op">=</span> <span class="fl">1000</span>,
-  n_burn <span class="op">=</span> <span class="fl">1000</span>,
-  n_iter <span class="op">=</span> <span class="fl">10000</span>,
-  n_chains <span class="op">=</span> <span class="fl">4</span>,
-  silent <span class="op">=</span> <span class="cn">FALSE</span>,
-  convergence_warn <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dreamer_mcmc</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  n_adapt <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  n_burn <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  n_iter <span class="op">=</span> <span class="fl">10000</span>,</span>
+<span>  n_chains <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>  silent <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  convergence_warn <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -95,29 +95,46 @@ data, "response" should be the average of "n" subjects with a sample
 variance of "sample_var".  For aggregated binary data, "response" should
 be the number of successes, "n" should be the total number of subjects
 (the "sample_var" column is irrelevant in binary cases and is ignored).</p></dd>
+
+
 <dt>...</dt>
 <dd><p>model definitions created using the model creation functions
 in <a href="model.html">model</a>.  If arguments are named, the names are
 retained in the return values.</p></dd>
+
+
 <dt>n_adapt</dt>
 <dd><p>the number of MCMC iterations to tune the MCMC algorithm.</p></dd>
+
+
 <dt>n_burn</dt>
 <dd><p>the number of burn-in MCMC samples.</p></dd>
+
+
 <dt>n_iter</dt>
 <dd><p>the number of MCMC samples to collect after tuning and burn-in.</p></dd>
+
+
 <dt>n_chains</dt>
 <dd><p>the number of separate, independent, MCMC chains to run.</p></dd>
+
+
 <dt>silent</dt>
 <dd><p>logical indicating if MCMC progress bars should be suppressed.</p></dd>
+
+
 <dt>convergence_warn</dt>
 <dd><p>logical (default <code>TRUE</code>) indicating if the
 Gelman-Rubin diagnostics should be run to detect convergence issues.
 Warnings are thrown if the upper bound of the Gelman-Rubin statistic
 is greater than 1.1.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A named list with S3 class "dreamer_bma" and "dreamer".  The list
+    
+
+<p>A named list with S3 class "dreamer_bma" and "dreamer".  The list
 contains the following fields:</p><ul><li><p>doses: a vector of the unique ordered doses in the data.</p></li>
 <li><p>times: a vector of the unique ordered times in the data.</p></li>
 <li><p>w_prior: a named vector with the prior probabilities of each model.</p></li>
@@ -153,7 +170,7 @@ uncertainty. Biometrical Journal, 61(5), 1141-1159.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

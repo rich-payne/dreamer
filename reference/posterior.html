@@ -68,145 +68,164 @@ doses for each MCMC iteration of the model.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">posterior</span><span class="op">(</span>
-  <span class="va">x</span>,
-  <span class="va">doses</span>,
-  <span class="va">times</span>,
-  <span class="va">probs</span>,
-  <span class="va">reference_dose</span>,
-  <span class="va">predictive</span>,
-  <span class="va">return_samples</span>,
-  <span class="va">iter</span>,
-  <span class="va">return_stats</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for dreamer</span>
-<span class="fu">posterior</span><span class="op">(</span>
-  <span class="va">x</span>,
-  doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"doses"</span><span class="op">)</span>,
-  times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"times"</span><span class="op">)</span>,
-  probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>,
-  reference_dose <span class="op">=</span> <span class="cn">NULL</span>,
-  predictive <span class="op">=</span> <span class="fl">0</span>,
-  return_samples <span class="op">=</span> <span class="cn">FALSE</span>,
-  iter <span class="op">=</span> <span class="cn">NULL</span>,
-  return_stats <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for dreamer_mcmc_independent</span>
-<span class="fu">posterior</span><span class="op">(</span>
-  <span class="va">x</span>,
-  doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"doses"</span><span class="op">)</span>,
-  times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"times"</span><span class="op">)</span>,
-  probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>,
-  reference_dose <span class="op">=</span> <span class="cn">NULL</span>,
-  predictive <span class="op">=</span> <span class="fl">0</span>,
-  return_samples <span class="op">=</span> <span class="cn">FALSE</span>,
-  iter <span class="op">=</span> <span class="cn">NULL</span>,
-  return_stats <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for dreamer_bma</span>
-<span class="fu">posterior</span><span class="op">(</span>
-  <span class="va">x</span>,
-  doses <span class="op">=</span> <span class="va">x</span><span class="op">$</span><span class="va">doses</span>,
-  times <span class="op">=</span> <span class="va">x</span><span class="op">$</span><span class="va">times</span>,
-  probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>,
-  reference_dose <span class="op">=</span> <span class="cn">NULL</span>,
-  predictive <span class="op">=</span> <span class="fl">0</span>,
-  return_samples <span class="op">=</span> <span class="cn">FALSE</span>,
-  iter <span class="op">=</span> <span class="cn">NULL</span>,
-  return_stats <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">posterior</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  <span class="va">doses</span>,</span>
+<span>  <span class="va">times</span>,</span>
+<span>  <span class="va">probs</span>,</span>
+<span>  <span class="va">reference_dose</span>,</span>
+<span>  <span class="va">predictive</span>,</span>
+<span>  <span class="va">return_samples</span>,</span>
+<span>  <span class="va">iter</span>,</span>
+<span>  <span class="va">return_stats</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for dreamer_mcmc</span></span>
+<span><span class="fu">posterior</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"doses"</span><span class="op">)</span>,</span>
+<span>  times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"times"</span><span class="op">)</span>,</span>
+<span>  probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>,</span>
+<span>  reference_dose <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  predictive <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  return_samples <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  iter <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  return_stats <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for dreamer_mcmc_independent</span></span>
+<span><span class="fu">posterior</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"doses"</span><span class="op">)</span>,</span>
+<span>  times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"times"</span><span class="op">)</span>,</span>
+<span>  probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>,</span>
+<span>  reference_dose <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  predictive <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  return_samples <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  iter <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  return_stats <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for dreamer_bma</span></span>
+<span><span class="fu">posterior</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  doses <span class="op">=</span> <span class="va">x</span><span class="op">$</span><span class="va">doses</span>,</span>
+<span>  times <span class="op">=</span> <span class="va">x</span><span class="op">$</span><span class="va">times</span>,</span>
+<span>  probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>,</span>
+<span>  reference_dose <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  predictive <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  return_samples <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  iter <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  return_stats <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>output from a call to <code><a href="dreamer_mcmc.html">dreamer_mcmc</a></code>.</p></dd>
+
+
 <dt>doses</dt>
 <dd><p>doses at which to estimate posterior quantities.</p></dd>
+
+
 <dt>times</dt>
 <dd><p>a vector of times at which to calculate the posterior response
 (for longitudinal models only).</p></dd>
+
+
 <dt>probs</dt>
 <dd><p>quantiles of the posterior to be calculated.</p></dd>
+
+
 <dt>reference_dose</dt>
 <dd><p>the dose at which to adjust the posterior plot.
 Specifying
 a dose returns the plot of pr(trt_dose - trt_reference_dose | data).</p></dd>
+
+
 <dt>predictive</dt>
 <dd><p>An integer.  If greater than 0, the return values will
 be from the predictive distribution of the mean of <code>predictive</code>
 observations.
 If 0 (default), the posterior on the dose response mean is returned.</p></dd>
+
+
 <dt>return_samples</dt>
 <dd><p>logical indicating if the weighted raw
 MCMC samples from the Bayesian model averaging used to calculate the
 mean and quantiles should be returned.</p></dd>
+
+
 <dt>iter</dt>
 <dd><p>an index on which iterations of the MCMC should be used
 in the calculations.  By default, all MCMC iterations are used.</p></dd>
+
+
 <dt>return_stats</dt>
 <dd><p>logical indicating whether or not the posterior
 statistics should be calculated.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A named list with the following elements:</p><ul><li><p>stats: a tibble the dose, posterior mean, and posterior quantiles.</p></li>
+    
+
+<p>A named list with the following elements:</p><ul><li><p>stats: a tibble the dose, posterior mean, and posterior quantiles.</p></li>
 <li><p>samps: the weighted posterior samples.  Only returned if
 <code>return_samples = TRUE</code>.</p></li>
 </ul></div>
     <div id="methods-by-class-">
     <h2>Methods (by class)</h2>
     
-<ul><li><p><code>dreamer</code>: posterior summary for linear model.</p></li>
+<ul><li><p><code>dreamer_mcmc</code>: posterior summary for linear model.</p></li>
 <li><p><code>dreamer_mcmc_independent</code>: posterior summary for independent model.</p></li>
 <li><p><code>dreamer_bma</code>: posterior summary for Bayesian model averaging fit.</p></li>
 </ul></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">888</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="dreamer_data.html">dreamer_data_linear</a></span><span class="op">(</span></span>
-<span class="r-in">  n_cohorts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span>,</span>
-<span class="r-in">  dose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">10</span><span class="op">)</span>,</span>
-<span class="r-in">  b1 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">  b2 <span class="op">=</span> <span class="fl">3</span>,</span>
-<span class="r-in">  sigma <span class="op">=</span> <span class="fl">5</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Bayesian model averaging</span></span>
-<span class="r-in"><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="dreamer_mcmc.html">dreamer_mcmc</a></span><span class="op">(</span></span>
-<span class="r-in"> data <span class="op">=</span> <span class="va">data</span>,</span>
-<span class="r-in"> n_adapt <span class="op">=</span> <span class="fl">1e3</span>,</span>
-<span class="r-in"> n_burn <span class="op">=</span> <span class="fl">1e3</span>,</span>
-<span class="r-in"> n_iter <span class="op">=</span> <span class="fl">1e4</span>,</span>
-<span class="r-in"> n_chains <span class="op">=</span> <span class="fl">2</span>,</span>
-<span class="r-in"> silent <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in"> mod_linear <span class="op">=</span> <span class="fu"><a href="model.html">model_linear</a></span><span class="op">(</span></span>
-<span class="r-in">   mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b1 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b2 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   shape <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   rate <span class="op">=</span> <span class="fl">.001</span>,</span>
-<span class="r-in">   w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span></span>
-<span class="r-in"> <span class="op">)</span>,</span>
-<span class="r-in"> mod_quad <span class="op">=</span> <span class="fu"><a href="model.html">model_quad</a></span><span class="op">(</span></span>
-<span class="r-in">   mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b1 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b2 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   mu_b3 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b3 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   shape <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   rate <span class="op">=</span> <span class="fl">.001</span>,</span>
-<span class="r-in">   w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span></span>
-<span class="r-in"> <span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">888</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="dreamer_data.html">dreamer_data_linear</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  n_cohorts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  dose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">10</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  b1 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>  b2 <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>  sigma <span class="op">=</span> <span class="fl">5</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Bayesian model averaging</span></span></span>
+<span class="r-in"><span><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="dreamer_mcmc.html">dreamer_mcmc</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span> data <span class="op">=</span> <span class="va">data</span>,</span></span>
+<span class="r-in"><span> n_adapt <span class="op">=</span> <span class="fl">1e3</span>,</span></span>
+<span class="r-in"><span> n_burn <span class="op">=</span> <span class="fl">1e3</span>,</span></span>
+<span class="r-in"><span> n_iter <span class="op">=</span> <span class="fl">1e4</span>,</span></span>
+<span class="r-in"><span> n_chains <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span> silent <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span> mod_linear <span class="op">=</span> <span class="fu"><a href="model.html">model_linear</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>   mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b1 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b2 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   shape <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   rate <span class="op">=</span> <span class="fl">.001</span>,</span></span>
+<span class="r-in"><span>   w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span></span></span>
+<span class="r-in"><span> <span class="op">)</span>,</span></span>
+<span class="r-in"><span> mod_quad <span class="op">=</span> <span class="fu"><a href="model.html">model_quad</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>   mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b1 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b2 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   mu_b3 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b3 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   shape <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   rate <span class="op">=</span> <span class="fl">.001</span>,</span></span>
+<span class="r-in"><span>   w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span></span></span>
+<span class="r-in"><span> <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> mod_linear</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-04-19 19:49:11.063</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-07-12 15:51:37.029</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Compiling model graph</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Resolving undeclared variables</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Allocating nodes</span>
@@ -217,10 +236,10 @@ statistics should be calculated.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Initializing model</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-04-19 19:49:11.159</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-07-12 15:51:37.125</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.10 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> mod_quad</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-04-19 19:49:11.160</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-07-12 15:51:37.126</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Compiling model graph</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Resolving undeclared variables</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Allocating nodes</span>
@@ -231,10 +250,10 @@ statistics should be calculated.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Initializing model</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-04-19 19:49:11.265</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.11 secs</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">posterior</span><span class="op">(</span><span class="va">output</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-07-12 15:51:37.222</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.10 secs</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">posterior</span><span class="op">(</span><span class="va">output</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $stats</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    dose   mean `2.50%` `97.50%`</span>
@@ -243,10 +262,10 @@ statistics should be calculated.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     3  9.56    7.92     11.0 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    10 30.8    28.6      33.1 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># return posterior samples of the mean</span></span>
-<span class="r-in"><span class="va">post</span> <span class="op">&lt;-</span> <span class="fu">posterior</span><span class="op">(</span><span class="va">output</span>, return_samples <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post</span><span class="op">$</span><span class="va">samps</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># return posterior samples of the mean</span></span></span>
+<span class="r-in"><span><span class="va">post</span> <span class="op">&lt;-</span> <span class="fu">posterior</span><span class="op">(</span><span class="va">output</span>, return_samples <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post</span><span class="op">$</span><span class="va">samps</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   iter dose mean_response    model</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    1    0     0.6844290 mod_quad</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    6    0    -0.4293629 mod_quad</span>
@@ -254,9 +273,9 @@ statistics should be calculated.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4   12    0     0.6374851 mod_quad</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5   13    0     1.5117433 mod_quad</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6   19    0     0.8239574 mod_quad</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># from a single model</span></span>
-<span class="r-in"><span class="fu">posterior</span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">mod_quad</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># from a single model</span></span></span>
+<span class="r-in"><span><span class="fu">posterior</span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">mod_quad</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $stats</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    dose   mean `2.50%` `97.50%`</span>
@@ -265,9 +284,9 @@ statistics should be calculated.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     3  9.37    7.22     11.5 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    10 30.9    28.6      33.3 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># posterior of difference of doses</span></span>
-<span class="r-in"><span class="fu">posterior</span><span class="op">(</span><span class="va">output</span>, reference_dose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># posterior of difference of doses</span></span></span>
+<span class="r-in"><span><span class="fu">posterior</span><span class="op">(</span><span class="va">output</span>, reference_dose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $stats</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    dose reference_dose  mean `2.50%` `97.50%`</span>
@@ -290,7 +309,7 @@ statistics should be calculated.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

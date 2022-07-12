@@ -70,24 +70,30 @@ dose that has a clinically significant difference (CSD).</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">pr_med</span><span class="op">(</span>
-  <span class="va">x</span>,
-  doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"doses"</span><span class="op">)</span>,
-  csd <span class="op">=</span> <span class="cn">NULL</span>,
-  reference_dose <span class="op">=</span> <span class="cn">NULL</span>,
-  greater <span class="op">=</span> <span class="cn">TRUE</span>,
-  time <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">pr_med</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  doses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"doses"</span><span class="op">)</span>,</span>
+<span>  csd <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  reference_dose <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  greater <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  time <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>output from a call to <code><a href="dreamer_mcmc.html">dreamer_mcmc()</a></code>.</p></dd>
+
+
 <dt>doses</dt>
 <dd><p>the doses for which pr(MED) is to be calculated.</p></dd>
+
+
 <dt>csd</dt>
 <dd><p>the treatment effect that is clinically relevant.</p></dd>
+
+
 <dt>reference_dose</dt>
 <dd><p>a single dose that is used as the reference when
 defining the MED relative to a dose (rather than in absolute terms).  When
@@ -95,61 +101,68 @@ defining the MED relative to a dose (rather than in absolute terms).  When
 posterior probability
 that each dose is the smallest dose such that
 (effect_dose - effect_reference_dose &gt; CSD).</p></dd>
+
+
 <dt>greater</dt>
 <dd><p>if <code>TRUE</code>, higher responses indicate better efficacy.  If
 <code>FALSE</code>, lower responses indicate better efficacy.`</p></dd>
+
+
 <dt>time</dt>
 <dd><p>the time (scalar) at which the Pr(MED) should be calculated.
 Applies only to longitudinal models.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A tibble listing each dose and the posterior probability that
+    
+
+<p>A tibble listing each dose and the posterior probability that
 each dose is the minimum efficacious dose.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">888</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="dreamer_data.html">dreamer_data_linear</a></span><span class="op">(</span></span>
-<span class="r-in">  n_cohorts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span>,</span>
-<span class="r-in">  dose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">10</span><span class="op">)</span>,</span>
-<span class="r-in">  b1 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">  b2 <span class="op">=</span> <span class="fl">3</span>,</span>
-<span class="r-in">  sigma <span class="op">=</span> <span class="fl">5</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Bayesian model averaging</span></span>
-<span class="r-in"><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="dreamer_mcmc.html">dreamer_mcmc</a></span><span class="op">(</span></span>
-<span class="r-in"> data <span class="op">=</span> <span class="va">data</span>,</span>
-<span class="r-in"> n_adapt <span class="op">=</span> <span class="fl">1e3</span>,</span>
-<span class="r-in"> n_burn <span class="op">=</span> <span class="fl">1e3</span>,</span>
-<span class="r-in"> n_iter <span class="op">=</span> <span class="fl">1e4</span>,</span>
-<span class="r-in"> n_chains <span class="op">=</span> <span class="fl">2</span>,</span>
-<span class="r-in"> silent <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in"> mod_linear <span class="op">=</span> <span class="fu"><a href="model.html">model_linear</a></span><span class="op">(</span></span>
-<span class="r-in">   mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b1 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b2 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   shape <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   rate <span class="op">=</span> <span class="fl">.001</span>,</span>
-<span class="r-in">   w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span></span>
-<span class="r-in"> <span class="op">)</span>,</span>
-<span class="r-in"> mod_quad <span class="op">=</span> <span class="fu"><a href="model.html">model_quad</a></span><span class="op">(</span></span>
-<span class="r-in">   mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b1 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b2 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   mu_b3 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">   sigma_b3 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   shape <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">   rate <span class="op">=</span> <span class="fl">.001</span>,</span>
-<span class="r-in">   w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span></span>
-<span class="r-in"> <span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">888</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="dreamer_data.html">dreamer_data_linear</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  n_cohorts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  dose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">10</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  b1 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>  b2 <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>  sigma <span class="op">=</span> <span class="fl">5</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Bayesian model averaging</span></span></span>
+<span class="r-in"><span><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="dreamer_mcmc.html">dreamer_mcmc</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span> data <span class="op">=</span> <span class="va">data</span>,</span></span>
+<span class="r-in"><span> n_adapt <span class="op">=</span> <span class="fl">1e3</span>,</span></span>
+<span class="r-in"><span> n_burn <span class="op">=</span> <span class="fl">1e3</span>,</span></span>
+<span class="r-in"><span> n_iter <span class="op">=</span> <span class="fl">1e4</span>,</span></span>
+<span class="r-in"><span> n_chains <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span> silent <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span> mod_linear <span class="op">=</span> <span class="fu"><a href="model.html">model_linear</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>   mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b1 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b2 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   shape <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   rate <span class="op">=</span> <span class="fl">.001</span>,</span></span>
+<span class="r-in"><span>   w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span></span></span>
+<span class="r-in"><span> <span class="op">)</span>,</span></span>
+<span class="r-in"><span> mod_quad <span class="op">=</span> <span class="fu"><a href="model.html">model_quad</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>   mu_b1 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b1 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   mu_b2 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b2 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   mu_b3 <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>   sigma_b3 <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   shape <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>   rate <span class="op">=</span> <span class="fl">.001</span>,</span></span>
+<span class="r-in"><span>   w_prior <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span></span></span>
+<span class="r-in"><span> <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> mod_linear</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-04-19 19:49:13.103</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-07-12 15:51:39.016</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Compiling model graph</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Resolving undeclared variables</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Allocating nodes</span>
@@ -160,10 +173,10 @@ each dose is the minimum efficacious dose.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Initializing model</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-04-19 19:49:13.198</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.10 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-07-12 15:51:39.101</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.09 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> mod_quad</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-04-19 19:49:13.199</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-07-12 15:51:39.101</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Compiling model graph</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Resolving undeclared variables</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Allocating nodes</span>
@@ -174,28 +187,28 @@ each dose is the minimum efficacious dose.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Initializing model</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-04-19 19:49:13.306</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.11 secs</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">pr_med</span><span class="op">(</span><span class="va">output</span>, csd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-07-12 15:51:39.195</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.09 secs</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">pr_med</span><span class="op">(</span><span class="va">output</span>, csd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    dose  prob</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     0 0    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     3 0.262</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    10 0.738</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># difference of two doses</span></span>
-<span class="r-in"><span class="fu">pr_med</span><span class="op">(</span><span class="va">output</span>, csd <span class="op">=</span> <span class="fl">3</span>, reference_dose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># difference of two doses</span></span></span>
+<span class="r-in"><span><span class="fu">pr_med</span><span class="op">(</span><span class="va">output</span>, csd <span class="op">=</span> <span class="fl">3</span>, reference_dose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    dose reference_dose  prob</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     0              0     0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     3              0     1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    10              0     0</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># single model</span></span>
-<span class="r-in"><span class="fu">pr_med</span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">mod_quad</span>, csd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># single model</span></span></span>
+<span class="r-in"><span><span class="fu">pr_med</span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">mod_quad</span>, csd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    dose  prob</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -216,7 +229,7 @@ each dose is the minimum efficacious dose.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>
