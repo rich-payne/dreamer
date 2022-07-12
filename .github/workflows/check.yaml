@@ -68,7 +68,6 @@ jobs:
         run: |
           brew install jags
           brew install libgit2
-     needs: check 
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
