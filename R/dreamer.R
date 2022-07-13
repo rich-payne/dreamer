@@ -55,11 +55,11 @@ dreamer_mcmc <- function( #nolint
   jags_modules <- rjags::list.modules()
   on.exit(restore_jags_modules(jags_modules))
   load_jags_modules()
-  check_data(data)
   mods <- list(...)
   assert_dreamer_dots(mods)
   assert_independent_dots(mods)
   all_dots_binary <- assert_binary_dots(mods)
+  check_data(data, all_dots_binary)
   is_long <- check_longitudinal(mods, data)
   if (!is.null(data)) {
     if (!all_dots_binary) {
@@ -284,12 +284,33 @@ assert_binary_dots <- function(mods) {
   return(all_dots_binary)
 }
 
-check_data <- function(dat) {
+check_data <- function(dat, binary) {
   if (is.null(dat)) {
     return(NULL)
   }
   if (!all(c("dose", "response") %in% colnames(dat))) {
-    stop("data must have columns 'dose' and 'response'.", call. = FALSE)
+    rlang::abort(
+      "data must have columns \"dose\" and \"response\".",
+      class = "dreamer"
+    )
+  }
+  if (!is.numeric(dat$response)) {
+    rlang::abort(
+      "Column \"response\" in data must be numeric.",
+      class = "dreamer"
+    )
+  }
+  if (!is.numeric(dat$dose)) {
+    rlang::abort(
+      "Column \"dose\" in data must be numeric.",
+      class = "dreamer"
+    )
+  }
+  if (binary && !all(dat$response %in% c(0L, 1L))) {
+    rlang::abort(
+      "Column \"response\" must contain only zeros and ones.",
+      class = "dreamer"
+    )
   }
 }
 

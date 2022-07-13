@@ -67,8 +67,26 @@ test_that("assertions", {
       )
     )
   )
-  expect_error(check_data(data.frame(dose = 1)))
-  expect_error(check_data(data.frame(response = 1)))
+  expect_error(
+    check_data(data.frame(dose = 1), binary = TRUE),
+    class = "dreamer"
+  )
+  expect_error(
+    check_data(data.frame(response = 1), binary = TRUE),
+    class = "dreamer"
+  )
+  expect_error(
+    check_data(data.frame(dose = 1, response = factor(1)), binary = TRUE),
+    class = "dreamer"
+  )
+  expect_error(
+    check_data(data.frame(dose = factor(1), response = 2), binary = TRUE),
+    class = "dreamer"
+  )
+  expect_error(
+    check_data(data.frame(dose = 1, response = 2), binary = TRUE),
+    class = "dreamer"
+  )
   expect_warning(
     throw_convergence_warn(
       data.frame(model = "beta", param = "b1", gelman_upper = 1.5332)
