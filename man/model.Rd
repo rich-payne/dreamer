@@ -255,8 +255,8 @@ For the longitudinal specifications, see documentation on
 
 \deqn{y \sim N(f(d), \sigma^2)}
 \deqn{f(d) = b_1 + b_2 * d}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
 \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
@@ -264,9 +264,9 @@ For the longitudinal specifications, see documentation on
 
 \deqn{y \sim N(f(d), \sigma^2)}
 \deqn{f(d) = b_1 + b_2 * d + b_3 * d^2}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
 \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
@@ -274,8 +274,8 @@ For the longitudinal specifications, see documentation on
 
 \deqn{y \sim N(f(d), \sigma^2)}
 \deqn{f(d) = b_1 + b_2 * log(d + 1)}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
 \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
@@ -283,9 +283,9 @@ For the longitudinal specifications, see documentation on
 
 \deqn{y \sim N(f(d), \sigma^2)}
 \deqn{f(d) = b_1 + b_2 * log(d + 1) + b_3 * log(d + 1)^2}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
 \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
@@ -293,10 +293,10 @@ For the longitudinal specifications, see documentation on
 
 \deqn{y \sim N(f(d), \sigma^2)}
 \deqn{f(d) = b_1 + (b_2 - b_1) * d ^ b_4 / (exp(b_3 * b_4) + d ^ b_4)}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3)}
-\deqn{b_4 \sim N(mu_b4, sigma_b4), (Truncated above 0)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
+\deqn{b_4 \sim N(mu_b4, sigma_b4 ^ 2), (Truncated above 0)}
 \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 Here, \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
 maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
@@ -307,9 +307,9 @@ maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
 
 \deqn{y \sim N(f(d), \sigma^2)}
 \deqn{f(d) = b_1 + b_2 * (1 - exp(- b_3 * d))}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3), (truncated to be positive)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (truncated to be positive)}
 \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
@@ -319,10 +319,10 @@ maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
 \deqn{f(d) = b_1 + b_2 * ((b3 + b4) ^ (b3 + b4)) /
     (b3 ^ b3 * b4 ^ b4) * (d / scale) ^ b3 *
     (1 - d / scale) ^ b4}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3), Truncated above 0}
-\deqn{b_4 \sim N(mu_b4, sigma_b4), Truncated above 0}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), Truncated above 0}
+\deqn{b_4 \sim N(mu_b4, sigma_b4 ^ 2), Truncated above 0}
 \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 Note that \eqn{scale} is a hyperparameter specified by the
 user.
@@ -332,7 +332,7 @@ user.
 
 \deqn{y \sim N(f(d), \sigma^2)}
 \deqn{f(d) = b_{1d}}
-\deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d])}
+\deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d] ^ 2)}
 \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
@@ -349,34 +349,34 @@ is used for each dose, and the \code{doses} argument is not needed.
 
 \deqn{y \sim Binomial(n, f(d))}
 \deqn{link(f(d)) = b_1 + b_2 * d}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
 }
 
 \section{Quadratic Binary}{
 
 \deqn{y \sim Binomial(n, f(d))}
 \deqn{link(f(d)) = b_1 + b_2 * d + b_3 * d^2}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
 }
 
 \section{Log-linear Binary}{
 
 \deqn{y \sim Binomial(n, f(d))}
 \deqn{link(f(d)) = b_1 + b_2 * log(d + 1)}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
 }
 
 \section{Log-quadratic Binary}{
 
 \deqn{y \sim Binomial(n, f(d))}
 \deqn{link(f(d)) = b_1 + b_2 * log(d + 1) + b_3 * log(d + 1)^2}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
 }
 
 \section{EMAX Binary}{
@@ -384,10 +384,10 @@ is used for each dose, and the \code{doses} argument is not needed.
 \deqn{y \sim Binomial(n, f(d))}
 \deqn{link(f(d)) = b_1 + (b_2 - b_1) * d ^ b_4 /
     (exp(b_3 * b_4) + d ^ b_4)}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3)}
-\deqn{b_4 \sim N(mu_b4, sigma_b4), (Truncated above 0)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
+\deqn{b_4 \sim N(mu_b4, sigma_b4 ^ 2), (Truncated above 0)}
 Here, on the \eqn{link(f(d))} scale,
 \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
 maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
@@ -398,9 +398,9 @@ maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
 
 \deqn{y \sim Binomial(n, f(d))}
 \deqn{link(f(d)) = b_1 + b_2 * (exp(b_3 * d) - 1)}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3), (Truncated below 0)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (Truncated below 0)}
 }
 
 \section{Beta Binary}{
@@ -409,10 +409,10 @@ maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
 \deqn{link(f(d)) = b_1 + b_2 * ((b3 + b4) ^ (b3 + b4)) /
     (b3 ^ b3 * b4 ^ b4) * (d / scale) ^ b3 *
     (1 - d / scale) ^ b4}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3), Truncated above 0}
-\deqn{b_4 \sim N(mu_b4, sigma_b4), Truncated above 0}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), Truncated above 0}
+\deqn{b_4 \sim N(mu_b4, sigma_b4 ^ 2), Truncated above 0}
 Note that \eqn{scale} is a hyperparameter specified by the
 user.
 }
@@ -421,7 +421,7 @@ user.
 
 \deqn{y \sim Binomial(n, f(d))}
 \deqn{link(f(d)) = b_{1d}}
-\deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d])}
+\deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d]) ^ 2}
 }
 
 \section{Independent Binary Details}{
