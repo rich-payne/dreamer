@@ -322,8 +322,8 @@ S3 classes assigned which are used internally within <code><a href="dreamer_mcmc
 
 <p>$$y \sim N(f(d), \sigma^2)$$
 $$f(d) = b_1 + b_2 * d$$
-$$b_1 \sim N(mu_b1, sigma_b1)$$
-$$b_2 \sim N(mu_b2, sigma_b2)$$
+$$b_1 \sim N(mu_b1, sigma_b1 ^ 2)$$
+$$b_2 \sim N(mu_b2, sigma_b2 ^ 2)$$
 $$1 / \sigma^2 \sim Gamma(shape, rate)$$</p>
     </div>
     <div id="quadratic">
@@ -332,9 +332,9 @@ $$1 / \sigma^2 \sim Gamma(shape, rate)$$</p>
 
 <p>$$y \sim N(f(d), \sigma^2)$$
 $$f(d) = b_1 + b_2 * d + b_3 * d^2$$
-$$b_1 \sim N(mu_b1, sigma_b1)$$
-$$b_2 \sim N(mu_b2, sigma_b2)$$
-$$b_3 \sim N(mu_b3, sigma_b3)$$
+$$b_1 \sim N(mu_b1, sigma_b1 ^ 2)$$
+$$b_2 \sim N(mu_b2, sigma_b2 ^ 2)$$
+$$b_3 \sim N(mu_b3, sigma_b3 ^ 2)$$
 $$1 / \sigma^2 \sim Gamma(shape, rate)$$</p>
     </div>
     <div id="log-linear">
@@ -343,8 +343,8 @@ $$1 / \sigma^2 \sim Gamma(shape, rate)$$</p>
 
 <p>$$y \sim N(f(d), \sigma^2)$$
 $$f(d) = b_1 + b_2 * log(d + 1)$$
-$$b_1 \sim N(mu_b1, sigma_b1)$$
-$$b_2 \sim N(mu_b2, sigma_b2)$$
+$$b_1 \sim N(mu_b1, sigma_b1 ^ 2)$$
+$$b_2 \sim N(mu_b2, sigma_b2 ^ 2)$$
 $$1 / \sigma^2 \sim Gamma(shape, rate)$$</p>
     </div>
     <div id="log-quadratic">
@@ -353,9 +353,9 @@ $$1 / \sigma^2 \sim Gamma(shape, rate)$$</p>
 
 <p>$$y \sim N(f(d), \sigma^2)$$
 $$f(d) = b_1 + b_2 * log(d + 1) + b_3 * log(d + 1)^2$$
-$$b_1 \sim N(mu_b1, sigma_b1)$$
-$$b_2 \sim N(mu_b2, sigma_b2)$$
-$$b_3 \sim N(mu_b3, sigma_b3)$$
+$$b_1 \sim N(mu_b1, sigma_b1 ^ 2)$$
+$$b_2 \sim N(mu_b2, sigma_b2 ^ 2)$$
+$$b_3 \sim N(mu_b3, sigma_b3 ^ 2)$$
 $$1 / \sigma^2 \sim Gamma(shape, rate)$$</p>
     </div>
     <div id="emax">
@@ -364,10 +364,10 @@ $$1 / \sigma^2 \sim Gamma(shape, rate)$$</p>
 
 <p>$$y \sim N(f(d), \sigma^2)$$
 $$f(d) = b_1 + (b_2 - b_1) * d ^ b_4 / (exp(b_3 * b_4) + d ^ b_4)$$
-$$b_1 \sim N(mu_b1, sigma_b1)$$
-$$b_2 \sim N(mu_b2, sigma_b2)$$
-$$b_3 \sim N(mu_b3, sigma_b3)$$
-$$b_4 \sim N(mu_b4, sigma_b4), (Truncated above 0)$$
+$$b_1 \sim N(mu_b1, sigma_b1 ^ 2)$$
+$$b_2 \sim N(mu_b2, sigma_b2 ^ 2)$$
+$$b_3 \sim N(mu_b3, sigma_b3 ^ 2)$$
+$$b_4 \sim N(mu_b4, sigma_b4 ^ 2), (Truncated above 0)$$
 $$1 / \sigma^2 \sim Gamma(shape, rate)$$
 Here, \(b_1\) is the placebo effect (dose = 0), \(b_2\) is the
 maximum treatment effect, \(b_3\) is the \(log(ED50)\), and
@@ -379,9 +379,9 @@ maximum treatment effect, \(b_3\) is the \(log(ED50)\), and
 
 <p>$$y \sim N(f(d), \sigma^2)$$
 $$f(d) = b_1 + b_2 * (1 - exp(- b_3 * d))$$
-$$b_1 \sim N(mu_b1, sigma_b1)$$
-$$b_2 \sim N(mu_b2, sigma_b2)$$
-$$b_3 \sim N(mu_b3, sigma_b3), (truncated to be positive)$$
+$$b_1 \sim N(mu_b1, sigma_b1 ^ 2)$$
+$$b_2 \sim N(mu_b2, sigma_b2 ^ 2)$$
+$$b_3 \sim N(mu_b3, sigma_b3 ^ 2), (truncated to be positive)$$
 $$1 / \sigma^2 \sim Gamma(shape, rate)$$</p>
     </div>
     <div id="beta">
@@ -392,10 +392,10 @@ $$1 / \sigma^2 \sim Gamma(shape, rate)$$</p>
 $$f(d) = b_1 + b_2 * ((b3 + b4) ^ (b3 + b4)) /
     (b3 ^ b3 * b4 ^ b4) * (d / scale) ^ b3 *
     (1 - d / scale) ^ b4$$
-$$b_1 \sim N(mu_b1, sigma_b1)$$
-$$b_2 \sim N(mu_b2, sigma_b2)$$
-$$b_3 \sim N(mu_b3, sigma_b3), Truncated above 0$$
-$$b_4 \sim N(mu_b4, sigma_b4), Truncated above 0$$
+$$b_1 \sim N(mu_b1, sigma_b1 ^ 2)$$
+$$b_2 \sim N(mu_b2, sigma_b2 ^ 2)$$
+$$b_3 \sim N(mu_b3, sigma_b3 ^ 2), Truncated above 0$$
+$$b_4 \sim N(mu_b4, sigma_b4 ^ 2), Truncated above 0$$
 $$1 / \sigma^2 \sim Gamma(shape, rate)$$
 Note that \(scale\) is a hyperparameter specified by the
 user.</p>
@@ -406,7 +406,7 @@ user.</p>
 
 <p>$$y \sim N(f(d), \sigma^2)$$
 $$f(d) = b_{1d}$$
-$$b_{1d} \sim N(mu_b1[d], sigma_b1[d])$$
+$$b_{1d} \sim N(mu_b1[d], sigma_b1[d] ^ 2)$$
 $$1 / \sigma^2 \sim Gamma(shape, rate)$$</p>
     </div>
     <div id="independent-details">
@@ -425,8 +425,8 @@ is used for each dose, and the <code>doses</code> argument is not needed.</p>
 
 <p>$$y \sim Binomial(n, f(d))$$
 $$link(f(d)) = b_1 + b_2 * d$$
-$$b_1 \sim N(mu_b1, sigma_b1)$$
-$$b_2 \sim N(mu_b2, sigma_b2)$$</p>
+$$b_1 \sim N(mu_b1, sigma_b1 ^ 2)$$
+$$b_2 \sim N(mu_b2, sigma_b2 ^ 2)$$</p>
     </div>
     <div id="quadratic-binary">
     <h2>Quadratic Binary</h2>
@@ -434,9 +434,9 @@ $$b_2 \sim N(mu_b2, sigma_b2)$$</p>
 
 <p>$$y \sim Binomial(n, f(d))$$
 $$link(f(d)) = b_1 + b_2 * d + b_3 * d^2$$
-$$b_1 \sim N(mu_b1, sigma_b1)$$
-$$b_2 \sim N(mu_b2, sigma_b2)$$
-$$b_3 \sim N(mu_b3, sigma_b3)$$</p>
+$$b_1 \sim N(mu_b1, sigma_b1 ^ 2)$$
+$$b_2 \sim N(mu_b2, sigma_b2 ^ 2)$$
+$$b_3 \sim N(mu_b3, sigma_b3 ^ 2)$$</p>
     </div>
     <div id="log-linear-binary">
     <h2>Log-linear Binary</h2>
@@ -444,8 +444,8 @@ $$b_3 \sim N(mu_b3, sigma_b3)$$</p>
 
 <p>$$y \sim Binomial(n, f(d))$$
 $$link(f(d)) = b_1 + b_2 * log(d + 1)$$
-$$b_1 \sim N(mu_b1, sigma_b1)$$
-$$b_2 \sim N(mu_b2, sigma_b2)$$</p>
+$$b_1 \sim N(mu_b1, sigma_b1 ^ 2)$$
+$$b_2 \sim N(mu_b2, sigma_b2 ^ 2)$$</p>
     </div>
     <div id="log-quadratic-binary">
     <h2>Log-quadratic Binary</h2>
@@ -453,9 +453,9 @@ $$b_2 \sim N(mu_b2, sigma_b2)$$</p>
 
 <p>$$y \sim Binomial(n, f(d))$$
 $$link(f(d)) = b_1 + b_2 * log(d + 1) + b_3 * log(d + 1)^2$$
-$$b_1 \sim N(mu_b1, sigma_b1)$$
-$$b_2 \sim N(mu_b2, sigma_b2)$$
-$$b_3 \sim N(mu_b3, sigma_b3)$$</p>
+$$b_1 \sim N(mu_b1, sigma_b1 ^ 2)$$
+$$b_2 \sim N(mu_b2, sigma_b2 ^ 2)$$
+$$b_3 \sim N(mu_b3, sigma_b3 ^ 2)$$</p>
     </div>
     <div id="emax-binary">
     <h2>EMAX Binary</h2>
@@ -464,10 +464,10 @@ $$b_3 \sim N(mu_b3, sigma_b3)$$</p>
 <p>$$y \sim Binomial(n, f(d))$$
 $$link(f(d)) = b_1 + (b_2 - b_1) * d ^ b_4 /
     (exp(b_3 * b_4) + d ^ b_4)$$
-$$b_1 \sim N(mu_b1, sigma_b1)$$
-$$b_2 \sim N(mu_b2, sigma_b2)$$
-$$b_3 \sim N(mu_b3, sigma_b3)$$
-$$b_4 \sim N(mu_b4, sigma_b4), (Truncated above 0)$$
+$$b_1 \sim N(mu_b1, sigma_b1 ^ 2)$$
+$$b_2 \sim N(mu_b2, sigma_b2 ^ 2)$$
+$$b_3 \sim N(mu_b3, sigma_b3 ^ 2)$$
+$$b_4 \sim N(mu_b4, sigma_b4 ^ 2), (Truncated above 0)$$
 Here, on the \(link(f(d))\) scale,
 \(b_1\) is the placebo effect (dose = 0), \(b_2\) is the
 maximum treatment effect, \(b_3\) is the \(log(ED50)\), and
@@ -479,9 +479,9 @@ maximum treatment effect, \(b_3\) is the \(log(ED50)\), and
 
 <p>$$y \sim Binomial(n, f(d))$$
 $$link(f(d)) = b_1 + b_2 * (exp(b_3 * d) - 1)$$
-$$b_1 \sim N(mu_b1, sigma_b1)$$
-$$b_2 \sim N(mu_b2, sigma_b2)$$
-$$b_3 \sim N(mu_b3, sigma_b3), (Truncated below 0)$$</p>
+$$b_1 \sim N(mu_b1, sigma_b1 ^ 2)$$
+$$b_2 \sim N(mu_b2, sigma_b2 ^ 2)$$
+$$b_3 \sim N(mu_b3, sigma_b3 ^ 2), (Truncated below 0)$$</p>
     </div>
     <div id="beta-binary">
     <h2>Beta Binary</h2>
@@ -491,10 +491,10 @@ $$b_3 \sim N(mu_b3, sigma_b3), (Truncated below 0)$$</p>
 $$link(f(d)) = b_1 + b_2 * ((b3 + b4) ^ (b3 + b4)) /
     (b3 ^ b3 * b4 ^ b4) * (d / scale) ^ b3 *
     (1 - d / scale) ^ b4$$
-$$b_1 \sim N(mu_b1, sigma_b1)$$
-$$b_2 \sim N(mu_b2, sigma_b2)$$
-$$b_3 \sim N(mu_b3, sigma_b3), Truncated above 0$$
-$$b_4 \sim N(mu_b4, sigma_b4), Truncated above 0$$
+$$b_1 \sim N(mu_b1, sigma_b1 ^ 2)$$
+$$b_2 \sim N(mu_b2, sigma_b2 ^ 2)$$
+$$b_3 \sim N(mu_b3, sigma_b3 ^ 2), Truncated above 0$$
+$$b_4 \sim N(mu_b4, sigma_b4 ^ 2), Truncated above 0$$
 Note that \(scale\) is a hyperparameter specified by the
 user.</p>
     </div>
@@ -504,7 +504,7 @@ user.</p>
 
 <p>$$y \sim Binomial(n, f(d))$$
 $$link(f(d)) = b_{1d}$$
-$$b_{1d} \sim N(mu_b1[d], sigma_b1[d])$$</p>
+$$b_{1d} \sim N(mu_b1[d], sigma_b1[d]) ^ 2$$</p>
     </div>
     <div id="independent-binary-details">
     <h2>Independent Binary Details</h2>
