@@ -298,8 +298,8 @@ response.
 
 \deqn{y \sim N(f(d), \sigma^2)}
 \deqn{f(d) = b_1 + b_2 * d}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
 \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
@@ -307,9 +307,9 @@ response.
 
 \deqn{y \sim N(f(d), \sigma^2)}
 \deqn{f(d) = b_1 + b_2 * d + b_3 * d^2}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
 \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
@@ -317,8 +317,8 @@ response.
 
 \deqn{y \sim N(f(d), \sigma^2)}
 \deqn{f(d) = b_1 + b_2 * log(d + 1)}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
 \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
@@ -326,9 +326,9 @@ response.
 
 \deqn{y \sim N(f(d), \sigma^2)}
 \deqn{f(d) = b_1 + b_2 * log(d + 1) + b_3 * log(d + 1)^2}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
 \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
@@ -336,10 +336,10 @@ response.
 
 \deqn{y \sim N(f(d), \sigma^2)}
 \deqn{f(d) = b_1 + (b_2 - b_1) * d ^ b_4 / (exp(b_3 * b_4) + d ^ b_4)}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3)}
-\deqn{b_4 \sim N(mu_b4, sigma_b4), (Truncated above 0)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
+\deqn{b_4 \sim N(mu_b4, sigma_b4 ^ 2), (Truncated above 0)}
 \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 Here, \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
 maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
@@ -350,9 +350,9 @@ maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
 
 \deqn{y \sim N(f(d), \sigma^2)}
 \deqn{f(d) = b_1 + b_2 * (1 - exp(- b_3 * d))}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3), (truncated to be positive)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (truncated to be positive)}
 \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
@@ -360,34 +360,34 @@ maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
 
 \deqn{y \sim Binomial(n, f(d))}
 \deqn{link(f(d)) = b_1 + b_2 * d}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
 }
 
 \section{Quadratic Binary}{
 
 \deqn{y \sim Binomial(n, f(d))}
 \deqn{link(f(d)) = b_1 + b_2 * d + b_3 * d^2}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
 }
 
 \section{Log-linear Binary}{
 
 \deqn{y \sim Binomial(n, f(d))}
 \deqn{link(f(d)) = b_1 + b_2 * log(d + 1)}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
 }
 
 \section{Log-quadratic Binary}{
 
 \deqn{y \sim Binomial(n, f(d))}
 \deqn{link(f(d)) = b_1 + b_2 * log(d + 1) + b_3 * log(d + 1)^2}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
 }
 
 \section{EMAX Binary}{
@@ -395,10 +395,10 @@ maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
 \deqn{y \sim Binomial(n, f(d))}
 \deqn{link(f(d)) = b_1 + (b_2 - b_1) * d ^ b_4 /
     (exp(b_3 * b_4) + d ^ b_4)}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3)}
-\deqn{b_4 \sim N(mu_b4, sigma_b4), (Truncated above 0)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
+\deqn{b_4 \sim N(mu_b4, sigma_b4 ^ 2), (Truncated above 0)}
 Here, on the \eqn{link(f(d))} scale,
 \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
 maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
@@ -409,16 +409,16 @@ maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
 
 \deqn{y \sim Binomial(n, f(d))}
 \deqn{link(f(d)) = b_1 + b_2 * (exp(b_3 * d) - 1)}
-\deqn{b_1 \sim N(mu_b1, sigma_b1)}
-\deqn{b_2 \sim N(mu_b2, sigma_b2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3), (Truncated below 0)}
+\deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+\deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (Truncated below 0)}
 }
 
 \section{Independent}{
 
 \deqn{y \sim N(f(d), \sigma^2)}
 \deqn{f(d) = b_{1d}}
-\deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d])}
+\deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d] ^ 2)}
 \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 }
 
@@ -426,7 +426,7 @@ maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
 
 \deqn{y \sim Binomial(n, f(d))}
 \deqn{link(f(d)) = b_{1d}}
-\deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d])}
+\deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d]) ^ 2}
 }
 
 \section{Longitudinal Linear}{
@@ -481,4 +481,24 @@ head(data)
 
 plot(data$dose, data$response)
 abline(a = 1, b = 3)
+
+# longitudinal data
+set.seed(889)
+data_long <- dreamer_data_linear(
+  n_cohorts = c(10, 10, 10, 10), # number of subjects in each cohort
+  doses = c(.25, .5, .75, 1.5), # dose administered to each cohort
+  b1 = 0, # intercept
+  b2 = 2, # slope
+  sigma = .5, # standard deviation,
+  longitudinal = "itp",
+  times = c(0, 12, 24, 52),
+  t_max = 52, # maximum time
+  a = .5,
+  c1 = .1
+)
+
+\dontrun{
+  ggplot(data_long, aes(time, response, group = dose, color = factor(dose))) +
+    geom_point()
+}
 }

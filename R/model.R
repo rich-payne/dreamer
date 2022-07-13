@@ -31,8 +31,8 @@ NULL
 #' @section Linear:
 #'   \deqn{y \sim N(f(d), \sigma^2)}
 #'   \deqn{f(d) = b_1 + b_2 * d}
-#'   \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-#'   \deqn{b_2 \sim N(mu_b2, sigma_b2)}
+#'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+#'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
 #'   \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 #' @export
 model_linear <- function(
@@ -64,9 +64,9 @@ model_linear <- function(
 #' @section Quadratic:
 #'   \deqn{y \sim N(f(d), \sigma^2)}
 #'   \deqn{f(d) = b_1 + b_2 * d + b_3 * d^2}
-#'   \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-#'   \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-#'   \deqn{b_3 \sim N(mu_b3, sigma_b3)}
+#'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+#'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
 #'   \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 #' @export
 model_quad <- function(
@@ -102,8 +102,8 @@ model_quad <- function(
 #' @section Log-linear:
 #'   \deqn{y \sim N(f(d), \sigma^2)}
 #'   \deqn{f(d) = b_1 + b_2 * log(d + 1)}
-#'   \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-#'   \deqn{b_2 \sim N(mu_b2, sigma_b2)}
+#'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+#'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
 #'   \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 #' @export
 model_loglinear <- function(
@@ -135,9 +135,9 @@ model_loglinear <- function(
 #' @section Log-quadratic:
 #'   \deqn{y \sim N(f(d), \sigma^2)}
 #'   \deqn{f(d) = b_1 + b_2 * log(d + 1) + b_3 * log(d + 1)^2}
-#'   \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-#'   \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-#'   \deqn{b_3 \sim N(mu_b3, sigma_b3)}
+#'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+#'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
 #'   \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 #' @export
 model_logquad <- function(
@@ -173,10 +173,10 @@ model_logquad <- function(
 #' @section EMAX:
 #'   \deqn{y \sim N(f(d), \sigma^2)}
 #'   \deqn{f(d) = b_1 + (b_2 - b_1) * d ^ b_4 / (exp(b_3 * b_4) + d ^ b_4)}
-#'   \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-#'   \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-#'   \deqn{b_3 \sim N(mu_b3, sigma_b3)}
-#'   \deqn{b_4 \sim N(mu_b4, sigma_b4), (Truncated above 0)}
+#'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+#'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
+#'   \deqn{b_4 \sim N(mu_b4, sigma_b4 ^ 2), (Truncated above 0)}
 #'   \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 #'   Here, \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
 #'   maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
@@ -219,9 +219,9 @@ model_emax <- function(
 #' @section Exponential:
 #'   \deqn{y \sim N(f(d), \sigma^2)}
 #'   \deqn{f(d) = b_1 + b_2 * (1 - exp(- b_3 * d))}
-#'   \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-#'   \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-#'   \deqn{b_3 \sim N(mu_b3, sigma_b3), (truncated to be positive)}
+#'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+#'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (truncated to be positive)}
 #'   \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 #' @export
 model_exp <- function(
@@ -260,10 +260,10 @@ model_exp <- function(
 #'   \deqn{f(d) = b_1 + b_2 * ((b3 + b4) ^ (b3 + b4)) /
 #'     (b3 ^ b3 * b4 ^ b4) * (d / scale) ^ b3 *
 #'     (1 - d / scale) ^ b4}
-#'   \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-#'   \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-#'   \deqn{b_3 \sim N(mu_b3, sigma_b3), Truncated above 0}
-#'   \deqn{b_4 \sim N(mu_b4, sigma_b4), Truncated above 0}
+#'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+#'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), Truncated above 0}
+#'   \deqn{b_4 \sim N(mu_b4, sigma_b4 ^ 2), Truncated above 0}
 #'   \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 #'   Note that \eqn{scale} is a hyperparameter specified by the
 #'   user.
@@ -310,7 +310,7 @@ model_beta <- function(
 #' @section Independent:
 #'   \deqn{y \sim N(f(d), \sigma^2)}
 #'   \deqn{f(d) = b_{1d}}
-#'   \deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d])}
+#'   \deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d] ^ 2)}
 #'   \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 #' @section Independent Details:
 #'   The independent model models the effect of each dose independently.
@@ -351,8 +351,8 @@ model_independent <- function(
 #' @section Linear Binary:
 #'   \deqn{y \sim Binomial(n, f(d))}
 #'   \deqn{link(f(d)) = b_1 + b_2 * d}
-#'   \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-#'   \deqn{b_2 \sim N(mu_b2, sigma_b2)}
+#'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+#'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
 #' @export
 model_linear_binary <- function(
   mu_b1,
@@ -381,9 +381,9 @@ model_linear_binary <- function(
 #' @section Quadratic Binary:
 #'   \deqn{y \sim Binomial(n, f(d))}
 #'   \deqn{link(f(d)) = b_1 + b_2 * d + b_3 * d^2}
-#'   \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-#'   \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-#'   \deqn{b_3 \sim N(mu_b3, sigma_b3)}
+#'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+#'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
 #' @export
 model_quad_binary <- function(
   mu_b1,
@@ -416,8 +416,8 @@ model_quad_binary <- function(
 #' @section Log-linear Binary:
 #'   \deqn{y \sim Binomial(n, f(d))}
 #'   \deqn{link(f(d)) = b_1 + b_2 * log(d + 1)}
-#'   \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-#'   \deqn{b_2 \sim N(mu_b2, sigma_b2)}
+#'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+#'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
 #' @export
 model_loglinear_binary <- function(
   mu_b1,
@@ -446,9 +446,9 @@ model_loglinear_binary <- function(
 #' @section Log-quadratic Binary:
 #'   \deqn{y \sim Binomial(n, f(d))}
 #'   \deqn{link(f(d)) = b_1 + b_2 * log(d + 1) + b_3 * log(d + 1)^2}
-#'   \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-#'   \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-#'   \deqn{b_3 \sim N(mu_b3, sigma_b3)}
+#'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+#'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
 #' @export
 model_logquad_binary <- function(
   mu_b1,
@@ -482,10 +482,10 @@ model_logquad_binary <- function(
 #'   \deqn{y \sim Binomial(n, f(d))}
 #'   \deqn{link(f(d)) = b_1 + (b_2 - b_1) * d ^ b_4 /
 #'     (exp(b_3 * b_4) + d ^ b_4)}
-#'   \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-#'   \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-#'   \deqn{b_3 \sim N(mu_b3, sigma_b3)}
-#'   \deqn{b_4 \sim N(mu_b4, sigma_b4), (Truncated above 0)}
+#'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+#'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
+#'   \deqn{b_4 \sim N(mu_b4, sigma_b4 ^ 2), (Truncated above 0)}
 #'   Here, on the \eqn{link(f(d))} scale,
 #'   \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
 #'   maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
@@ -526,9 +526,9 @@ model_emax_binary <- function(
 #' @section Exponential Binary:
 #'   \deqn{y \sim Binomial(n, f(d))}
 #'   \deqn{link(f(d)) = b_1 + b_2 * (exp(b_3 * d) - 1)}
-#'   \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-#'   \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-#'   \deqn{b_3 \sim N(mu_b3, sigma_b3), (Truncated below 0)}
+#'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+#'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (Truncated below 0)}
 #' @export
 model_exp_binary <- function(
   mu_b1,
@@ -563,10 +563,10 @@ model_exp_binary <- function(
 #'   \deqn{link(f(d)) = b_1 + b_2 * ((b3 + b4) ^ (b3 + b4)) /
 #'     (b3 ^ b3 * b4 ^ b4) * (d / scale) ^ b3 *
 #'     (1 - d / scale) ^ b4}
-#'   \deqn{b_1 \sim N(mu_b1, sigma_b1)}
-#'   \deqn{b_2 \sim N(mu_b2, sigma_b2)}
-#'   \deqn{b_3 \sim N(mu_b3, sigma_b3), Truncated above 0}
-#'   \deqn{b_4 \sim N(mu_b4, sigma_b4), Truncated above 0}
+#'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
+#'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
+#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), Truncated above 0}
+#'   \deqn{b_4 \sim N(mu_b4, sigma_b4 ^ 2), Truncated above 0}
 #'   Note that \eqn{scale} is a hyperparameter specified by the
 #'   user.
 #' @export
@@ -607,7 +607,7 @@ model_beta_binary <- function(
 #' @section Independent Binary:
 #'   \deqn{y \sim Binomial(n, f(d))}
 #'   \deqn{link(f(d)) = b_{1d}}
-#'   \deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d])}
+#'   \deqn{b_{1d} \sim N(mu_b1[d], sigma_b1[d]) ^ 2}
 #' @section Independent Binary Details:
 #'   The independent model models the effect of each dose independently.
 #'   Vectors can be supplied to `mu_b1` and `sigma_b1` to set a different
