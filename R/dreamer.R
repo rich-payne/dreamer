@@ -40,6 +40,7 @@
 #'   Gould, A. L. (2019).  BMA-Mod: A Bayesian model averaging strategy for
 #'     determining dose-response relationships in the presence of model
 #'     uncertainty. Biometrical Journal, 61(5), 1141-1159.
+#' @example man/examples/ex-dreamer_mcmc.R
 #' @export
 dreamer_mcmc <- function( #nolint
   data,

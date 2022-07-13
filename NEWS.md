@@ -8,6 +8,7 @@
 * Update docs to make it clear sigma represents standard deviation (#14).
 * Remove dreamer class -- use existing "dreamer_mcmc"" class instead (#17).
 * Create safer class checks using `inherits()` (#16).
+* Add missing examples to docs (#23).
 
 # dreamer 3.0.0
 
