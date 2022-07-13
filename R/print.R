@@ -2,13 +2,6 @@
 print.dreamer_bma <- function(x, ...) {
   ellipsis::check_dots_empty()
   NextMethod("print", x)
-  # cat("-----------------\n")
-  # cat("dreamer Model Fit\n")
-  # cat("-----------------\n")
-  # cat(paste0("doses: ", paste(attr(x, "doses"), collapse = ", "), "\n"))
-  # if (!is.null(attr(x, "times"))) {
-  #   cat(paste0("times: ", paste0(attr(x, "times"), collapse = ", "), "\n"))
-  # }
   weights <- dplyr::bind_cols(
     model = names(x$w_prior),
     `prior weight` = x$w_prior,
@@ -63,7 +56,6 @@ print_model <- function(x, response_type) {
   cat("\n")
   cat("Dose Response\n")
   cat(hyparms, sep = "\n")
-  
   if (!is.null(long)) {
     cat("\n")
     cat("Longitudinal\n")
