@@ -9,6 +9,7 @@
 * Remove dreamer class -- use existing "dreamer_mcmc"" class instead (#17).
 * Create safer class checks using `inherits()` (#16).
 * Add missing examples to docs (#23).
+* Adds additional data-type checks to `dreamer_mcmc()` (#3).
 
 # dreamer 3.0.0
 
