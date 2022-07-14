@@ -61,6 +61,7 @@ print_model <- function(x, response_type) {
     cat("Longitudinal\n")
     cat(long, sep = "\n")
   }
+  return(invisible())
 }
 
 get_hyparms <- function(hyparms) {
