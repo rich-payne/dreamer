@@ -29,7 +29,7 @@ test_that("print methods", {
   expect_snapshot(print(mod))
   expect_snapshot(print(output))
   expect_snapshot(print(output$mod_linear))
-  
+
   mod_binary <-  model_linear_binary(
     mu_b1 = 0,
     sigma_b1 = 1,
