@@ -109,6 +109,7 @@ test_that("posterior.dreamer_bma uses model_index and iter correctly", {
 })
 
 test_that("continuous predictive runs", {
+  set.seed(8)
   data <- dreamer_data_linear(n_cohorts = c(10, 20, 30), c(1, 3, 5), 1, 2, 2)
   mcmc <- dreamer_mcmc(
     data,
@@ -124,6 +125,7 @@ test_that("continuous predictive runs", {
 })
 
 test_that("binary predictive runs", {
+  set.seed(1)
   data <- dreamer_data_linear_binary(
     n_cohorts = c(10, 20, 30),
     dose = c(1, 3, 5),
