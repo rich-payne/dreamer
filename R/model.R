@@ -56,6 +56,7 @@ model_linear <- function(
     longitudinal = longitudinal
   )
   class(mod) <- c("dreamer_linear", "dreamer_continuous")
+  attr(mod, "type") <- "linear"
   return(mod)
 }
 
@@ -93,6 +94,7 @@ model_quad <- function(
     longitudinal = longitudinal
   )
   class(mod) <- c("dreamer_quad", "dreamer_continuous")
+  attr(mod, "type") <- "quadratic"
   return(mod)
 }
 
@@ -125,6 +127,7 @@ model_loglinear <- function(
     longitudinal = longitudinal
   )
   class(mod) <- c("dreamer_loglinear", "dreamer_continuous")
+  attr(mod, "type") <- "log-linear"
   return(mod)
 }
 
@@ -162,6 +165,7 @@ model_logquad <- function(
     longitudinal = longitudinal
   )
   class(mod) <- c("dreamer_logquad", "dreamer_continuous")
+  attr(mod, "type") <- "log-quadratic"
   return(mod)
 }
 
@@ -207,6 +211,7 @@ model_emax <- function(
     longitudinal = longitudinal
   )
   class(mod) <- c("dreamer_emax", "dreamer_continuous")
+  attr(mod, "type") <- "EMAX"
   return(mod)
 }
 
@@ -244,6 +249,7 @@ model_exp <- function(
     longitudinal = longitudinal
   )
   class(mod) <- c("dreamer_exp", "dreamer_continuous")
+  attr(mod, "type") <- "exponential"
   return(mod)
 }
 
@@ -293,6 +299,7 @@ model_beta <- function(
     longitudinal = longitudinal
   )
   class(mod) <- c("dreamer_beta", "dreamer_continuous")
+  attr(mod, "type") <- "beta"
   return(mod)
 }
 
@@ -336,6 +343,7 @@ model_independent <- function(
     "dreamer_independent",
     "dreamer_continuous"
   )
+  attr(mod, "type") <- "independent"
   return(mod)
 }
 
@@ -365,6 +373,7 @@ model_linear_binary <- function(
     longitudinal = longitudinal
   )
   class(mod) <- c("dreamer_linear_binary", "dreamer_binary")
+  attr(mod, "type") <- "linear"
   return(mod)
 }
 
@@ -399,6 +408,7 @@ model_quad_binary <- function(
     longitudinal = longitudinal
   )
   class(mod) <- c("dreamer_quad_binary", "dreamer_binary")
+  attr(mod, "type") <- "quadratic"
   return(mod)
 }
 
@@ -428,6 +438,7 @@ model_loglinear_binary <- function(
     longitudinal = longitudinal
   )
   class(mod) <- c("dreamer_loglinear_binary", "dreamer_binary")
+  attr(mod, "type") <- "log-linear"
   return(mod)
 }
 
@@ -462,6 +473,7 @@ model_logquad_binary <- function(
     longitudinal = longitudinal
   )
   class(mod) <- c("dreamer_logquad_binary", "dreamer_binary")
+  attr(mod, "type") <- "log-quadratic"
   return(mod)
 }
 
@@ -506,6 +518,7 @@ model_emax_binary <- function(
     longitudinal = longitudinal
   )
   class(mod) <- c("dreamer_emax_binary", "dreamer_binary")
+  attr(mod, "type") <- "EMAX"
   return(mod)
 }
 
@@ -540,6 +553,7 @@ model_exp_binary <- function(
     longitudinal = longitudinal
   )
   class(mod) <- c("dreamer_exp_binary", "dreamer_binary")
+  attr(mod, "type") <- "exponential"
   return(mod)
 }
 
@@ -585,6 +599,7 @@ model_beta_binary <- function(
     longitudinal = longitudinal
   )
   class(mod) <- c("dreamer_beta_binary", "dreamer_binary")
+  attr(mod, "type") <- "beta"
   return(mod)
 }
 
@@ -622,6 +637,7 @@ model_independent_binary <- function(
     "dreamer_independent",
     "dreamer_binary"
   )
+  attr(mod, "type") <- "independent"
   return(mod)
 }
 

@@ -10,6 +10,7 @@
 * Create safer class checks using `inherits()` (#16).
 * Add missing examples to docs (#23).
 * Adds additional data-type checks to `dreamer_mcmc()` (#3).
+* Adds print() methods for models and mcmc outputs (#15).
 
 # dreamer 3.0.0
 

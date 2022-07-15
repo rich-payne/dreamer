@@ -27,6 +27,7 @@ License: MIT + file LICENSE
 Imports:
   coda,
   dplyr (>= 1.0.0),
+  ellipsis (>= 0.3),
   ggplot2,
   graphics,
   purrr,
