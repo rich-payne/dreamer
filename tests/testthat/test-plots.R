@@ -187,23 +187,25 @@ test_that("plots comparison compare longitudinal single time", {
 
 
 test_that("traceplots work", {
-  fs::dir_create("figs")
-  png(fs::path("figs", "traceplots.png"))
+  temp_dir <- tempdir()
+  path <- fs::path(temp_dir, "traceplots.png")
+  png(path)
     expect_null(plot_trace(mcmc))
   dev.off()
   skip_on_cran()
   skip_on_ci()
-  expect_snapshot_file("figs/traceplots.png")
+  expect_snapshot_file(path)
 })
 
 test_that("traceplots work single model", {
-  fs::dir_create("figs")
-  png(fs::path("figs", "traceplots_single.png"))
+  temp_dir <- tempdir()
+  path <- fs::path(temp_dir, "traceplots_single.png")
+  png(path)
     expect_null(plot_trace(mcmc$lin))
   dev.off()
   skip_on_cran()
   skip_on_ci()
-  expect_snapshot_file("figs/traceplots_single.png")
+  expect_snapshot_file(path)
 })
 
 test_that("independent predictive plot", {
