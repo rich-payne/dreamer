@@ -52,7 +52,24 @@ Now we can use a Bayesian model averaging technique to analyze the data. We will
 
 Hyperparameters for each model are set by using the `model_XXX()` functions.
 Type `?model` for a description of the model constructors and the models
-each of them fit.
+each of them fit.  The model functions take hyperparameters and put them in
+a named list:
+
+```{r}
+model_quad(
+  mu_b1 = 0,
+  sigma_b1 = 10,
+  mu_b2 = 0,
+  sigma_b2 = 10,
+  mu_b3 = 0,
+  sigma_b3 = 10,
+  shape = 1,
+  rate = .001,
+  w_prior = 1 / 2
+)
+```
+
+The dreamer models are then  used in the `dreamer_mcmc()` function:
 
 ```{r}
 # Bayesian model averaging
@@ -94,10 +111,12 @@ output <- dreamer_mcmc(
 
 ### Model Output
 
-The output is a list of the sorted unique doses, unique times (for longitudinal models), the prior and posterior weights for each model, and MCMC output from each individual model.
+The output is a list of the sorted unique doses, unique times (for longitudinal models), the prior and posterior weights for each model, and MCMC output from each individual model.  However, the default print method makes it easy to see
+high-level summaries of the model fit, including the posterior weights for each
+model:
 
 ```{r}
-names(output)
+output
 ```
 
 Output can be easily summarized.  The `summary()` function provides posterior
