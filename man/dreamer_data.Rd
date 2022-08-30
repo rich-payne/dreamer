@@ -260,40 +260,40 @@ See the model definitions below for specifics for each model.
 }
 \section{Functions}{
 \itemize{
-\item \code{dreamer_data_linear}: generate data from linear dose response.
+\item \code{dreamer_data_linear()}: generate data from linear dose response.
 
-\item \code{dreamer_data_linear_binary}: generate data from linear binary dose response.
+\item \code{dreamer_data_linear_binary()}: generate data from linear binary dose response.
 
-\item \code{dreamer_data_quad}: generate data from quadratic dose response.
+\item \code{dreamer_data_quad()}: generate data from quadratic dose response.
 
-\item \code{dreamer_data_quad_binary}: generate data from quadratic binary dose response.
+\item \code{dreamer_data_quad_binary()}: generate data from quadratic binary dose response.
 
-\item \code{dreamer_data_loglinear}: generate data from log-linear dose response.
+\item \code{dreamer_data_loglinear()}: generate data from log-linear dose response.
 
-\item \code{dreamer_data_loglinear_binary}: generate data from binary log-linear dose response.
+\item \code{dreamer_data_loglinear_binary()}: generate data from binary log-linear dose response.
 
-\item \code{dreamer_data_logquad}: generate data from log-quadratic dose response.
+\item \code{dreamer_data_logquad()}: generate data from log-quadratic dose response.
 
-\item \code{dreamer_data_logquad_binary}: generate data from log-quadratic binary dose
+\item \code{dreamer_data_logquad_binary()}: generate data from log-quadratic binary dose
 response.
 
-\item \code{dreamer_data_emax}: generate data from EMAX dose response.
+\item \code{dreamer_data_emax()}: generate data from EMAX dose response.
 
-\item \code{dreamer_data_emax_binary}: generate data from EMAX binary dose response.
+\item \code{dreamer_data_emax_binary()}: generate data from EMAX binary dose response.
 
-\item \code{dreamer_data_exp}: generate data from exponential dose response.
+\item \code{dreamer_data_exp()}: generate data from exponential dose response.
 
-\item \code{dreamer_data_exp_binary}: generate data from exponential binary dose response.
+\item \code{dreamer_data_exp_binary()}: generate data from exponential binary dose response.
 
-\item \code{dreamer_data_beta}: generate data from Beta dose response.
+\item \code{dreamer_data_beta()}: generate data from Beta dose response.
 
-\item \code{dreamer_data_beta_binary}: generate data from binary Beta dose response.
+\item \code{dreamer_data_beta_binary()}: generate data from binary Beta dose response.
 
-\item \code{dreamer_data_independent}: generate data from an independent dose response.
+\item \code{dreamer_data_independent()}: generate data from an independent dose response.
 
-\item \code{dreamer_data_independent_binary}: generate data from an independent dose response.
+\item \code{dreamer_data_independent_binary()}: generate data from an independent dose response.
+
 }}
-
 \section{Linear}{
 
 \deqn{y \sim N(f(d), \sigma^2)}
