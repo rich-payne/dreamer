@@ -12,6 +12,7 @@
 * Adds additional data-type checks to `dreamer_mcmc()` (#3).
 * Adds print() methods for models and mcmc outputs (#15).
 * Uses temporary directories in test-plots.R.
+* Update to README and vignette to show new print methods (#27).
 
 # dreamer 3.0.0
 
