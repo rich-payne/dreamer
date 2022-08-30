@@ -4,7 +4,6 @@ vignettes/dreamer.html
 .Rhistory
 .RData
 .Ruserdata
-tests/testthat/figs
 cran-comments.md
 inst/doc
 doc
