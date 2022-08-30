@@ -3,18 +3,8 @@ on: [push, pull_request]
 name: cover
 
 jobs:
-  cover:
-    timeout-minutes: 30
-    runs-on: ${{ matrix.config.os }}
-
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
-
-    strategy:
-      fail-fast: false
-      matrix:
-        config:
-          - {os: ubuntu-18.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
-
+  test-coverage:
+    runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.CI }}
     steps:
@@ -23,10 +13,9 @@ jobs:
       - uses: r-lib/actions/setup-r@master
 
       - uses: r-lib/actions/setup-pandoc@master
-
+      
       - name: Query dependencies
         run: |
-          install.packages('remotes')
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
         shell: Rscript {0}
 
@@ -46,18 +35,15 @@ jobs:
           sudo -s apt-get install libcurl4-openssl-dev
           sudo -s apt-get install jags
 
-      - name: Install dependencies
-        run: |
-          install.packages(c("remotes", "covr", "devtools", "stringi"))
-          remotes::install_cran(c("rjags", "tibble"))
-          remotes::install_deps(dependencies = TRUE)
-        shell: Rscript {0}
-
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::covr
+          needs: coverage
+      
       - name: Test coverage
         run: |
-          tmp <- devtools::test()
-          print(tmp)
-          out <- covr::zero_coverage(covr::package_coverage())
+          out <- covr::package_coverage()
           print(out)
-          if (nrow(out)) stop("some lines not covered by tests")
+          perc <- covr::percent_coverage(out)
+          if (perc < 100) stop("Some lines not covered by tests.")
         shell: Rscript {0}
