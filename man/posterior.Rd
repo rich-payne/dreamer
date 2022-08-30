@@ -98,13 +98,13 @@ doses for each MCMC iteration of the model.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{dreamer_mcmc}: posterior summary for linear model.
+\item \code{posterior(dreamer_mcmc)}: posterior summary for linear model.
 
-\item \code{dreamer_mcmc_independent}: posterior summary for independent model.
+\item \code{posterior(dreamer_mcmc_independent)}: posterior summary for independent model.
 
-\item \code{dreamer_bma}: posterior summary for Bayesian model averaging fit.
+\item \code{posterior(dreamer_bma)}: posterior summary for Bayesian model averaging fit.
+
 }}
-
 \examples{
 set.seed(888)
 data <- dreamer_data_linear(
