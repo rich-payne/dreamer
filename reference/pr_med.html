@@ -19,7 +19,7 @@ dose that has a clinically significant difference (CSD)."><!-- mathjax --><scrip
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dreamer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
       </span>
     </div>
 
@@ -137,7 +137,7 @@ each dose is the minimum efficacious dose.</p>
 <span class="r-in"><span> data <span class="op">=</span> <span class="va">data</span>,</span></span>
 <span class="r-in"><span> n_adapt <span class="op">=</span> <span class="fl">1e3</span>,</span></span>
 <span class="r-in"><span> n_burn <span class="op">=</span> <span class="fl">1e3</span>,</span></span>
-<span class="r-in"><span> n_iter <span class="op">=</span> <span class="fl">1e4</span>,</span></span>
+<span class="r-in"><span> n_iter <span class="op">=</span> <span class="fl">1e3</span>,</span></span>
 <span class="r-in"><span> n_chains <span class="op">=</span> <span class="fl">2</span>,</span></span>
 <span class="r-in"><span> silent <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span> mod_linear <span class="op">=</span> <span class="fu"><a href="model.html">model_linear</a></span><span class="op">(</span></span></span>
@@ -162,7 +162,7 @@ each dose is the minimum efficacious dose.</p>
 <span class="r-in"><span> <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> mod_linear</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-08-30 18:05:12.571</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-09-01 14:08:34.012</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Compiling model graph</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Resolving undeclared variables</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Allocating nodes</span>
@@ -173,10 +173,10 @@ each dose is the minimum efficacious dose.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Initializing model</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-08-30 18:05:12.686</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.12 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-09-01 14:08:34.049</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.04 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> mod_quad</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-08-30 18:05:12.687</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-09-01 14:08:34.050</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Compiling model graph</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Resolving undeclared variables</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Allocating nodes</span>
@@ -187,16 +187,16 @@ each dose is the minimum efficacious dose.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Initializing model</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-08-30 18:05:12.808</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.12 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-09-01 14:08:34.091</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.04 secs</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">pr_med</span><span class="op">(</span><span class="va">output</span>, csd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    dose  prob</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     0 0    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     3 0.262</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    10 0.738</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     3 0.258</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    10 0.742</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># difference of two doses</span></span></span>
 <span class="r-in"><span><span class="fu">pr_med</span><span class="op">(</span><span class="va">output</span>, csd <span class="op">=</span> <span class="fl">3</span>, reference_dose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
@@ -213,8 +213,8 @@ each dose is the minimum efficacious dose.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    dose  prob</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     0 0    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     3 0.282</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    10 0.718</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     3 0.285</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    10 0.715</span>
 </code></pre></div>
     </div>
   </div>

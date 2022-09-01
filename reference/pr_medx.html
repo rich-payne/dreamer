@@ -18,7 +18,7 @@ that has at least X% of the maximum efficacy."><!-- mathjax --><script src="http
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dreamer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@ is the largest mean response among <code>doses</code> for a given MCMC iteration
 <span class="r-in"><span> data <span class="op">=</span> <span class="va">data</span>,</span></span>
 <span class="r-in"><span> n_adapt <span class="op">=</span> <span class="fl">1e3</span>,</span></span>
 <span class="r-in"><span> n_burn <span class="op">=</span> <span class="fl">1e3</span>,</span></span>
-<span class="r-in"><span> n_iter <span class="op">=</span> <span class="fl">1e4</span>,</span></span>
+<span class="r-in"><span> n_iter <span class="op">=</span> <span class="fl">1e3</span>,</span></span>
 <span class="r-in"><span> n_chains <span class="op">=</span> <span class="fl">2</span>,</span></span>
 <span class="r-in"><span> silent <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span> mod_linear <span class="op">=</span> <span class="fu"><a href="model.html">model_linear</a></span><span class="op">(</span></span></span>
@@ -174,7 +174,7 @@ is the largest mean response among <code>doses</code> for a given MCMC iteration
 <span class="r-in"><span> <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> mod_linear</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-08-30 18:05:16.819</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-09-01 14:08:35.314</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Compiling model graph</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Resolving undeclared variables</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Allocating nodes</span>
@@ -185,10 +185,10 @@ is the largest mean response among <code>doses</code> for a given MCMC iteration
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Initializing model</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-08-30 18:05:16.933</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.11 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-09-01 14:08:35.353</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.04 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> mod_quad</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-08-30 18:05:16.933</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> start : 2022-09-01 14:08:35.354</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Compiling model graph</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Resolving undeclared variables</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Allocating nodes</span>
@@ -199,25 +199,25 @@ is the largest mean response among <code>doses</code> for a given MCMC iteration
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Initializing model</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-08-30 18:05:17.070</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.14 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> finish: 2022-09-01 14:08:35.397</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> total : 0.04 secs</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">pr_medx</span><span class="op">(</span><span class="va">output</span>, ed <span class="op">=</span> <span class="fl">80</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      ed dose    prob</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>    80 0     0.063<span style="text-decoration: underline;">4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    80 3     0.417 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    80 10    0.516 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>    80 0     0.060<span style="text-decoration: underline;">5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    80 3     0.415 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    80 10    0.522 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># single model</span></span></span>
 <span class="r-in"><span><span class="fu">pr_medx</span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">mod_linear</span>, ed <span class="op">=</span> <span class="fl">80</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      ed dose    prob</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>    80 0     0.125 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    80 3     0.020<span style="text-decoration: underline;">7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    80 10    0.848 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      ed dose   prob</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>    80 0     0.13 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    80 3     0.018</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>    80 10    0.846</span>
 </code></pre></div>
     </div>
   </div>
