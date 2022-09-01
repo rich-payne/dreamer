@@ -107,7 +107,7 @@ output <- dreamer_mcmc(
  data = data,
  n_adapt = 1e3,
  n_burn = 1e3,
- n_iter = 1e4,
+ n_iter = 1e3,
  n_chains = 2,
  silent = FALSE,
  mod_linear = model_linear(
