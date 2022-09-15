@@ -6,6 +6,8 @@
 [![lint](https://github.com/rich-payne/dreamer/actions/workflows/lint.yaml/badge.svg)](https://github.com/rich-payne/dreamer/actions/workflows/lint.yaml)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/dreamer?color=brightgreen)](https://r-pkg.org/pkg/dreamer)
+[![CRAN
+Release](https://www.r-pkg.org/badges/version/brisk)](https://r-pkg.org/pkg/dreamer)
 
 # dreamer <img src='inst/hex-dreamer.png' align="right" height="139"/>
 
