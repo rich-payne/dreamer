@@ -9,7 +9,7 @@ editor_options:
 [![cover](https://github.com/rich-payne/dreamer/actions/workflows/cover.yaml/badge.svg)](https://github.com/rich-payne/dreamer/actions/workflows/cover.yaml)
 [![lint](https://github.com/rich-payne/dreamer/actions/workflows/lint.yaml/badge.svg)](https://github.com/rich-payne/dreamer/actions/workflows/lint.yaml)
 [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/dreamer?color=brightgreen)](https://r-pkg.org/pkg/dreamer)
-[![CRAN Release](https://www.r-pkg.org/badges/version/brisk)](https://r-pkg.org/pkg/dreamer)
+[![CRAN Release](https://www.r-pkg.org/badges/version/dreamer)](https://r-pkg.org/pkg/dreamer)
 
 
 ```{r, include = FALSE}

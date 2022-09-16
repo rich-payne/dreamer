@@ -7,7 +7,7 @@
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/dreamer?color=brightgreen)](https://r-pkg.org/pkg/dreamer)
 [![CRAN
-Release](https://www.r-pkg.org/badges/version/brisk)](https://r-pkg.org/pkg/dreamer)
+Release](https://www.r-pkg.org/badges/version/dreamer)](https://r-pkg.org/pkg/dreamer)
 
 # dreamer <img src='inst/hex-dreamer.png' align="right" height="139"/>
 
@@ -38,7 +38,7 @@ For feature requests and to report bugs, please submit an issue to the
 
 # Vignettes
 
-See the “dreamer\_method” vignette for a high-level overview of Bayesian
+See the “dreamer_method” vignette for a high-level overview of Bayesian
 model averaging and/or read Gould (2019) for the approach used by
 dreamer.
 
@@ -133,6 +133,7 @@ plot(output, data = data)
 <img src="man/figures/README-example-1.png" width="100%" />
 
 ``` r
+
 # plot individual model fit
 plot(output$mod_emax, data = data)
 ```
@@ -140,6 +141,7 @@ plot(output$mod_emax, data = data)
 <img src="man/figures/README-example-2.png" width="100%" />
 
 ``` r
+
 # posterior summary for model parameters
 summary(output)
 #> $model_weights
