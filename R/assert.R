@@ -31,3 +31,33 @@ assert_reference_dose <- function(reference_dose) {
     )
   }
 }
+
+assert_model_names <- function(x) {
+  for (i in seq_along(x)) {
+    if (isTRUE(names(x)[i] == "") || is.null(names(x)[i])) {
+      rlang::abort(
+        "All dreamer model arguments must be named in dreamer_mcmc().",
+        class = "dreamer"
+      )
+    }
+  }
+  if (any(duplicated(names(x)))) {
+    rlang::abort("Duplicate model names are not allowed.", class = "dreamer")
+  }
+}
+
+assert_names <- function(x, y, msg) {
+  if (!all(names(x) == names(y))) {
+    stop(msg, call. = FALSE)
+  }
+}
+
+assert_w_prior <- function(w_prior) {
+  w_total <- sum(w_prior)
+  if (!isTRUE(all.equal(w_total, 1))) {
+    stop(
+      "Sum of w_prior for all models must add to 1: ", w_total,
+      call. = FALSE
+    )
+  }
+}
