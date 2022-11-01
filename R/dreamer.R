@@ -306,9 +306,13 @@ check_data <- function(dat, binary) {
       class = "dreamer"
     )
   }
-  if (binary && !all(dat$response %in% c(0L, 1L))) {
+  if (
+    binary &&
+    !all(dat$response %in% c(0L, 1L)) &&
+    !rlang::has_name(dat, "n")
+  ) {
     rlang::abort(
-      "Column \"response\" must contain only zeros and ones.",
+      "Column \"response\" must contain only zeros and ones unless \"n\" is specified.", # nolint
       class = "dreamer"
     )
   }
