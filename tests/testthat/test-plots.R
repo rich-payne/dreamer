@@ -110,6 +110,14 @@ test_that("plot with data", {
   expect_snapshot_file(gg_save(out, "plot_with_data.png"))
 })
 
+test_that("plot with data, candidate model", {
+  out <- plot(mcmc$lin, data = data, n_smooth = 5)
+  expect_s3_class(out, "ggplot")
+  skip_on_cran()
+  skip_on_ci()
+  expect_snapshot_file(gg_save(out, "plot_with_data_candidate.png"))
+})
+
 test_that("predictive plots", {
   out <- plot(mcmc, predictive = 10, n_smooth = 5)
   expect_s3_class(out, "ggplot")
