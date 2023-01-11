@@ -78,7 +78,7 @@
 
       
 
-      </header><script src="dreamer_method_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>dreamer Methods</h1>
@@ -94,17 +94,41 @@
 <div class="section level2">
 <h2 id="bayesian-model-averaging-in-dreamer">Bayesian Model Averaging in dreamer<a class="anchor" aria-label="anchor" href="#bayesian-model-averaging-in-dreamer"></a>
 </h2>
-<p>Bayesian model averaging is a general mixture distribution, where each mixture component is a different parametric model. Prior weights are placed on each model and the posterior model weights are updated based on how well each model fits the data. Let <span class="math inline">\(\mu(d)\)</span> represent the mean of the dose response curve at dose <span class="math inline">\(d\)</span>, <span class="math inline">\(y = \{y_1, \ldots, y_n\}\)</span> be the observed data, and <span class="math inline">\(m \in \{1, \ldots, M\}\)</span> be an index on the <span class="math inline">\(M\)</span> parametric models. Then the posterior of the dose response curve, <span class="math inline">\(\mu(d)\)</span>, of the Bayesian model averaging model is</p>
+<p>Bayesian model averaging is a general mixture distribution, where
+each mixture component is a different parametric model. Prior weights
+are placed on each model and the posterior model weights are updated
+based on how well each model fits the data. Let <span class="math inline">\(\mu(d)\)</span> represent the mean of the dose
+response curve at dose <span class="math inline">\(d\)</span>, <span class="math inline">\(y = \{y_1, \ldots, y_n\}\)</span> be the observed
+data, and <span class="math inline">\(m \in \{1, \ldots, M\}\)</span> be
+an index on the <span class="math inline">\(M\)</span> parametric
+models. Then the posterior of the dose response curve, <span class="math inline">\(\mu(d)\)</span>, of the Bayesian model averaging
+model is</p>
 <p><span class="math display">\[\begin{eqnarray*}
-p(\mu(d) \mid y) &amp;=&amp; \sum_{m=1}^M p(\mu(d) \mid y, m) p(m \mid y) \\
-p(m \mid y) &amp;=&amp; \frac{p(y \mid m) p(m)}{\sum_{m^* } p(y \mid m^* )p(m^*)}
+p(\mu(d) \mid y) &amp;=&amp; \sum_{m=1}^M p(\mu(d) \mid y, m) p(m \mid
+y) \\
+p(m \mid y) &amp;=&amp; \frac{p(y \mid m) p(m)}{\sum_{m^* } p(y \mid m^*
+)p(m^*)}
 \end{eqnarray*}\]</span></p>
-<p>where <span class="math inline">\(p(\mu(d) \mid y, m)\)</span> is the posterior mean dose response curve from model <span class="math inline">\(m\)</span>, <span class="math inline">\(p(m \mid y)\)</span> is the posterior weight of model <span class="math inline">\(m\)</span>, <span class="math inline">\(p(y \mid m)\)</span> is the marginal likelihood of the data under model <span class="math inline">\(m\)</span>, and <span class="math inline">\(p(m)\)</span> is the prior weight assigned to model <span class="math inline">\(m\)</span>. In cases where <span class="math inline">\(p(y \mid m)\)</span> is difficult to compute, Gould (2019) proposed using the observed data’s fit to the posterior predictive distribution as a surrogate in calculating the posterior weights; this is the approach used by dreamer.</p>
-<p>dreamer supports a number of models including linear, quadratic, log-linear, log-quadratic, EMAX, exponential, for use as models that can be included in the model averaging approach. In addition, several longitudinal models are also supported (see the dreamer vignette). All of the above models are available for both continuous and binary endpoints.</p>
+<p>where <span class="math inline">\(p(\mu(d) \mid y, m)\)</span> is the
+posterior mean dose response curve from model <span class="math inline">\(m\)</span>, <span class="math inline">\(p(m \mid
+y)\)</span> is the posterior weight of model <span class="math inline">\(m\)</span>, <span class="math inline">\(p(y \mid
+m)\)</span> is the marginal likelihood of the data under model <span class="math inline">\(m\)</span>, and <span class="math inline">\(p(m)\)</span> is the prior weight assigned to
+model <span class="math inline">\(m\)</span>. In cases where <span class="math inline">\(p(y \mid m)\)</span> is difficult to compute,
+Gould (2019) proposed using the observed data’s fit to the posterior
+predictive distribution as a surrogate in calculating the posterior
+weights; this is the approach used by dreamer.</p>
+<p>dreamer supports a number of models including linear, quadratic,
+log-linear, log-quadratic, EMAX, exponential, for use as models that can
+be included in the model averaging approach. In addition, several
+longitudinal models are also supported (see the dreamer vignette). All
+of the above models are available for both continuous and binary
+endpoints.</p>
 <div class="section level3">
 <h3 id="reference">Reference<a class="anchor" aria-label="anchor" href="#reference"></a>
 </h3>
-<p>Gould, A. Lawrence. “BMA‐Mod: A Bayesian model averaging strategy for determining dose‐response relationships in the presence of model uncertainty.” <em>Biometrical Journal</em> 61.5 (2019): 1141-1159.</p>
+<p>Gould, A. Lawrence. “BMA‐Mod: A Bayesian model averaging strategy for
+determining dose‐response relationships in the presence of model
+uncertainty.” <em>Biometrical Journal</em> 61.5 (2019): 1141-1159.</p>
 </div>
 </div>
   </div>
@@ -126,7 +150,7 @@ p(m \mid y) &amp;=&amp; \frac{p(y \mid m) p(m)}{\sum_{m^* } p(y \mid m^* )p(m^*)
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
