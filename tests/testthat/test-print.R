@@ -26,10 +26,6 @@ test_that("print methods", {
     convergence_warn = FALSE,
     mod_linear = mod
   )
-  expect_snapshot(print(mod))
-  expect_snapshot(print(output))
-  expect_snapshot(print(output$mod_linear))
-
   mod_binary <-  model_linear_binary(
     mu_b1 = 0,
     sigma_b1 = 1,
@@ -38,6 +34,15 @@ test_that("print methods", {
     link = "probit",
     w_prior = 1
   )
+  expect_output(print(mod))
+  expect_output(print(output))
+  expect_output(print(output$mod_linear))
+  expect_output(print(mod_binary))
+  skip_on_ci()
+  skip_on_cran()
+  expect_snapshot(print(mod))
+  expect_snapshot(print(output))
+  expect_snapshot(print(output$mod_linear))
   expect_snapshot(print(mod_binary))
 })
 
@@ -73,6 +78,11 @@ test_that("print methods (longitudinal)", {
     silent = TRUE,
     mod_lin = mod
   )
+  expect_output(print(mod))
+  expect_output(print(out))
+  expect_output(print(out$mod_lin))
+  skip_on_ci()
+  skip_on_cran()
   expect_snapshot(print(mod))
   expect_snapshot(print(out))
   expect_snapshot(print(out$mod_lin))

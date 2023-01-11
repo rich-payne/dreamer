@@ -80,7 +80,8 @@ dreamer_mcmc <- function( #nolint
       n_burn = n_burn,
       n_iter = n_iter,
       n_chains = n_chains,
-      silent = silent
+      silent = silent,
+      binary = all_dots_binary
     )
     end_time <- Sys.time()
     mcmc_end_msg(start_time, end_time, silent)
@@ -143,11 +144,7 @@ add_attributes <- function(
   model_index,
   model_names
 ) {
-  if (all_dots_binary) {
-    attr(final_output, "response_type") <- "binary"
-  } else {
-    attr(final_output, "response_type") <- "continuous"
-  }
+  attr(final_output, "response_type") <- get_response_type(all_dots_binary)
   if (is_long) {
     attr(final_output, "longitudinal_model") <- TRUE
   } else {
