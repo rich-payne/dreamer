@@ -34,6 +34,10 @@ test_that("print methods", {
     link = "probit",
     w_prior = 1
   )
+  expect_output(print(mod))
+  expect_output(print(output))
+  expect_output(print(output$mod_linear))
+  expect_output(print(mod_binary))
   skip_on_ci()
   skip_on_cran()
   expect_snapshot(print(mod))
@@ -74,6 +78,9 @@ test_that("print methods (longitudinal)", {
     silent = TRUE,
     mod_lin = mod
   )
+  expect_output(print(mod))
+  expect_output(print(out))
+  expect_output(print(out$mod_lin))
   skip_on_ci()
   skip_on_cran()
   expect_snapshot(print(mod))
