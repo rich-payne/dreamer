@@ -1,5 +1,7 @@
 # dreamer 3.1.0.9000
 
+* Remove automatic naming of models, now requires each model to be named (#34).
+
 # dreamer 3.1.0
 
 * Updated README.Rmd and vignettes (#1).

@@ -57,6 +57,7 @@ dreamer_mcmc <- function( #nolint
   load_jags_modules()
   mods <- list(...)
   assert_dreamer_dots(mods)
+  assert_model_names(mods)
   assert_independent_dots(mods)
   all_dots_binary <- assert_binary_dots(mods)
   check_data(data, all_dots_binary)
@@ -67,13 +68,12 @@ dreamer_mcmc <- function( #nolint
     }
   }
   doses <- get_doses(data)
-  all_models <- name_models(mods)
   mcmc_list <- list()
-  for (i in seq_along(all_models)) {
+  for (i in seq_along(mods)) {
     start_time <- Sys.time()
-    mcmc_start_msg(names(all_models)[i], start_time, silent)
+    mcmc_start_msg(names(mods)[i], start_time, silent)
     mcmc_list[[i]] <- fit_model(
-      all_models[[i]],
+      mods[[i]],
       data = data,
       doses = doses,
       n_adapt = n_adapt,
@@ -86,16 +86,16 @@ dreamer_mcmc <- function( #nolint
     end_time <- Sys.time()
     mcmc_end_msg(start_time, end_time, silent)
   }
-  names(mcmc_list) <- names(all_models)
+  names(mcmc_list) <- names(mods)
 
-  w_prior <- get_w_prior(all_models)
+  w_prior <- get_w_prior(mods)
   assert_w_prior(w_prior)
   weight_data <- prep_weight_data(data, all_dots_binary, is_long)
   w <- post_weights(weight_data, mcmc_list, w_prior)
 
   model_index <- get_model_index(mcmc_list, w, n_iter, n_chains)
   times <- if (is_long) sort(unique(data$time)) else NULL
-  model_names <- names(all_models)
+  model_names <- names(mods)
 
   final_output <- c(
     list(
@@ -213,16 +213,6 @@ mcmc_end_msg <- function(start_time, end_time, silent) {
         "total : ", format(round(time_diff, 2), nsmall = 2),
         " ", time_unit, "\n"
       )
-    )
-  }
-}
-
-assert_w_prior <- function(w_prior) {
-  w_total <- sum(w_prior)
-  if (!isTRUE(all.equal(w_total, 1))) {
-    stop(
-      "Sum of w_prior for all models must add to 1: ", w_total,
-      call. = FALSE
     )
   }
 }
@@ -356,22 +346,6 @@ throw_convergence_warn <- function(bad_gelman) {
   }
 }
 
-name_models <- function(model_list) {
-  for (i in seq_along(model_list)) {
-    if (
-      isTRUE(names(model_list)[i] == "") ||
-      is.null(names(model_list)[i]) ||
-      is.na(names(model_list)[i])
-    ) {
-      names(model_list)[i] <- paste0("model_", i, "_", class(model_list[[i]]))
-    }
-  }
-  if (any(duplicated(names(model_list)))) {
-    stop("Duplicate model names are not allowed.", call. = FALSE)
-  }
-  return(model_list)
-}
-
 prep_weight_data <- function(data, binary, is_longitudinal) {
   if (binary) {
     data <- aggregate_binary(data, is_longitudinal)
@@ -394,12 +368,6 @@ dreamer_post_weights <- function(all_mcmc, w_prior, data) {
   w_post <- exp(a_s - (a + log(sum(exp(a_s - a)))))
   names(w_post) <- names(all_mcmc)
   return(list(w_prior = w_prior, w_post = w_post))
-}
-
-assert_names <- function(x, y, msg) {
-  if (!all(names(x) == names(y))) {
-    stop(msg, call. = FALSE)
-  }
 }
 
 check_binary <- function(data) {
