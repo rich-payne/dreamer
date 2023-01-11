@@ -114,4 +114,7 @@ test_that("assertions", {
   expect_error(assert_doses(NULL), class = "dreamer")
   expect_error(assert_no_dots("foo", foo2 = 5), class = "dreamer")
   expect_error(assert_reference_dose(1:2), class = "dreamer")
+  expect_error(assert_model_names(list(a = 1, 2)), class = "dreamer")
+  expect_error(assert_model_names(list(1, 2)), class = "dreamer")
+  expect_error(assert_model_names(list(a = 1, a = 2)), class = "dreamer")
 })
