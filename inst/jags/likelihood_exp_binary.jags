@@ -1,4 +1,4 @@
 for(i in 1:n_obs) {
-  LINK(f[i]) <- a + (b1 + b2 * (1 - exp(- b3 * dose[i]))) * (LONGITUDINAL)
+  LINK(f[i]) <- a + (b1 + b2 * (exp(dose[i] / b3) - 1)) * (LONGITUDINAL)
   y[i] ~ dbin(f[i], n[i])
 }

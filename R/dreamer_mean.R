@@ -19,7 +19,8 @@ dreamer_mean_emax <- function(dose, b1, b2, b3, b4) {
 }
 
 dreamer_mean_exp <- function(dose, b1, b2, b3) {
-  b1 + b2 * (1 - exp(- b3 * dose))
+  #b1 + b2 * (1 - exp(- b3 * dose))
+  b1 + b2 * (exp(dose / b3) - 1)
 }
 
 dreamer_mean_beta <- function(dose, b1, b2, b3, b4, scale) {

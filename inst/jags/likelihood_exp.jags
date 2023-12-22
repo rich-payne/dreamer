@@ -1,6 +1,7 @@
 # likelihood for sufficient means
 for(i in 1:n_sufficient_means) {
-  f_sufficient[i] <- a + (b1 + b2 * (1 - exp(- b3 * dose_sufficient[i]))) * (LONGITUDINAL)
+  #f_sufficient[i] <- a + (b1 + b2 * (1 - exp(- b3 * dose_sufficient[i]))) * (LONGITUDINAL)
+  f_sufficient[i] <- a + (b1 + b2 * (exp(dose_sufficient[i] / b3) - 1)) * (LONGITUDINAL)
   ybar[i] ~ dnorm(f_sufficient[i], tau2 * n_means[i])
 }
 
