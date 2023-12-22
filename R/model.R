@@ -216,13 +216,15 @@ model_emax <- function(
 }
 
 #' @rdname model
+#' @param bound is the upper truncation bound of the exponential scale parameter \eqn{b_3}
 #' @section Exponential:
 #'   \deqn{y \sim N(f(d), \sigma^2)}
-#'   \deqn{f(d) = b_1 + b_2 * (1 - exp(- b_3 * d))}
+#'   \deqn{f(d) = b_1 + b_2 * (exp(d / b_3) - 1)}
 #'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
 #'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
-#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (truncated to be positive)}
+#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2) T(0, bound)}
 #'   \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
+#' If sampling error for \eqn{b_3} then lower upper truncation bound
 #' @export
 model_exp <- function(
   mu_b1,
@@ -233,6 +235,7 @@ model_exp <- function(
   sigma_b3,
   shape,
   rate,
+  bound = 10,
   w_prior = 1,
   longitudinal = NULL
 ) {
@@ -245,6 +248,7 @@ model_exp <- function(
     sigma_b3 = sigma_b3,
     shape = shape,
     rate = rate,
+    bound = bound,
     w_prior = w_prior,
     longitudinal = longitudinal
   )
@@ -523,12 +527,14 @@ model_emax_binary <- function(
 }
 
 #' @rdname model
+#' @param bound is the upper truncation bound of the exponential scale parameter \eqn{b_3}
 #' @section Exponential Binary:
-#'   \deqn{y \sim Binomial(n, f(d))}
-#'   \deqn{link(f(d)) = b_1 + b_2 * (exp(b_3 * d) - 1)}
+#'   \deqn{y \sim N(f(d), \sigma^2)}
+#'   \deqn{f(d) = b_1 + b_2 * (exp(d / b_3) - 1)}
 #'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
 #'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
-#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (Truncated below 0)}
+#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2) T(0, bound)}
+#' If sampling error for \eqn{b_3} then lower upper truncation bound
 #' @export
 model_exp_binary <- function(
   mu_b1,
@@ -537,6 +543,7 @@ model_exp_binary <- function(
   sigma_b2,
   mu_b3,
   sigma_b3,
+  bound = 10,
   link,
   w_prior = 1,
   longitudinal = NULL
@@ -548,6 +555,7 @@ model_exp_binary <- function(
     sigma_b2 = sigma_b2,
     mu_b3 = mu_b3,
     sigma_b3 = sigma_b3,
+    bound = bound,
     link = link,
     w_prior = w_prior,
     longitudinal = longitudinal
