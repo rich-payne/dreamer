@@ -52,7 +52,6 @@ dreamer_mcmc <- function( #nolint
   silent = FALSE,
   convergence_warn = TRUE
 ) {
-  #browser()
   jags_modules <- rjags::list.modules()
   on.exit(restore_jags_modules(jags_modules))
   load_jags_modules()
