@@ -21,7 +21,7 @@ Description: Fits (longitudinal) dose-response models utilizing a Bayesian model
   for plotting and calculating various posterior quantities
   (e.g. posterior mean, quantiles, probability of minimum efficacious dose,
   etc.) are also implemented.  Copyright Eli Lilly and Company (2019).
-URL: https://github.com/rich-payne/dreamer
+URL: https://rich-payne.github.io/dreamer/, https://github.com/rich-payne/dreamer
 BugReports: https://github.com/rich-payne/dreamer/issues
 License: MIT + file LICENSE
 Imports:
