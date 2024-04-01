@@ -13,7 +13,7 @@ fit_model <- function(
   jags_data <- get_jags_data(model, data, doses)
   jags_model <- get_jags_model(model, data)
   variable_names <- get_vnames(model)
-  #browser()
+  
   post_samples <- run_jags_model(
     jags_model = jags_model,
     jags_data = jags_data,
