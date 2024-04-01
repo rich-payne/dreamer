@@ -262,40 +262,40 @@ See the model definitions below for specifics for each model.
 }
 \section{Functions}{
 \itemize{
-\item \code{dreamer_data_linear}: generate data from linear dose response.
+\item \code{dreamer_data_linear()}: generate data from linear dose response.
 
-\item \code{dreamer_data_linear_binary}: generate data from linear binary dose response.
+\item \code{dreamer_data_linear_binary()}: generate data from linear binary dose response.
 
-\item \code{dreamer_data_quad}: generate data from quadratic dose response.
+\item \code{dreamer_data_quad()}: generate data from quadratic dose response.
 
-\item \code{dreamer_data_quad_binary}: generate data from quadratic binary dose response.
+\item \code{dreamer_data_quad_binary()}: generate data from quadratic binary dose response.
 
-\item \code{dreamer_data_loglinear}: generate data from log-linear dose response.
+\item \code{dreamer_data_loglinear()}: generate data from log-linear dose response.
 
-\item \code{dreamer_data_loglinear_binary}: generate data from binary log-linear dose response.
+\item \code{dreamer_data_loglinear_binary()}: generate data from binary log-linear dose response.
 
-\item \code{dreamer_data_logquad}: generate data from log-quadratic dose response.
+\item \code{dreamer_data_logquad()}: generate data from log-quadratic dose response.
 
-\item \code{dreamer_data_logquad_binary}: generate data from log-quadratic binary dose
+\item \code{dreamer_data_logquad_binary()}: generate data from log-quadratic binary dose
 response.
 
-\item \code{dreamer_data_emax}: generate data from EMAX dose response.
+\item \code{dreamer_data_emax()}: generate data from EMAX dose response.
 
-\item \code{dreamer_data_emax_binary}: generate data from EMAX binary dose response.
+\item \code{dreamer_data_emax_binary()}: generate data from EMAX binary dose response.
 
-\item \code{dreamer_data_exp}: generate data from exponential dose response.
+\item \code{dreamer_data_exp()}: generate data from exponential dose response.
 
-\item \code{dreamer_data_exp_binary}: generate data from exponential binary dose response.
+\item \code{dreamer_data_exp_binary()}: generate data from exponential binary dose response.
 
-\item \code{dreamer_data_beta}: generate data from Beta dose response.
+\item \code{dreamer_data_beta()}: generate data from Beta dose response.
 
-\item \code{dreamer_data_beta_binary}: generate data from binary Beta dose response.
+\item \code{dreamer_data_beta_binary()}: generate data from binary Beta dose response.
 
-\item \code{dreamer_data_independent}: generate data from an independent dose response.
+\item \code{dreamer_data_independent()}: generate data from an independent dose response.
 
-\item \code{dreamer_data_independent_binary}: generate data from an independent dose response.
+\item \code{dreamer_data_independent_binary()}: generate data from an independent dose response.
+
 }}
-
 \section{Linear}{
 
 \deqn{y \sim N(f(d), \sigma^2)}
@@ -337,14 +337,14 @@ response.
 \section{EMAX}{
 
 \deqn{y \sim N(f(d), \sigma^2)}
-\deqn{f(d) = b_1 + (b_2 - b_1) * d ^ b_4 / (exp(b_3 * b_4) + d ^ b_4)}
+\deqn{f(d) = b1 + b2 * d ^ b4 / (b3 ^ b4 + d ^ b4)}
 \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
 \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (Truncated above 0)}
 \deqn{b_4 \sim N(mu_b4, sigma_b4 ^ 2), (Truncated above 0)}
 \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 Here, \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
-maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
+maximum treatment effect, \eqn{b_3} is the \eqn{ED_50}, and
 \eqn{b_4} is the hill or rate parameter.
 }
 
@@ -396,15 +396,14 @@ If sampling error for \eqn{b_3} then lower upper truncation bound
 \section{EMAX Binary}{
 
 \deqn{y \sim Binomial(n, f(d))}
-\deqn{link(f(d)) = b_1 + (b_2 - b_1) * d ^ b_4 /
-    (exp(b_3 * b_4) + d ^ b_4)}
+\deqn{link(f(d)) = b1 + b2 * d ^ b4 / (b3 ^ b4 + d ^ b4)}
 \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
 \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (Truncated above 0)}
 \deqn{b_4 \sim N(mu_b4, sigma_b4 ^ 2), (Truncated above 0)}
 Here, on the \eqn{link(f(d))} scale,
 \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
-maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
+maximum treatment effect, \eqn{b_3} is the \eqn{ED_50}, and
 \eqn{b_4} is the hill or rate parameter.
 }
 

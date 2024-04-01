@@ -92,7 +92,7 @@ model_exp(
   sigma_b3,
   shape,
   rate,
-  bound = 10,
+  bound,
   w_prior = 1,
   longitudinal = NULL
 )
@@ -188,7 +188,7 @@ model_exp_binary(
   sigma_b2,
   mu_b3,
   sigma_b3,
-  bound = 10,
+  bound,
   link,
   w_prior = 1,
   longitudinal = NULL
@@ -296,14 +296,14 @@ For the longitudinal specifications, see documentation on
 \section{EMAX}{
 
 \deqn{y \sim N(f(d), \sigma^2)}
-\deqn{f(d) = b_1 + (b_2 - b_1) * d ^ b_4 / (exp(b_3 * b_4) + d ^ b_4)}
+\deqn{f(d) = b1 + b2 * d ^ b4 / (b3 ^ b4 + d ^ b4)}
 \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
 \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (Truncated above 0)}
 \deqn{b_4 \sim N(mu_b4, sigma_b4 ^ 2), (Truncated above 0)}
 \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 Here, \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
-maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
+maximum treatment effect, \eqn{b_3} is the \eqn{ED_50}, and
 \eqn{b_4} is the hill or rate parameter.
 }
 
@@ -387,15 +387,14 @@ is used for each dose, and the \code{doses} argument is not needed.
 \section{EMAX Binary}{
 
 \deqn{y \sim Binomial(n, f(d))}
-\deqn{link(f(d)) = b_1 + (b_2 - b_1) * d ^ b_4 /
-    (exp(b_3 * b_4) + d ^ b_4)}
+\deqn{link(f(d)) = b1 + b2 * d ^ b4 / (b3 ^ b4 + d ^ b4)}
 \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
 \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (Truncated above 0)}
 \deqn{b_4 \sim N(mu_b4, sigma_b4 ^ 2), (Truncated above 0)}
 Here, on the \eqn{link(f(d))} scale,
 \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
-maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
+maximum treatment effect, \eqn{b_3} is the \eqn{ED_50}, and
 \eqn{b_4} is the hill or rate parameter.
 }
 

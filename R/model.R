@@ -235,7 +235,7 @@ model_exp <- function(
   sigma_b3,
   shape,
   rate,
-  bound = 10,
+  bound,
   w_prior = 1,
   longitudinal = NULL
 ) {
@@ -542,7 +542,7 @@ model_exp_binary <- function(
   sigma_b2,
   mu_b3,
   sigma_b3,
-  bound = 10,
+  bound,
   link,
   w_prior = 1,
   longitudinal = NULL
