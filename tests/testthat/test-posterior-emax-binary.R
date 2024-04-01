@@ -5,8 +5,8 @@ test_that("MCMC: emax binary logit", {
   data <- dreamer_data_linear_binary(
     n_cohorts = c(10, 20, 30),
     dose = c(1, 3, 5),
-    b1 = 1,
-    b2 = 2,
+    b1 = 0,
+    b2 = 0.25,
     link = link
   )
   mcmc <- dreamer_mcmc(
@@ -39,7 +39,7 @@ test_that("MCMC: emax binary logit", {
     b4 = 4:13 / 100,
     true_responses = rlang::expr(
       ilogit(
-        b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4)
+        b1 + (b2 * dose ^ b4) / (b3 ^ b4 + dose ^ b4)
       )
     )
   )
@@ -54,11 +54,10 @@ test_that("MCMC: emax binary logit", {
     b3 = 3:12 / 100,
     b4 = 4:13 / 100,
     true_responses = rlang::expr(
-      ilogit(b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4)) -
+      ilogit(b1 + (b2 * dose ^ b4) / (b3 ^ b4 + dose ^ b4)) -
         ilogit(
-          b1 +
-          (b2 - b1) *
-            reference_dose ^ b4 / (exp(b3 * b4) + reference_dose ^ b4)
+          b1 + (b2 * reference_dose ^ b4) / 
+            (b3 ^ b4 + reference_dose ^ b4)
         )
     )
   )
@@ -104,7 +103,7 @@ test_that("MCMC: emax binary probit", {
     b4 = 4:13 / 100,
     true_responses = rlang::expr(
       iprobit(
-        b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4)
+        b1 + b2 * dose ^ b4 / (b3 ^ b4 + dose ^ b4)
       )
     )
   )
@@ -119,11 +118,11 @@ test_that("MCMC: emax binary probit", {
     b3 = 3:12 / 100,
     b4 = 4:13 / 100,
     true_responses = rlang::expr(
-      iprobit(b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4)) -
+      iprobit(b1 + b2 * dose ^ b4 / 
+                (b3 ^ b4 + dose ^ b4)) -
         iprobit(
-          b1 +
-          (b2 - b1) *
-            reference_dose ^ b4 / (exp(b3 * b4) + reference_dose ^ b4)
+          b1 + b2 * reference_dose ^ b4 / 
+            (b3 ^ b4 + reference_dose ^ b4)
         )
     )
   )
@@ -180,7 +179,7 @@ test_that("MCMC: EMAX binary logit long linear", {
     true_responses = rlang::expr(
       ilogit(
         a + time / !!t_max *
-          ((b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4)))
+          (b1 + b2 * dose ^ b4 / (b3 ^ b4 + dose ^ b4))
       )
     )
   )
@@ -198,14 +197,13 @@ test_that("MCMC: EMAX binary logit long linear", {
     true_responses = rlang::expr(
       ilogit(
         a + (time / !!t_max) *
-          (b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4))
+          (b1 + b2 * dose ^ b4 / (b3 ^ b4 + dose ^ b4))
       ) -
         ilogit(
           a + (time / !!t_max) *
             (
-              b1 +
-              (b2 - b1) *
-                reference_dose ^ b4 / (exp(b3 * b4) + reference_dose ^ b4)
+              b1 + b2 * reference_dose ^ b4 / 
+                (b3 ^ b4 + reference_dose ^ b4)
             )
         )
     )
@@ -262,7 +260,7 @@ test_that("MCMC: EMAX binary probit long linear", {
     true_responses = rlang::expr(
       iprobit(
         a + time / !!t_max *
-          ((b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4)))
+          (b1 + b2 * dose ^ b4 / (b3 ^ b4 + dose ^ b4))
       )
     )
   )
@@ -280,14 +278,12 @@ test_that("MCMC: EMAX binary probit long linear", {
     true_responses = rlang::expr(
       iprobit(
         a + (time / !!t_max) *
-          (b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4))
+          (b1 + b2 * dose ^ b4 / (b3 ^ b4 + dose ^ b4))
       ) -
         iprobit(
           a + (time / !!t_max) *
             (
-              b1 +
-              (b2 - b1) *
-                reference_dose ^ b4 / (exp(b3 * b4) + reference_dose ^ b4)
+              b1 + b2 * reference_dose ^ b4 / (b3 ^ b4 + reference_dose ^ b4)
             )
         )
     )
@@ -345,7 +341,7 @@ test_that("MCMC: EMAX binary logit long ITP", {
     true_responses = rlang::expr(
       ilogit(
         a + (1 - exp(- c1 * time)) / (1 - exp(- c1 * !!t_max)) *
-          (b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4))
+          (b1 + b2 * dose ^ b4 / (b3 ^ b4 + dose ^ b4))
       )
     )
   )
@@ -364,14 +360,12 @@ test_that("MCMC: EMAX binary logit long ITP", {
     true_responses = rlang::expr(
       ilogit(
         a + (1 - exp(- c1 * time)) / (1 - exp(- c1 * !!t_max)) *
-          (b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4))
+          (b1 + b2 * dose ^ b4 / (b3 ^ b4 + dose ^ b4))
       ) -
         ilogit(
           (a + (1 - exp(- c1 * time)) / (1 - exp(- c1 * !!t_max)) *
              (
-               b1 +
-               (b2 - b1) *
-                 reference_dose ^ b4 / (exp(b3 * b4) + reference_dose ^ b4)
+               b1 + b2 * reference_dose ^ b4 / (b3 ^ b4 + reference_dose ^ b4)
              )
           )
         )
@@ -430,7 +424,7 @@ test_that("MCMC: EMAX binary probit long ITP", {
     true_responses = rlang::expr(
       iprobit(
         a + (1 - exp(- c1 * time)) / (1 - exp(- c1 * !!t_max)) *
-          (b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4))
+          (b1 + b2 * dose ^ b4 / (b3 ^ b4 + dose ^ b4))
       )
     )
   )
@@ -449,14 +443,12 @@ test_that("MCMC: EMAX binary probit long ITP", {
     true_responses = rlang::expr(
       iprobit(
         a + (1 - exp(- c1 * time)) / (1 - exp(- c1 * !!t_max)) *
-          (b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4))
+          (b1 + b2 * dose ^ b4 / (b3 ^ b4 + dose ^ b4))
       ) -
         iprobit(
           (a + (1 - exp(- c1 * time)) / (1 - exp(- c1 * !!t_max)) *
              (
-               b1 +
-               (b2 - b1) *
-                 reference_dose ^ b4 / (exp(b3 * b4) + reference_dose ^ b4)
+               b1 + b2 * reference_dose ^ b4 / (b3 ^ b4 + reference_dose ^ b4)
              )
           )
         )
@@ -519,7 +511,7 @@ test_that("MCMC: EMAX binary probit long IDP", {
     gam = seq(.2, .33, length = 10) / 100,
     true_responses = rlang::expr(
       ilogit(
-        a + (b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4)) * (
+        a + (b1 + b2 * dose ^ b4 / (b3 ^ b4 + dose ^ b4)) * (
           (1 - exp(- c1 * time)) / (1 - exp(- c1 * d1)) * (time < d1) +
             (1 - gam * (1 - exp(- c2 * (time - d1))) /
                (1 - exp(- c2 * (d2 - d1)))
@@ -548,7 +540,8 @@ test_that("MCMC: EMAX binary probit long IDP", {
     gam = seq(.2, .33, length = 10) / 100,
     true_responses = rlang::expr(
       ilogit(
-        a + (b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4)) * (
+        a + (b1 + b2 * dose ^ b4 / 
+               (b3 ^ b4 + dose ^ b4)) * (
           (1 - exp(- c1 * time)) / (1 - exp(- c1 * d1)) * (time < d1) +
             (
               1 - gam * (1 - exp(- c2 * (time - d1))) /
@@ -561,9 +554,7 @@ test_that("MCMC: EMAX binary probit long IDP", {
         ilogit(
           a +
             (
-              b1 +
-              (b2 - b1) *
-                reference_dose ^ b4 / (exp(b3 * b4) + reference_dose ^ b4)
+              b1 + b2 * reference_dose ^ b4 / (b3 ^ b4 + reference_dose ^ b4)
             ) *
             (
               (1 - exp(- c1 * time)) / (1 - exp(- c1 * d1)) * (time < d1) +
@@ -633,7 +624,7 @@ test_that("MCMC: EMAX binary probit long IDP", {
     gam = seq(.2, .33, length = 10) / 100,
     true_responses = rlang::expr(
       iprobit(
-        a + (b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4)) * (
+        a + (b1 + b2 * dose ^ b4 / (b3 ^ b4 + dose ^ b4)) * (
           (1 - exp(- c1 * time)) / (1 - exp(- c1 * d1)) * (time < d1) +
             (
               1 - gam * (1 - exp(- c2 * (time - d1))) /
@@ -663,7 +654,7 @@ test_that("MCMC: EMAX binary probit long IDP", {
     gam = seq(.2, .33, length = 10) / 100,
     true_responses = rlang::expr(
       iprobit(
-        a + (b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4)) * (
+        a + (b1 + b2 * dose ^ b4 / (b3 ^ b4 + dose ^ b4)) * (
           (1 - exp(- c1 * time)) / (1 - exp(- c1 * d1)) * (time < d1) +
             (
               1 - gam * (1 - exp(- c2 * (time - d1))) /
@@ -676,9 +667,7 @@ test_that("MCMC: EMAX binary probit long IDP", {
         iprobit(
           a +
             (
-              b1 +
-              (b2 - b1) *
-                reference_dose ^ b4 / (exp(b3 * b4) + reference_dose ^ b4)
+              b1 + b2 * reference_dose ^ b4 / (b3 ^ b4 + reference_dose ^ b4)
             ) *
             (
               (1 - exp(- c1 * time)) / (1 - exp(- c1 * d1)) * (time < d1) +

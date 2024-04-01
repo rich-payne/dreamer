@@ -31,7 +31,7 @@ test_that("MCMC: EMAX", {
     b3 = 3:12,
     b4 = 4:13,
     true_responses = rlang::expr(
-      b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4)
+      b1 + (b2 * dose ^ b4 ) / (b3 ^ b4 + dose ^ b4)
     )
   )
   # with dose adjustment
@@ -45,11 +45,9 @@ test_that("MCMC: EMAX", {
     b3 = 3:12,
     b4 = 4:13,
     true_responses = rlang::expr(
-      b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4) -
+      b1 + (b2 * dose ^ b4 )/ (b3 ^ b4 + dose ^ b4) -
         (
-          b1 +
-          (b2 - b1) *
-            reference_dose ^ b4 / (exp(b3 * b4) + reference_dose ^ b4)
+          b1 + (b2 * reference_dose ^ b4 ) / (b3 ^ b4 + reference_dose ^ b4)
         )
     )
   )
@@ -104,7 +102,7 @@ test_that("MCMC: EMAX long linear", {
     a = 10:1,
     true_responses = rlang::expr(
       a + time / !!t_max *
-        (b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4))
+        (b1 + (b2 * dose ^ b4 ) / (b3 ^ b4 + dose ^ b4))
     )
   )
   test_posterior(
@@ -120,13 +118,12 @@ test_that("MCMC: EMAX long linear", {
     a = 10:1,
     true_responses = rlang::expr(
       a + (time / !!t_max) *
-        (b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4)) -
+        (b1 + (b2 * dose ^ b4 ) / (b3 ^ b4 + dose ^ b4)) -
         (
           a + (time / !!t_max) *
             (
-              b1 +
-              (b2 - b1) *
-                reference_dose ^ b4 / (exp(b3 * b4) + reference_dose ^ b4)
+              b1 + (b2 * reference_dose ^ b4 ) / 
+                (b3 ^ b4 + reference_dose ^ b4)
             )
         )
     )
@@ -183,7 +180,7 @@ test_that("MCMC: EMAX long ITP", {
     c1 = seq(.1, 3, length = 10),
     true_responses = rlang::expr(
       a + (1 - exp(- c1 * time)) / (1 - exp(- c1 * !!t_max)) *
-        (b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4))
+        (b1 + (b2 * dose ^ b4 ) / (b3 ^ b4 + dose ^ b4))
     )
   )
   test_posterior(
@@ -200,12 +197,11 @@ test_that("MCMC: EMAX long ITP", {
     c1 = seq(.1, 3, length = 10),
     true_responses = rlang::expr(
       a + (1 - exp(- c1 * time)) / (1 - exp(- c1 * !!t_max)) *
-        (b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4)) -
+        (b1 + (b2 * dose ^ b4 ) / (b3 ^ b4 + dose ^ b4)) -
         (a + (1 - exp(- c1 * time)) / (1 - exp(- c1 * !!t_max)) *
            (
-             b1 +
-             (b2 - b1) *
-               reference_dose ^ b4 / (exp(b3 * b4) + reference_dose ^ b4)
+             b1 + (b2 * reference_dose ^ b4 ) / 
+               (b3 ^ b4 + reference_dose ^ b4)
            )
         )
     )
@@ -265,7 +261,7 @@ test_that("MCMC: EMAX long IDP", {
     d2 = seq(4, 5, length = 10),
     gam = seq(.2, .33, length = 10),
     true_responses = rlang::expr(
-      a + (b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4)) * (
+      a + (b1 + (b2 * dose ^ b4 ) / (b3 ^ b4 + dose ^ b4)) * (
         (1 - exp(- c1 * time)) / (1 - exp(- c1 * d1)) * (time < d1) +
           (
             1 - gam * (1 - exp(- c2 * (time - d1))) /
@@ -293,7 +289,7 @@ test_that("MCMC: EMAX long IDP", {
     d2 = seq(4, 5, length = 10),
     gam = seq(.2, .33, length = 10),
     true_responses = rlang::expr(
-      a + (b1 + (b2 - b1) * dose ^ b4 / (exp(b3 * b4) + dose ^ b4)) * (
+      a + (b1 + (b2 * dose ^ b4 ) / (b3 ^ b4 + dose ^ b4)) * (
         (1 - exp(- c1 * time)) / (1 - exp(- c1 * d1)) * (time < d1) +
           (
             1 - gam * (1 - exp(- c2 * (time - d1))) /
@@ -305,9 +301,8 @@ test_that("MCMC: EMAX long IDP", {
         (
           a +
             (
-              b1 +
-                (b2 - b1) * reference_dose ^ b4 /
-                (exp(b3 * b4) + reference_dose ^ b4)
+              b1 + (b2 * reference_dose ^ b4 ) / 
+                (b3 ^ b4 + reference_dose ^ b4)
             ) *
             (
               (1 - exp(- c1 * time)) / (1 - exp(- c1 * d1)) * (time < d1) +
