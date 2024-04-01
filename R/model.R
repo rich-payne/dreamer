@@ -212,6 +212,9 @@ model_emax <- function(
   )
   class(mod) <- c("dreamer_emax", "dreamer_continuous")
   attr(mod, "type") <- "EMAX"
+  rlang::inform("Note updated EMAX model parameterization", 
+                .frequency = "once",
+                .frequency_id = "1")
   return(mod)
 }
 
@@ -254,6 +257,9 @@ model_exp <- function(
   )
   class(mod) <- c("dreamer_exp", "dreamer_continuous")
   attr(mod, "type") <- "exponential"
+  rlang::inform("Note updated exponential model parameterization", 
+                .frequency = "once",
+                .frequency_id = "2")
   return(mod)
 }
 
@@ -522,6 +528,9 @@ model_emax_binary <- function(
   )
   class(mod) <- c("dreamer_emax_binary", "dreamer_binary")
   attr(mod, "type") <- "EMAX"
+  rlang::inform("Note updated EMAX model parameterization", 
+                .frequency = "once",
+                .frequency_id = "3")
   return(mod)
 }
 
@@ -561,6 +570,9 @@ model_exp_binary <- function(
   )
   class(mod) <- c("dreamer_exp_binary", "dreamer_binary")
   attr(mod, "type") <- "exponential"
+  rlang::inform("Note updated exponential model parameterization", 
+                .frequency = "once",
+                .frequency_id = "4")
   return(mod)
 }
 
