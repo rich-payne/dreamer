@@ -212,7 +212,8 @@ model_emax <- function(
   )
   class(mod) <- c("dreamer_emax", "dreamer_continuous")
   attr(mod, "type") <- "EMAX"
-  rlang::inform("Note updated EMAX model parameterization", 
+  rlang::inform("EMAX model parameterization has changed in dreamer version 4. 
+                Please review the new model parameterization and update prior hyperparameters accordingly.", 
                 .frequency = "once",
                 .frequency_id = "1")
   return(mod)
@@ -257,7 +258,8 @@ model_exp <- function(
   )
   class(mod) <- c("dreamer_exp", "dreamer_continuous")
   attr(mod, "type") <- "exponential"
-  rlang::inform("Note updated exponential model parameterization", 
+  rlang::inform("Exponential model parameterization has changed in dreamer version 4. 
+                Please review the new model parameterization and update prior hyperparameters accordingly.", 
                 .frequency = "once",
                 .frequency_id = "2")
   return(mod)
@@ -528,7 +530,8 @@ model_emax_binary <- function(
   )
   class(mod) <- c("dreamer_emax_binary", "dreamer_binary")
   attr(mod, "type") <- "EMAX"
-  rlang::inform("Note updated EMAX model parameterization", 
+  rlang::inform("EMAX model parameterization has changed in dreamer version 4. 
+                Please review the new model parameterization and update prior hyperparameters accordingly.", 
                 .frequency = "once",
                 .frequency_id = "3")
   return(mod)
@@ -537,8 +540,8 @@ model_emax_binary <- function(
 #' @rdname model
 #' @param bound is the upper truncation bound of the exponential scale parameter \eqn{b_3}
 #' @section Exponential Binary:
-#'   \deqn{y \sim N(f(d), \sigma^2)}
-#'   \deqn{f(d) = b_1 + b_2 * (exp(d / b_3) - 1)}
+#'   \deqn{y \sim Binomial(n, f(d))}
+#'   \deqn{link(f(d)) = b_1 + b_2 * (exp(d / b_3) - 1)}
 #'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
 #'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
 #'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2) T(0, bound)}
@@ -570,7 +573,8 @@ model_exp_binary <- function(
   )
   class(mod) <- c("dreamer_exp_binary", "dreamer_binary")
   attr(mod, "type") <- "exponential"
-  rlang::inform("Note updated exponential model parameterization", 
+  rlang::inform("EMAX model parameterization has changed in dreamer version 4. 
+                Please review the new model parameterization and update prior hyperparameters accordingly.", 
                 .frequency = "once",
                 .frequency_id = "4")
   return(mod)
