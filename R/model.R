@@ -172,14 +172,14 @@ model_logquad <- function(
 #' @rdname model
 #' @section EMAX:
 #'   \deqn{y \sim N(f(d), \sigma^2)}
-#'   \deqn{f(d) = b_1 + (b_2 - b_1) * d ^ b_4 / (exp(b_3 * b_4) + d ^ b_4)}
+#'   \deqn{f(d) = b1 + b2 * d ^ b4 / (b3 ^ b4 + d ^ b4)}
 #'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
 #'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
-#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
+#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (Truncated above 0)}
 #'   \deqn{b_4 \sim N(mu_b4, sigma_b4 ^ 2), (Truncated above 0)}
 #'   \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 #'   Here, \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
-#'   maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
+#'   maximum treatment effect, \eqn{b_3} is the \eqn{ED_50}, and
 #'   \eqn{b_4} is the hill or rate parameter.
 #' @export
 model_emax <- function(
@@ -212,17 +212,23 @@ model_emax <- function(
   )
   class(mod) <- c("dreamer_emax", "dreamer_continuous")
   attr(mod, "type") <- "EMAX"
+  rlang::inform("EMAX model parameterization has changed in dreamer version 4. 
+                Please review the new model parameterization and update prior hyperparameters accordingly.", 
+                .frequency = "once",
+                .frequency_id = "1")
   return(mod)
 }
 
 #' @rdname model
+#' @param bound is the upper truncation bound of the exponential scale parameter \eqn{b_3}
 #' @section Exponential:
 #'   \deqn{y \sim N(f(d), \sigma^2)}
-#'   \deqn{f(d) = b_1 + b_2 * (1 - exp(- b_3 * d))}
+#'   \deqn{f(d) = b_1 + b_2 * (exp(d / b_3) - 1)}
 #'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
 #'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
-#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (truncated to be positive)}
+#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2) T(0, bound)}
 #'   \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
+#' If sampling error for \eqn{b_3} then lower upper truncation bound
 #' @export
 model_exp <- function(
   mu_b1,
@@ -233,6 +239,7 @@ model_exp <- function(
   sigma_b3,
   shape,
   rate,
+  bound,
   w_prior = 1,
   longitudinal = NULL
 ) {
@@ -245,11 +252,16 @@ model_exp <- function(
     sigma_b3 = sigma_b3,
     shape = shape,
     rate = rate,
+    bound = bound,
     w_prior = w_prior,
     longitudinal = longitudinal
   )
   class(mod) <- c("dreamer_exp", "dreamer_continuous")
   attr(mod, "type") <- "exponential"
+  rlang::inform("Exponential model parameterization has changed in dreamer version 4. 
+                Please review the new model parameterization and update prior hyperparameters accordingly.", 
+                .frequency = "once",
+                .frequency_id = "2")
   return(mod)
 }
 
@@ -480,15 +492,14 @@ model_logquad_binary <- function(
 #' @rdname model
 #' @section EMAX Binary:
 #'   \deqn{y \sim Binomial(n, f(d))}
-#'   \deqn{link(f(d)) = b_1 + (b_2 - b_1) * d ^ b_4 /
-#'     (exp(b_3 * b_4) + d ^ b_4)}
+#'   \deqn{link(f(d)) = b1 + b2 * d ^ b4 / (b3 ^ b4 + d ^ b4)}
 #'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
 #'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
-#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
+#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (Truncated above 0)}
 #'   \deqn{b_4 \sim N(mu_b4, sigma_b4 ^ 2), (Truncated above 0)}
 #'   Here, on the \eqn{link(f(d))} scale,
 #'   \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
-#'   maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
+#'   maximum treatment effect, \eqn{b_3} is the \eqn{ED_50}, and
 #'   \eqn{b_4} is the hill or rate parameter.
 #' @export
 model_emax_binary <- function(
@@ -519,16 +530,22 @@ model_emax_binary <- function(
   )
   class(mod) <- c("dreamer_emax_binary", "dreamer_binary")
   attr(mod, "type") <- "EMAX"
+  rlang::inform("EMAX model parameterization has changed in dreamer version 4. 
+                Please review the new model parameterization and update prior hyperparameters accordingly.", 
+                .frequency = "once",
+                .frequency_id = "3")
   return(mod)
 }
 
 #' @rdname model
+#' @param bound is the upper truncation bound of the exponential scale parameter \eqn{b_3}
 #' @section Exponential Binary:
 #'   \deqn{y \sim Binomial(n, f(d))}
-#'   \deqn{link(f(d)) = b_1 + b_2 * (exp(b_3 * d) - 1)}
+#'   \deqn{link(f(d)) = b_1 + b_2 * (exp(d / b_3) - 1)}
 #'   \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
 #'   \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
-#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (Truncated below 0)}
+#'   \deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2) T(0, bound)}
+#' If sampling error for \eqn{b_3} then lower upper truncation bound
 #' @export
 model_exp_binary <- function(
   mu_b1,
@@ -537,6 +554,7 @@ model_exp_binary <- function(
   sigma_b2,
   mu_b3,
   sigma_b3,
+  bound,
   link,
   w_prior = 1,
   longitudinal = NULL
@@ -548,12 +566,17 @@ model_exp_binary <- function(
     sigma_b2 = sigma_b2,
     mu_b3 = mu_b3,
     sigma_b3 = sigma_b3,
+    bound = bound,
     link = link,
     w_prior = w_prior,
     longitudinal = longitudinal
   )
   class(mod) <- c("dreamer_exp_binary", "dreamer_binary")
   attr(mod, "type") <- "exponential"
+  rlang::inform("EMAX model parameterization has changed in dreamer version 4. 
+                Please review the new model parameterization and update prior hyperparameters accordingly.", 
+                .frequency = "once",
+                .frequency_id = "4")
   return(mod)
 }
 

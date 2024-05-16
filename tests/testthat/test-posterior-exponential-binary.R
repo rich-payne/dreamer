@@ -15,8 +15,8 @@ test_that("MCMC: exponential binary logit", {
       sigma_b1 = 1,
       mu_b2 = 0,
       sigma_b2 = 1,
-      mu_b3 = 0,
-      sigma_b3 = 1,
+      mu_b3 = 0.5,
+      sigma_b3 = 0.01,
       link = link
     ),
     n_iter = 5,
@@ -33,7 +33,7 @@ test_that("MCMC: exponential binary logit", {
     b1 = 1:10 / 100,
     b2 = 2:11 / 100,
     b3 = 3:12 / 100,
-    true_responses = rlang::expr(ilogit(b1 + b2 * (1 - exp(- b3 * dose))))
+    true_responses = rlang::expr(ilogit(b1 + b2 * (exp(dose / b3) - 1)))
   )
   # with dose adjustment
   test_posterior(
@@ -45,8 +45,8 @@ test_that("MCMC: exponential binary logit", {
     b2 = 2:11 / 100,
     b3 = 3:12 / 100,
     true_responses = rlang::expr(
-      ilogit(b1 + b2 * (1 - exp(- b3 * dose))) -
-        ilogit(b1 + b2 * (1 - exp(- b3 * reference_dose)))
+      ilogit(b1 + b2 * (exp(dose / b3) - 1)) -
+        ilogit(b1 + b2 * (exp(reference_dose / b3) - 1))
     )
   )
 })
@@ -68,8 +68,8 @@ test_that("MCMC: exponential binary probit", {
       sigma_b1 = 1,
       mu_b2 = 0,
       sigma_b2 = 1,
-      mu_b3 = 0,
-      sigma_b3 = 1,
+      mu_b3 = 0.5,
+      sigma_b3 = 0.01,
       link = link
     ),
     n_iter = 5,
@@ -86,7 +86,7 @@ test_that("MCMC: exponential binary probit", {
     b1 = 1:10 / 100,
     b2 = 2:11 / 100,
     b3 = 3:12 / 100,
-    true_responses = rlang::expr(iprobit(b1 + b2 * (1 - exp(- b3 * dose))))
+    true_responses = rlang::expr(iprobit(b1 + b2 * (exp(dose / b3) - 1)))
   )
   # with dose adjustment
   test_posterior(
@@ -98,8 +98,8 @@ test_that("MCMC: exponential binary probit", {
     b2 = 2:11 / 100,
     b3 = 3:12 / 100,
     true_responses = rlang::expr(
-      iprobit(b1 + b2 * (1 - exp(- b3 * dose))) -
-        iprobit(b1 + b2 * (1 - exp(- b3 * reference_dose)))
+      iprobit(b1 + b2 * (exp(dose / b3) - 1)) -
+        iprobit(b1 + b2 * (exp(reference_dose / b3) - 1))
     )
   )
 })
@@ -127,8 +127,8 @@ test_that("MCMC: exponential binary logit long linear", {
       sigma_b1 = 1,
       mu_b2 = 0,
       sigma_b2 = 1,
-      mu_b3 = 0,
-      sigma_b3 = 1,
+      mu_b3 = 0.5,
+      sigma_b3 = 0.01,
       link = link,
       longitudinal = model_longitudinal_linear(0, 1, t_max)
     ),
@@ -149,7 +149,7 @@ test_that("MCMC: exponential binary logit long linear", {
     b3 = 3:12 / 100,
     a = 10:1 / 100,
     true_responses = rlang::expr(
-      ilogit(a + time / !!t_max * (b1 + b2 * (1 - exp(- b3 * dose))))
+      ilogit(a + time / !!t_max * (b1 + b2 * (exp(dose / b3) - 1)))
     )
   )
   test_posterior(
@@ -163,9 +163,9 @@ test_that("MCMC: exponential binary logit long linear", {
     b3 = 3:12 / 100,
     a = 10:1 / 100,
     true_responses = rlang::expr(
-      ilogit(a + (time / !!t_max) * (b1 + b2 * (1 - exp(- b3 * dose)))) -
+      ilogit(a + (time / !!t_max) * (b1 + b2 * (exp(dose / b3) - 1))) -
         ilogit(
-          a + (time / !!t_max) * (b1 + b2 * (1 - exp(- b3 * reference_dose)))
+          a + (time / !!t_max) * (b1 + b2 * (exp(reference_dose / b3) - 1))
         )
     )
   )
@@ -195,8 +195,8 @@ test_that("MCMC: exponential binary probit long linear", {
       sigma_b1 = 1,
       mu_b2 = 0,
       sigma_b2 = 1,
-      mu_b3 = 0,
-      sigma_b3 = 1,
+      mu_b3 = 0.5,
+      sigma_b3 = 0.01,
       link = link,
       longitudinal = model_longitudinal_linear(0, 1, t_max)
     ),
@@ -217,7 +217,7 @@ test_that("MCMC: exponential binary probit long linear", {
     b3 = 3:12 / 100,
     a = 10:1 / 100,
     true_responses = rlang::expr(
-      iprobit(a + time / !!t_max * (b1 + b2 * (1 - exp(- b3 * dose))))
+      iprobit(a + time / !!t_max * (b1 + b2 * (exp(dose / b3) - 1)))
     )
   )
   test_posterior(
@@ -231,9 +231,9 @@ test_that("MCMC: exponential binary probit long linear", {
     b3 = 3:12 / 100,
     a = 10:1 / 100,
     true_responses = rlang::expr(
-      iprobit(a + (time / !!t_max) * (b1 + b2 * (1 - exp(- b3 * dose)))) -
+      iprobit(a + (time / !!t_max) * (b1 + b2 * (exp(dose / b3) - 1))) -
         iprobit(
-          a + (time / !!t_max) * (b1 + b2 * (1 - exp(- b3 * reference_dose)))
+          a + (time / !!t_max) * (b1 + b2 * (exp(reference_dose / b3) - 1))
         )
     )
   )
@@ -262,8 +262,8 @@ test_that("MCMC: exponential binary logit long ITP", {
       sigma_b1 = 1,
       mu_b2 = 0,
       sigma_b2 = 1,
-      mu_b3 = 0,
-      sigma_b3 = 1,
+      mu_b3 = 0.5,
+      sigma_b3 = 0.01,
       link = link,
       longitudinal = model_longitudinal_itp(0, 1, t_max = t_max)
     ),
@@ -287,7 +287,7 @@ test_that("MCMC: exponential binary logit long ITP", {
     true_responses = rlang::expr(
       ilogit(
         a + (1 - exp(- c1 * time)) / (1 - exp(- c1 * !!t_max)) *
-          (b1 + b2 * (1 - exp(- b3 * dose)))
+          (b1 + b2 * (exp(dose / b3) - 1))
       )
     )
   )
@@ -305,11 +305,11 @@ test_that("MCMC: exponential binary logit long ITP", {
     true_responses = rlang::expr(
       ilogit(
         a + (1 - exp(- c1 * time)) / (1 - exp(- c1 * !!t_max)) *
-          (b1 + b2 * (1 - exp(- b3 * dose)))
+          (b1 + b2 * (exp(dose / b3) - 1))
       ) -
         ilogit(
           a + (1 - exp(- c1 * time)) / (1 - exp(- c1 * !!t_max)) *
-            (b1 + b2 * (1 - exp(- b3 * reference_dose)))
+            (b1 + b2 * (exp(reference_dose / b3) - 1))
         )
     )
   )
@@ -338,8 +338,8 @@ test_that("MCMC: exponential binary probit long ITP", {
       sigma_b1 = 1,
       mu_b2 = 0,
       sigma_b2 = 1,
-      mu_b3 = 0,
-      sigma_b3 = 1,
+      mu_b3 = 0.5,
+      sigma_b3 = 0.01,
       link = link,
       longitudinal = model_longitudinal_itp(0, 1, t_max = t_max)
     ),
@@ -363,7 +363,7 @@ test_that("MCMC: exponential binary probit long ITP", {
     true_responses = rlang::expr(
       iprobit(
         a + (1 - exp(- c1 * time)) / (1 - exp(- c1 * !!t_max)) *
-          (b1 + b2 * (1 - exp(- b3 * dose)))
+          (b1 + b2 * (exp(dose / b3) - 1))
       )
     )
   )
@@ -381,11 +381,11 @@ test_that("MCMC: exponential binary probit long ITP", {
     true_responses = rlang::expr(
       iprobit(
         a + (1 - exp(- c1 * time)) / (1 - exp(- c1 * !!t_max)) *
-          (b1 + b2 * (1 - exp(- b3 * dose)))
+          (b1 + b2 * (exp(dose / b3) - 1))
       ) -
         iprobit(
           a + (1 - exp(- c1 * time)) / (1 - exp(- c1 * !!t_max)) *
-             (b1 + b2 * (1 - exp(- b3 * reference_dose)))
+             (b1 + b2 * (exp(reference_dose / b3) - 1))
         )
     )
   )
@@ -414,8 +414,8 @@ test_that("MCMC: exponential binary logit long IDP", {
       sigma_b1 = 1,
       mu_b2 = 0,
       sigma_b2 = 1,
-      mu_b3 = 0,
-      sigma_b3 = 1,
+      mu_b3 = 0.5,
+      sigma_b3 = 0.01,
       link = link,
       longitudinal = model_longitudinal_idp(0, 1, t_max = t_max)
     ),
@@ -442,7 +442,7 @@ test_that("MCMC: exponential binary logit long IDP", {
     gam = seq(.2, .33, length = 10) / 100,
     true_responses = rlang::expr(
       ilogit(
-        a + (b1 + b2 * (1 - exp(- b3 * dose))) * (
+        a + (b1 + b2 * (exp(dose / b3) - 1)) * (
           (1 - exp(- c1 * time)) / (1 - exp(- c1 * d1)) * (time < d1) +
           (
             1 - gam * (1 - exp(- c2 * (time - d1))) /
@@ -471,7 +471,7 @@ test_that("MCMC: exponential binary logit long IDP", {
     gam = seq(.2, .33, length = 10) / 100,
     true_responses = rlang::expr(
       ilogit(
-        a + (b1 + b2 * (1 - exp(- b3 * dose))) * (
+        a + (b1 + b2 * (exp(dose / b3) - 1)) * (
           (1 - exp(- c1 * time)) / (1 - exp(- c1 * d1)) * (time < d1) +
           (
             1 - gam * (1 - exp(- c2 * (time - d1))) /
@@ -483,7 +483,7 @@ test_that("MCMC: exponential binary logit long IDP", {
       ) -
         ilogit(
           (
-            a + (b1 + b2 * (1 - exp(- b3 * reference_dose))) * (
+            a + (b1 + b2 * (exp(reference_dose / b3) - 1)) * (
               (1 - exp(- c1 * time)) / (1 - exp(- c1 * d1)) * (time < d1) +
               (
                 1 - gam * (1 - exp(- c2 * (time - d1))) /
@@ -521,8 +521,8 @@ test_that("MCMC: exponential binary probit long IDP", {
       sigma_b1 = 1,
       mu_b2 = 0,
       sigma_b2 = 1,
-      mu_b3 = 0,
-      sigma_b3 = 1,
+      mu_b3 = 0.5,
+      sigma_b3 = 0.01,
       link = link,
       longitudinal = model_longitudinal_idp(0, 1, t_max = t_max)
     ),
@@ -549,7 +549,7 @@ test_that("MCMC: exponential binary probit long IDP", {
     gam = seq(.2, .33, length = 10) / 100,
     true_responses = rlang::expr(
       iprobit(
-        a + (b1 + b2 * (1 - exp(- b3 * dose))) * (
+        a + (b1 + b2 * (exp(dose / b3) - 1)) * (
           (1 - exp(- c1 * time)) / (1 - exp(- c1 * d1)) * (time < d1) +
             (1 - gam * (1 - exp(- c2 * (time - d1))) /
                (1 - exp(- c2 * (d2 - d1)))) * (d1 <= time & time <= d2) +
@@ -575,7 +575,7 @@ test_that("MCMC: exponential binary probit long IDP", {
     gam = seq(.2, .33, length = 10) / 100,
     true_responses = rlang::expr(
       iprobit(
-        a + (b1 + b2 * (1 - exp(- b3 * dose))) * (
+        a + (b1 + b2 * (exp(dose / b3) - 1)) * (
           (1 - exp(- c1 * time)) / (1 - exp(- c1 * d1)) * (time < d1) +
             (1 - gam * (1 - exp(- c2 * (time - d1))) /
                (1 - exp(- c2 * (d2 - d1)))) * (d1 <= time & time <= d2) +
@@ -584,7 +584,7 @@ test_that("MCMC: exponential binary probit long IDP", {
       ) -
         iprobit(
           (
-            a + (b1 + b2 * (1 - exp(- b3 * reference_dose))) * (
+            a + (b1 + b2 * (exp(reference_dose / b3) - 1)) * (
               (1 - exp(- c1 * time)) / (1 - exp(- c1 * d1)) * (time < d1) +
                 (1 - gam * (1 - exp(- c2 * (time - d1))) /
                    (1 - exp(- c2 * (d2 - d1)))) * (d1 <= time & time <= d2) +

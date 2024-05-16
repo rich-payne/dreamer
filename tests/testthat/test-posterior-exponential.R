@@ -26,8 +26,8 @@ test_that("MCMC: exponential", {
     prob = c(.25, .75),
     b1 = 1:10,
     b2 = 2:11,
-    b3 = 3:12,
-    true_responses = rlang::expr(b1 + b2 * (1 - exp(- b3 * dose)))
+    b3 = 3:12/3,
+    true_responses = rlang::expr(b1 + b2 * (exp(dose / b3) - 1))
   )
   # with dose adjustment
   test_posterior(
@@ -37,10 +37,10 @@ test_that("MCMC: exponential", {
     prob = c(.25, .75),
     b1 = 1:10,
     b2 = 2:11,
-    b3 = 3:12,
+    b3 = 3:12/3,
     true_responses = rlang::expr(
-      b1 + b2 * (1 - exp(- b3 * dose)) -
-        (b1 + b2 * (1 - exp(- b3 * reference_dose)))
+      (b1 + b2 * (exp(dose / b3) - 1)) -
+        (b1 + b2 * (exp(reference_dose / b3) - 1))
     )
   )
 })
@@ -87,10 +87,10 @@ test_that("MCMC: exponential long linear", {
     prob = c(.25, .75),
     b1 = 1:10,
     b2 = 2:11,
-    b3 = 3:12,
+    b3 = 3:12/3,
     a = 10:1,
     true_responses = rlang::expr(
-      a + time / !!t_max * (b1 + b2 * (1 - exp(- b3 * dose)))
+      a + time / !!t_max * (b1 + b2 * (exp(dose / b3) - 1))
     )
   )
   test_posterior(
@@ -101,11 +101,11 @@ test_that("MCMC: exponential long linear", {
     prob = c(.25, .75),
     b1 = 1:10,
     b2 = 2:11,
-    b3 = 3:12,
+    b3 = 3:12/3,
     a = 10:1,
     true_responses = rlang::expr(
-      a + (time / !!t_max) * (b1 + b2 * (1 - exp(- b3 * dose))) -
-        (a + (time / !!t_max) * (b1 + b2 * (1 - exp(- b3 * reference_dose))))
+      a + (time / !!t_max) * (b1 + b2 * (exp(dose / b3) - 1)) -
+        (a + (time / !!t_max) * (b1 + b2 * (exp(reference_dose / b3) - 1)))
     )
   )
 })
@@ -152,12 +152,12 @@ test_that("MCMC: exponential long ITP", {
     prob = c(.25, .75),
     b1 = 1:10,
     b2 = 2:11,
-    b3 = 3:12,
+    b3 = 3:12/3,
     a = 10:1,
     c1 = seq(.1, 3, length = 10),
     true_responses = rlang::expr(
       a + (1 - exp(- c1 * time)) / (1 - exp(- c1 * !!t_max)) *
-        (b1 + b2 * (1 - exp(- b3 * dose)))
+        (b1 + b2 * (exp(dose / b3) - 1))
     )
   )
   test_posterior(
@@ -168,14 +168,14 @@ test_that("MCMC: exponential long ITP", {
     prob = c(.25, .75),
     b1 = 1:10,
     b2 = 2:11,
-    b3 = 3:12,
+    b3 = 3:12/3,
     a = 10:1,
     c1 = seq(.1, 3, length = 10),
     true_responses = rlang::expr(
       a + (1 - exp(- c1 * time)) / (1 - exp(- c1 * !!t_max)) *
-        (b1 + b2 * (1 - exp(- b3 * dose))) -
+        (b1 + b2 * (exp(dose / b3) - 1)) -
         (a + (1 - exp(- c1 * time)) / (1 - exp(- c1 * !!t_max)) *
-           (b1 + b2 * (1 - exp(- b3 * reference_dose))))
+           (b1 + b2 * (exp(reference_dose / b3) - 1)))
     )
   )
 })
@@ -222,7 +222,7 @@ test_that("MCMC: exponential long IDP", {
     prob = c(.25, .75),
     b1 = 1:10,
     b2 = 2:11,
-    b3 = 3:12,
+    b3 = 3:12/3,
     a = 10:1,
     c1 = seq(.1, 3, length = 10),
     c2 = seq(- .1, - .02, length = 10),
@@ -230,7 +230,7 @@ test_that("MCMC: exponential long IDP", {
     d2 = seq(4, 5, length = 10),
     gam = seq(.2, .33, length = 10),
     true_responses = rlang::expr(
-      a + (b1 + b2 * (1 - exp(- b3 * dose))) * (
+      a + (b1 + b2 * (exp(dose / b3) - 1)) * (
         (1 - exp(- c1 * time)) / (1 - exp(- c1 * d1)) * (time < d1) +
           (1 - gam * (1 - exp(- c2 * (time - d1))) /
              (1 - exp(- c2 * (d2 - d1)))) * (d1 <= time & time <= d2) +
@@ -247,21 +247,21 @@ test_that("MCMC: exponential long IDP", {
     a = 10:1,
     b1 = 1:10,
     b2 = 2:11,
-    b3 = 3:12,
+    b3 = 3:12/3,
     c1 = seq(.1, 3, length = 10),
     c2 = seq(- .1, - .02, length = 10),
     d1 = seq(3, 4, length = 10),
     d2 = seq(4, 5, length = 10),
     gam = seq(.2, .33, length = 10),
     true_responses = rlang::expr(
-      a + (b1 + b2 * (1 - exp(- b3 * dose))) * (
+      a + (b1 + b2 * (exp(dose / b3) - 1)) * (
         (1 - exp(- c1 * time)) / (1 - exp(- c1 * d1)) * (time < d1) +
           (1 - gam * (1 - exp(- c2 * (time - d1))) /
              (1 - exp(- c2 * (d2 - d1)))) * (d1 <= time & time <= d2) +
           (1 - gam) * (time > d2)
       ) -
         (
-          a + (b1 + b2 * (1 - exp(- b3 * reference_dose))) * (
+          a + (b1 + b2 * (exp(reference_dose / b3) - 1)) * (
             (1 - exp(- c1 * time)) / (1 - exp(- c1 * d1)) * (time < d1) +
               (1 - gam * (1 - exp(- c2 * (time - d1))) /
                  (1 - exp(- c2 * (d2 - d1)))) * (d1 <= time & time <= d2) +

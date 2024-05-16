@@ -154,6 +154,7 @@ dreamer_data_exp(
   b1,
   b2,
   b3,
+  bound,
   sigma,
   times,
   t_max,
@@ -167,6 +168,7 @@ dreamer_data_exp_binary(
   b1,
   b2,
   b3,
+  bound,
   link,
   times,
   t_max,
@@ -335,25 +337,26 @@ response.
 \section{EMAX}{
 
 \deqn{y \sim N(f(d), \sigma^2)}
-\deqn{f(d) = b_1 + (b_2 - b_1) * d ^ b_4 / (exp(b_3 * b_4) + d ^ b_4)}
+\deqn{f(d) = b1 + b2 * d ^ b4 / (b3 ^ b4 + d ^ b4)}
 \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
 \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (Truncated above 0)}
 \deqn{b_4 \sim N(mu_b4, sigma_b4 ^ 2), (Truncated above 0)}
 \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
 Here, \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
-maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
+maximum treatment effect, \eqn{b_3} is the \eqn{ED_50}, and
 \eqn{b_4} is the hill or rate parameter.
 }
 
 \section{Exponential}{
 
 \deqn{y \sim N(f(d), \sigma^2)}
-\deqn{f(d) = b_1 + b_2 * (1 - exp(- b_3 * d))}
+\deqn{f(d) = b_1 + b_2 * (exp(d / b_3) - 1)}
 \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
 \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (truncated to be positive)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2) T(0, bound)}
 \deqn{1 / \sigma^2 \sim Gamma(shape, rate)}
+If sampling error for \eqn{b_3} then lower upper truncation bound
 }
 
 \section{Linear Binary}{
@@ -393,25 +396,25 @@ maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
 \section{EMAX Binary}{
 
 \deqn{y \sim Binomial(n, f(d))}
-\deqn{link(f(d)) = b_1 + (b_2 - b_1) * d ^ b_4 /
-    (exp(b_3 * b_4) + d ^ b_4)}
+\deqn{link(f(d)) = b1 + b2 * d ^ b4 / (b3 ^ b4 + d ^ b4)}
 \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
 \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (Truncated above 0)}
 \deqn{b_4 \sim N(mu_b4, sigma_b4 ^ 2), (Truncated above 0)}
 Here, on the \eqn{link(f(d))} scale,
 \eqn{b_1} is the placebo effect (dose = 0), \eqn{b_2} is the
-maximum treatment effect, \eqn{b_3} is the \eqn{log(ED50)}, and
+maximum treatment effect, \eqn{b_3} is the \eqn{ED_50}, and
 \eqn{b_4} is the hill or rate parameter.
 }
 
 \section{Exponential Binary}{
 
-\deqn{y \sim Binomial(n, f(d))}
-\deqn{link(f(d)) = b_1 + b_2 * (exp(b_3 * d) - 1)}
+\deqn{y \sim N(f(d), \sigma^2)}
+\deqn{f(d) = b_1 + b_2 * (exp(d / b_3) - 1)}
 \deqn{b_1 \sim N(mu_b1, sigma_b1 ^ 2)}
 \deqn{b_2 \sim N(mu_b2, sigma_b2 ^ 2)}
-\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2), (Truncated below 0)}
+\deqn{b_3 \sim N(mu_b3, sigma_b3 ^ 2) T(0, bound)}
+If sampling error for \eqn{b_3} then lower upper truncation bound
 }
 
 \section{Independent}{
