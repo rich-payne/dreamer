@@ -736,7 +736,6 @@ bar_width <- function(doses) {
   return(width)
 }
 
-#' @export
 any_independent <- function(x) {
   UseMethod("any_independent", x)
 }

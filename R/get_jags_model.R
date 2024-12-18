@@ -55,7 +55,6 @@ get_jags_code <- function(file) {
     paste0(collapse = "\n")
 }
 
-#' @export
 get_jags_like_file <- function(x) {
   UseMethod("get_jags_like_file", x)
 }
@@ -140,7 +139,6 @@ get_jags_like_file.dreamer_independent_binary <- function(x) { #nolint
   "jags/likelihood_independent_binary.jags"
 }
 
-#' @export
 get_jags_prior_file <- function(x) {
   UseMethod("get_jags_prior_file", x)
 }
@@ -230,7 +228,6 @@ get_vnames <- function(x) {
   c(get_vnames_model(x), get_longitudinal_vnames(x$longitudinal))
 }
 
-#' @export
 get_vnames_model <- function(x) {
   UseMethod("get_vnames_model", x)
 }
@@ -315,7 +312,6 @@ get_vnames_model.dreamer_independent_binary <- function(x) { #nolint
   c("b1")
 }
 
-#' @export
 get_longitudinal_likelihood_file <- function(x) {  #nolint
   UseMethod("get_longitudinal_likelihood_file", x)
 }
@@ -335,7 +331,6 @@ get_longitudinal_likelihood_file.dreamer_longitudinal_idp <- function(x) { #noli
   "jags/likelihood_longitudinal_idp.jags"
 }
 
-#' @export
 get_longitudinal_prior_file <- function(x) { #nolint
   UseMethod("get_longitudinal_prior_file", x)
 }
@@ -355,7 +350,6 @@ get_longitudinal_prior_file.dreamer_longitudinal_idp <- function(x) { #nolint
   "jags/prior_longitudinal_idp.jags"
 }
 
-#' @export
 get_longitudinal_vnames <- function(x) {
   UseMethod("get_longitudinal_vnames", x)
 }

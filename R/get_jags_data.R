@@ -25,13 +25,12 @@ set_a_jags <- function(jags_data, model, data) {
   return(jags_data)
 }
 
-#' @export
 get_jags_data_hyperparms <- function(model, ...) {
   UseMethod("get_jags_data_hyperparms", model)
 }
 
 #' @export
-get_jags_data_hyperparms.default <- function(model, data) { #nolint
+get_jags_data_hyperparms.default <- function(model, data, ...) { #nolint
   model[
     c("w_prior", "jags_rng", "jags_seed", "longitudinal", "link", "scale")
   ] <- NULL
@@ -43,7 +42,7 @@ get_jags_data_hyperparms.default <- function(model, data) { #nolint
 }
 
 #' @export
-get_jags_data_hyperparms.dreamer_independent <- function(model, data) { #nolint
+get_jags_data_hyperparms.dreamer_independent <- function(model, data, ...) { #nolint
   doses <- model$doses
   check_independent_model(data, doses)
   u_doses_data <- unique(data$dose)
@@ -127,7 +126,7 @@ prep_jags_data.dreamer_continuous <- function(model, data, ...) { #nolint
 }
 
 #' @export
-prep_jags_data.dreamer_independent_continuous <- function(model, data, doses) { #nolint
+prep_jags_data.dreamer_independent_continuous <- function(model, data, doses, ...) { #nolint
   if (is.null(data)) {
     jags_data <- list(n_doses = length(model$doses))
     return(jags_data)
@@ -145,7 +144,7 @@ prep_jags_data.dreamer_independent_continuous <- function(model, data, doses) { 
 }
 
 #' @export
-prep_jags_data.dreamer_independent_binary <- function(model, data, doses) { #nolint
+prep_jags_data.dreamer_independent_binary <- function(model, data, doses, ...) { #nolint
   if (is.null(data)) {
     jags_data <- list(n_doses = length(model$doses))
     return(jags_data)

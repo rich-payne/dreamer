@@ -29,7 +29,6 @@ get_n_params_longitudinal <- function(x) {
   return(q)
 }
 
-#' @export
 get_n_params <- function(x) {
   UseMethod("get_n_params", x)
 }
