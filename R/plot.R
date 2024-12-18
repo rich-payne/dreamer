@@ -162,7 +162,7 @@ base_dreamer_predictive_plot <- function(
 #' @param width the width of the error bars.
 #' @param reference_dose the dose at which to adjust the posterior plot.
 #'   Specifying
-#'   a dose returns the plot of pr(trt_dose - trt_{reference_dose} | data).
+#'   a dose returns the plot of pr(trt_dose - trt_\{reference_dose\} | data).
 #' @return Returns the ggplot object.
 #' @example man/examples/ex-plot.R
 #' @export
