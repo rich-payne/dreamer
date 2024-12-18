@@ -27,7 +27,7 @@ diagnostics.dreamer_bma <- function(x) { #nolint
     function(x, y) dplyr::mutate(x, model = y)
   ) %>%
     do_call(getExportedValue("dplyr", "bind_rows")) %>%
-    dplyr::select(.data$model, everything())
+    dplyr::select("model", everything())
   return(diags)
 }
 
@@ -36,9 +36,9 @@ diagnostics.dreamer_mcmc <- function(x) {
   diags <- coda::gelman.diag(x, multivariate = FALSE)$psrf %>%
     dplyr::as_tibble(rownames = "param") %>%
     dplyr::select(
-      .data$param,
-      gelman_point = .data$`Point est.`,
-      gelman_upper = .data$`Upper C.I.`
+      "param",
+      gelman_point = "Point est.",
+      gelman_upper = "Upper C.I."
     ) %>%
     dplyr::mutate(effective_size = coda::effectiveSize(x)[.data$param])
   return(diags)

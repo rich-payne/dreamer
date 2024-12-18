@@ -22,7 +22,7 @@ summary.dreamer_bma <- function(object, ...) {
     prior_weight = sprintf("%.1f%%", object$w_prior * 100)
   ) %>%
     dplyr::arrange(desc(.data$w_post)) %>%
-    dplyr::select(- .data$w_post)
+    dplyr::select(- "w_post")
   sumry <- lapply(model_list, summary)
   sumry <- purrr::map2(
     sumry,
@@ -30,7 +30,7 @@ summary.dreamer_bma <- function(object, ...) {
     function(x, y) dplyr::mutate(x, model = y)
   ) %>%
     do_call(getExportedValue("dplyr", "bind_rows")) %>%
-    dplyr::select(.data$model, everything())
+    dplyr::select("model", everything())
   the_summary <- list(
     model_weights = w_post_df,
     summary = sumry
@@ -69,10 +69,10 @@ summary.dreamer_mcmc <- function(object, ...) {
     dplyr::bind_cols(param = param) %>%
     dplyr::select(
       param,
-      mean = .data$Mean,
-      sd = .data$SD,
-      se = .data$`Naive SE`,
-      se_ts = .data$`Time-series SE`,
+      mean = "Mean",
+      sd = "SD",
+      se = "Naive SE",
+      se_ts = "Time-series SE",
       dplyr::everything()
     )
   output <- dplyr::full_join(inference, diags, by = "param")

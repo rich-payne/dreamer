@@ -110,7 +110,7 @@ prep_binary_jags_data <- function(model, data) {
     n_obs = nrow(data)
   )
   if (is_longitudinal) {
-    jags_data$time <- dplyr::pull(data, .data$time)
+    jags_data$time <- dplyr::pull(data, "time")
   }
   return(jags_data)
 }
@@ -159,10 +159,10 @@ prep_cont_jags_data <- function(model, data) {
     time_var <- get_time_var(model)
     data_sufficient <- dplyr::select(
       data,
-      .data$dose,
-      ybar = .data$response,
-      .data$sample_var,
-      .data$n,
+      "dose",
+      ybar = "response",
+      "sample_var",
+      "n",
       any_of(!!time_var)
     )
   } else {
@@ -189,7 +189,7 @@ prep_cont_jags_data <- function(model, data) {
     dose_sufficient = data_sufficient$dose
   )
   if (tibble::has_name(data_sufficient, "time")) {
-    jags_data$time <- dplyr::pull(data_sufficient, .data$time)
+    jags_data$time <- dplyr::pull(data_sufficient, "time")
   }
   return(jags_data)
 }

@@ -323,7 +323,7 @@ convergence_warnings <- function(x, ...) {
   summaries <- summary(x)
   bad_gelman <- dplyr::filter(summaries$summary, .data$gelman_upper > 1.1) %>%
     dplyr::select(
-      .data$model, .data$param, .data$gelman_point, .data$gelman_upper
+      "model", "param", "gelman_point", "gelman_upper"
     )
   throw_convergence_warn(bad_gelman)
 }
