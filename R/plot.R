@@ -731,10 +731,12 @@ bar_width <- function(doses) {
   return(width)
 }
 
+#' @export
 any_independent <- function(x) {
   UseMethod("any_independent", x)
 }
 
+#' @export
 any_independent.dreamer_bma <- function(x) {
   vapply(
     x,
@@ -744,6 +746,7 @@ any_independent.dreamer_bma <- function(x) {
     any()
 }
 
+#' @export
 any_independent.default <- function(x) {
   inherits(x, "dreamer_mcmc_independent")
 }
