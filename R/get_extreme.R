@@ -266,9 +266,9 @@ pextreme <- function(responses, greater) {
     dplyr::ungroup() %>%
     dplyr::mutate(greater = !!greater) %>%
     dplyr::select(
-      doses = .data$dose,
-      extreme_responses = .data$mean_response,
-      greater
+      doses = "dose",
+      extreme_responses = "mean_response",
+      "greater"
     )
   return(out)
 }

@@ -295,7 +295,7 @@ summarize_samples <- function(
         qtiles = list(quantile_custom(.data$mean_response, !!probs))
       ) %>%
       dplyr::ungroup() %>%
-      tidyr::unnest_wider(col = .data$qtiles)
+      tidyr::unnest_wider(col = "qtiles")
   }
   output <- list(stats = stats)
   if (return_samples) {
@@ -371,7 +371,7 @@ make_reference_dose <- function(samps, reference_dose, original_doses) {
     dplyr::mutate(
       mean_response = .data$mean_response - .data$mean_response_adj
     ) %>%
-    dplyr::select(- .data$reference_dose, - .data$mean_response_adj) %>%
+    dplyr::select(- "reference_dose", - "mean_response_adj") %>%
     dplyr::filter(.data$dose %in% !!original_doses)
 }
 
@@ -382,7 +382,7 @@ add_adjustment <- function(samps, reference_dose) {
   }
   samps_adj <- samps %>%
     dplyr::filter(.data$dose == !!reference_dose) %>%
-    dplyr::select(reference_dose = .data$dose, everything())
+    dplyr::select(reference_dose = "dose", everything())
   samps <- samps %>% dplyr::left_join(
     samps_adj,
     by = by_var,
@@ -430,7 +430,7 @@ summarize_samples_binary <- function(
           ) / !!predictive
       ) %>%
       dplyr::filter(.data$dose %in% !!original_doses) %>%
-      dplyr::select(- .data$reference_dose, - .data$mean_response_adj)
+      dplyr::select(- "reference_dose", - "mean_response_adj")
   } else if (is.null(reference_dose)) {
     samps <- make_predictive_binary(samps, predictive)
   }

@@ -31,7 +31,7 @@ Imports:
   coda,
   dplyr (>= 1.0.0),
   ellipsis (>= 0.3),
-  ggplot2,
+  ggplot2 (>= 3.0),
   graphics,
   purrr,
   rootSolve,
@@ -39,7 +39,7 @@ Imports:
   rlang (>= 0.4.5),
   stats,
   tidyr (>= 1.0.2),
-  tidyselect (>= 1.1)
+  tidyselect (>= 1.2)
 Encoding: UTF-8
 RoxygenNote: 7.3.2
 Suggests: 
