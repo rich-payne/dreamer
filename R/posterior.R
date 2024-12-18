@@ -8,7 +8,7 @@
 #' @param probs quantiles of the posterior to be calculated.
 #' @param reference_dose the dose at which to adjust the posterior plot.
 #'   Specifying
-#'   a dose returns the plot of pr(trt_dose - trt_{reference_dose} | data).
+#'   a dose returns the plot of pr(trt_dose - trt_\{reference_dose\} | data).
 #' @param return_samples logical indicating if the weighted raw
 #'   MCMC samples from the Bayesian model averaging used to calculate the
 #'   mean and quantiles should be returned.

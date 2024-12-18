@@ -46,7 +46,6 @@ get_y <- function(y, x, index) {
   y
 }
 
-#' @export
 dreamer_mean <- function(x, y, dose, time, index) {
   UseMethod("dreamer_mean", x)
 }

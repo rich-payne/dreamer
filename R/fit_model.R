@@ -102,7 +102,7 @@ run_jags_model <- function(
   return(samps)
 }
 
-#' @export
+
 add_mcmc_attributes <- function(samps, data, model, doses, binary) {
   UseMethod("add_mcmc_attributes", model)
 }
@@ -174,7 +174,6 @@ get_scale <- function(model, data) {
   return(model$scale)
 }
 
-#' @export
 add_mcmc_class <- function(post_samples, model) {
   UseMethod("add_mcmc_class", model)
 }

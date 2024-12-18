@@ -67,7 +67,7 @@ posterior(
 
 \item{reference_dose}{the dose at which to adjust the posterior plot.
 Specifying
-a dose returns the plot of pr(trt_dose - trt_{reference_dose} | data).}
+a dose returns the plot of pr(trt_dose - trt_\{reference_dose\} | data).}
 
 \item{predictive}{An integer.  If greater than 0, the return values will
 be from the predictive distribution of the mean of \code{predictive}

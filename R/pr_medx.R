@@ -92,9 +92,9 @@ pr_medx <- function(
       out / length(.data$med_index)
     })
     ) %>%
-    tidyr::unnest_wider(col = .data$data) %>%
+    tidyr::unnest_wider(col = "data") %>%
     tidyr::pivot_longer(
-      cols = - .data$ed,
+      cols = - "ed",
       names_to = "dose",
       values_to = "prob"
     )
