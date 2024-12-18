@@ -29,46 +29,55 @@ get_n_params_longitudinal <- function(x) {
   return(q)
 }
 
+#' @export
 get_n_params <- function(x) {
   UseMethod("get_n_params", x)
 }
 
+#' @export
 get_n_params.dreamer_mcmc_linear <- function(x) { #nolint
   q <- 3 + get_n_params_longitudinal(x)
   return(q)
 }
 
+#' @export
 get_n_params.dreamer_mcmc_quad <- function(x) {
   q <- 4 + get_n_params_longitudinal(x)
   return(q)
 }
 
+#' @export
 get_n_params.dreamer_mcmc_loglinear <- function(x) { #nolint
   q <- 3 + get_n_params_longitudinal(x)
   return(q)
 }
 
+#' @export
 get_n_params.dreamer_mcmc_logquad <- function(x) { #nolint
   q <- 4 + get_n_params_longitudinal(x)
   return(q)
 }
 
+#' @export
 get_n_params.dreamer_mcmc_emax <- function(x) {
   q <- ifelse(all(as.matrix(x)[, "b4"] == 1), 4, 5) +
     get_n_params_longitudinal(x)
   return(q)
 }
 
+#' @export
 get_n_params.dreamer_mcmc_exp <- function(x) {
   q <- 4 + get_n_params_longitudinal(x)
   return(q)
 }
 
+#' @export
 get_n_params.dreamer_mcmc_beta <- function(x) {
   q <- 5 + get_n_params_longitudinal(x)
   return(q)
 }
 
+#' @export
 get_n_params.dreamer_mcmc_independent <- function(x) { #nolint
   # this function is not relevant when independent models are
   #   restricted to be fit in isolation
@@ -76,42 +85,50 @@ get_n_params.dreamer_mcmc_independent <- function(x) { #nolint
 }
 
 # BINARY
+#' @export
 get_n_params.dreamer_mcmc_linear_binary <- function(x) { #nolint
   q <- 2 + get_n_params_longitudinal(x)
   return(q)
 }
 
+#' @export
 get_n_params.dreamer_mcmc_quad_binary <- function(x) { #nolint
   q <- 3 + get_n_params_longitudinal(x)
   return(q)
 }
 
+#' @export
 get_n_params.dreamer_mcmc_loglinear_binary <- function(x) { #nolint
   q <- 2 + get_n_params_longitudinal(x)
   return(q)
 }
 
+#' @export
 get_n_params.dreamer_mcmc_logquad_binary <- function(x) { #nolint
   q <- 3 + get_n_params_longitudinal(x)
   return(q)
 }
 
+#' @export
 get_n_params.dreamer_mcmc_emax_binary <- function(x) { #nolint
   q <- ifelse(all(as.matrix(x)[, "b4"] == 1), 3, 4) +
     get_n_params_longitudinal(x)
   return(q)
 }
 
+#' @export
 get_n_params.dreamer_mcmc_exp_binary <- function(x) { #nolint
   q <- 3 + get_n_params_longitudinal(x)
   return(q)
 }
 
+#' @export
 get_n_params.dreamer_mcmc_beta_binary <- function(x) { #nolint
   q <- 4 + get_n_params_longitudinal(x)
   return(q)
 }
 
+#' @export
 get_n_params.dreamer_mcmc_independent_binary <- function(x) { #nolint
   # this function is not relevant when independent models are
   #   restricted to be fit in isolation
