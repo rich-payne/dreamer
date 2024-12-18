@@ -163,6 +163,7 @@ calc_post_medx_samps <- function(
   )
 }
 
+#' @export
 post_medx.dreamer_mcmc_independent <- function(...) { #nolint
   rlang::abort(
     "post_medx() not supported for independent models.",
@@ -170,6 +171,7 @@ post_medx.dreamer_mcmc_independent <- function(...) { #nolint
   )
 }
 
+#' @export
 post_medx.dreamer_mcmc_independent_binary <- function(...) { #nolint
   rlang::abort(
     "post_medx() not supported for independent models.",

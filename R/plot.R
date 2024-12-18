@@ -27,12 +27,17 @@ base_dreamer_plot_error_bar <- function(
     ub = post$stats[[sprintf("%.2f%%", 100 * probs[2])]]
   )
   if (is.null(p)) {
-    p <- ggplot(dat, aes_string(x = "dose"))
+    p <- ggplot(dat, aes(x = .data$dose))
   }
   p <- p +
     geom_errorbar(
     data = dat,
-    mapping = aes_string(x = "dose", ymin = "lb", ymax = "ub", width = "width"),
+    mapping = aes(
+      x = .data$dose,
+      ymin = .data$lb,
+      ymax = .data$ub,
+      width = !!width
+    ),
     colour = color,
     linetype = linetype
   ) +
@@ -71,18 +76,18 @@ base_dreamer_plot <- function(
   p <- p +
     geom_line(
       data = dat,
-      mapping = aes_string(x = "dose", y = "post_mean"),
+      mapping = aes(x = .data$dose, y = .data$post_mean),
       colour = color
     ) +
     geom_line(
       data = dat,
-      mapping = aes_string(x = "dose", y = "lb"),
+      mapping = aes(x = .data$dose, y = .data$lb),
       colour = color,
       linetype = 2
     ) +
     geom_line(
       data = dat,
-      mapping = aes_string(x = "dose", y = "ub"),
+      mapping = aes(x = .data$dose, y = .data$ub),
       colour = color,
       linetype = 2
     ) +
@@ -125,13 +130,13 @@ base_dreamer_predictive_plot <- function(
   p <- p +
     geom_line(
       data = dat,
-      mapping = aes_string(x = "dose", y = "lb"),
+      mapping = aes(x = .data$dose, y = .data$lb),
       colour = color,
       linetype = 3
     ) +
     geom_line(
       data = dat,
-      mapping = aes_string(x = "dose", y = "ub"),
+      mapping = aes(.data$dose, y = .data$ub),
       colour = color,
       linetype = 3
     )
@@ -157,7 +162,7 @@ base_dreamer_predictive_plot <- function(
 #' @param width the width of the error bars.
 #' @param reference_dose the dose at which to adjust the posterior plot.
 #'   Specifying
-#'   a dose returns the plot of pr(trt_dose - trt_{reference_dose} | data).
+#'   a dose returns the plot of pr(trt_dose - trt_\{reference_dose\} | data).
 #' @return Returns the ggplot object.
 #' @example man/examples/ex-plot.R
 #' @export
@@ -345,17 +350,17 @@ dreamer_plot_prior <- function(
         )
       p <- ggplot(
         samps,
-        aes_string(
-          x = "time",
-          y = "mean_response",
-          group = "iter_dose",
-          color = "dose"
+        aes(
+          x = .data$time,
+          y = .data$mean_response,
+          group = .data$iter_dose,
+          color = .data$dose
         )
       )
     } else {
       p <- ggplot(
         samps,
-        aes_string(x = "dose", y = "mean_response", group = "iter")
+        aes(x = .data$dose, y = .data$mean_response, group = .data$iter)
       )
     }
     p <- p +
@@ -490,27 +495,27 @@ plot_comparison.dreamer_bma <- function(
   p <- p +
     geom_line(
       data = dat,
-      mapping = aes_string(x = xvar, y = "mean"),
+      mapping = aes(x = .data[[xvar]], y = .data$mean),
       inherit.aes = FALSE,
       lwd = 1.25
     ) +
     geom_line(
       data = dat,
-      mapping = aes_string(x = xvar, y = "lb"),
+      mapping = aes(x = .data[[xvar]], y = .data$lb),
       linetype = 2,
       inherit.aes = FALSE,
       lwd = 1.25
     ) +
     geom_line(
       data = dat,
-      mapping = aes_string(x = xvar, y = "ub"),
+      mapping = aes(x = .data[[xvar]], y = .data$ub),
       linetype = 2,
       inherit.aes = FALSE,
       lwd = 1.25
     ) +
     geom_errorbar(
       data = dat_error_bar,
-      mapping = aes_string(x = xvar, ymin = "lb", ymax = "ub"),
+      mapping = aes(x = .data[[xvar]], ymin = .data$lb, ymax = .data$ub),
       width = width,
       lwd = 1.25,
       inherit.aes = FALSE
@@ -565,14 +570,14 @@ plot_comparison_worker <- function(
     dat$ub <- dat[[sprintf("%.2f%%", 100 * probs[2])]]
     p <- ggplot(
       data = dat,
-      mapping = aes_string(group = "Model", color = "Model")
+      mapping = aes(group = .data$Model, color = .data$Model)
     ) +
-      geom_line(mapping = aes_string(x = "time", y = "mean")) +
-      geom_line(mapping = aes_string(x = "time", y = "lb"), linetype = 2) +
-      geom_line(mapping = aes_string(x = "time", y = "ub"), linetype = 2) +
+      geom_line(mapping = aes(x = .data$time, y = .data$mean)) +
+      geom_line(mapping = aes(x = .data$time, y = .data$lb), linetype = 2) +
+      geom_line(mapping = aes(x = .data$time, y = .data$ub), linetype = 2) +
       geom_errorbar(
         data = dat_error_bar,
-        mapping = aes_string(x = "time", ymin = "lb", ymax = "ub"),
+        mapping = aes(x = .data$time, ymin = .data$lb, ymax = .data$ub),
         width = width
       ) +
       labs(
@@ -603,14 +608,14 @@ plot_comparison_worker <- function(
       add_time_to_title(times)
     p <- ggplot(
       data = dat,
-      mapping = aes_string(group = "Model", color = "Model")
+      mapping = aes(group = .data$Model, color = .data$Model)
     ) +
-      geom_line(mapping = aes_string(x = "dose", y = "mean")) +
-      geom_line(mapping = aes_string(x = "dose", y = "lb"), linetype = 2) +
-      geom_line(mapping = aes_string(x = "dose", y = "ub"), linetype = 2) +
+      geom_line(mapping = aes(x = .data$dose, y = .data$mean)) +
+      geom_line(mapping = aes(x = .data$dose, y = .data$lb), linetype = 2) +
+      geom_line(mapping = aes(x = .data$dose, y = .data$ub), linetype = 2) +
       geom_errorbar(
         data = dat_error_bar,
-        mapping = aes_string(x = "dose", ymin = "lb", ymax = "ub"),
+        mapping = aes(x = .data$dose, ymin = .data$lb, ymax = .data$ub),
         width = width
       ) +
       labs(
@@ -662,16 +667,16 @@ plot_longitudinal <- function(
     )
   p <- ggplot(
     post_smooth,
-    aes_string(x = "time", group = "dose", color = "dose")
+    aes(x = .data$time, group = .data$dose, color = .data$dose)
   ) +
     geom_errorbar(
       data = post_bars,
-      aes_string(ymin = "lb", ymax = "ub"),
+      aes(ymin = .data$lb, ymax = .data$ub),
       width = width
     ) +
-    geom_line(aes_string(y = "mean")) +
-    geom_line(aes_string(y = "lb"), lty = 2) +
-    geom_line(aes_string(y = "ub"), lty = 2) +
+    geom_line(aes(y = .data$mean)) +
+    geom_line(aes(y = .data$lb), lty = 2) +
+    geom_line(aes(y = .data$ub), lty = 2) +
     scale_x_continuous(breaks = times) +
     labs(x = "Time", y = "Response") +
     theme(plot.title = element_text(hjust = 0.5)) +
@@ -691,8 +696,8 @@ plot_longitudinal <- function(
         dose = factor(.data$dose)
       )
     p <- p +
-      geom_line(data = post_smooth_pred, aes_string(y = "lb"), lty = 3) +
-      geom_line(data = post_smooth_pred, aes_string(y = "ub"), lty = 3)
+      geom_line(data = post_smooth_pred, aes(y = .data$lb), lty = 3) +
+      geom_line(data = post_smooth_pred, aes(y = .data$ub), lty = 3)
   }
   p <- plot_data(p, data, x, times, doses)
   return(p)
@@ -735,6 +740,7 @@ any_independent <- function(x) {
   UseMethod("any_independent", x)
 }
 
+#' @export
 any_independent.dreamer_bma <- function(x) {
   vapply(
     x,
@@ -744,6 +750,7 @@ any_independent.dreamer_bma <- function(x) {
     any()
 }
 
+#' @export
 any_independent.default <- function(x) {
   inherits(x, "dreamer_mcmc_independent")
 }
@@ -790,14 +797,14 @@ plot_data <- function(p, data, x, times, doses) {
     agdat <- agdat %>%
       dplyr::mutate(dose = factor(.data$dose, levels = levels(p$data$dose)))
     p <- p + geom_point(
-      aes_string(x = "time", y = "response", color = "dose"),
+      aes(x = .data$time, y = .data$response, color = .data$dose),
       data = agdat,
       size = 2,
       inherit.aes = FALSE
     )
   } else {
     p <- p + geom_point(
-      aes_string(x = "dose", y = "response"),
+      aes(.data$dose, y = .data$response),
       data = agdat,
       size = 2,
       inherit.aes = FALSE

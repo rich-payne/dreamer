@@ -47,9 +47,9 @@ pr_med <- function( #nolint
     dplyr::filter(!is.na(.data$dose)) %>%
     dplyr::mutate(prob = .data$prob / .data$n) %>%
     tidyr::complete(dose = !!doses, fill = list(prob = 0)) %>%
-    dplyr::select(.data$dose, .data$prob) %>%
+    dplyr::select("dose", "prob") %>%
     add_cols(reference_dose, time) %>%
-    dplyr::select(.data$dose, everything(), - .data$prob, .data$prob)
+    dplyr::select("dose", everything(), - "prob", "prob")
 }
 
 add_cols <- function(x, reference_dose, time) {

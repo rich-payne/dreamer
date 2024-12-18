@@ -50,6 +50,7 @@ dreamer_mean <- function(x, y, dose, time, index) {
   UseMethod("dreamer_mean", x)
 }
 
+#' @export
 dreamer_mean.dreamer_mcmc_linear <- function( #nolint
   x,
   y = NULL,
@@ -70,6 +71,7 @@ dreamer_mean.dreamer_mcmc_linear <- function( #nolint
   return(out)
 }
 
+#' @export
 dreamer_mean.dreamer_mcmc_loglinear <- function( #nolint
   x,
   y = NULL,
@@ -90,6 +92,7 @@ dreamer_mean.dreamer_mcmc_loglinear <- function( #nolint
   return(out)
 }
 
+#' @export
 dreamer_mean.dreamer_mcmc_quad <- function(x, y = NULL, dose, time, index) {
   y <- get_y(y, x, index)
   out <- dreamer_mean_quad(dose, b1 = y[, "b1"], b2 = y[, "b2"], b3 = y[, "b3"])
@@ -104,6 +107,7 @@ dreamer_mean.dreamer_mcmc_quad <- function(x, y = NULL, dose, time, index) {
   return(out)
 }
 
+#' @export
 dreamer_mean.dreamer_mcmc_logquad <- function( #nolint
   x,
   y = NULL,
@@ -129,6 +133,7 @@ dreamer_mean.dreamer_mcmc_logquad <- function( #nolint
   return(out)
 }
 
+#' @export
 dreamer_mean.dreamer_mcmc_emax <- function(x, y = NULL, dose, time, index) {
   y <- get_y(y, x, index)
   out <- dreamer_mean_emax(
@@ -149,6 +154,7 @@ dreamer_mean.dreamer_mcmc_emax <- function(x, y = NULL, dose, time, index) {
   return(out)
 }
 
+#' @export
 dreamer_mean.dreamer_mcmc_exp <- function(x, y = NULL, dose, time, index) {
   y <- get_y(y, x, index)
   out <- dreamer_mean_exp(dose, b1 = y[, "b1"], b2 = y[, "b2"], b3 = y[, "b3"])
@@ -163,6 +169,7 @@ dreamer_mean.dreamer_mcmc_exp <- function(x, y = NULL, dose, time, index) {
   return(out)
 }
 
+#' @export
 dreamer_mean.dreamer_mcmc_beta <- function(x, y = NULL, dose, time, index) {
   y <- get_y(y, x, index)
   out <- dreamer_mean_beta(
@@ -185,6 +192,7 @@ dreamer_mean.dreamer_mcmc_beta <- function(x, y = NULL, dose, time, index) {
   return(out)
 }
 
+#' @export
 dreamer_mean.dreamer_mcmc_linear_binary <- function( #nolint
   x,
   y = NULL,
@@ -199,6 +207,7 @@ dreamer_mean.dreamer_mcmc_linear_binary <- function( #nolint
     lfun()
 }
 
+#' @export
 dreamer_mean.dreamer_mcmc_loglinear_binary <- function( #nolint
   x,
   y = NULL,
@@ -213,6 +222,7 @@ dreamer_mean.dreamer_mcmc_loglinear_binary <- function( #nolint
     lfun()
 }
 
+#' @export
 dreamer_mean.dreamer_mcmc_quad_binary <- function( #nolint
   x,
   y = NULL,
@@ -227,6 +237,7 @@ dreamer_mean.dreamer_mcmc_quad_binary <- function( #nolint
     lfun()
 }
 
+#' @export
 dreamer_mean.dreamer_mcmc_logquad_binary <- function( #nolint
   x,
   y = NULL,
@@ -241,6 +252,7 @@ dreamer_mean.dreamer_mcmc_logquad_binary <- function( #nolint
     lfun()
 }
 
+#' @export
 dreamer_mean.dreamer_mcmc_emax_binary <- function( #nolint
   x,
   y = NULL,
@@ -255,6 +267,7 @@ dreamer_mean.dreamer_mcmc_emax_binary <- function( #nolint
     lfun()
 }
 
+#' @export
 dreamer_mean.dreamer_mcmc_exp_binary <- function( #nolint
   x,
   y = NULL,
@@ -269,6 +282,7 @@ dreamer_mean.dreamer_mcmc_exp_binary <- function( #nolint
     lfun()
 }
 
+#' @export
 dreamer_mean.dreamer_mcmc_beta_binary <- function( #nolint
   x,
   y = NULL,
@@ -283,6 +297,7 @@ dreamer_mean.dreamer_mcmc_beta_binary <- function( #nolint
     lfun()
 }
 
+#' @export
 dreamer_mean.dreamer_mcmc_independent <- function( #nolint
   x,
   y = NULL,
@@ -307,6 +322,7 @@ dreamer_mean.dreamer_mcmc_independent <- function( #nolint
   return(out)
 }
 
+#' @export
 dreamer_mean.dreamer_mcmc_independent_binary <- function( #nolint
   x,
   y = NULL,

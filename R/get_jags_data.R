@@ -29,7 +29,8 @@ get_jags_data_hyperparms <- function(model, ...) {
   UseMethod("get_jags_data_hyperparms", model)
 }
 
-get_jags_data_hyperparms.default <- function(model, data) { #nolint
+#' @export
+get_jags_data_hyperparms.default <- function(model, data, ...) { #nolint
   model[
     c("w_prior", "jags_rng", "jags_seed", "longitudinal", "link", "scale")
   ] <- NULL
@@ -40,7 +41,8 @@ get_jags_data_hyperparms.default <- function(model, data) { #nolint
   unclass(model)
 }
 
-get_jags_data_hyperparms.dreamer_independent <- function(model, data) { #nolint
+#' @export
+get_jags_data_hyperparms.dreamer_independent <- function(model, data, ...) { #nolint
   doses <- model$doses
   check_independent_model(data, doses)
   u_doses_data <- unique(data$dose)
@@ -83,16 +85,19 @@ prep_jags_data <- function(model, data, ...) {
   UseMethod("prep_jags_data", model)
 }
 
+#' @export
 prep_jags_data.dreamer_binary <- function(model, data, ...) {
   prep_binary_jags_data(model, data)
 }
 
+#' @export
 prep_jags_data.dreamer_beta <- function(model, data, ...) {
   out <- prep_cont_jags_data(model, data)
   out <- out %>% set_scale(model, data)
   return(out)
 }
 
+#' @export
 prep_jags_data.dreamer_beta_binary <- function(model, data, ...) { #nolint
   out <- prep_binary_jags_data(model, data)
   out <- out %>% set_scale(model, data)
@@ -110,16 +115,18 @@ prep_binary_jags_data <- function(model, data) {
     n_obs = nrow(data)
   )
   if (is_longitudinal) {
-    jags_data$time <- dplyr::pull(data, .data$time)
+    jags_data$time <- dplyr::pull(data, "time")
   }
   return(jags_data)
 }
 
+#' @export
 prep_jags_data.dreamer_continuous <- function(model, data, ...) { #nolint
   prep_cont_jags_data(model, data)
 }
 
-prep_jags_data.dreamer_independent_continuous <- function(model, data, doses) { #nolint
+#' @export
+prep_jags_data.dreamer_independent_continuous <- function(model, data, doses, ...) { #nolint
   if (is.null(data)) {
     jags_data <- list(n_doses = length(model$doses))
     return(jags_data)
@@ -136,7 +143,8 @@ prep_jags_data.dreamer_independent_continuous <- function(model, data, doses) { 
   return(jags_data)
 }
 
-prep_jags_data.dreamer_independent_binary <- function(model, data, doses) { #nolint
+#' @export
+prep_jags_data.dreamer_independent_binary <- function(model, data, doses, ...) { #nolint
   if (is.null(data)) {
     jags_data <- list(n_doses = length(model$doses))
     return(jags_data)
@@ -159,10 +167,10 @@ prep_cont_jags_data <- function(model, data) {
     time_var <- get_time_var(model)
     data_sufficient <- dplyr::select(
       data,
-      .data$dose,
-      ybar = .data$response,
-      .data$sample_var,
-      .data$n,
+      "dose",
+      ybar = "response",
+      "sample_var",
+      "n",
       any_of(!!time_var)
     )
   } else {
@@ -189,7 +197,7 @@ prep_cont_jags_data <- function(model, data) {
     dose_sufficient = data_sufficient$dose
   )
   if (tibble::has_name(data_sufficient, "time")) {
-    jags_data$time <- dplyr::pull(data_sufficient, .data$time)
+    jags_data$time <- dplyr::pull(data_sufficient, "time")
   }
   return(jags_data)
 }

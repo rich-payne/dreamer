@@ -50,7 +50,7 @@ intervals for the mean.}
 
 \item{reference_dose}{the dose at which to adjust the posterior plot.
 Specifying
-a dose returns the plot of pr(trt_dose - trt_{reference_dose} | data).}
+a dose returns the plot of pr(trt_dose - trt_\{reference_dose\} | data).}
 
 \item{...}{model definitions created using the model creation functions
 in \link[dreamer]{model}.  If arguments are named, the names are
